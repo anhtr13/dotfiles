@@ -14,15 +14,10 @@ setmap({ "n", "v" }, "<c-z>", "u", opts)
 setmap("i", "<c-r>", "<ESC><c-r>", opts) -- redo
 
 -- delete
-setmap("i", "<c-BS>", "<ESC>db", opts) -- delete to begin of word
-setmap("i", "<c-Del>", "<ESC>de", opts) -- delete to end of word
-setmap("i", "<c-s-BS>", "<ESC>d0", opts) -- delete to the begin of line
-setmap("i", "<c-s-Del>", "<ESC>d$", opts) -- delete to the end of line
+-- <c-o> to perform normal mode while in insert mode
+-- <c-o> db/dB : delete to begin of word
+-- <c-o> de/dE : delete to end of word
 
-setmap("n", "<c-BS>", "db", opts) -- delete to begin of word
-setmap("n", "<c-Del>", "de", opts) -- delete to end of word
-setmap("n", "<c-s-BS>", "d0", opts) -- delete to the begin of line
-setmap("n", "<c-s-Del>", "d$", opts) -- delete to the end of line
 
 -- buffers
 setmap("n", "<Tab>", "<cmd>:bnext<CR>", opts)
@@ -30,5 +25,5 @@ setmap("n", "<S-Tab>", "<cmd>:bprevious<CR>", opts)
 setmap("n", "<leader>x", "<cmd>:Bdelete!<CR>", opts) -- close buffer
 
 -- newline in normal mode
-setmap("n", "<c-CR>", "o<Esc>", { desc = "Add new line below", silent = true })
-setmap("n", "<c-s-CR>", "O<Esc>", { desc = "Add new line above", silent = true })
+setmap("n", "<leader>G", "o<Esc>", { desc = "Add new line below", silent = true })
+setmap("n", "<leader>g", "O<Esc>", { desc = "Add new line above", silent = true })

@@ -45,7 +45,7 @@
 font-family = "CodeNewRoman Nerd Font Propo"
 
 # theme
-theme = light:NvimLight,dark:tokyonight_night
+theme = light:xcodelight,dark:tokyonight_night
 
 # window
 window-padding-x = 6
