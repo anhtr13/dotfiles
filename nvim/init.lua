@@ -19,8 +19,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+	require("plugins.themes.tokyo_night"),
 	require("plugins.neotree"),
-	require("plugins.colortheme"),
 	require("plugins.lualine"),
 	require("plugins.bufferline"),
 	require("plugins.treesitter"),

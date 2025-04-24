@@ -8,9 +8,11 @@ return {
   },
   keys = {
     { "<leader>db", ":DapToggleBreakpoint<CR>", silent = true, desc = "Toggle [D]ebugger [B]reak point" },
-    { "<leader>dc", ":DapContinue<CR>",         silent = true, desc = "[D]ebugger [C]ontinue" },
-    { "<leader>dx", ":DapTerminate<CR>",        silent = true, desc = "[D]ebugger Terminate[x]" },
-    { "<leader>do", ":DapTerminate<CR>",        silent = true, desc = "[D]ebugger jump [o]ver" },
+    { "<leader>dc", ":DapContinue<CR>",         silent = true, desc = "[D]ebugger [c]ontinue" },
+    { "<leader>do", ":DapStepOver<CR>",         silent = true, desc = "[D]ebugger step [o]ver" },
+    { "<leader>di", ":DapStepInto<CR>",         silent = true, desc = "[D]ebugger step [i]nto" },
+    { "<leader>du", ":DapStepOut<CR>",          silent = true, desc = "[D]ebugger step o[u]t" },
+    { "<leader>dx", ":DapTerminate<CR>",        silent = true, desc = "[D]ebugger e[x]it" },
   },
   config = function()
     require("dapui").setup()
