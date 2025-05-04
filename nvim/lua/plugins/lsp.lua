@@ -14,7 +14,9 @@ return {
 					"cmake",
 					"dockerls",
 					"docker_compose_language_service",
-					"sqlls",
+					"sqls",
+					"buf_ls", -- Protobuf
+					"pyright", -- Python
 					"jsonls",
 					"yamlls",
 					"tailwindcss",
@@ -35,7 +37,9 @@ return {
 					"cmake",
 					"dockerls",
 					"docker_compose_language_service",
-					"sqlls",
+					"sqls",
+					"buf_ls",
+					"pyright",
 					"jsonls",
 					"yamlls",
 					"tailwindcss",
@@ -58,7 +62,9 @@ return {
 			lspconfig.cmake.setup({ capabilities = capabilities })
 			lspconfig.dockerls.setup({ capabilities = capabilities })
 			lspconfig.docker_compose_language_service.setup({ capabilities = capabilities })
-			lspconfig.sqlls.setup({ capabilities = capabilities })
+			lspconfig.sqls.setup({ capabilities = capabilities })
+			lspconfig.buf_ls.setup({ capabilities = capabilities })
+			lspconfig.pyright.setup({ capabilities = capabilities })
 			lspconfig.jsonls.setup({ capabilities = capabilities })
 			lspconfig.yamlls.setup({ capabilities = capabilities })
 			lspconfig.tailwindcss.setup({ capabilities = capabilities })
