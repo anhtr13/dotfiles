@@ -16,6 +16,11 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	end
 end
 
+-- Virtual text off by default
+vim.diagnostic.config({ virtual_text = true })
+-- Enable virtual_lines if like it
+-- vim.diagnostic.config({ virtual_lines = true })
+
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({

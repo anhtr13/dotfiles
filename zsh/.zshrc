@@ -1,3 +1,4 @@
+# zshrc
 
 # Load optionrc if it exists
 [[ -f ${ZDOTDIR}/optionrc ]] && source ${ZDOTDIR}/optionrc

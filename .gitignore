@@ -1,4 +1,7 @@
+
 /tmux/plugins
 
-/zsh/.zprofile
+
+/zsh/.zshenv
+/zsh/.histfile
 /zsh/plugins

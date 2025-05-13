@@ -45,7 +45,7 @@
 font-family = "CodeNewRoman Nerd Font Propo"
 
 # theme
-theme = light:xcodelight,dark:tokyonight_night
+theme = light:Alabaster,dark:tokyonight_night
 
 # window
 window-padding-x = 6
@@ -65,6 +65,8 @@ keybind = ctrl+page_down=unbind
 keybind = ctrl+enter=unbind
 keybind = ctrl+equal=unbind
 keybind = ctrl+insert=unbind
+keybind = shift+up=unbind
+keybind = shift+down=unbind
 keybind = super+ctrl+left_bracket=unbind
 keybind = super+ctrl+right_bracket=unbind
 keybind = super+ctrl+shift+equal=unbind

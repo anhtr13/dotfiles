@@ -1,8 +1,10 @@
+-- Use Neovim as a language server to inject LSP diagnostics, code actions, formatting, and more via Lua.
+-- Provide a way for non-LSP sources to hook into its LSP client
 return {
 	"nvimtools/none-ls.nvim",
 	dependencies = {
 		"nvimtools/none-ls-extras.nvim",
-		"jayp0521/mason-null-ls.nvim",
+		"jay-babu/mason-null-ls.nvim",
 	},
 	keys = {
 		{ "<s-m-f>", vim.lsp.buf.format, silent = true, desc = "[F]ormat document by none-ls" },
