@@ -40,5 +40,6 @@ require("lazy").setup({
 	require("plugins.autopair"),
 	require("plugins.which-key"),
 	require("plugins.comment"),
+	require("plugins.snacks"),
 	require("plugins.ufo"),
 })

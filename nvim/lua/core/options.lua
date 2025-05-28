@@ -1,7 +1,7 @@
 vim.wo.number = true -- Make line numbers default (default: false)
 
-vim.g.clipboard = "osc52" -- Set clipboard provider to "osc52"
--- vim.o.clipboard = "unnamedplus" -- Sync clipboard between OS and Neovim. (default: '')
+-- Install the 'xclip' clipboard provider: 'sudo dnf install xclip'
+vim.o.clipboard = "unnamedplus" -- Sync clipboard between OS and Neovim. (default: '')
 
 vim.o.relativenumber = true -- Set relative numbered lines (default: false)
 vim.o.linebreak = true -- Companion to wrap, don't split words (default: false)

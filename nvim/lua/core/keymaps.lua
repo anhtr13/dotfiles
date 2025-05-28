@@ -7,6 +7,8 @@ setkey({ "n", "v" }, "<s-j>", "<Nop>", { silent = true })
 -- Use <PageUp>, <PageDown> for scrolling
 setkey({ "n", "v" }, "<s-Up>", "<Nop>", { silent = true })
 setkey({ "n", "v" }, "<s-Down>", "<Nop>", { silent = true })
+setkey({ "n", "v" }, "<c-u>", "<Nop>", { silent = true })
+setkey({ "n", "v" }, "<c-d>", "<Nop>", { silent = true })
 
 --
 

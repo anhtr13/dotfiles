@@ -17,6 +17,7 @@ return {
 				modified_icon = "●",
 				left_trunc_marker = "",
 				right_trunc_marker = "",
+				separator_style = "slope", -- "slant" | "slope" | "thick" | "thin" | { 'any', 'any' }
 				max_name_length = 30,
 				max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
 				tab_size = 18,
@@ -27,13 +28,12 @@ return {
 				show_buffer_close_icons = true,
 				show_close_icon = true,
 				persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-				-- separator_style = { "│", "│" }, -- | "thick" | "thin" | { 'any', 'any' },
 				enforce_regular_tabs = true,
 				always_show_bufferline = true,
 				show_tab_indicators = false,
 				indicator = {
-					-- icon = '▎', -- this should be omitted if indicator style is not 'icon'
-					style = "none", -- Options: 'icon', 'underline', 'none'
+					-- icon = '', -- this should be omitted if indicator style is not 'icon'
+					style = "underline", -- Options: 'icon', 'underline', 'none'
 				},
 				icon_pinned = "󰐃",
 				minimum_padding = 1,
@@ -42,13 +42,15 @@ return {
 				sort_by = "insert_at_end",
 			},
 			highlights = {
-				separator = {
-					fg = "#434C5E",
-				},
 				buffer_selected = {
+					-- fg = '',
+					-- bg = '',
 					bold = true,
 					italic = false,
 				},
+				-- separator = {
+				-- 	fg = "#434C5E",
+				-- },
 				-- separator_selected = {},
 				-- tab_selected = {},
 				-- background = {},

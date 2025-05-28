@@ -45,12 +45,12 @@
 font-family = "CodeNewRoman Nerd Font Propo"
 
 # theme
-theme = light:Alabaster,dark:tokyonight_night
+theme = light:BlulocoLight,dark:RetroLegends
 
 # window
 window-padding-x = 6
 window-padding-y = 6
-# window-inherit-working-directory = true # not working
+window-inherit-working-directory = false
 
 # unbind keys
 keybind = ctrl+alt+up=unbind
