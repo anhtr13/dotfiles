@@ -17,7 +17,7 @@ return {
 				modified_icon = "●",
 				left_trunc_marker = "",
 				right_trunc_marker = "",
-				separator_style = "slope", -- "slant" | "slope" | "thick" | "thin" | { 'any', 'any' }
+				separator_style = "thick", -- "slant" | "slope" | "thick" | "thin" | { 'any', 'any' }
 				max_name_length = 30,
 				max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
 				tab_size = 18,

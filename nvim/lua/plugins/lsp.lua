@@ -50,6 +50,11 @@ return {
 			filetypes = { "dockerfile" },
 			root_markers = { "Dockerfile" },
 		}
+		vim.lsp.config["docker_compose_ls"] = {
+			cmd = { "docker-compose-langserver", "--stdio" },
+			filetypes = { "yaml.docker-compose" },
+			root_markers = { "docker-compose.yaml", "docker-compose.yml", "compose.yaml", "compose.yml" },
+		}
 		vim.lsp.config["gopls"] = {
 			cmd = { "gopls" },
 			filetypes = { "go", "gomod", "gowork", "gotmpl" },
@@ -128,6 +133,7 @@ return {
 				"postcss.config.cjs",
 				"postcss.config.mjs",
 				"postcss.config.ts",
+				"vite.config.ts",
 			},
 		}
 		vim.lsp.config["ts_ls"] = {
@@ -152,6 +158,7 @@ return {
 		vim.lsp.enable("clangd")
 		vim.lsp.enable("cmake_ls")
 		vim.lsp.enable("docker_ls")
+		vim.lsp.enable("docker_compose_ls")
 		vim.lsp.enable("gopls")
 		vim.lsp.enable("json_ls")
 		vim.lsp.enable("lua_ls")
@@ -178,5 +185,8 @@ return {
 			vim.lsp.buf.type_definition,
 			{ desc = "vim.lsp.buf.type_definition()", noremap = true, silent = true }
 		)
+		vim.keymap.set("n", "gri", function()
+			vim.diagnostic.open_float({ border = "single", max_height = 32, max_width = 132 })
+		end, { desc = "vim.diagnostic.open_float(),", noremap = true, silent = true })
 	end,
 }
