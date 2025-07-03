@@ -8,8 +8,11 @@ while IFS= read -r line; do
 done <.gitignore
 
 for cur_folder in */; do
+
   source_folder="$source_dir/$cur_folder"
+
   find $source_folder -type f -print0 | while IFS= read -r -d $'\0' source_file; do
+
     path=${source_file#$source_dir}
 
     flag=true
@@ -28,7 +31,9 @@ for cur_folder in */; do
         cp $source_file $dest_file
       fi
     fi
+
   done
+
 done
 
 for folder in */; do
@@ -55,6 +60,3 @@ for folder in */; do
   fi
 done
 
-git add -A
-git commit -m "update"
-git push origin main

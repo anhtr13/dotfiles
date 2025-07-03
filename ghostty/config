@@ -43,11 +43,13 @@
 # resize-overlay-duration = 4s 200ms
 
 font-family = "CodeNewRoman Nerd Font Propo"
+clipboard-trim-trailing-spaces = true
 
 # theme
 theme = light:BlulocoLight,dark:RetroLegends
 
 # window
+window-theme = ghostty
 window-padding-x = 6
 window-padding-y = 6
 window-inherit-working-directory = false

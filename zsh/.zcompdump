@@ -1460,6 +1460,7 @@ _comps=(
 'todo' '_devtodo'
 'todo.sh' '_todo.sh'
 'toilet' '_toilet'
+'_toolbox' '_toolbox'
 'toolbox' '_toolbox'
 'top' '_top'
 'totdconfig' '_totd'

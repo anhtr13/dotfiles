@@ -84,11 +84,6 @@ return {
 				},
 			},
 		}
-		vim.lsp.config["posgres_ls"] = {
-			cmd = { "postgrestools", "lsp-proxy" },
-			filetypes = { "sql" },
-			root_markers = { "postgrestools.jsonc" },
-		}
 		vim.lsp.config["proto_ls"] = {
 			cmd = { "protols" },
 			filetypes = { "proto" },
@@ -109,6 +104,11 @@ return {
 			cmd = { "rust-analyzer" },
 			filetypes = { "rust" },
 			root_markers = { "Cargo.toml" },
+		}
+		vim.lsp.config["sqls"] = {
+			cmd = { "sqls" },
+			filetypes = { "sql", "mysql" },
+			root_markers = { "config.yaml", "config.yml" },
 		}
 		vim.lsp.config["tailwind_ls"] = {
 			cmd = { "tailwindcss-language-server", "--stdio" },
@@ -162,10 +162,10 @@ return {
 		vim.lsp.enable("gopls")
 		vim.lsp.enable("json_ls")
 		vim.lsp.enable("lua_ls")
-		vim.lsp.enable("posgres_ls")
 		vim.lsp.enable("proto_ls")
 		vim.lsp.enable("pylyzer")
 		vim.lsp.enable("rust_analyzer")
+		vim.lsp.enable("sqls")
 		vim.lsp.enable("tailwind_ls")
 		vim.lsp.enable("ts_ls")
 		vim.lsp.enable("yaml_ls")
