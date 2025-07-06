@@ -1,4 +1,6 @@
 /tmux/plugins
+/zsh/plugins
 /zsh/.zshenv
 /zsh/.histfile
-/zsh/plugins
+/zsh/.zcompdump
+/vim/.netrwhist

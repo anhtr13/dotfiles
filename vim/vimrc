@@ -1,0 +1,44 @@
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+set scrolloff=6
+set showtabline=2
+set whichwrap=bs<>[]hl
+set completeopt="menuone,noselect"
+set number
+set relativenumber
+set ignorecase
+set smartcase
+set showmatch
+set hlsearch
+set incsearch
+set wildmenu
+set noswapfile
+set ruler
+set expandtab
+set smartindent
+set breakindent
+
+nmap [<space> ko<Esc>j
+nmap ]<space> o<Esc>k
+
+imap <C-q> <Esc>
+imap <C-z> <Esc>u
+imap <C-r> <Esc><C-r>
+imap <C-s> <Esc>:w<cr>
+
+map <leader>e :Explore<cr>
+map <C-q> <Esc>
+map <C-z> <Esc>u
+map <C-s> <Esc>:w<cr>
+
+map <Tab><Left> :bprevious<cr>
+map <Tab><Right> :bnext<cr>
+map <Tab>c :bdelete<cr>
+map <Tab>x :bdelete!<cr>
+
+map <S-j> <Nop>
+map <S-Up> <Nop>
+map <S-Down> <Nop>
+map <C-u> <Nop>
+map <C-d> <Nop>

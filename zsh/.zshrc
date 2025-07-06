@@ -2,6 +2,8 @@
 
 # Load optionrc if it exists
 [[ -f ${ZDOTDIR}/optionrc ]] && source ${ZDOTDIR}/optionrc
+# Load aliasrc if it exists
+[[ -f ${ZDOTDIR}/aliasrc ]] && source ${ZDOTDIR}/aliasrc
 
 # Plugins
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
@@ -38,9 +40,6 @@ zstyle :compinstall $ZDOTDIR/.zshrc
 
 autoload -Uz compinit
 compinit
-
-# Aliases
-alias ssh='env TERM=xterm-256color ssh' # allows ghostty to work with ssh
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
