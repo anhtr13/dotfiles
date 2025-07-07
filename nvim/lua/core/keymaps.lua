@@ -10,9 +10,8 @@ local setkey = vim.keymap.set
 -- Use <PageUp>, <PageDown> for scrolling
 setkey({ "n", "v" }, "<s-Up>", "<Nop>")
 setkey({ "n", "v" }, "<s-Down>", "<Nop>")
-setkey({ "n", "v" }, "<c-u>", "<Nop>")
-setkey({ "n", "v" }, "<c-d>", "<Nop>")
 setkey({ "n", "v" }, "<s-j>", "<Nop>")
+setkey({ "n", "v" }, "<s-k>", "<Nop>")
 
 
 

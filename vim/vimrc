@@ -19,7 +19,9 @@ set expandtab
 set smartindent
 set breakindent
 
-nmap [<space> ko<Esc>j
+let g:netrw_dirhistmax=0
+
+nmap [<space> O<Esc>j
 nmap ]<space> o<Esc>k
 
 imap <C-q> <Esc>
@@ -38,7 +40,6 @@ map <Tab>c :bdelete<cr>
 map <Tab>x :bdelete!<cr>
 
 map <S-j> <Nop>
+map <S-k> <Nop>
 map <S-Up> <Nop>
 map <S-Down> <Nop>
-map <C-u> <Nop>
-map <C-d> <Nop>
