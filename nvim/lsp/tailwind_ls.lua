@@ -1,0 +1,26 @@
+return {
+	cmd = { "tailwindcss-language-server", "--stdio" },
+	filetypes = {
+		"html",
+		"css",
+		"scss",
+		"javascriptreact",
+		"javascript.jsx",
+		"typescriptreact",
+		"typescript.t",
+		"vue",
+		"svelte",
+		"templ",
+	},
+	root_markers = {
+		"tailwind.config.js",
+		"tailwind.config.cjs",
+		"tailwind.config.mjs",
+		"tailwind.config.ts",
+		"postcss.config.js",
+		"postcss.config.cjs",
+		"postcss.config.mjs",
+		"postcss.config.ts",
+		"vite.config.ts",
+	},
+}

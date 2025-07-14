@@ -58,5 +58,13 @@ return {
 				-- fill = {},
 			},
 		})
+
+		vim.keymap.set("n", "<Tab>l", "<cmd>:BufferLineCycleNext<CR>", { desc = "Jump to next buffer" })
+		vim.keymap.set("n", "<Tab>h", "<cmd>:BufferLineCyclePrev<CR>", { desc = "Jump to previous buffer" })
+		vim.keymap.set("n", "<Tab><Right>", "<cmd>:BufferLineCycleNext<CR>", { desc = "Jump to next buffer" })
+		vim.keymap.set("n", "<Tab><Left>", "<cmd>:BufferLineCyclePrev<CR>", { desc = "Jump to previous buffer" })
+		vim.keymap.set("n", "<Tab>c", "<cmd>:Bdelete<CR>", { desc = "Close current buffer" })
+		vim.keymap.set("n", "<Tab>x", "<cmd>:Bdelete!<CR>", { desc = "Force close current buffer" })
+		vim.keymap.set("n", "<Tab>o", "<cmd>:BufferLineCloseOthers<CR>", { desc = "Close all others buffer" })
 	end,
 }

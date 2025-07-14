@@ -34,8 +34,11 @@ map <C-q> <Esc>
 map <C-z> <Esc>u
 map <C-s> <Esc>:w<cr>
 
+map <Tab>a :buffers<cr>
 map <Tab><Left> :bprevious<cr>
 map <Tab><Right> :bnext<cr>
+map <Tab>h :bprevious<cr>
+map <Tab>l :bnext<cr>
 map <Tab>c :bdelete<cr>
 map <Tab>x :bdelete!<cr>
 

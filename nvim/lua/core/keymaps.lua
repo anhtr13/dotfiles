@@ -4,16 +4,12 @@ local setkey = vim.keymap.set
 --    silent: show no message when the keybinding is used
 --    desc: keys sequence description
 
-
-
 -- <========== Unbind keys ==========>
--- Use <PageUp>, <PageDown> for scrolling
+-- Use <PageUp>, <PageDown> for scrolling only
 setkey({ "n", "v" }, "<s-Up>", "<Nop>")
 setkey({ "n", "v" }, "<s-Down>", "<Nop>")
 setkey({ "n", "v" }, "<s-j>", "<Nop>")
 setkey({ "n", "v" }, "<s-k>", "<Nop>")
-
-
 
 -- <========== Bind keys ==========>
 -- Save
@@ -40,11 +36,3 @@ vim.keymap.set("n", "<leader>`", function()
   vim.cmd.term()
 end) ]]
 
--- BufferLine
-setkey("n", "<Tab>l", "<cmd>:BufferLineCycleNext<CR>", { desc = "Jump to next buffer" })
-setkey("n", "<Tab>h", "<cmd>:BufferLineCyclePrev<CR>", { desc = "Jump to previous buffer" })
-setkey("n", "<Tab><Right>", "<cmd>:BufferLineCycleNext<CR>", { desc = "Jump to next buffer" })
-setkey("n", "<Tab><Left>", "<cmd>:BufferLineCyclePrev<CR>", { desc = "Jump to previous buffer" })
-setkey("n", "<Tab>c", "<cmd>:Bdelete<CR>", { desc = "Close current buffer" })
-setkey("n", "<Tab>x", "<cmd>:Bdelete!<CR>", { desc = "Force close current buffer" })
-setkey("n", "<Tab>o", "<cmd>:BufferLineCloseOthers<CR>", { desc = "Close all others buffer" })
