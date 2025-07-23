@@ -8,14 +8,14 @@ config.enable_tab_bar = false
 config.font = wezterm.font("CodeNewRoman Nerd Font Propo")
 config.font_size = 12
 
-config.color_scheme = "Tokyo Night"
+config.color_scheme = "Homebrew (Gogh)"
 config.window_decorations = "TITLE | RESIZE"
 config.window_frame = {
-	active_titlebar_bg = "#111117",
-	inactive_titlebar_bg = "#1B1A26",
+	active_titlebar_bg = "#000000",
+	inactive_titlebar_bg = "#111117",
 	button_bg = "#111117",
-	button_fg = "#cccccc",
-	button_hover_fg = "#9ece6a",
+	button_fg = "#C1CBF5",
+	button_hover_fg = "#01FF01",
 }
 
 config.keys = {

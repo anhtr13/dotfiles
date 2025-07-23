@@ -38,4 +38,5 @@ require("lazy").setup({
   require("plugins.comment"),
   require("plugins.snacks"),
   require("plugins.ufo"),
+  require("plugins.ts-autotag"),
 })

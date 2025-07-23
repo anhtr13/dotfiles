@@ -4,14 +4,12 @@ local setkey = vim.keymap.set
 --    silent: show no message when the keybinding is used
 --    desc: keys sequence description
 
--- <========== Unbind keys ==========>
 -- Use <PageUp>, <PageDown> for scrolling only
 setkey({ "n", "v" }, "<s-Up>", "<Nop>")
 setkey({ "n", "v" }, "<s-Down>", "<Nop>")
 setkey({ "n", "v" }, "<s-j>", "<Nop>")
 setkey({ "n", "v" }, "<s-k>", "<Nop>")
 
--- <========== Bind keys ==========>
 -- Save
 setkey({ "i", "v" }, "<c-s>", "<ESC><cmd>:w<CR>", { desc = "Save file and back to normal mode" })
 setkey("n", "<c-s>", "<cmd>:w<CR>", { desc = "Save file" })
@@ -35,4 +33,3 @@ vim.keymap.set("n", "<leader>`", function()
   vim.wo.winfixheight = true
   vim.cmd.term()
 end) ]]
-

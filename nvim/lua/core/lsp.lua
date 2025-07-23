@@ -13,11 +13,12 @@ vim.lsp.enable({
   "sqls",
   "tailwind_ls",
   "ts_ls",
+  "vtsls",
+  "vue_ls",
   "yaml_ls",
 })
 
 vim.lsp.config("*", {
-  root_markers = { ".git", ".hg" },
   capabilities = {
     textDocument = {
       semanticTokens = {
