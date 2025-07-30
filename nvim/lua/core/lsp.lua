@@ -7,12 +7,12 @@ vim.lsp.enable({
   "gopls",
   "json_ls",
   "lua_ls",
+  "nginx_ls",
   "proto_ls",
   "pylyzer",
   "rust_analyzer",
-  "sqls",
   "tailwind_ls",
-  "ts_ls",
+  -- "ts_ls",
   "vtsls",
   "vue_ls",
   "yaml_ls",
@@ -44,6 +44,6 @@ vim.keymap.set(
   vim.lsp.buf.type_definition,
   { desc = "vim.lsp.buf.type_definition()", noremap = true, silent = true }
 )
-vim.keymap.set("n", "gri", function()
+vim.keymap.set("n", "grI", function()
   vim.diagnostic.open_float({ border = "single", max_height = 32, max_width = 132 })
 end, { desc = "vim.diagnostic.open_float(),", noremap = true, silent = true })

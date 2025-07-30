@@ -15,7 +15,7 @@ HISTSIZE=9600
 SAVEHIST=9600
 
 # Words separating
-WORDCHARS='*?[]~&!#$%^(){}<>'  # separate words by / - _ = . ;
+WORDCHARS='*?[]~&!#$%^(){}<>' # separate words by / - _ = . ;
 
 # Bind keys
 zmodload zsh/terminfo
@@ -32,8 +32,8 @@ bindkey '^[[B' history-substring-search-down # arrow-down
 
 bindkey '^[[107;6u' clear-screen # ctrl + shift + k
 
-bindkey '^[y'     redo                 # Alt + y
-bindkey '^[z'     undo                 # Alt + z
+bindkey '^[y' redo # Alt + y
+bindkey '^[z' undo # Alt + z
 
 # Completion
 zstyle :compinstall $ZDOTDIR/.zshrc
@@ -43,14 +43,11 @@ compinit
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # Init zsh-themes via oh-my-posh
 system=$(gsettings get org.gnome.desktop.interface color-scheme)
-[[ $system =~ 'dark' ]] \
-	&& eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/tokyo_night.json)" \
-	|| eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/tokyo_day.json)"
-
-
+[[ $system =~ 'dark' ]] &&
+  eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/tokyo_night.json)" ||
+  eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/tokyo_day.json)"
