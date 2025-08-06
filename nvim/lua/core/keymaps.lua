@@ -4,11 +4,11 @@ local setkey = vim.keymap.set
 --    silent: show no message when the keybinding is used
 --    desc: keys sequence description
 
--- Use <PageUp>, <PageDown> for scrolling only
-setkey({ "n", "v" }, "<s-Up>", "<Nop>")
-setkey({ "n", "v" }, "<s-Down>", "<Nop>")
-setkey({ "n", "v" }, "<s-j>", "<Nop>")
-setkey({ "n", "v" }, "<s-k>", "<Nop>")
+-- Fast navigations
+setkey({ "n", "v" }, "<s-Up>", "10k")
+setkey({ "n", "v" }, "<s-Down>", "10j")
+setkey({ "n", "v" }, "<s-k>", "10k")
+setkey({ "n", "v" }, "<s-j>", "10j")
 
 -- Save
 setkey({ "i", "v" }, "<c-s>", "<ESC><cmd>:w<CR>", { desc = "Save file and back to normal mode" })

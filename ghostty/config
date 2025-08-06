@@ -67,6 +67,7 @@ keybind = ctrl+page_down=unbind
 keybind = ctrl+enter=unbind
 keybind = ctrl+equal=unbind
 keybind = ctrl+insert=unbind
+keybind = ctrl+tab=unbind
 keybind = shift+up=unbind
 keybind = shift+down=unbind
 keybind = super+ctrl+left_bracket=unbind
@@ -80,6 +81,7 @@ keybind = shift+alt+backslash=unbind
 keybind = shift+alt+left_bracket=unbind
 keybind = shift+alt+right_bracket=unbind
 keybind = ctrl+shift+enter=unbind
+keybind = ctrl+shift+tab=unbind
 
 # bind keys
 keybind = shift+left=previous_tab

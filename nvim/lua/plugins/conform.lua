@@ -1,3 +1,4 @@
+-- Formatter plugin for Neovim
 return {
 	"stevearc/conform.nvim",
 	keys = {
@@ -28,15 +29,17 @@ return {
               "useTabs": true,
               "tabWidth": 2,
               "keywordCase": "upper",
+              "dataTypeCase": "lower",
+              "identifierCase": "lower",
               "functionCase": "lower",
-              "linesBetweenQueries": 2,
-              "newlineBeforeSemicolon": true
+              "linesBetweenQueries": 1,
+              "newlineBeforeSemicolon": false
             }]],
 					},
 				},
 			},
 			formatters_by_ft = {
-				go = { "goimports_reviser", "golines" },
+				go = { "goimports_reviser" },
 				sql = { "sql_formatter" },
 				sh = { "shfmt" },
 				nginx = { "nginxfmt" },
@@ -45,10 +48,15 @@ return {
 				rust = { "rustfmt" },
 				javascript = { "prettierd", "prettier", stop_after_first = true },
 				typescript = { "prettierd", "prettier", stop_after_first = true },
+				-- Use the "*" filetype to run formatters on all filetypes.
+				["*"] = { "codespell" },
+				-- Use the "_" filetype to run formatters on filetypes that don't have other formatters configured.
+				["_"] = { "trim_whitespace" },
 			},
 			-- Set default options
 			default_format_opts = {
 				lsp_format = "fallback",
+				stop_after_first = false,
 			},
 		})
 	end,

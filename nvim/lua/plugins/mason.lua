@@ -1,5 +1,5 @@
+-- Installing and managing LSP servers, DAP servers, linters, formatters, etc.
 return {
-	-- Mason for installing and managing LSP servers, DAP servers, linters, formatters, etc.
 	"mason-org/mason.nvim",
 	config = function()
 		require("mason").setup({
