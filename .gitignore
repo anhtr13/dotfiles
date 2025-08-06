@@ -4,3 +4,4 @@
 /zsh/.histfile
 /zsh/.zcompdump
 /vim/.netrwhist
+/nvim/lazy-lock.json

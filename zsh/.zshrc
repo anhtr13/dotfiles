@@ -6,7 +6,9 @@
 [[ -f ${ZDOTDIR}/aliasrc ]] && source ${ZDOTDIR}/aliasrc
 
 # Plugins
+# git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh/plugins/zsh-autosuggestions
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+#  git clone https://github.com/zsh-users/zsh-history-substring-search ~/.config/zsh/plugins/zsh-history-substring-search
 source $ZDOTDIR/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 
 # History
