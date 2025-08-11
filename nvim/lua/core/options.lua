@@ -1,6 +1,7 @@
 vim.wo.number = true -- Make line numbers default (default: false)
 
--- Install the 'xclip' clipboard provider: 'sudo pacman -S xclip'
+-- wl-clipboard for hyprland: 'sudo pacman -S xclip wl-clipboard'
+-- or 'xclip' for others x11 window managers: 'sudo pacman -S xclip'
 vim.o.clipboard = "unnamedplus" -- Sync clipboard between OS and Neovim. (default: '')
 
 vim.o.relativenumber = true -- Set relative numbered lines (default: false)

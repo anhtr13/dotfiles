@@ -1,1 +1,1 @@
-Personal configuration files (Ghostty, Neovim, Tmux, Zsh, etc.)
+Personal configuration files (Neovim + Ghostty + Tmux, Zsh + Starship, Arch + Hypr, etc.)

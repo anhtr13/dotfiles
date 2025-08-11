@@ -1,0 +1,14 @@
+// checkout https://github.com/newmanls/rofi-themes-collection
+
+* {
+    bg0:    #000000F5;
+    bg1:    #13231399;
+    bg2:    #132313;
+    bg3:    #45EB45F5;
+    fg0:    #E6E6E6;
+    fg1:    #FFFFFF;
+    fg2:    #969696;
+    fg3:    #3D3D3D;
+}
+
+@import "template/template1.rasi"

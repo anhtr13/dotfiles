@@ -32,7 +32,7 @@ return {
       dashboard.button("Leader f", "  Float file explorer", "<leader>f"),
       dashboard.button("Leader / f", "󰈞  Telescope find file", "<leader>/f"),
       dashboard.button("Leader / g", "󰈬  Telescope live grep", "<leader>/g"),
-      dashboard.button("Leader ?", "󰌌  Buffer local keymaps", "<leader>?"),
+      dashboard.button("Leader ?", "󰌌  All Neovim keybindings", "<leader>?"),
       dashboard.button(":q Enter", "  Quit Neovim", ":q<cr>"),
     }
 

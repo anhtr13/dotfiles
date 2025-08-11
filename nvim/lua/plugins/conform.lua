@@ -37,11 +37,17 @@ return {
             }]],
 					},
 				},
+				nginxfmt = {
+					command = "nginxfmt",
+					args = { "-p", "-i", "4", "$FILENAME" },
+				},
 			},
 			formatters_by_ft = {
 				go = { "goimports_reviser" },
 				sql = { "sql_formatter" },
 				sh = { "shfmt" },
+				zsh = { "shfmt" },
+				bash = { "shfmt" },
 				nginx = { "nginxfmt" },
 				lua = { "stylua" },
 				python = { "isort", "black" },

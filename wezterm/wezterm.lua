@@ -4,6 +4,7 @@ local config = wezterm.config_builder()
 
 config.disable_default_key_bindings = true
 config.enable_tab_bar = false
+config.enable_wayland = false
 
 config.font = wezterm.font("CodeNewRoman Nerd Font Propo")
 config.font_size = 12

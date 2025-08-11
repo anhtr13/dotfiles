@@ -1,11 +1,15 @@
 # .zprofile
+#
+#
 
-if
- ! [[ ":$PATH:" == *":$HOME/.local/bin:"* ]]; then
-    PATH="$PATH:$HOME/.local/bin"
-fi
+# zshenv (ignored by .gitignore)
 
-
-export GOPATH="$HOME/go"
-export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin:/home/linuxbrew/.linuxbrew/bin"
-
+# . "$HOME/.cargo/env"
+#
+# export EDITOR="/usr/bin/nvim"
+# export MYVIMRC="~/.config/vim/vimrc"
+#
+# export GEMINI_API_KEY=""
+#
+# export GOPATH="$HOME/go"
+# export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin:/home/linuxbrew/.linuxbrew/bin"

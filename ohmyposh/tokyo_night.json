@@ -8,7 +8,7 @@
     "tokyo-white": "#ffffff",
     "tokyo-rose": "#f7768e",
     "tokyo-orange": "#ff9e64",
-    "tokyo-tear": "#2ac3de",
+    "tokyo-teal": "#2ac3de",
     "tokyo-purple": "#a277ff"
   },
   "transient_prompt": {
@@ -23,7 +23,7 @@
       "newline": true,
       "segments": [
         {
-          "template": "{{ if .SSHSession }}\ueba9 {{ end }}<b>{{.UserName}}</b> \udb80\udd3e",
+          "template": "{{ if .SSHSession }}\ueba9 {{ end }}<b>{{.UserName}}@{{.HostName}}</b> \udb80\udd3e",
           "foreground": "p:tokyo-purple",
           "type": "session",
           "style": "plain"
@@ -53,7 +53,7 @@
           "foreground_templates": [
             "{{ if or (.Working.Changed) (.Staging.Changed) }}p:tokyo-green{{ end }}",
             "{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:tokyo-orange{{ end }}",
-            "{{ if gt .Ahead 0 }}p:tokyo-tear{{ end }}",
+            "{{ if gt .Ahead 0 }}p:tokyo-teal{{ end }}",
             "{{ if gt .Behind 0 }}p:tokyo-rose{{ end }}"
           ],
           "type": "git",

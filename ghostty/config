@@ -44,6 +44,8 @@
 
 font-family = "CodeNewRoman Nerd Font Propo"
 clipboard-trim-trailing-spaces = true
+shell-integration = zsh
+# background-opacity = 0.9
 
 # theme
 theme = light:BlulocoLight,dark:RetroLegends

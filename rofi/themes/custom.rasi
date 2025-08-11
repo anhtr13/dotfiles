@@ -1,0 +1,10 @@
+// checkout https://github.com/newmanls/rofi-themes-collection
+
+* {
+    primary:    #7AA2F7F5;
+    background: #060606F5;
+    accent:     #1B1D2B99;
+    border:     #60689FF5;
+}
+
+@import "template/template1.rasi"

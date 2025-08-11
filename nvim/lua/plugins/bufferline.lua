@@ -8,8 +8,8 @@ return {
 		require("bufferline").setup({
 			options = {
 				mode = "buffers", -- set to "tabs" to only show tabpages instead
-				themable = true, -- allows highlight groups to be overriden i.e. sets highlights as default
-				numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
+				themable = true, -- allows highlight groups to be overridden i.e. sets highlights as default
+				numbers = "both", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
 				close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
 				buffer_close_icon = "✗",
 				close_icon = "✗",
@@ -17,9 +17,9 @@ return {
 				modified_icon = "●",
 				left_trunc_marker = "",
 				right_trunc_marker = "",
-				separator_style = "thick", -- "slant" | "slope" | "thick" | "thin" | { 'any', 'any' }
-				max_name_length = 30,
-				max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
+				separator_style = "{'', ''}", -- "slant" | "slope" | "thick" | "thin" | { 'any', 'any' }
+				max_name_length = 18,
+				max_prefix_length = 18, -- prefix used when a buffer is de-duplicated
 				tab_size = 18,
 				diagnostics = false,
 				diagnostics_update_in_insert = false,
@@ -48,15 +48,17 @@ return {
 					bold = true,
 					italic = false,
 				},
-				-- separator = {
-				-- 	fg = "#434C5E",
-				-- },
+				separator = {
+					fg = "#000000",
+				},
 				-- separator_selected = {},
 				-- tab_selected = {},
 				-- background = {},
 				-- indicator_selected = {},
-				-- fill = {},
-			},
+        fill = {
+          bg = '#000000'
+        }
+      },
 		})
 
 		vim.keymap.set("n", "<Tab>l", "<cmd>:BufferLineCycleNext<CR>", { desc = "Jump to next buffer" })
