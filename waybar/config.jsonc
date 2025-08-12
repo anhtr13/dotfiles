@@ -2,34 +2,36 @@
     "layer": "top",
     "position": "top",
     "height": 40,
-    "spacing": 3,
+    "spacing": 0,
     "exclusive": true,
     "passthrough": false,
     "fixed-center": true,
 
     "modules-left": [ 
-        "clock#date",
+        "custom/rofi",
         "hyprland/window"
     ],
     "modules-center": [
       "hyprland/workspaces",
-      "clock"
+      "clock",
+      "clock#date"
     ],
     "modules-right": [
         "backlight",
         "pulseaudio",
         "network",
+        "cpu",
+        "memory",
         "power-profiles-daemon",
         "battery",
-        "custom/power"
+        "custom/restart",
+        "custom/poweroff"
     ],
-
-    "hyprland/workspaces": {
-        "on-click": "activate",
-        "format": "{name}",
-        "all-outputs": true,
-        "disable-scroll": false,
-        "active-only": false
+    
+    "custom/rofi": {
+        "format": "",
+        "on-click": "rofi -show drun",
+        "tooltip": false
     },
 
     "hyprland/window": {
@@ -42,10 +44,16 @@
         "max-length": 24
     },
 
-    "backlight": {
-        "format": "{percent}% {icon}",
-        // "format-icons": ["", "", "", "", "", "", "", "", ""]
-        "format-icons": ["󰃞", "󰃞", "󰃟", "󰃟", "󰃝", "󰃝", "󰃝", "󰃠"]
+    "hyprland/workspaces": {
+        "on-click": "activate",
+        "format": "{name}",
+        "all-outputs": true,
+        "disable-scroll": false,
+        "active-only": false,
+        "show-special": true,
+        "persistent-workspaces": {
+            "*": [ 1, 2, 3, 4 ]
+        }
     },
 
     "clock": {
@@ -73,12 +81,18 @@
         "max-length": 28
     },
 
+    "backlight": {
+        "format": "{percent}% {icon}",
+        // "format-icons": ["", "", "", "", "", "", "", "", ""]
+        "format-icons": ["󰃞", "󰃟", "󰃠"]
+    },
+
     "pulseaudio": {
         "scroll-step": 1, // %, can be a float
         "format": "{icon} {volume}%  {format_source}",
         "format-bluetooth": " {icon} {volume}%  {format_source}",
-        "format-bluetooth-muted": "    {format_source}",
-        "format-muted": "{format_source}",
+        "format-bluetooth-muted": "    {format_source}",
+        "format-muted": "  {format_source}",
         "format-source": "",
         "format-source-muted": "",
         "format-icons": {
@@ -92,6 +106,34 @@
         },
         "on-click-middle": "pamixer -t",
         "on-click": "pavucontrol"
+    },
+
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": " {signalStrength}%",
+        "format-ethernet": " {ipaddr}/{cidr}",
+        "tooltip-format": "  {ifname} via {gwaddr}",
+        "format-linked": "  {ifname} (No IP)",
+        "format-disconnected": " ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+
+    "cpu": {
+        "interval": 10,
+        "format": "",
+        "max-length": 10,
+        "format-alt-click": "click-right",
+        "format-alt": " {usage}%"
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": "",
+        "format-alt-click": "click-right",
+        "format-alt": " {used}%",
+        "max-length": 10,
+        "tooltip": true,
+        "tooltip-format": "Memory - {used:0.1f}GB used"
     },
 
     "power-profiles-daemon": {
@@ -120,19 +162,17 @@
         "format-icons": ["", "", "", "", ""]
     },
 
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": " {signalStrength}%",
-        "format-ethernet": " {ipaddr}/{cidr}",
-        "tooltip-format": "  {ifname} via {gwaddr}",
-        "format-linked": "  {ifname} (No IP)",
-        "format-disconnected": " ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    "custom/restart": {
+      "tooltip": true,
+      "tooltip-format": "Restart",
+      "on-click": "shutdown -r now",
+      "format": ""
     },
 
-    "custom/power": {
-        "tooltip": false,
-        "on-click": "~/.config/rofi/powermenu/type-2/powermenu.sh &",
-        "format": "⏻"
+    "custom/poweroff": {
+      "tooltip": true,
+      "tooltip-format": "Poweroff",
+      "on-click": "shutdown -h now",
+      "format": "⏻"
     }
 }
