@@ -1,51 +1,4 @@
-@define-color green	rgba(158, 206, 106, 1);
-@define-color yellow rgba(224, 175, 104, 1);
-@define-color orange rgba(255, 158, 100, 1);
-@define-color pink rgba(247, 118, 142, 1);
-@define-color smoke rgba(192, 202, 245, 1);
-@define-color gray rgba(207, 201, 194, 1);
-
-@define-color purple0 rgba(154, 126, 204, 1);
-@define-color purple1 rgba(187, 154, 247, 1);
-
-@define-color teal0 rgba(74, 186, 175, 1);
-@define-color teal1 rgba(115, 218, 202, 1);
-@define-color teal2 rgba(180, 249, 248, 1);
-
-@define-color blue0 rgba(86, 95, 137, 1);
-@define-color blue1 rgba(122, 162, 247, 1);
-
-@define-color cyan0 rgba(42, 195, 222, 1);
-@define-color cyan1 rgba(125, 207, 255, 1);
-
-@define-color base0 rgba(21, 22, 30, 1);
-@define-color base1 rgba(26, 27, 38, 1);
-
-
-@define-color green_opa15	rgba(158, 206, 106, 0.15);
-@define-color yellow_opa15 rgba(224, 175, 104, 0.15);
-@define-color orange_opa15 rgba(255, 158, 100, 0.15);
-@define-color pink_opa15 rgba(247, 118, 142, 0.15);
-@define-color smoke_opa15 rgba(192, 202, 245, 0.15);
-@define-color gray_opa15 rgba(207, 201, 194, 0.15);
-
-@define-color purple0_opa15 rgba(154, 126, 204, 0.15);
-@define-color purple1_opa15 rgba(187, 154, 247, 0.15);
-
-@define-color teal0_opa15 rgba(74, 186, 175, 0.15);
-@define-color teal1_opa15 rgba(115, 218, 202, 0.15);
-@define-color teal2_opa15 rgba(180, 249, 248, 0.15);
-
-@define-color blue0_opa15 rgba(86, 95, 137, 0.15);
-@define-color blue1_opa15 rgba(122, 162, 247, 0.15);
-
-@define-color cyan0_opa15 rgba(42, 195, 222, 0.15);
-@define-color cyan1_opa15 rgba(125, 207, 255, 0.15);
-
-@define-color base0_opa15 rgba(21, 22, 30, 0.15);
-@define-color base1_opa15 rgba(26, 27, 38, 0.15);
-
-@define-color base0_opa60 rgba(21, 22, 30, 0.6);
+@import 'colors.css';
 
 * {
     font-family: JetBrainsMono Nerd Font Propo;
@@ -76,6 +29,18 @@ tooltip {
     border: 1px solid @blue1;
 }
 
+menu {
+	color: @smoke;
+  padding: 6px;
+	background: @base1;
+	border-radius: 5px;
+  border: 1px solid @blue1;
+}
+menuitem {
+	border-radius: 5px;
+  transition: all 0.2s ease-in;
+}
+
 .module {
     margin: 8px 4px;
     border-radius: 8px;
@@ -90,7 +55,7 @@ tooltip {
 }
 
 #custom-rofi:hover {
-    background: @blue1_opa15;
+    background: @cyan1_opa15;
 }
 
 #window {
@@ -111,7 +76,7 @@ tooltip {
     color: @smoke;
 }
 #workspaces button:hover {
-    color: @purple1;
+    color: @blue1;
 }
 #workspaces button.active {
     color: @base1;
@@ -127,6 +92,7 @@ tooltip {
 }
 
 #clock {
+    font-weight: 700;
     padding: 0px 10px;
     color: @purple1;
     background: @purple1_opa15;
@@ -167,8 +133,8 @@ tooltip {
 
 #memory {
     padding: 0px 12px;
-    color: @teal2;
-    background: @teal2_opa15;
+    color: @cyan1;
+    background: @cyan1_opa15;
 }
 
 #power-profiles-daemon {
@@ -204,13 +170,7 @@ tooltip {
     background: @pink_opa15;
 }
 
-#custom-restart {
-    padding: 0px 12px;
-    color: @green;
-    background: @green_opa15;
-}
-
-#custom-poweroff {
+#custom-power {
     padding: 0px 12px;
     color: @pink;
     background: @pink_opa15;

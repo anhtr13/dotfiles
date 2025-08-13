@@ -24,8 +24,7 @@
         "memory",
         "power-profiles-daemon",
         "battery",
-        "custom/restart",
-        "custom/poweroff"
+        "custom/power"
     ],
     
     "custom/rofi": {
@@ -83,6 +82,8 @@
 
     "backlight": {
         "format": "{percent}% {icon}",
+        "tooltip": true,
+        "tooltip-format": "Brightness: {percent}%",
         // "format-icons": ["", "", "", "", "", "", "", "", ""]
         "format-icons": ["󰃞", "󰃟", "󰃠"]
     },
@@ -111,11 +112,12 @@
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": " {signalStrength}%",
-        "format-ethernet": " {ipaddr}/{cidr}",
-        "tooltip-format": "  {ifname} via {gwaddr}",
-        "format-linked": "  {ifname} (No IP)",
+        "format-ethernet": " {ipaddr}/{cidr}",
+        "tooltip": true,
+        "tooltip-format": " {ifname}: {ipaddr}/{cidr}",
+        "format-linked": " {ifname} (No IP)",
         "format-disconnected": " ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "on-click": "kitty sh -c nmtui"
     },
 
     "cpu": {
@@ -157,22 +159,21 @@
         "format": "{capacity}% {icon}",
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
+        "format-alt": "{icon}",
         // "format-good": "", // An empty format will hide the module
         "format-icons": ["", "", "", "", ""]
     },
 
-    "custom/restart": {
-      "tooltip": true,
-      "tooltip-format": "Restart",
-      "on-click": "shutdown -r now",
-      "format": ""
-    },
-
-    "custom/poweroff": {
-      "tooltip": true,
-      "tooltip-format": "Poweroff",
-      "on-click": "shutdown -h now",
+    "custom/power": {
+      "tooltip": false,
+      "menu": "on-click",
+      "menu-file": "~/.config/waybar/xmls/power_menu.xml",
+      "menu-actions": {
+        "suspend": "systemctl suspend",
+        "logout": "kill -9 -1",
+        "reboot": "reboot",
+        "shutdown": "shutdown -h now"
+      }, 
       "format": "⏻"
     }
 }
