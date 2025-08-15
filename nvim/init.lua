@@ -1,7 +1,3 @@
-require("core.options")
-require("core.keymaps")
-require("core.lsp")
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -19,24 +15,26 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+require("core.options")
+require("core.keymaps")
+require("core.lsp")
+
 require("lazy").setup({
-	require("plugins.themes.tokyo_night"),
-	require("plugins.neo-tree"),
-	require("plugins.lualine"),
-	require("plugins.bufferline"),
-	require("plugins.treesitter"),
-	require("plugins.telescope"),
-	require("plugins.mason"),
-	require("plugins.blink-cmp"),
-	require("plugins.conform"),
-	require("plugins.debugger"),
-	require("plugins.gitsigns"),
-	require("plugins.alpha"),
-	require("plugins.indent-line"),
-	require("plugins.autopair"),
-	require("plugins.which-key"),
-	require("plugins.comment"),
-	require("plugins.snacks"),
-	require("plugins.ufo"),
-	require("plugins.ts-autotag"),
+	spec = {
+		{ import = "plugins" },
+		{ import = "themes/tokyo_night" },
+	},
+	change_detection = { notify = false },
+	checker = {
+		enabled = true, -- automatically check for plugin updates
+		notify = false, -- get a notification when new updates are found
+	},
+	ui = {
+		border = "single",
+		size = {
+			width = 0.8,
+			height = 0.8,
+		},
+		backdrop = 100,
+	},
 })

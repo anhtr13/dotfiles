@@ -24,6 +24,11 @@ let g:netrw_dirhistmax=0
 nmap [<space> O<Esc>j
 nmap ]<space> o<Esc>k
 
+nmap <S-k> 5k
+nmap <S-j> 5j
+nmap <S-Up> 5k
+nmap <S-Down> 5j
+
 imap <C-q> <Esc>
 imap <C-z> <Esc>u
 imap <C-r> <Esc><C-r>
@@ -42,7 +47,3 @@ map <Tab>l :bnext<cr>
 map <Tab>c :bdelete<cr>
 map <Tab>x :bdelete!<cr>
 
-map <S-j> <Nop>
-map <S-k> <Nop>
-map <S-Up> <Nop>
-map <S-Down> <Nop>

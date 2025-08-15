@@ -1,6 +1,6 @@
 # Dotfiles
 
-My Hyprland rice and others configurations (Zsh + Starship, Neovim + Ghostty, Tmux, etc.)
+My Hyprland rice and other configurations (Zsh + Starship, Neovim + Ghostty, Tmux, etc.)
 
 
 __ the night rice __
