@@ -16,6 +16,10 @@ return {
 
 		conform.setup({
 			formatters = {
+				clang_format = {
+					command = "clang-format",
+					args = { "--style", "file", "--fallback-style", "LLVM" },
+				},
 				goimports_reviser = {
 					command = "goimports-reviser",
 					args = { "-rm-unused", "-set-alias", "-output", "stdout", "-format", "$FILENAME" },
@@ -45,6 +49,8 @@ return {
 			formatters_by_ft = {
 				go = { "goimports_reviser" },
 				sql = { "sql_formatter" },
+				c = { "clang_format" },
+				cpp = { "clang_format" },
 				sh = { "shfmt" },
 				zsh = { "shfmt" },
 				bash = { "shfmt" },

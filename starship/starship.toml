@@ -173,7 +173,7 @@ format = '[$output]($style) 🕹️ '
 disabled = false
 when = 'test -n "$SSH_TTY"'
 command = 'echo "$USER@$HOST"'
-style = "fg:blue"
+style = "bold fg:blue"
 format = '[$output]($style) 🌐 '
 
 [directory]
