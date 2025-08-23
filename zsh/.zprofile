@@ -1,7 +1,5 @@
 # .zprofile
 
-eval $(ssh-agent)
-
 
 # zshenv (ignored by .gitignore)
 

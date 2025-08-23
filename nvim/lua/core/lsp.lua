@@ -11,6 +11,7 @@ vim.lsp.enable({
 	"proto_ls",
 	"pylyzer",
 	"rust_analyzer",
+	"systemd_ls",
 	"tailwind_ls",
 	-- "ts_ls",
 	"vtsls",

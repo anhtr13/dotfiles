@@ -6,7 +6,7 @@ return {
 	config = function()
 		require("tokyonight").setup({
 			style = "moon", -- `moon`, `storm`, `night` and `day`
-			light_style = "day", -- The theme is used when the background is set to light
+			light_style = "moon", -- The theme is used when the background is set to light
 			transparent = true, -- Enable this to disable setting the background color
 			terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
 			styles = {
@@ -26,11 +26,11 @@ return {
 
 			--- You can override specific color groups to use other groups or a hex color
 			--- function will be called with a ColorScheme table
-			on_colors = function(colors) end,
+			-- on_colors = function(colors) end,
 
 			--- You can override specific highlights to use other groups or a hex color
 			--- function will be called with a Highlights and ColorScheme table
-			on_highlights = function(highlights, colors) end,
+			-- on_highlights = function(highlights, colors) end,
 
 			cache = true, -- When set to true, the theme will be cached for better performance
 

@@ -1,8 +1,29 @@
-@import 'colors.css';
+@define-color yellow rgba(224, 175, 104, 1);
+@define-color orange rgba(255, 158, 100, 1);
+@define-color pink rgba(247, 118, 142, 1);
+@define-color smoke rgba(192, 202, 245, 1);
+
+@define-color green0	rgba(158, 206, 106, 1);
+@define-color green1	rgba(69, 235, 69, 1);
+
+@define-color purple0 rgba(154, 126, 204, 1);
+@define-color purple1 rgba(187, 154, 247, 1);
+
+@define-color teal0 rgba(74, 186, 175, 1);
+@define-color teal1 rgba(115, 218, 202, 1);
+@define-color teal2 rgba(180, 249, 248, 1);
+
+@define-color blue0 rgba(86, 95, 137, 1);
+@define-color blue1 rgba(122, 162, 247, 1);
+
+@define-color cyan0 rgba(42, 195, 222, 1);
+@define-color cyan1 rgba(125, 207, 255, 1);
+
+@define-color base rgba(1, 2, 3, 1);
 
 * {
-    font-family: DejaVuSansM Nerd Font Propo;
-    font-size: 13px;
+    font-family: CodeNewRoman Nerd Font Propo;
+    font-size: 14px;
     font-weight: 500;
     box-shadow: none;
     text-shadow: none;
@@ -40,13 +61,12 @@ menuitem {
 }
 
 .module {
-    margin: 3px 4px;
+    margin: 4px 4px;
     border-radius: 10px;
     background: @base;
 }
 
 #custom-rofi {
-    font-size: 14px;
     padding: 0px 12px;
     margin-left: 10px;
     color: @cyan0;
@@ -66,7 +86,7 @@ menuitem {
 }
 
 #workspaces {
-    padding: 0px 9px;
+    padding: 0px 7px;
 }
 
 #workspaces button {
@@ -94,26 +114,26 @@ menuitem {
 
 #clock {
     font-weight: 700;
-    padding: 0px 10px;
-    color: @purple1;
+    padding: 0px 12px;
+    color: @purple0;
 }
 
 #clock.date {
-    color: @yellow;
+    color: @teal0;
 }
 
 #backlight {
-    padding: 0px 10px;
+    padding: 0px 12px;
     color: @smoke;
 }
 
 #pulseaudio {
-    padding: 0px 10px;
+    padding: 0px 12px;
     color: @cyan1;
 }
 
 #network {
-    padding: 0px 10px;
+    padding: 0px 12px;
     color: @teal2;
 }
 #network.disconnected {
@@ -121,17 +141,38 @@ menuitem {
 }
 
 #cpu {
-    padding: 0px 12px;
+    margin: 4px 0px 4px 4px;
+    padding: 0px 7px 0px 13px;
+    border-radius: 10px 0px 0px 10px;
     color: @purple1;
 }
 
 #memory {
-    padding: 0px 12px;
+    margin: 4px 4px 4px 0px;
+    padding: 0px 13px 0px 7px;
+    border-radius: 0px 10px 10px 0px;
     color: @green0;
 }
 
+#battery {
+    margin: 4px 0px 4px 4px;
+    padding: 0px 7px 0px 13px;
+    border-radius: 10px 0px 0px 10px;
+    color: @yellow;
+}
+
+#battery.charging, #battery.plugged {
+    color: @green1;
+}
+
+#battery.critical:not(.charging) {
+    color: @pink;
+}
+
 #power-profiles-daemon {
-    padding: 0px 12px;
+    margin: 4px 4px 4px 0px;
+    padding: 0px 13px 0px 7px;
+    border-radius: 0px 10px 10px 0px;
 }
 
 #power-profiles-daemon.performance {
@@ -146,21 +187,10 @@ menuitem {
     color: @green0;
 }
 
-#battery {
-    padding: 0px 10px;
-    color: @teal1;
-}
-
-#battery.charging, #battery.plugged {
-    color: @green0;
-}
-
-#battery.critical:not(.charging) {
-    color: @pink;
-}
-
-#custom-power {
+#custom-notification {
     padding: 0px 12px;
-    color: @pink;
     margin-right: 10px;
+    color: @pink;
+    transition: all 0.3s ease-in;
 }
+

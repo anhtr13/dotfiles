@@ -1,6 +1,6 @@
 ---@brief
 ---
---- https://github.com/hrsh7th/vscode-langservers-extracted
+--- https://github.com/microsoft/vscode-json-languageservice
 ---
 return {
 	cmd = { "vscode-json-language-server", "--stdio" },

@@ -1,59 +1,119 @@
 {
   "$schema": "/etc/xdg/swaync/configSchema.json",
-
+  "control-center-height": 900,
+  "control-center-margin-bottom": 2,
+  "control-center-margin-left": 0,
+  "control-center-margin-right": 8,
+  "control-center-margin-top": 8,
+  "control-center-width": 450,
+  "cssPriority": "user",
+  "fit-to-screen": false,
+  "hide-on-action": true,
+  "hide-on-clear": false,
+  "image-visibility": "when-available",
+  "keyboard-shortcuts": true,
+  "notification-body-image-height": 128,
+  "notification-body-image-width": 200,
+  "notification-visibility": {
+    "spotify": {
+      "app-name": "Spotify",
+      "state": "enabled",
+      "urgency": "Low"
+    },
+    "youtube-music": {
+      "app-name": "com.github.th_ch.youtube_music",
+      "state": "enabled",
+      "urgency": "Low"
+    }
+  },
+  "notification-window-width": 375,
   "positionX": "right",
   "positionY": "top",
-  "control-center-positionX": "none",
-  "control-center-positionY": "none",
-  "control-center-margin-top": 8,
-  "control-center-margin-bottom": 8,
-  "control-center-margin-right": 8,
-  "control-center-margin-left": 8,
-  "control-center-width": 500,
-  "fit-to-screen": false,
-  "layer-shell-cover-screen": true,
-
-  "layer-shell": true,
-  "layer": "overlay",
-  "control-center-layer": "overlay",
-  "cssPriority": "user",
-  "notification-body-image-height": 100,
-  "notification-body-image-width": 200,
-  "notification-inline-replies": true,
-  "timeout": 10,
-  "timeout-low": 5,
-  "timeout-critical": 0,
-  "notification-window-width": 500,
-  "keyboard-shortcuts": true,
-  "image-visibility": "always",
-  "transition-time": 200,
-  "hide-on-clear": true,
-  "hide-on-action": true,
   "script-fail-notify": true,
-
-  "widgets": [
-    "inhibitors",
-    "dnd",
-    "mpris",
-    "notifications"
-  ],
+  "scripts": {
+    "example-script": {
+      "exec": "echo 'Do something...'",
+      "urgency": "Normal"
+    }
+  },
+  "timeout": 6,
+  "timeout-critical": 0,
+  "timeout-low": 3,
+  "transition-time": 200,
   "widget-config": {
-    "inhibitors": {
-      "text": "Inhibitors",
-      "button-text": "Clear All",
-      "clear-all-button": true
-    },
-    "title": {
-      "text": "Notifications",
-      "clear-all-button": false,
-      "button-text": "Clear All"
+    "menubar#desktop": {
+      "menu#power": {
+        "actions": [
+          {
+            "command": "hyprlock",
+            "label": "   Lock"
+          },
+          {
+            "command": "kill -9 -1",
+            "label": "   Logout"
+          },
+          {
+            "command": "systemctl suspend",
+            "label": "󰤄   Suspend"
+          },
+          {
+            "command": "systemctl reboot",
+            "label": "   Reboot"
+          },
+          {
+            "command": "systemctl poweroff",
+            "label": "   Shut down"
+          }
+        ],
+        "label": "   Power Menu",
+        "position": "left"
+      },
+      "menu#screenshot": {
+        "actions": [
+          {
+            "command": "hyprshot -m output -o ~/Pictures/Screenshots/",
+            "label": "   Whole screen"
+          },
+          {
+            "command": "hyprshot -m window -o ~/Pictures/Screenshots/",
+            "label": "   Select window"
+          },
+          {
+            "command": "hyprshot -m region -o ~/Pictures/Screenshots/",
+            "label": "   Select region"
+          }
+        ],
+        "label": "󰄀   Screenshot",
+        "position": "right"
+      }
     },
     "dnd": {
       "text": "Do Not Disturb"
     },
-    "label": {
-      "max-lines": 5,
-      "text": "Label Text"
+    "mpris": {
+      "image-size": 96,
+      "loop-carousel": true,
+      "show-album-art": "when-available"
+    },
+    "backlight": {
+      "label": "󰃟 "
+    },
+    "volume": {
+      "label": " "
+    },
+    "title": {
+      "button-text": "",
+      "clear-all-button": true,
+      "text": "Notifications"
     }
-  }
+  },
+  "widgets": [
+    "dnd",
+    "menubar#desktop",
+    "backlight",
+    "volume",
+    "mpris",
+    "title",
+    "notifications"
+  ]
 }

@@ -1,11 +1,11 @@
 configuration {
-modes: "window,drun,run,ssh";
+    modes: "window,drun,run,ssh";
 /*	font: "CodeNewRoman Nerd Font Propo 12";*/
 /*	location: 0;*/
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
-fixed-num-lines: true;
-show-icons: true;
+    fixed-num-lines: true;
+    show-icons: true;
 /*	preview-cmd: ;*/
 /*	on-selection-changed: ;*/
 /*	on-mode-changed: ;*/
@@ -32,8 +32,8 @@ show-icons: true;
 /*	ignored-prefixes: "";*/
 /*	sort: false;*/
 /*	sorting-method: "normal";*/
-/*	case-sensitive: false;*/
-/*	case-smart: false;*/
+    case-sensitive: false;
+    case-smart: true;
 /*	cycle: true;*/
 /*	sidebar-mode: false;*/
 /*	hover-select: false;*/
@@ -42,7 +42,7 @@ show-icons: true;
 /*	parse-hosts: false;*/
 /*	parse-known-hosts: true;*/
 /*	combi-modes: "window,run";*/
-matching: "fuzzy";
+    matching: "fuzzy";
 /*	tokenize: true;*/
 /*	m: "-5";*/
 /*	filter: ;*/
@@ -157,14 +157,14 @@ matching: "fuzzy";
 /*	me-select-entry: "MousePrimary";*/
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
-  timeout {
-      action: "kb-cancel";
-      delay:  0;
-  }
-  filebrowser {
-      directories-first: true;
-      sorting-method:    "name";
-  }
+    timeout {
+        action: "kb-cancel";
+        delay:  0;
+    }
+    filebrowser {
+        directories-first: true;
+        sorting-method:    "name";
+    }
 }
 
 @theme "./themes/custom.rasi"

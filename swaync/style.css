@@ -1,56 +1,308 @@
-:root {
-  --border-radius: 22px;
-  --cc-bg: transparent;
+@define-color pink    rgba(247, 118, 142, 1);
+@define-color smoke   rgba(192, 202, 245, 1);
+@define-color green	  rgba(69, 235, 69, 1);
+@define-color blue    rgba(122, 162, 247, 1);
+@define-color base    rgba(1, 2, 3, 1);
 
-  --widget-background: rgba(46, 46, 46, 0.7);
-
-  --padding: calc(var(--border-radius) / 2);
+* {
+  font-family: "DepartureMono Nerd Font Propo";
+  background-clip: border-box;
 }
 
-.control-center {
-  border-radius: 0;
+/*** Notification ***/
+
+.notification {
+  color: @smoke;
+  border: 1px solid @smoke;
+  border-radius: 6px;
+  background: alpha(@base, 0.8)
 }
 
-.widgets > .widget,
-.widget-mpris > carouselindicatordots,
-.widget-mpris > box > button {
-  background: var(--widget-background);
-  border-radius: var(--border-radius);
-  padding: calc(var(--border-radius) / 2);
-  border: var(--border);
+.notification button {
+  color: @base;
+  background: alpha(@blue, 0.5);
 }
 
-.control-center-list-placeholder {
-  padding: var(--border-radius);
+.notification button:hover {
+  background: @blue;
 }
 
-.notification-group {
-  border-radius: var(--border-radius);
-  padding: 8px;
+.notification-content {
+  padding: 12px;
+  border-radius: 6px;
 }
 
-.widget.widget-mpris {
+.close-button {
+  color: @pink;
+  background: alpha(@pink, 0.3);
+}
+.close-button:hover {
+  color: @base;
+  background: @pink;
+}
+
+.notification-default-action,
+.notification-action {
   background: transparent;
-  border-radius: 0;
-  padding: 0;
   border: none;
 }
-.widget.widget-mpris > carouselindicatordots {
-  --dots-padding: 4px;
-  padding: var(--dots-padding);
-  padding-left: var(--dots-padding);
-  padding-right: calc(6px + var(--dots-padding));
-  margin: 0;
-  margin-top: var(--padding);
+
+
+.notification-default-action {
+  border-radius: 4px;
 }
-.widget-mpris > box > button:hover {
-  background: rgba(46, 46, 46, 1);
+
+.notification-action {
+  padding: 2px;
+}
+
+/* Notification header */
+.summary {
+  font-size: 14px;
+}
+
+.time {
+  color: alpha(@smoke, 0.7);
+  font-size: 12px;
+  text-shadow: none;
+  padding: 2px 0px;
+}
+
+.body {
+  font-size: 14px;
+  font-weight: 500;
+  color: alpha(@smoke, 0.7);
+}
+
+.body-image {
+  border-radius: 4px;
+}
+
+/*** Notification center ***/
+
+/* Control center */
+.control-center {
+  background: alpha(@base, 0.8);
+  border-radius: 9px;
+  border: 1px solid @smoke;
+  padding: 4px;
+}
+
+.control-center-list {
+  min-height: 5px;
+  margin: 4px;
+  padding: 4px 0px 8px 0px;
+}
+
+.control-center-list-placeholder,
+.notification-group-icon,
+.notification-group {
+  color: @blue;
+  margin: 5px 0px;
+}
+.notification-group label {
+  color: @smoke;
+}
+.notification-group {
+  opacity: 1.0;
+  box-shadow: none;
+}
+
+.notification-group > box {
+  all: unset;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.control-center-list > row,
+.control-center-list > row:focus,
+.control-center-list > row:hover {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+
+/* Window behind control center and on all other monitors */
+.blank-window {
+  background: transparent;
+}
+
+/*** Widgets ***/
+
+/* DND widget */
+.widget-dnd {
+  margin: 8px;
+  padding: 0px;
+  font-weight: 700;
+}
+.widget-dnd > label {
+  font-size: 20px;
+  color: @smoke;
+}
+.widget-dnd > switch {
+  background: alpha(@blue, 0.4);
+  border-radius: 9px;
+  box-shadow: none;
+  padding: 2px;
+}
+
+.widget-dnd > switch:hover {
+  background: alpha(@blue, 0.7);
+}
+
+.widget-dnd > switch:checked {
+  background: @blue;
+}
+
+.widget-dnd > switch slider {
+  background: @base;
+  border-radius: 9px;
+}
+
+/* Menubar */
+.widget-menubar {
+  color: @smoke;
+  margin: 4px;
+}
+.widget-menubar > box {
+  padding: 0px 8px;
+}
+.widget-menubar > box > box {
+  margin: 0px;
+  padding: 0px;
+}
+.widget-menubar > box > box > button {
+  padding: 0px;
+  margin: 0px;
+  min-height: 40px;
+  min-width: 200px;
+  border-radius: 9px;
+  color: @base;
+  background: alpha(@blue, 0.5);
+}
+.widget-menubar > box > box > button:focus,
+.widget-menubar > box > box > button:focus:hover {
+  background: @blue;
+}
+.widget-menubar button {
+  background: alpha(@blue, 0.1)
+  border-radius: 9px;
+}
+.widget-menubar button:hover {
+  color: @base;
+  background: @blue;
+}
+
+/* Backlight and volume widgets */
+.widget-backlight,
+.widget-volume {
+  color: @smoke;
+  font-weight: 600;
+  border-radius: 0px;
+  margin: 0px 12px;
+  padding: 0px;
+}
+.widget-volume > box {
+  border-radius: 4px;
+  margin-bottom: 6px;
+  min-height: 40px;
+}
+.widget-volume > box > label {
+  min-width: 37px;
+  padding: 0px 0px 0px 3px;
+}
+.widget-volume > box > button {
+  min-width: 40px;
+  box-shadow: none;
+  padding: 0px;
+}
+.widget-backlight > scale {
+  border-radius: 4px;
+  margin: 0px 10px;
+  padding: 0px;
+  min-height: 40px;
+}
+.widget-backlight > label {
+  margin: 0px;
+  padding: 0px;
+  border-radius: 4px;
+  min-height: 40px;
+  min-width: 40px;
+}
+
+/* Mpris widget */
+.widget-mpris {
+  margin: 8px 4px;
+  padding: 0px;
+}
+.widget-mpris > box {
+  padding: 0px;
+}
+.widget-mpris-album-art {
+  all: unset;
 }
 .widget-mpris-player {
-  box-shadow: none;
-  border: var(--border);
-  margin: 0 var(--padding);
+  border-radius: 12px;
+  margin: 0px 8px;
 }
-.widget-mpris-player:only-child {
-  margin: 0;
+
+/* Title widget */
+.widget-title {
+  margin: -8px 6px;
+  padding: 0px;
+  font-weight: 700;
+}
+
+.widget-title > label {
+  color: @smoke;
+  margin-left: 8px;
+  font-size: 20px;
+}
+
+.widget-title > button {
+  padding: 4px 10px;
+  color: alpha(@smoke, 0.5);
+  border-radius: 4px;
+}
+.widget-title > button:hover {
+  color: @pink;
+}
+
+.notification-group > box.vertical {
+  margin-top: 3px;
+}
+
+/* Sliders */
+scale {
+  padding: 0px;
+  margin: 0px 10px 0px 10px;
+}
+
+scale trough {
+  border-radius: 10px;
+  background: alpha(@blue, 0.1);
+}
+
+scale highlight {
+  border-radius: 5px;
+  min-height: 10px;
+  margin-right: -5px;
+  background: alpha(@blue, 0.8);
+}
+scale highlight:hover {
+  background: @blue;
+}
+
+scale slider {
+  margin: -10px;
+  min-width: 10px;
+  min-height: 10px;
+  background: @smoke;
+  box-shadow: none;
+  padding: 0px;
+}
+
+.right.overlay-indicator {
+  all: unset;
 }
