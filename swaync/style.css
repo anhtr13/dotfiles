@@ -15,7 +15,7 @@
   color: @smoke;
   border: 1px solid @smoke;
   border-radius: 6px;
-  background: alpha(@base, 0.8)
+  background: alpha(@base, 0.75)
 }
 
 .notification button {
@@ -82,7 +82,7 @@
 
 /* Control center */
 .control-center {
-  background: alpha(@base, 0.8);
+  background: alpha(@base, 0.75);
   border-radius: 9px;
   border: 1px solid @smoke;
   padding: 4px;
@@ -179,7 +179,7 @@
   min-width: 200px;
   border-radius: 9px;
   color: @base;
-  background: alpha(@blue, 0.5);
+  background: alpha(@blue, 0.7);
 }
 .widget-menubar > box > box > button:focus,
 .widget-menubar > box > box > button:focus:hover {

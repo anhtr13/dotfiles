@@ -19,7 +19,7 @@
 @define-color cyan0 rgba(42, 195, 222, 1);
 @define-color cyan1 rgba(125, 207, 255, 1);
 
-@define-color base rgba(1, 2, 3, 1);
+@define-color base rgba(1, 2, 3, 0.9);
 
 * {
     font-family: CodeNewRoman Nerd Font Propo;

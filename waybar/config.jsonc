@@ -40,8 +40,8 @@
             "(.{42}).*": "$1.."
         },
         "icon": true,
-        "icon-size": 16,
-        "max-length": 24
+        "icon-size": 18,
+        "max-length": 32
     },
 
     "hyprland/workspaces": {
@@ -162,7 +162,7 @@
       "format-icons": {
         "default": "",
         "performance": "",
-        "balanced": "",
+        "balanced": "󰗑",
         "power-saver": ""
       }
     },

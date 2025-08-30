@@ -15,14 +15,14 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require("core.options")
-require("core.keymaps")
-require("core.lsp")
+require("configs.options")
+require("configs.keymaps")
+require("configs.lsp")
 
 require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
-		{ import = "themes/tokyo_night" },
+		{ import = "themes/tokyonight" },
 	},
 	change_detection = { notify = false },
 	checker = {

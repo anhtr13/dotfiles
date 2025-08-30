@@ -18,6 +18,7 @@ eval "$(starship init zsh)"
 # Init zsh-themes via oh-my-posh
 # eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/tokyo_night.json)"
 
+export MANPAGER="nvim +Man!"
 
 # Envs
 HISTFILE=$ZDOTDIR/.histfile
