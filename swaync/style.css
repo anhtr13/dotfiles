@@ -1,7 +1,7 @@
 @define-color pink    rgba(247, 118, 142, 1);
 @define-color smoke   rgba(192, 202, 245, 1);
 @define-color green	  rgba(69, 235, 69, 1);
-@define-color blue    rgba(122, 162, 247, 1);
+@define-color cyan    rgba(125, 207, 255, 1);
 @define-color base    rgba(1, 2, 3, 1);
 
 * {
@@ -13,23 +13,23 @@
 
 .notification {
   color: @smoke;
-  border: 1px solid @smoke;
-  border-radius: 6px;
-  background: alpha(@base, 0.75)
+  border: 2px solid @cyan;
+  border-radius: 12px;
+  background: alpha(@base, 0.8)
 }
 
 .notification button {
   color: @base;
-  background: alpha(@blue, 0.5);
+  background: alpha(@cyan, 0.5);
 }
 
 .notification button:hover {
-  background: @blue;
+  background: @cyan;
 }
 
 .notification-content {
   padding: 12px;
-  border-radius: 6px;
+  border-radius: 12px;
 }
 
 .close-button {
@@ -75,16 +75,16 @@
 }
 
 .body-image {
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 /*** Notification center ***/
 
 /* Control center */
 .control-center {
-  background: alpha(@base, 0.75);
-  border-radius: 9px;
-  border: 1px solid @smoke;
+  background: alpha(@base, 0.8);
+  border-radius: 16px;
+  border: 2px solid @cyan;
   padding: 4px;
 }
 
@@ -97,7 +97,8 @@
 .control-center-list-placeholder,
 .notification-group-icon,
 .notification-group {
-  color: @blue;
+  font-size: 14px;
+  color: @cyan;
   margin: 5px 0px;
 }
 .notification-group label {
@@ -111,7 +112,7 @@
 .notification-group > box {
   all: unset;
   padding: 4px;
-  border-radius: 4px;
+  border-radius: 12px;
 }
 
 .control-center-list > row,
@@ -137,27 +138,27 @@
   font-weight: 700;
 }
 .widget-dnd > label {
-  font-size: 20px;
+  font-size: 18px;
   color: @smoke;
 }
 .widget-dnd > switch {
-  background: alpha(@blue, 0.4);
-  border-radius: 9px;
+  background: alpha(@cyan, 0.4);
+  border-radius: 16px;
   box-shadow: none;
   padding: 2px;
 }
 
 .widget-dnd > switch:hover {
-  background: alpha(@blue, 0.7);
+  background: alpha(@cyan, 0.7);
 }
 
 .widget-dnd > switch:checked {
-  background: @blue;
+  background: @cyan;
 }
 
 .widget-dnd > switch slider {
   background: @base;
-  border-radius: 9px;
+  border-radius: 16px;
 }
 
 /* Menubar */
@@ -177,21 +178,21 @@
   margin: 0px;
   min-height: 40px;
   min-width: 200px;
-  border-radius: 9px;
+  border-radius: 16px;
   color: @base;
-  background: alpha(@blue, 0.7);
+  background: alpha(@cyan, 0.85);
 }
 .widget-menubar > box > box > button:focus,
 .widget-menubar > box > box > button:focus:hover {
-  background: @blue;
+  background: @cyan;
 }
 .widget-menubar button {
-  background: alpha(@blue, 0.1)
-  border-radius: 9px;
+  background: alpha(@cyan, 0.1)
+  border-radius: 16px;
 }
 .widget-menubar button:hover {
   color: @base;
-  background: @blue;
+  background: @cyan;
 }
 
 /* Backlight and volume widgets */
@@ -204,7 +205,7 @@
   padding: 0px;
 }
 .widget-volume > box {
-  border-radius: 4px;
+  border-radius: 8px;
   margin-bottom: 6px;
   min-height: 40px;
 }
@@ -218,7 +219,7 @@
   padding: 0px;
 }
 .widget-backlight > scale {
-  border-radius: 4px;
+  border-radius: 8px;
   margin: 0px 10px;
   padding: 0px;
   min-height: 40px;
@@ -226,7 +227,7 @@
 .widget-backlight > label {
   margin: 0px;
   padding: 0px;
-  border-radius: 4px;
+  border-radius: 8px;
   min-height: 40px;
   min-width: 40px;
 }
@@ -243,7 +244,7 @@
   all: unset;
 }
 .widget-mpris-player {
-  border-radius: 12px;
+  border-radius: 16px;
   margin: 0px 8px;
 }
 
@@ -257,13 +258,13 @@
 .widget-title > label {
   color: @smoke;
   margin-left: 8px;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .widget-title > button {
   padding: 4px 10px;
   color: alpha(@smoke, 0.5);
-  border-radius: 4px;
+  border-radius: 12px;
 }
 .widget-title > button:hover {
   color: @pink;
@@ -281,23 +282,20 @@ scale {
 
 scale trough {
   border-radius: 10px;
-  background: alpha(@blue, 0.1);
+  background: alpha(@cyan, 0.1);
 }
 
 scale highlight {
-  border-radius: 5px;
-  min-height: 10px;
+  border-radius: 6px;
+  min-height: 4px;
   margin-right: -5px;
-  background: alpha(@blue, 0.8);
-}
-scale highlight:hover {
-  background: @blue;
+  background: @cyan;
 }
 
 scale slider {
   margin: -10px;
-  min-width: 10px;
-  min-height: 10px;
+  min-width: 6px;
+  min-height: 6px;
   background: @smoke;
   box-shadow: none;
   padding: 0px;

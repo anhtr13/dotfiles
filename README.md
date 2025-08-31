@@ -1,6 +1,13 @@
 # Dotfiles
 
-Personal Hyprland rice and other configurations (Zsh + Starship, Neovim + Ghostty, Tmux, etc.)
+Personal configuration files (Hyprland, Zsh + Starship, Neovim + Tmux, etc.)
 
+## Preview:
 
-![screenshot](./screenshot.png)
+- **Style 1**
+
+    ![screenshot1](./screenshot1.png)
+
+- **Style 2**
+
+    ![screenshot2](./screenshot2.png)

@@ -1,3 +1,5 @@
+#!/bin/sh
+
 choice=$(echo -e "   Whole screen\n   Select window\n   Select region" | rofi -dmenu)
 
 case $choice in

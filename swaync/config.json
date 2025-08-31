@@ -1,11 +1,11 @@
 {
   "$schema": "/etc/xdg/swaync/configSchema.json",
-  "control-center-height": 900,
+  "control-center-height": 820,
   "control-center-margin-bottom": 2,
   "control-center-margin-left": 0,
   "control-center-margin-right": 8,
   "control-center-margin-top": 8,
-  "control-center-width": 450,
+  "control-center-width": 440,
   "cssPriority": "user",
   "fit-to-screen": false,
   "hide-on-action": true,
@@ -46,33 +46,33 @@
         "actions": [
           {
             "command": "hyprlock",
-            "label": "   Lock"
+            "label": "   Lock     "
           },
           {
             "command": "kill -9 -1",
-            "label": "   Logout"
+            "label": "   Logout   "
           },
           {
             "command": "systemctl suspend",
-            "label": "󰤄   Suspend"
+            "label": "󰤄   Suspend  "
           },
           {
             "command": "systemctl reboot",
-            "label": "   Reboot"
+            "label": "   Reboot   "
           },
           {
             "command": "systemctl poweroff",
             "label": "   Shut down"
           }
         ],
-        "label": "   Power Menu",
+        "label": " Power Menu",
         "position": "left"
       },
       "menu#screenshot": {
         "actions": [
           {
             "command": "hyprshot -m output -o ~/Pictures/Screenshots/",
-            "label": "   Whole screen"
+            "label": "   Whole screen "
           },
           {
             "command": "hyprshot -m window -o ~/Pictures/Screenshots/",
@@ -83,7 +83,7 @@
             "label": "   Select region"
           }
         ],
-        "label": "󰄀   Screenshot",
+        "label": "󰄀 Screenshot",
         "position": "right"
       }
     },
