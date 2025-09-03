@@ -129,7 +129,10 @@ menuitem {
 }
 
 #pulseaudio {
-    color: @teal0;
+    color: @orange;
+}
+#pulseaudio.micro {
+    color: @teal1;
 }
 
 #network {

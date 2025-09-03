@@ -1,11 +1,11 @@
 {
   "$schema": "/etc/xdg/swaync/configSchema.json",
-  "control-center-height": 820,
+  "control-center-height": 720,
   "control-center-margin-bottom": 2,
   "control-center-margin-left": 0,
   "control-center-margin-right": 8,
   "control-center-margin-top": 8,
-  "control-center-width": 440,
+  "control-center-width": 400,
   "cssPriority": "user",
   "fit-to-screen": false,
   "hide-on-action": true,
