@@ -72,7 +72,7 @@
         "actions": [
           {
             "command": "hyprshot -m output -o ~/Pictures/Screenshots/",
-            "label": "   Whole screen "
+            "label": "󰹑   Whole screen "
           },
           {
             "command": "hyprshot -m window -o ~/Pictures/Screenshots/",
@@ -80,7 +80,7 @@
           },
           {
             "command": "hyprshot -m region -o ~/Pictures/Screenshots/",
-            "label": "   Select region"
+            "label": "󰆞   Select region"
           }
         ],
         "label": "󰄀 Screenshot",

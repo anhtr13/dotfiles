@@ -105,14 +105,16 @@
             "car": "",
             "default": ["", ""]
         },
-        "on-click-middle": "pamixer -t",
-        "on-click": "pavucontrol"
+        "on-click": "pamixer -t",
+        "on-click-middle": "pavucontrol"
     },
 
     "pulseaudio#micro": {
         "format": "{format_source}",
         "format-source": "",
-        "format-source-muted": ""
+        "format-source-muted": "",
+        "on-click": "pamixer --default-source -t",
+        "on-click-middle": "pavucontrol"
     },
 
     "network": {
@@ -132,14 +134,14 @@
         "interval": 12,
         "format": " {usage}%",
         "max-length": 10,
-        "format-alt-click": "click-right",
+        "format-alt-click": "click-left",
         "format-alt": ""
     },
 
     "memory": {
         "interval": 12,
         "format": " {percentage}%",
-        "format-alt-click": "click-right",
+        "format-alt-click": "click-left",
         "format-alt": "",
         "max-length": 10,
         "tooltip": true,
@@ -153,11 +155,10 @@
             "critical": 15
         },
         "format": "{icon} {capacity}%",
-        "format-charging": "󱊥 {capacity}%",
+        "format-charging": "󰂊 {capacity}%",
         "format-plugged": " {capacity}%",
         "format-alt": "{icon}",
-        // "format-good": "", // An empty format will hide the module
-        "format-icons": ["󰂎", "󱊡", "󱊢", "󱊣"]
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
         // "format-icons": ["", "", "", "", ""]
     },
 
@@ -177,13 +178,13 @@
       "tooltip-format": "Left: Notifications\nRight: Do not disturb",
       "format": "{icon} ",
       "format-icons": {
-        "notification": "󰂚",
+        "notification": "󰂞",
         "none": "󰂚",
-        "inhibited-notification": "󰂚",
+        "inhibited-notification": "󱏧",
         "inhibited-none": "󰂚",
-        "dnd-notification": "󰂛",
+        "dnd-notification": "󱅫",
         "dnd-none": "󰂛",
-        "dnd-inhibited-notification": "󰂛",
+        "dnd-inhibited-notification": "󱏧",
         "dnd-inhibited-none": "󰂛"
       },
       "return-type": "json",
