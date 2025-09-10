@@ -14,8 +14,8 @@
         "hyprland/window"
     ],
     "modules-center": [
-        "clock#date",
-        "clock"
+        "clock",
+        "clock#date"
     ],
     "modules-right": [
         "backlight",
@@ -38,11 +38,10 @@
     "hyprland/window": {
         "format": "{}",
         "rewrite": {
-            "(.{42}).*": "$1.."
+            "(.{50}).*": "$1..."
         },
         "icon": true,
-        "icon-size": 18,
-        "max-length": 32
+        "icon-size": 18
     },
 
     "hyprland/workspaces": {

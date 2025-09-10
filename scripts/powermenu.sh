@@ -11,7 +11,6 @@ list_row='6'
 option_lock=" Lock"
 option_logout=" Logout"
 option_suspend=" Suspend"
-option_hibernate=" Hibernate"
 option_reboot=" Reboot"
 option_shutdown=" Shutdown"
 yes='✓ Yes'
@@ -28,7 +27,7 @@ rofi_cmd() {
 }
 
 run_rofi() {
-  echo -e "$option_lock\n$option_logout\n$option_suspend\n$option_hibernate\n$option_reboot\n$option_shutdown" | rofi_cmd
+  echo -e "$option_lock\n$option_logout\n$option_suspend\n$option_reboot\n$option_shutdown" | rofi_cmd
 }
 
 confirm_cmd() {
@@ -44,7 +43,7 @@ confirm_cmd() {
 }
 
 confirm_exit() {
-  echo -e "$yes\n$no" | confirm_cmd
+  echo -e "$no\n$yes" | confirm_cmd
 }
 
 confirm_run() {
@@ -63,8 +62,6 @@ run_cmd() {
     confirm_run 'kill -9 -1'
   elif [[ "$1" == '--suspend' ]]; then
     confirm_run 'mpc -q pause' 'amixer set Master mute' 'systemctl suspend'
-  elif [[ "$1" == '--hibernate' ]]; then
-    confirm_run 'systemctl hibernate'
   elif [[ "$1" == '--reboot' ]]; then
     confirm_run 'systemctl reboot'
   elif [[ "$1" == '--shutdown' ]]; then
@@ -82,9 +79,6 @@ $option_logout)
   ;;
 $option_suspend)
   run_cmd --suspend
-  ;;
-$option_hibernate)
-  run_cmd --hibernate
   ;;
 $option_reboot)
   run_cmd --reboot

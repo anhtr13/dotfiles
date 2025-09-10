@@ -1,6 +1,6 @@
 @define-color yellow rgba(224, 175, 104, 1);
 @define-color orange rgba(255, 158, 100, 1);
-@define-color pink rgba(247, 118, 142, 1);
+@define-color rose rgba(247, 118, 142, 1);
 @define-color smoke rgba(192, 202, 245, 1);
 
 @define-color green0	rgba(158, 206, 106, 1);
@@ -13,8 +13,8 @@
 @define-color teal1 rgba(115, 218, 202, 1);
 @define-color teal2 rgba(180, 249, 248, 1);
 
-@define-color blue0 rgba(86, 95, 137, 1);
-@define-color blue1 rgba(122, 162, 247, 1);
+@define-color blue0 rgba(122, 162, 247, 1);
+@define-color blue1 rgba(0, 166, 244, 1);
 
 @define-color cyan0 rgba(42, 195, 222, 1);
 @define-color cyan1 rgba(125, 207, 255, 1);
@@ -50,7 +50,7 @@ tooltip {
     border-radius: 12px;
     color: @smoke;
     background: @base;
-    border: 1px solid @blue1;
+    border: 1px solid @blue0;
 }
 
 menu {
@@ -58,7 +58,7 @@ menu {
     padding: 6px;
 	  background: @base;
 	  border-radius: 12px;
-    border: 1px solid @blue1;
+    border: 1px solid @blue0;
 }
 menuitem {
 	  border-radius: 12px;
@@ -68,7 +68,7 @@ menuitem {
 .module {
     margin: 3px 2px;
     border-radius: 12px;
-    padding: 0px 8px;
+    padding: 0px 6px;
     transition: all 0.15s ease-in;
 }
 
@@ -100,7 +100,7 @@ menuitem {
     margin: 4px 1px;
     padding: 0px 5px;
     color: @base;
-    background: @blue1;
+    background: @blue0;
 }
 #workspaces button.urgent {
     margin: 4px 1px;
@@ -117,11 +117,11 @@ menuitem {
 }
 
 #clock {
-    color: @cyan0;
+    color: @orange;
 }
 
 #clock.date {
-    color: @yellow;
+    color: @cyan0;
 }
 
 #backlight {
@@ -129,7 +129,7 @@ menuitem {
 }
 
 #pulseaudio {
-    color: @orange;
+    color: @yellow;
 }
 #pulseaudio.micro {
     color: @teal1;
@@ -165,7 +165,7 @@ menuitem {
 }
 
 #battery.critical:not(.charging) {
-    color: @pink;
+    color: @rose;
 }
 
 #power-profiles-daemon {
@@ -174,7 +174,7 @@ menuitem {
 }
 
 #power-profiles-daemon.performance {
-    color: @pink;
+    color: @rose;
 }
 
 #power-profiles-daemon.balanced {
@@ -187,6 +187,6 @@ menuitem {
 
 #custom-notification {
     padding: 0px 15px 0px 5px;
-    color: @pink;
+    color: @rose;
 }
 

@@ -18,6 +18,7 @@ eval "$(starship init zsh)"
 # Init zsh-themes via oh-my-posh
 # eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/tokyo_night.json)"
 
+# Use nvim for man page
 export MANPAGER="nvim +Man!"
 
 # Envs
@@ -62,3 +63,6 @@ function chpwd() {
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+
+# git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.config/zsh/plugins/zsh-syntax-highlighting
+source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh

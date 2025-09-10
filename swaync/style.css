@@ -1,6 +1,6 @@
-@define-color pink    rgba(247, 118, 142, 1);
 @define-color smoke   rgba(192, 202, 245, 1);
-@define-color green	  rgba(69, 235, 69, 1);
+@define-color green	  rgba(158, 206, 106, 1);
+@define-color rose    rgba(247, 118, 142, 1);
 @define-color cyan    rgba(125, 207, 255, 1);
 @define-color base    rgba(1, 2, 3, 1);
 
@@ -33,12 +33,12 @@
 }
 
 .close-button {
-  color: @pink;
-  background: alpha(@pink, 0.3);
+  color: @rose;
+  background: alpha(@rose, 0.3);
 }
 .close-button:hover {
   color: @base;
-  background: @pink;
+  background: @rose;
 }
 
 .notification-default-action,
@@ -88,18 +88,20 @@
   border: 2px solid @cyan;
   padding: 4px;
 }
-
 .control-center-list {
   min-height: 5px;
-  margin: 4px;
-  padding: 4px 0px 8px 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .control-center-list-placeholder,
 .notification-group-icon,
 .notification-group {
   color: @cyan;
-  margin: 5px 0px;
+}
+.notification-group,
+.notification-background {
+  margin-bottom: 6px;
 }
 .notification-group label {
   color: @smoke;
@@ -114,8 +116,15 @@
   padding: 4px;
   border-radius: 12px;
 }
-.notification-group-header.title-1 {
+.notification-group-headers {
   margin-left: 6px;
+  margin-bottom: 4px;
+}
+.notification-group-buttons {
+  margin-right: 6px;
+  margin-bottom: 4px;
+}
+.notification-group-header.title-1 {
   font-size: 20px;
 }
 .notification-group-collapse-button,
@@ -123,10 +132,13 @@
   color: @smoke;
   background: alpha(@cyan, 0.1);
 }
-.notification-group-collapse-button:hover,
+.notification-group-collapse-button:hover {
+  color: @base;
+  background: @green;
+}
 .notification-group-close-all-button:hover {
   color: @base;
-  background: @cyan;
+  background: @rose;
 }
 
 .control-center-list > row,
@@ -147,7 +159,7 @@
 
 /* DND widget */
 .widget-dnd {
-  margin: 8px;
+  margin: 16px 16px 0px 16px;
   padding: 0px;
   font-weight: 700;
 }
@@ -187,6 +199,14 @@
   margin: 0px;
   padding: 0px;
 }
+.widget-menubar button {
+  background: alpha(@cyan, 0.1);
+  border-radius: 16px;
+}
+.widget-menubar button:hover {
+  color: @base;
+  background: @cyan;
+}
 .widget-menubar > box > box > button {
   padding: 0px;
   margin: 0px;
@@ -194,18 +214,13 @@
   min-width: 180px;
   border-radius: 16px;
   color: @base;
-  background: alpha(@cyan, 0.85);
+  background: alpha(@cyan, 0.5);
 }
-.widget-menubar > box > box > button:focus,
+.widget-menubar > box > box > button:hover,
 .widget-menubar > box > box > button:focus:hover {
   background: @cyan;
 }
-.widget-menubar button {
-  background: alpha(@cyan, 0.1);
-  border-radius: 16px;
-}
-.widget-menubar button:hover {
-  color: @base;
+.widget-menubar > box > box > button:focus {
   background: @cyan;
 }
 
@@ -264,14 +279,13 @@
 
 /* Title widget */
 .widget-title {
-  margin: -12px 6px;
+  margin: 0px 16px -8px 16px;
   padding: 0px;
   font-weight: 700;
 }
 
 .widget-title > label {
   color: @smoke;
-  margin-left: 8px;
   font-size: 20px;
 }
 
@@ -281,11 +295,8 @@
   border-radius: 12px;
 }
 .widget-title > button:hover {
-  color: @pink;
-}
-
-.notification-group > box.vertical {
-  margin-top: 3px;
+  color: @base;
+  background: @rose;
 }
 
 /* Sliders */
@@ -315,6 +326,8 @@ scale slider {
   padding: 0px;
 }
 
-.right.overlay-indicator {
-  all: unset;
+scrollbar slider {
+}
+
+.overlay-indicator {
 }

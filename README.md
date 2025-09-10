@@ -1,13 +1,15 @@
 # Dotfiles
 
-Personal configuration files (Hyprland, Zsh + Starship, Neovim + Tmux, etc.)
+Personal configuration files for a mouse-free Linux experience!
 
-## Preview:
+## Preview
 
-- **Style 1**
+![preview](./preview.gif)
+
+- **Screenshot 1**
 
     ![screenshot1](./screenshot1.png)
 
-- **Style 2**
+- **Screenshot 2**
 
     ![screenshot2](./screenshot2.png)

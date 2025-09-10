@@ -12,13 +12,13 @@ cmd_term='ghostty'
 cmd_web='brave'
 cmd_file='nautilus'
 cmd_text='gnome-text-editor'
-cmd_music='ghostty -e ncmpcpp'
+cmd_vpn='protonvpn-app'
 
 option_term=" Terminal <span weight='light' size='small'><i>($cmd_term)</i></span>"
 option_web=" Browser <span weight='light' size='small'><i>($cmd_web)</i></span>"
 option_file=" Files <span weight='light' size='small'><i>($cmd_file)</i></span>"
 option_text=" Editor <span weight='light' size='small'><i>($cmd_text)</i></span>"
-option_music="󰝚 Music <span weight='light' size='small'><i>($cmd_music)</i></span>"
+option_vpn="󰖂 VPN <span weight='light' size='small'><i>($cmd_vpn)</i></span>"
 
 rofi_cmd() {
   rofi -theme-str "listview {columns: $list_col; lines: $list_row;}" \
@@ -31,7 +31,7 @@ rofi_cmd() {
 }
 
 run_rofi() {
-  echo -e "$option_term\n$option_web\n$option_file\n$option_text\n$option_music" | rofi_cmd
+  echo -e "$option_term\n$option_web\n$option_vpn\n$option_file\n$option_text" | rofi_cmd
 }
 
 run_cmd() {
@@ -48,8 +48,8 @@ run_cmd() {
   "--file")
     ${cmd_file}
     ;;
-  "--music")
-    ${cmd_music}
+  "--vpn")
+    ${cmd_vpn}
     ;;
   esac
 }
@@ -68,7 +68,7 @@ $option_text)
 $option_file)
   run_cmd --file
   ;;
-$option_music)
-  run_cmd --music
+$option_vpn)
+  run_cmd --vpn
   ;;
 esac
