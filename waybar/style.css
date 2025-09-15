@@ -73,7 +73,7 @@ menuitem {
 }
 
 #custom-rofi {
-    padding: 0px 5px 0px 15px;
+    padding-left: 15px;
     color: @cyan0;
 }
 
@@ -111,8 +111,6 @@ menuitem {
 
 #window {
     color: @smoke;
-    margin-left: 8px;
-    padding: 0px;
     background: transparent;
 }
 
@@ -143,20 +141,14 @@ menuitem {
 }
 
 #cpu {
-    margin: 4px 0px 4px 4px;
-    border-radius: 10px 0px 0px 10px;
     color: @purple1;
 }
 
 #memory {
-    margin: 4px 4px 4px 0px;
-    border-radius: 0px 10px 10px 0px;
     color: @green0;
 }
 
 #battery {
-    margin: 4px 0px 4px 4px;
-    border-radius: 10px 0px 0px 10px;
     color: @cyan1;
 }
 
@@ -169,8 +161,6 @@ menuitem {
 }
 
 #power-profiles-daemon {
-    margin: 4px 4px 4px 0px;
-    border-radius: 0px 10px 10px 0px;
 }
 
 #power-profiles-daemon.performance {
@@ -186,7 +176,6 @@ menuitem {
 }
 
 #custom-notification {
-    padding: 0px 15px 0px 5px;
+    padding-right: 15px;
     color: @rose;
 }
-

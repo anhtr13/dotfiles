@@ -5,10 +5,10 @@ local setkey = vim.keymap.set
 --    desc: keys sequence description
 
 -- Fast navigations
-setkey({ "n", "v" }, "<s-Up>", "10k")
-setkey({ "n", "v" }, "<s-Down>", "10j")
-setkey({ "n", "v" }, "<s-k>", "10k")
-setkey({ "n", "v" }, "<s-j>", "10j")
+setkey({ "n", "v" }, "<c-Up>", "10k")
+setkey({ "n", "v" }, "<c-Down>", "10j")
+setkey({ "n", "v" }, "<c-k>", "10k")
+setkey({ "n", "v" }, "<c-j>", "10j")
 
 -- Save
 setkey({ "i", "v" }, "<c-s>", "<ESC><cmd>:w<CR>", { desc = "Save file and back to normal mode" })

@@ -1,0 +1,10 @@
+# zshenv (ignored by .gitignore)
+
+
+export EDITOR="/usr/bin/nvim"
+export MYVIMRC="~/.config/vim/vimrc"
+
+export GEMINI_API_KEY="<api_key>"
+
+export GOPATH="$HOME/go"
+export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin:/home/linuxbrew/.linuxbrew/bin"

@@ -10,3 +10,4 @@ setopt histignorealldups
 setopt autocd
 setopt inc_append_history
 setopt histignorespace
+setopt IGNOREEOF

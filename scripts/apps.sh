@@ -6,19 +6,21 @@ prompt='Applications'
 mesg="# Pacman: $(pacman -Q | wc -l) packages installed."
 
 list_col='1'
-list_row='6'
+list_row='7'
 
 cmd_term='ghostty'
 cmd_web='brave'
 cmd_file='nautilus'
 cmd_text='gnome-text-editor'
 cmd_vpn='protonvpn-app'
+cmd_setting='sh ~/.config/scripts/setting.sh'
 
 option_term=" Terminal <span weight='light' size='small'><i>($cmd_term)</i></span>"
 option_web=" Browser <span weight='light' size='small'><i>($cmd_web)</i></span>"
 option_file=" Files <span weight='light' size='small'><i>($cmd_file)</i></span>"
 option_text=" Editor <span weight='light' size='small'><i>($cmd_text)</i></span>"
 option_vpn="󰖂 VPN <span weight='light' size='small'><i>($cmd_vpn)</i></span>"
+option_setting=" Setting <span weight='light' size='small'><i>(Ctrl + 󰘳 + O)</i></span>"
 
 rofi_cmd() {
   rofi -theme-str "listview {columns: $list_col; lines: $list_row;}" \
@@ -31,7 +33,7 @@ rofi_cmd() {
 }
 
 run_rofi() {
-  echo -e "$option_term\n$option_web\n$option_vpn\n$option_file\n$option_text" | rofi_cmd
+  echo -e "$option_term\n$option_web\n$option_vpn\n$option_file\n$option_text\n$option_setting" | rofi_cmd
 }
 
 run_cmd() {
@@ -50,6 +52,9 @@ run_cmd() {
     ;;
   "--vpn")
     ${cmd_vpn}
+    ;;
+  "--setting")
+    eval ${cmd_setting}
     ;;
   esac
 }
@@ -70,5 +75,8 @@ $option_file)
   ;;
 $option_vpn)
   run_cmd --vpn
+  ;;
+$option_setting)
+  run_cmd --setting
   ;;
 esac
