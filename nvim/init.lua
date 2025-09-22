@@ -12,17 +12,16 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 		os.exit(1)
 	end
 end
-
 vim.opt.rtp:prepend(lazypath)
 
-require("configs.option")
-require("configs.keymap")
-require("configs.lsp")
+require("config.option")
+require("config.keymap")
+require("config.lsp")
 
 require("lazy").setup({
 	spec = {
-		{ import = "plugins" },
-		{ import = "themes/tokyonight" },
+		{ import = "plugin" },
+		{ import = "theme/tokyonight" },
 	},
 	change_detection = { notify = false },
 	checker = {

@@ -1,5 +1,6 @@
 return {
   "mfussenegger/nvim-dap",
+  event = "VeryLazy",
   dependencies = {
     "nvim-neotest/nvim-nio",
     "rcarriga/nvim-dap-ui",
@@ -21,8 +22,8 @@ return {
     local dap = require("dap")
     local dapui = require("dapui")
 
-    -- setup gdb for debugging C/C++/Rust, requires gdb 14.0+
-    -- make sure build file with -g flag before debugging
+    -- Setup gdb for debugging C/C++/Rust, requires gdb 14.0+
+    -- Make sure build file with -g flag before debugging
     dap.adapters.gdb = {
       type = "executable",
       command = "gdb",
@@ -99,7 +100,7 @@ return {
       },
     }
 
-    -- binding dap & dap-ui
+    -- Binding dap & dap-ui
     dap.listeners.before.attach.dapui_config = function()
       dapui.open()
     end
@@ -113,7 +114,7 @@ return {
       dapui.close()
     end
 
-    -- break-point colors
+    -- Break-point colors
     vim.api.nvim_set_hl(0, "rose", { ctermbg = 0, fg = "#E06C75", bg = "#31353f" })
     vim.api.nvim_set_hl(0, "blue", { ctermbg = 0, fg = "#61AFEF", bg = "#31353f" })
     vim.api.nvim_set_hl(0, "green", { ctermbg = 0, fg = "#98C379", bg = "#31353f" })
