@@ -1,7 +1,7 @@
 -- Formatter plugin for Neovim
 return {
 	"stevearc/conform.nvim",
-  event = "VeryLazy",
+	event = "VeryLazy",
 	keys = {
 		{
 			"<s-m-f>",
@@ -70,6 +70,7 @@ return {
 				rust = { "rustfmt" },
 				javascript = { "prettierd", "prettier", stop_after_first = true },
 				typescript = { "prettierd", "prettier", stop_after_first = true },
+				vue = { "prettierd", "prettier", stop_after_first = true },
 				-- Use the "*" filetype to run formatters on all filetypes.
 				["*"] = { "codespell" },
 				-- Use the "_" filetype to run formatters on filetypes that don't have other formatters configured.

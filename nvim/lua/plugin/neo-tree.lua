@@ -5,38 +5,7 @@ return {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 		"MunifTanjim/nui.nvim",
-		{
-			"s1n7ax/nvim-window-picker", -- for open_with_window_picker keymaps
-			version = "2.*",
-			config = function()
-				require("window-picker").setup({
-					filter_rules = {
-						include_current_win = false,
-						autoselect_one = true,
-						-- filter using buffer options
-						bo = {
-							-- if the file type is one of following, the window will be ignored
-							filetype = { "neo-tree", "neo-tree-popup", "notify" },
-							-- if the buffer type is one of following, the window will be ignored
-							buftype = { "terminal", "quickfix" },
-						},
-					},
-				})
-			end,
-		},
 		-- { "3rd/image.nvim", opts = {} }, -- Optional image support in preview window: See `# Preview Mode` for more information
-		-- If you want neo-tree's file operations to work with LSP (updating imports, etc.), you can use a plugin like
-		-- https://github.com/antosha417/nvim-lsp-file-operations:
-		-- {
-		--   "antosha417/nvim-lsp-file-operations",
-		--   dependencies = {
-		--     "nvim-lua/plenary.nvim",
-		--     "nvim-neo-tree/neo-tree.nvim",
-		--   },
-		--   config = function()
-		--     require("lsp-file-operations").setup()
-		--   end,
-		-- },
 	},
 	keys = {
 		{ "<leader>e", ":Neotree toggle left<CR>", silent = true, desc = "Show folder tree" },
@@ -171,6 +140,7 @@ return {
 					},
 					["<2-LeftMouse>"] = "open",
 					["<cr>"] = "open",
+					["o"] = "open",
 					["<esc>"] = "cancel", -- close preview or floating neo-tree window
 					["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
 					-- Read `# Preview Mode` for more information
@@ -182,10 +152,10 @@ return {
 					["t"] = "open_tabnew",
 					-- ["<cr>"] = "open_drop",
 					-- ["t"] = "open_tab_drop",
-					["w"] = "open_with_window_picker",
+					-- ["w"] = "open_with_window_picker",
 					--["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
-					["C"] = "close_node",
-					-- ['C'] = 'close_all_subnodes',
+					-- ["C"] = "close_node",
+					["C"] = "close_all_subnodes",
 					["z"] = "close_all_nodes",
 					--["Z"] = "expand_all_nodes",
 					["a"] = {
@@ -292,18 +262,18 @@ return {
 						["<c-x>"] = "clear_filter",
 						["[g"] = "prev_git_modified",
 						["]g"] = "next_git_modified",
-						["o"] = {
+						["<c-o>"] = {
 							"show_help",
 							nowait = false,
 							config = { title = "Order by", prefix_key = "o" },
 						},
-						["oc"] = { "order_by_created", nowait = false },
-						["od"] = { "order_by_diagnostics", nowait = false },
-						["og"] = { "order_by_git_status", nowait = false },
-						["om"] = { "order_by_modified", nowait = false },
-						["on"] = { "order_by_name", nowait = false },
-						["os"] = { "order_by_size", nowait = false },
-						["ot"] = { "order_by_type", nowait = false },
+						["<c-o>c"] = { "order_by_created", nowait = false },
+						["<c-o>d"] = { "order_by_diagnostics", nowait = false },
+						["<c-o>g"] = { "order_by_git_status", nowait = false },
+						["<c-o>m"] = { "order_by_modified", nowait = false },
+						["<c-o>n"] = { "order_by_name", nowait = false },
+						["<c-o>s"] = { "order_by_size", nowait = false },
+						["<c-o>t"] = { "order_by_type", nowait = false },
 						-- ['<key>'] = function(state) ... end,
 					},
 					fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode

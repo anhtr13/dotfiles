@@ -39,6 +39,7 @@ return {
 				"tsx",
 				-- 'css',
 				-- 'html',
+				"vue",
 			},
 			modules = {},
 			ignore_install = {},

@@ -8,12 +8,12 @@ return {
     "leoluz/nvim-dap-go",
   },
   keys = {
-    { "<leader>db", ":DapToggleBreakpoint<CR>", silent = true, desc = "Toggle [D]ebugger [B]reak point" },
-    { "<leader>dc", ":DapContinue<CR>",         silent = true, desc = "[D]ebugger [c]ontinue" },
-    { "<leader>do", ":DapStepOver<CR>",         silent = true, desc = "[D]ebugger step [o]ver" },
-    { "<leader>di", ":DapStepInto<CR>",         silent = true, desc = "[D]ebugger step [i]nto" },
-    { "<leader>du", ":DapStepOut<CR>",          silent = true, desc = "[D]ebugger step o[u]t" },
-    { "<leader>dx", ":DapTerminate<CR>",        silent = true, desc = "[D]ebugger e[x]it" },
+    { "gdb", ":DapToggleBreakpoint<CR>", silent = true, desc = "Toggle [D]ebugger [B]reak point" },
+    { "gdc", ":DapContinue<CR>",         silent = true, desc = "[D]ebugger [c]ontinue" },
+    { "gdo", ":DapStepOver<CR>",         silent = true, desc = "[D]ebugger step [o]ver" },
+    { "gdi", ":DapStepInto<CR>",         silent = true, desc = "[D]ebugger step [i]nto" },
+    { "gdu", ":DapStepOut<CR>",          silent = true, desc = "[D]ebugger step o[u]t" },
+    { "gdx", ":DapTerminate<CR>",        silent = true, desc = "[D]ebugger e[x]it" },
   },
   config = function()
     require("dapui").setup()

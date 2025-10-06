@@ -2,6 +2,7 @@
 ---
 --- https://github.com/regen100/cmake-language-server
 ---
+---@type vim.lsp.Config
 return {
 	cmd = { "cmake-language-server" },
 	filetypes = { "cmake" },

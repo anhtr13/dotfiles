@@ -1,25 +1,26 @@
-@define-color yellow rgba(224, 175, 104, 1);
-@define-color orange rgba(255, 158, 100, 1);
-@define-color rose rgba(247, 118, 142, 1);
-@define-color smoke rgba(192, 202, 245, 1);
+@define-color yellow #FFFF00;
+@define-color orange #FF7F00;
+@define-color red    #FF0000;
+@define-color white  #FFFFFF;
 
-@define-color green0	rgba(158, 206, 106, 1);
-@define-color green1	rgba(69, 235, 69, 1);
+@define-color green0 #00FF00;
+@define-color green1 #AAFF00;
 
-@define-color purple0 rgba(154, 126, 204, 1);
-@define-color purple1 rgba(187, 154, 247, 1);
+@define-color purple0 #FF00FF;
+@define-color purple1 #A136FF;
+@define-color purple2 #FF0094;
 
-@define-color teal0 rgba(74, 186, 175, 1);
-@define-color teal1 rgba(115, 218, 202, 1);
-@define-color teal2 rgba(180, 249, 248, 1);
+@define-color teal0 #00FF99;
+@define-color teal1 #36E099;
+@define-color teal2 #B4FFD7;
 
-@define-color blue0 rgba(122, 162, 247, 1);
-@define-color blue1 rgba(0, 166, 244, 1);
+@define-color blue0 #0000FF;
+@define-color blue1 #007DFF;
 
-@define-color cyan0 rgba(42, 195, 222, 1);
-@define-color cyan1 rgba(125, 207, 255, 1);
+@define-color cyan0 #00FFFF;
+@define-color cyan1 #00FFD7;
 
-@define-color base rgba(1, 2, 3, 0.9);
+@define-color base rgba(0, 0, 0, 0.9);
 
 * {
     font-family: CodeNewRoman Nerd Font Propo;
@@ -38,7 +39,7 @@ window#waybar {
 window#waybar > box {
     margin: 0px;
     padding: 0px;
-    border-radius: 0px 0px 16px 16px;
+    border-radius: 0px;
     background: transparent;
 }
 
@@ -47,38 +48,39 @@ button {
 }
 
 tooltip {
-    border-radius: 12px;
-    color: @smoke;
+    border-radius: 0px;
+    color: @white;
     background: @base;
-    border: 1px solid @blue0;
+    border: 1px solid @cyan0;
 }
 
 menu {
-	  color: @smoke;
+	  color: @white;
     padding: 6px;
 	  background: @base;
-	  border-radius: 12px;
+	  border-radius: 0px;
     border: 1px solid @blue0;
 }
 menuitem {
-	  border-radius: 12px;
+	  border-radius: 0px;
     transition: all 0.15s ease-in;
 }
 
 .module {
     margin: 3px 2px;
-    border-radius: 12px;
+    border-radius: 0px;
     padding: 0px 6px;
     transition: all 0.15s ease-in;
 }
 
 #custom-rofi {
     padding-left: 15px;
+    padding-right: 2px;
     color: @cyan0;
 }
 
 #custom-rofi:hover {
-    color: @green1;
+    color: @green0;
 }
 
 #workspaces {
@@ -86,9 +88,9 @@ menuitem {
 }
 #workspaces button {
     padding: 0px 1px;
-    border-radius: 8px;
+    border-radius: 0px;
     transition: all 0.15s ease-in;
-    color: @smoke;
+    color: @white;
 }
 #workspaces button:hover {
     margin: 4px 1px;
@@ -100,30 +102,30 @@ menuitem {
     margin: 4px 1px;
     padding: 0px 5px;
     color: @base;
-    background: @blue0;
+    background: @cyan0;
 }
 #workspaces button.urgent {
     margin: 4px 1px;
     padding: 0px 5px;
     color: @base;
-    background: @orange;
+    background: @red;
 }
 
 #window {
-    color: @smoke;
+    color: @white;
     background: transparent;
 }
 
 #clock {
-    color: @orange;
+    color: @purple0;
 }
 
 #clock.date {
-    color: @cyan0;
+    color: @orange;
 }
 
 #backlight {
-    color: @smoke;
+    color: @white;
 }
 
 #pulseaudio {
@@ -145,7 +147,7 @@ menuitem {
 }
 
 #memory {
-    color: @green0;
+    color: @green1;
 }
 
 #battery {
@@ -153,18 +155,18 @@ menuitem {
 }
 
 #battery.charging, #battery.plugged {
-    color: @green1;
+    color: @green0;
 }
 
 #battery.critical:not(.charging) {
-    color: @rose;
+    color: @red;
 }
 
 #power-profiles-daemon {
 }
 
 #power-profiles-daemon.performance {
-    color: @rose;
+    color: @purple2;
 }
 
 #power-profiles-daemon.balanced {
@@ -177,5 +179,5 @@ menuitem {
 
 #custom-notification {
     padding-right: 15px;
-    color: @rose;
+    color: @purple2;
 }

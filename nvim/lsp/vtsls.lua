@@ -15,8 +15,12 @@ local vue_plugin = {
 	configNamespace = "typescript",
 }
 
+---@type vim.lsp.Config
 return {
 	cmd = { "vtsls", "--stdio" },
+	init_options = {
+		hostInfo = "neovim",
+	},
 	settings = {
 		vtsls = {
 			tsserver = {

@@ -2,6 +2,7 @@
 ---
 --- https://github.com/mtshiba/pylyzer
 ---
+---@type vim.lsp.Config
 return {
 	cmd = { "pylyzer", "--server" },
 	filetypes = { "python" },

@@ -97,17 +97,17 @@ $shell\
 $character"""
 
 add_newline = true
-palette = 'tokyo_night'
+palette = 'homebrew'
 
-[palettes.tokyo_night]
-smoke = '#C0CAF5'
-blue = '#6093F0'
-green = '#4CDB52'
-red = '#CD546D'
-orange = '#FF9E64'
-yellow = '#E8C248'
-teal = '#42CAD9'
-purple = '#A277FF'
+[palettes.homebrew]
+white = '#FFFFFF'
+blue = '#0000FF'
+green = '#00FF00'
+red = '#FF0000'
+orange = '#FF7F00'
+yellow = '#FFFF00'
+teal = '#00FFFF'
+purple = '#FF00FF'
 
 [os]
 disabled = false
@@ -179,8 +179,8 @@ format = '[$output]($style) 🌐 '
 [directory]
 home_symbol = "  "
 read_only = " 󰌾 "
-style = 'bold fg:smoke'
-format = '[in](smoke dimmed) [$path ]($style)'
+style = 'bold fg:white'
+format = '[in](white dimmed) [$path ]($style)'
 truncation_length = 2
 truncation_symbol = '…/'
 truncate_to_repo = false
@@ -197,7 +197,7 @@ truncate_to_repo = false
 style = 'blue'
 symbol = ' '
 truncation_length = 20
-format = '[on](smoke dimmed) [$symbol$branch ]($style)'
+format = '[on](white dimmed) [$symbol$branch ]($style)'
 
 [git_commit]
 only_detached = true
@@ -236,130 +236,130 @@ format = '$symbol '
 
 [aws]
 symbol = "󰅟 "
-format = '[on](smoke dimmed) [$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
+format = '[on](white dimmed) [$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
 
 [terraform]
 symbol = " "
-format = 	'[via](smoke dimmed) [$symbol$workspace]($style) '
+format = 	'[via](white dimmed) [$symbol$workspace]($style) '
 
 [kubernetes]
 symbol = " "
-format = '[$symbol$context( \($namespace\))]($style) [in](smoke dimmed) '
+format = '[$symbol$context( \($namespace\))]($style) [in](white dimmed) '
 
 [buf]
 symbol = " "
-format = '[with](smoke dimmed) [$symbol($version )]($style)'
+format = '[with](white dimmed) [$symbol($version )]($style)'
 
 [memory_usage]
 symbol = "󰍛 "
-format = '[via](smoke dimmed) $symbol [${ram}( | ${swap})]($style) '
+format = '[via](white dimmed) $symbol [${ram}( | ${swap})]($style) '
 
 [nix_shell]
 symbol = " "
-format = 	'[via](smoke dimmed) [$symbol$state( \($name\))]($style) '
+format = 	'[via](white dimmed) [$symbol$state( \($name\))]($style) '
 
 [package]
 symbol = "󰏗 "
-format = '[is](smoke dimmed) [$symbol$version]($style) '
+format = '[is](white dimmed) [$symbol$version]($style) '
 
 [bun]
 symbol = " "
-format = '[via](smoke dimmed) [$symbol($version )]($style)'
+format = '[via](white dimmed) [$symbol($version )]($style)'
 
 [c]
 symbol = " "
-format = '[via](smoke dimmed) [$symbol($version(-$name) )]($style)'
+format = '[via](white dimmed) [$symbol($version(-$name) )]($style)'
 
 [cpp]
 symbol = " "
-format = '[via](smoke dimmed) [$symbol($version(-$name) )]($style)'
+format = '[via](white dimmed) [$symbol($version(-$name) )]($style)'
 
 [cmake]
 symbol = " "
-format = '[via](smoke dimmed) [$symbol($version )]($style)'
+format = '[via](white dimmed) [$symbol($version )]($style)'
 
 [dart]
 symbol = " "
-format = '(via)[smoke dimmed] [$symbol($version )]($style)'
+format = '(via)[white dimmed] [$symbol($version )]($style)'
 
 [deno]
 symbol = " "
-format = '[via](smoke dimmed) [$symbol($version )]($style)'
+format = '[via](white dimmed) [$symbol($version )]($style)'
 
 [docker_context]
 symbol = " "
-format = '[via](smoke dimmed) [$symbol$context]($style) '
+format = '[via](white dimmed) [$symbol$context]($style) '
 
 [elixir]
 symbol = " "
-format = '[via](smoke dimmed) [$symbol($version \(OTP $otp_version\) )]($style)'
+format = '[via](white dimmed) [$symbol($version \(OTP $otp_version\) )]($style)'
 
 [erlang]
-format = '[via](smoke dimmed) [$symbol($version )]($style)'
+format = '[via](white dimmed) [$symbol($version )]($style)'
 
 [golang]
 symbol = " "
-format = '[via](smoke dimmed) [$symbol($version )]($style)'
+format = '[via](white dimmed) [$symbol($version )]($style)'
 
 [haskell]
 symbol = " "
-format = '[via](smoke dimmed) [$symbol($version )]($style)'
+format = '[via](white dimmed) [$symbol($version )]($style)'
 
 [java]
 symbol = " "
-format = '[via](smoke dimmed) [${symbol}(${version} )]($style)'
+format = '[via](white dimmed) [${symbol}(${version} )]($style)'
 
 [kotlin]
 symbol = " "
-format = '[via](smoke dimmed) [$symbol($version )]($style)'
+format = '[via](white dimmed) [$symbol($version )]($style)'
 
 [lua]
 symbol = " "
-format = '[via](smoke dimmed) [$symbol($version )]($style)'
+format = '[via](white dimmed) [$symbol($version )]($style)'
 
 [nodejs]
 symbol = " "
-format = '[via](smoke dimmed) [$symbol($version )]($style)'
+format = '[via](white dimmed) [$symbol($version )]($style)'
 
 [ocaml]
 symbol = " "
-format = '[via](smoke dimmed) [$symbol($version )(\($switch_indicator$switch_name\) )]($style)'
+format = '[via](white dimmed) [$symbol($version )(\($switch_indicator$switch_name\) )]($style)'
 
 [perl]
 symbol = " "
-format = 	'[via](smoke dimmed) [$symbol($version )]($style)'
+format = 	'[via](white dimmed) [$symbol($version )]($style)'
 
 [php]
 symbol = " "
-format = '[via](smoke dimmed) [$symbol($version )]($style)'
+format = '[via](white dimmed) [$symbol($version )]($style)'
 
 [python]
 symbol = " "
-format = '[via](smoke dimmed) [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+format = '[via](white dimmed) [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 
 [rlang]
 symbol = "󰟔 "
-format = '[via](smoke dimmed) [$symbol($version )]($style)'
+format = '[via](white dimmed) [$symbol($version )]($style)'
 
 [ruby]
 symbol = " "
-format = '[via](smoke dimmed) [$symbol($version )]($style)'
+format = '[via](white dimmed) [$symbol($version )]($style)'
 
 [rust]
 symbol = "󱘗 "
-format = '[via](smoke dimmed) [$symbol($version )]($style)'
+format = '[via](white dimmed) [$symbol($version )]($style)'
 
 [scala]
 symbol = " "
-format = '[via](smoke dimmed) [${symbol}(${version} )]($style)'
+format = '[via](white dimmed) [${symbol}(${version} )]($style)'
 
 [swift]
 symbol = " "
-format = '[via](smoke dimmed) [$symbol($version )]($style)'
+format = '[via](white dimmed) [$symbol($version )]($style)'
 
 [zig]
 symbol = " "
-format = '[via](smoke dimmed) [$symbol($version )]($style)'
+format = '[via](white dimmed) [$symbol($version )]($style)'
 
 
 

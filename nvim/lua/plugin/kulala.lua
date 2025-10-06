@@ -10,6 +10,6 @@ return {
 	ft = { "http", "rest" },
 	opts = {
 		-- your configuration comes here
-		global_keymaps = false,
+		global_keymaps = true,
 	},
 }

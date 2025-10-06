@@ -1,20 +1,20 @@
-@define-color smoke   rgba(192, 202, 245, 1);
-@define-color green	  rgba(158, 206, 106, 1);
-@define-color rose    rgba(247, 118, 142, 1);
-@define-color cyan    rgba(125, 207, 255, 1);
-@define-color base    rgba(1, 2, 3, 1);
+@define-color white   #FFFFFF;
+@define-color green	  #48C448;
+@define-color red     #FF0000;
+@define-color cyan    #00FFFF;
+@define-color base    #000000;
 
 * {
   font-family: "CodeNewRoman Nerd Font Propo";
   background-clip: border-box;
+  border-radius: 0px;
 }
 
 /*** Notification ***/
 
 .notification {
-  color: @smoke;
+  color: @white;
   border: 2px solid @cyan;
-  border-radius: 12px;
   background: alpha(@base, 0.65)
 }
 
@@ -29,27 +29,21 @@
 
 .notification-content {
   padding: 12px;
-  border-radius: 12px;
 }
 
 .close-button {
-  color: @rose;
-  background: alpha(@rose, 0.3);
+  color: @red;
+  background: alpha(@red, 0.3);
 }
 .close-button:hover {
   color: @base;
-  background: @rose;
+  background: @red;
 }
 
 .notification-default-action,
 .notification-action {
   background: transparent;
   border: none;
-}
-
-
-.notification-default-action {
-  border-radius: 4px;
 }
 
 .notification-action {
@@ -59,11 +53,11 @@
 /* Notification header */
 .summary {
   font-size: 16px;
-  color: @smoke;
+  color: @white;
 }
 
 .time {
-  color: alpha(@smoke, 0.7);
+  color: alpha(@white, 0.7);
   font-size: 12px;
   text-shadow: none;
   padding: 2px 0px;
@@ -72,11 +66,7 @@
 .body {
   font-size: 16px;
   font-weight: 500;
-  color: @smoke;
-}
-
-.body-image {
-  border-radius: 8px;
+  color: @white;
 }
 
 /*** Notification center ***/
@@ -84,7 +74,6 @@
 /* Control center */
 .control-center {
   background: alpha(@base, 0.65);
-  border-radius: 16px;
   border: 2px solid @cyan;
   padding: 4px;
 }
@@ -104,7 +93,7 @@
   margin-bottom: 6px;
 }
 .notification-group label {
-  color: @smoke;
+  color: @white;
 }
 .notification-group {
   opacity: 1.0;
@@ -114,7 +103,6 @@
 .notification-group > box {
   all: unset;
   padding: 4px;
-  border-radius: 12px;
 }
 .notification-group-headers {
   margin-left: 6px;
@@ -129,7 +117,7 @@
 }
 .notification-group-collapse-button,
 .notification-group-close-all-button {
-  color: @smoke;
+  color: @white;
   background: alpha(@cyan, 0.1);
 }
 .notification-group-collapse-button:hover {
@@ -138,7 +126,7 @@
 }
 .notification-group-close-all-button:hover {
   color: @base;
-  background: @rose;
+  background: @red;
 }
 
 .control-center-list > row,
@@ -165,11 +153,10 @@
 }
 .widget-dnd > label {
   font-size: 20px;
-  color: @smoke;
+  color: @white;
 }
 .widget-dnd > switch {
   background: alpha(@cyan, 0.4);
-  border-radius: 16px;
   box-shadow: none;
   padding: 2px;
 }
@@ -184,12 +171,11 @@
 
 .widget-dnd > switch slider {
   background: @base;
-  border-radius: 16px;
 }
 
 /* Menubar */
 .widget-menubar {
-  color: @smoke;
+  color: @white;
   margin: 4px;
 }
 .widget-menubar > box {
@@ -201,7 +187,6 @@
 }
 .widget-menubar button {
   background: alpha(@cyan, 0.1);
-  border-radius: 16px;
 }
 .widget-menubar button:hover {
   color: @base;
@@ -212,7 +197,6 @@
   margin: 0px;
   min-height: 40px;
   min-width: 180px;
-  border-radius: 16px;
   color: @base;
   background: alpha(@cyan, 0.5);
 }
@@ -227,14 +211,12 @@
 /* Backlight and volume widgets */
 .widget-backlight,
 .widget-volume {
-  color: @smoke;
+  color: @white;
   font-weight: 600;
-  border-radius: 0px;
   margin: 0px 12px;
   padding: 0px;
 }
 .widget-volume > box {
-  border-radius: 8px;
   margin-bottom: 6px;
   min-height: 40px;
 }
@@ -248,7 +230,6 @@
   padding: 0px;
 }
 .widget-backlight > scale {
-  border-radius: 8px;
   margin: 0px 10px;
   padding: 0px;
   min-height: 40px;
@@ -256,7 +237,6 @@
 .widget-backlight > label {
   margin: 0px;
   padding: 0px;
-  border-radius: 8px;
   min-height: 40px;
   min-width: 40px;
 }
@@ -273,7 +253,6 @@
   all: unset;
 }
 .widget-mpris-player {
-  border-radius: 16px;
   margin: 0px 8px;
 }
 
@@ -285,18 +264,17 @@
 }
 
 .widget-title > label {
-  color: @smoke;
+  color: @white;
   font-size: 20px;
 }
 
 .widget-title > button {
   padding: 4px 10px;
-  color: alpha(@smoke, 0.5);
-  border-radius: 12px;
+  color: alpha(@white, 0.5);
 }
 .widget-title > button:hover {
   color: @base;
-  background: @rose;
+  background: @red;
 }
 
 /* Sliders */
@@ -305,13 +283,11 @@ scale {
   margin: 0px 10px 0px 10px;
 }
 
-scale trough {
-  border-radius: 10px;
+scale through {
   background: alpha(@cyan, 0.1);
 }
 
 scale highlight {
-  border-radius: 6px;
   min-height: 4px;
   margin-right: -5px;
   background: @cyan;
@@ -321,7 +297,7 @@ scale slider {
   margin: -10px;
   min-width: 6px;
   min-height: 6px;
-  background: @smoke;
+  background: @white;
   box-shadow: none;
   padding: 0px;
 }

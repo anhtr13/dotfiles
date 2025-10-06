@@ -10,6 +10,9 @@ return {
 	},
 	config = function()
 		require("telescope").setup({
+			defaults = {
+				borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+			},
 			extensions = {
 				["ui-select"] = {
 					require("telescope.themes").get_dropdown({}),

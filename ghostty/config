@@ -49,7 +49,7 @@ shell-integration = zsh
 # background-opacity = 0.9
 
 # theme
-theme = light:BlulocoLight,dark:RetroLegends
+theme = light:Nvim Light,dark:Homebrew
 
 # window
 window-theme = ghostty
