@@ -32,4 +32,4 @@ run_rofi() {
 }
 
 chosen="$(run_rofi)"
-swww img "$source/$chosen" --transition-fps 30 --transition-type any --transition-duration 2
+swww img "$source/$chosen" --transition-fps 30 --transition-type any --transition-duration 1.5

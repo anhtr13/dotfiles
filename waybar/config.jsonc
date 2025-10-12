@@ -1,5 +1,5 @@
 {
-  "layer": "top",
+    "layer": "top",
     "position": "top",
     "height": 36,
     "margin-top": 0,
@@ -58,11 +58,11 @@
 
     "clock": {
         "tooltip": false,
-        "format": " {:%H:%M}"
+        "format": "󱑁 {:%H:%M}"
     },
 
     "clock#date": {
-        "format": " {:L%a %d %b}",
+        "format": "󰃭 {:L%a %d %b}",
         "tooltip-format": "<tt>{calendar}</tt>",
         "calendar": {
             "mode": "month",

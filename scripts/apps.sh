@@ -10,8 +10,8 @@ list_row='7'
 
 cmd_term='ghostty'
 cmd_web='brave'
-cmd_file='nautilus'
-cmd_text='gnome-text-editor'
+cmd_file='kitty sh -c ranger'
+cmd_text='kitty sh -c nvim'
 cmd_vpn='protonvpn-app'
 cmd_setting='sh ~/.config/scripts/setting.sh'
 

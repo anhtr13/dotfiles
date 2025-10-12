@@ -42,7 +42,8 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-font-family = "CodeNewRoman Nerd Font Propo"
+font-family = "CodeNewRoman Nerd Font"
+font-size = 12
 clipboard-trim-trailing-spaces = true
 shell-integration = zsh
 # confirm-close-surface = false
