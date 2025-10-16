@@ -1,4 +1,23 @@
--- Formatter plugin for Neovim
+-- ############################
+-- ##### Formatter plugin #####
+-- ############################
+--
+-- # Require installed formatters:
+-- goimports-reviser:      https://github.com/incu6us/goimports-reviser
+-- golines:                https://github.com/segmentio/golines
+-- shfmt:                  https://github.com/mvdan/sh
+-- rustfmt:                https://github.com/rust-lang/rustfmt
+-- jq:                     https://github.com/stedolan/jq
+-- clang-format:           https://pypi.org/project/clang-format
+-- black:                  https://pypi.org/project/black
+-- isort:                  https://pypi.org/project/isort
+-- prettierd:              https://github.com/fsouza/prettierd
+-- sql-formatter:          https://sql-formatter-org.github.io/sql-formatter
+-- stylua:                 https://github.com/JohnnyMorganz/StyLua
+-- codespell:              https://github.com/codespell-project/codespell
+-- nginx-config-formatter: https://github.com/slomkowski/nginx-config-formatter
+--
+
 return {
 	"stevearc/conform.nvim",
 	event = "VeryLazy",
@@ -64,6 +83,7 @@ return {
 				zsh = { "shfmt" },
 				bash = { "shfmt" },
 				json = { "json_fmt" },
+				jsonc = { "json_fmt" },
 				nginx = { "nginxfmt" },
 				lua = { "stylua" },
 				python = { "isort", "black" },
