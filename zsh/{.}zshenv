@@ -1,3 +1,2 @@
 # zshenv (ignored by .gitignore)
 
-export GEMINI_API_KEY="<api_key>"

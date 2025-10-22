@@ -34,14 +34,6 @@
     "on-click": "rofi -show drun",
     "tooltip": false
   },
-  "hyprland/window": {
-    "format": "{}",
-    "rewrite": {
-      "(.{50}).*": "$1..."
-    },
-    "icon": true,
-    "icon-size": 18
-  },
   "hyprland/workspaces": {
     "on-click": "activate",
     "format": "{name}",
@@ -57,6 +49,22 @@
         4
       ]
     }
+  },
+  "hyprland/window": {
+    "format": "{}",
+    "rewrite": {
+      "(.{50}).*": "$1..."
+    },
+    "icon": true,
+    "icon-size": 18
+  },
+  "niri/window": {
+    "format": "{}",
+    "rewrite": {
+      "(.{50}).*": "$1..."
+    },
+    "icon": true,
+    "icon-size": 18
   },
   "clock": {
     "tooltip": false,

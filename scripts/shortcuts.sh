@@ -10,7 +10,7 @@ list_row='8'
 
 cmd_term='ghostty'
 cmd_web='brave'
-cmd_file='kitty sh -c ranger'
+cmd_file='kitty sh -c yazi'
 cmd_text='kitty sh -c nvim'
 cmd_vpn='protonvpn-app'
 cmd_player='kitty sh -c kew'

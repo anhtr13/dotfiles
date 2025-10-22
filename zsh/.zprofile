@@ -28,7 +28,9 @@ export MANPAGER="nvim +Man!" # Use nvim for man page
 export MYVIMRC="~/.config/vim/vimrc"
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 export NVM_DIR="$HOME/.nvm"
+export LLVM_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer
 
 . "$HOME/.cargo/env"
+. "$NVM_DIR/nvm.sh"
 
-eval $(keychain --eval id_ed25519)
+# eval $(keychain --eval id_ed25519)

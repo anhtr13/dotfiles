@@ -24,10 +24,10 @@ let g:netrw_dirhistmax=0
 nmap [<space> O<Esc>j
 nmap ]<space> o<Esc>k
 
-nmap <S-k> 5k
-nmap <S-j> 5j
-nmap <S-Up> 5k
-nmap <S-Down> 5j
+nmap <C-k> 10k
+nmap <C-j> 10j
+nmap <C-Up> 10k
+nmap <C-Down> 10j
 
 imap <C-q> <Esc>
 imap <C-z> <Esc>u

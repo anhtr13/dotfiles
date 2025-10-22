@@ -3,7 +3,7 @@
 theme="$XDG_CONFIG_HOME/rofi/themes/applet.rasi"
 
 prompt='Screenshot'
-mesg="DIR: $(xdg-user-dir PICTURES)/Screenshots"
+mesg="DIR: $HOME/Desktop/Pictures/Screenshots"
 
 list_col='1'
 list_row='5'
@@ -29,24 +29,28 @@ run_rofi() {
 }
 
 time=$(date +%Y-%m-%d-%H-%M-%S)
-dir="$(xdg-user-dir PICTURES)/Screenshots"
+dir="$HOME/Pictures/Screenshots"
 file_name="Screenshot_${time}.png"
+file_path="$dir/$file_name"
 
 if [[ ! -d "$dir" ]]; then
   mkdir -p "$dir"
 fi
 
 takeshot() {
-  hyprshot -m ${1} -f "$file_name" -o "$dir"
+  grim "$@" "$file_path"
+  if [ -e "$file_path" ]; then
+    notify-send -i "$file_path" "Grim" "Screenshot saved: $file_name"
+  fi
 }
 
 run_cmd() {
   if [[ "$1" == '--screen' ]]; then
-    takeshot output
-  elif [[ "$1" == '--window' ]]; then
-    takeshot window
+    takeshot
   elif [[ "$1" == '--region' ]]; then
-    takeshot region
+    takeshot "-g" "$(slurp -w 0)"
+  else
+    takeshot "-g" "$(hyprctl -j activewindow | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')"
   fi
 }
 

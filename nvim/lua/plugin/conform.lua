@@ -23,7 +23,7 @@ return {
 	event = "VeryLazy",
 	keys = {
 		{
-			"<s-m-f>",
+			"<leader>F",
 			function()
 				require("conform").format({ async = true })
 			end,
