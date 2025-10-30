@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 theme="$XDG_CONFIG_HOME/rofi/themes/applet.rasi"
 

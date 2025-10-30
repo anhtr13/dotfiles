@@ -392,7 +392,7 @@ symbol = " "
 format = '\[[$symbol$cloud(\($project\))]($style)\]'
 
 [package]
-symbol = " "
+symbol = "󰏗 "
 format = '\[[$symbol$version]($style)\]'
 
 [perl]

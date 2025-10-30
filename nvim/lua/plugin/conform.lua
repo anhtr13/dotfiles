@@ -91,12 +91,9 @@ return {
 				javascript = { "prettierd", "prettier", stop_after_first = true },
 				typescript = { "prettierd", "prettier", stop_after_first = true },
 				vue = { "prettierd", "prettier", stop_after_first = true },
-				-- Use the "*" filetype to run formatters on all filetypes.
-				["*"] = { "codespell" },
-				-- Use the "_" filetype to run formatters on filetypes that don't have other formatters configured.
-				["_"] = { "trim_whitespace" },
+				-- ["*"] = { "codespell" }, -- formatter on all filetypes.
+				["_"] = { "trim_whitespace" }, -- formatter on filetypes that don't have other formatters configured.
 			},
-			-- Set default options
 			default_format_opts = {
 				lsp_format = "fallback",
 				stop_after_first = false,

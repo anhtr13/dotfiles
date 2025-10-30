@@ -1,9 +1,9 @@
 # zshrc
 
-# git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh/plugins/zsh-autosuggestions
-source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-# git clone https://github.com/zsh-users/zsh-history-substring-search ~/.config/zsh/plugins/zsh-history-substring-search
-source $ZDOTDIR/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
+# sudo git clone https://github.com/zsh-users/zsh-autosuggestions /usr/share/zsh/plugins/zsh-autosuggestions
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+# sudo git clone https://github.com/zsh-users/zsh-history-substring-search /usr/share/zsh/plugins/zsh-history-substring-search
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 
 [[ -f ${ZDOTDIR}/aliasrc ]] && source ${ZDOTDIR}/aliasrc
 [[ -f ${ZDOTDIR}/optionrc ]] && source ${ZDOTDIR}/optionrc
@@ -40,5 +40,5 @@ function chpwd() {
   echo -en "\e]0;$PWD\a" #-- Set icon name and window title after cd
 }
 
-# git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.config/zsh/plugins/zsh-syntax-highlighting
-source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+# sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting /usr/share/zsh/plugins/zsh-syntax-highlighting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh

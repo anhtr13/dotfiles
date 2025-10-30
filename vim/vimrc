@@ -46,4 +46,3 @@ map <Tab>h :bprevious<cr>
 map <Tab>l :bnext<cr>
 map <Tab>c :bdelete<cr>
 map <Tab>x :bdelete!<cr>
-

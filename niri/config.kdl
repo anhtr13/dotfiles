@@ -341,7 +341,7 @@ window-rule {
 window-rule {
     geometry-corner-radius 0
     clip-to-geometry true
-    opacity 0.9
+    opacity 1.0
     draw-border-with-background false
 }
 

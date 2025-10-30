@@ -8,6 +8,15 @@ return {
 		},
 		"nvim-telescope/telescope-ui-select.nvim",
 	},
+	keys = {
+		{ "<leader>/f", ":Telescope find_files<CR>", silent = true, desc = "Telescope find_[f]iles" },
+		{ "<leader>/g", ":Telescope live_grep<CR>", silent = true, desc = "Telescope live_[g]rep" },
+		{ "<leader>/b", ":Telescope buffers<CR>", silent = true, desc = "Telescope [b]uffers" },
+		{ "<leader>//", ":Telescope current_buffer_fuzzy_find<CR>", silent = true, desc = "Telescope current_buffer_fuzzy_find" },
+		{ "<leader>/c", ":Telescope command_history<CR>", silent = true, desc = "Telescope [c]ommand_history" },
+		{ "<leader>/d", ":Telescope diagnostics<CR>", silent = true, desc = "Telescope [d]iagnostics" },
+		{ "<leader>/h", ":Telescope help_tags<CR>", silent = true, desc = "Telescope [h]elp_tags" },
+	},
 	config = function()
 		require("telescope").setup({
 			defaults = {
@@ -32,12 +41,5 @@ return {
 
 		require("telescope").load_extension("ui-select")
 		require("telescope").load_extension("fzf")
-
-		local builtin = require("telescope.builtin")
-
-		vim.keymap.set("n", "<leader>/f", builtin.find_files, { desc = "Telescope find [f]iles" })
-		vim.keymap.set("n", "<leader>/g", builtin.live_grep, { desc = "Telescope live [g]rep" })
-		vim.keymap.set("n", "<leader>/b", builtin.buffers, { desc = "Telescope [b]buffers" })
-		vim.keymap.set("n", "<leader>/h", builtin.help_tags, { desc = "Telescope [h]elp tags" })
 	end,
 }

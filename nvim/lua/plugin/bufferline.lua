@@ -5,6 +5,21 @@ return {
 		"moll/vim-bbye",
 		"nvim-tree/nvim-web-devicons",
 	},
+	keys = {
+		{ "<Tab>l", ":BufferLineCycleNext<CR>", silent = true, desc = "Jump to next buffer" },
+		{ "<Tab>h", ":BufferLineCyclePrev<CR>", silent = true, desc = "Jump to previous buffer" },
+		{ "<Tab><Right>", ":BufferLineCycleNext<CR>", silent = true, desc = "Jump to next buffer" },
+		{ "<Tab><Left>", ":BufferLineCyclePrev<CR>", silent = true, desc = "Jump to previous buffer" },
+		{ "<Tab>cc", ":Bdelete<CR>", silent = true, desc = "Close current buffer" },
+		{ "<Tab>co", ":BufferLineCloseOthers<CR>", silent = true, desc = "Close all others buffer" },
+		{ "<Tab>ch", ":BufferLineCloseLeft<CR>", silent = true, desc = "Close all left buffers" },
+		{ "<Tab>cl", ":BufferLineCloseRight<CR>", silent = true, desc = "Close all right buffers" },
+		{ "<Tab>c<Left>", ":BufferLineCloseLeft<CR>", silent = true, desc = "Close all left buffers" },
+		{ "<Tab>c<Right>", ":BufferLineCloseRight<CR>", silent = true, desc = "Close all right buffers" },
+		{ "<Tab>x", ":Bdelete!<CR>", silent = true, desc = "Force close current buffer" },
+		{ "<Tab>od", ":BufferLineSortByDirectory<CR>", silent = true, desc = "Sort buffer by directory" },
+		{ "<Tab>oe", ":BufferLineSortByExtension<CR>", silent = true, desc = "Sort buffer by extensiton" },
+	},
 	config = function()
 		require("bufferline").setup({
 			options = {
@@ -56,18 +71,10 @@ return {
 				-- tab_selected = {},
 				-- background = {},
 				-- indicator_selected = {},
-        fill = {
-          bg = '#000000'
-        }
-      },
+				fill = {
+					bg = "#000000",
+				},
+			},
 		})
-
-		vim.keymap.set("n", "<Tab>l", "<cmd>:BufferLineCycleNext<CR>", { desc = "Jump to next buffer" })
-		vim.keymap.set("n", "<Tab>h", "<cmd>:BufferLineCyclePrev<CR>", { desc = "Jump to previous buffer" })
-		vim.keymap.set("n", "<Tab><Right>", "<cmd>:BufferLineCycleNext<CR>", { desc = "Jump to next buffer" })
-		vim.keymap.set("n", "<Tab><Left>", "<cmd>:BufferLineCyclePrev<CR>", { desc = "Jump to previous buffer" })
-		vim.keymap.set("n", "<Tab>c", "<cmd>:Bdelete<CR>", { desc = "Close current buffer" })
-		vim.keymap.set("n", "<Tab>x", "<cmd>:Bdelete!<CR>", { desc = "Force close current buffer" })
-		vim.keymap.set("n", "<Tab>o", "<cmd>:BufferLineCloseOthers<CR>", { desc = "Close all others buffer" })
 	end,
 }
