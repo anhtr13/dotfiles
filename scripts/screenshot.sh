@@ -37,7 +37,7 @@ if [[ ! -d "$dir" ]]; then
   mkdir -p "$dir"
 fi
 
-takeshot() {
+grimshot() {
   grim "$@" "$file_path"
   if [ -e "$file_path" ]; then
     notify-send -i "$file_path" "Grim" "Screenshot saved: $file_name"
@@ -45,12 +45,22 @@ takeshot() {
 }
 
 run_cmd() {
-  if [[ "$1" == '--screen' ]]; then
-    takeshot
-  elif [[ "$1" == '--region' ]]; then
-    takeshot "-g" "$(slurp -w 0)"
+  if [ $XDG_CURRENT_DESKTOP == 'niri' ]; then
+    if [[ "$1" == '--screen' ]]; then
+      grimshot
+    elif [[ "$1" == '--region' ]]; then
+      grimshot "-g" "$(slurp -w 0)"
+    else
+      notify-send "Slurp" "Cannot get window coordinates."
+    fi
   else
-    takeshot "-g" "$(hyprctl -j activewindow | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')"
+    if [[ "$1" == '--screen' ]]; then
+      hyprshot -m output -f $file_name -o $dir
+    elif [[ "$1" == '--region' ]]; then
+      hyprshot -m region -f $file_name -o $dir
+    else
+      hyprshot -m window -f $file_name -o $dir
+    fi
   fi
 }
 

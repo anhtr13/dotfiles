@@ -60,3 +60,4 @@ for folder in */; do
   fi
 done
 
+pacman -Qq > installed_packages.txt
