@@ -364,6 +364,7 @@ binds {
     // Mod-Shift-/, which is usually the same as Mod-?,
     // shows a list of important hotkeys.
     Mod+Shift+Slash { show-hotkey-overlay; }
+    Mod+Apostrophe { switch-focus-between-floating-and-tiling; }
 
     Mod+Space   hotkey-overlay-title="Open launcher" { spawn-sh "sh $XDG_CONFIG_HOME/scripts/launcher.sh"; }
     Mod+C       repeat=false { close-window; }

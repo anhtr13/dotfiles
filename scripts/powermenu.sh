@@ -49,7 +49,7 @@ confirm_exit() {
 confirm_run() {
   selected="$(confirm_exit)"
   if [[ "$selected" == "$yes" ]]; then
-    ${1} && ${2} && ${3}
+    ${1} && ${2}
   else
     exit
   fi
@@ -61,7 +61,7 @@ run_cmd() {
   elif [[ "$1" == '--logout' ]]; then
     confirm_run 'kill -9 -1'
   elif [[ "$1" == '--suspend' ]]; then
-    confirm_run 'mpc -q pause' 'amixer set Master mute' 'systemctl suspend'
+    confirm_run 'amixer set Master mute' 'systemctl suspend'
   elif [[ "$1" == '--reboot' ]]; then
     confirm_run 'systemctl reboot'
   elif [[ "$1" == '--shutdown' ]]; then

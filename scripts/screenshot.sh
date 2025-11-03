@@ -45,21 +45,21 @@ grimshot() {
 }
 
 run_cmd() {
-  if [ $XDG_CURRENT_DESKTOP == 'niri' ]; then
-    if [[ "$1" == '--screen' ]]; then
-      grimshot
-    elif [[ "$1" == '--region' ]]; then
-      grimshot "-g" "$(slurp -w 0)"
-    else
-      notify-send "Slurp" "Cannot get window coordinates."
-    fi
-  else
+  if [ $XDG_CURRENT_DESKTOP == 'Hyprland' ]; then
     if [[ "$1" == '--screen' ]]; then
       hyprshot -m output -f $file_name -o $dir
     elif [[ "$1" == '--region' ]]; then
       hyprshot -m region -f $file_name -o $dir
     else
       hyprshot -m window -f $file_name -o $dir
+    fi
+  else
+    if [[ "$1" == '--screen' ]]; then
+      grimshot
+    elif [[ "$1" == '--region' ]]; then
+      grimshot "-g" "$(slurp -w 0)"
+    else
+      notify-send "Slurp" "Cannot get window coordinates."
     fi
   fi
 }

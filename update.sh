@@ -1,5 +1,7 @@
 #!/bin/bash
 
+pacman -Qqet >installed_packages.txt
+
 source_dir=~/.config
 
 ignores=()
@@ -59,5 +61,3 @@ for folder in */; do
 
   fi
 done
-
-pacman -Qq > installed_packages.txt
