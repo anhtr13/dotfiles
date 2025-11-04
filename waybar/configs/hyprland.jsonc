@@ -11,9 +11,7 @@
   "modules-left": [
     "custom/rofi",
     "hyprland/workspaces",
-    "hyprland/window",
-    "niri/workspaces",
-    "niri/window"
+    "hyprland/window"
   ],
   "modules-center": [
     "clock",
@@ -48,17 +46,6 @@
     }
   },
   "hyprland/window": {
-    "format": "{}",
-    "rewrite": {
-      "(.{50}).*": "$1..."
-    },
-    "icon": true,
-    "icon-size": 16
-  },
-  "niri/workspaces": {
-    "all-outputs": false
-  },
-  "niri/window": {
     "format": "{}",
     "rewrite": {
       "(.{50}).*": "$1..."

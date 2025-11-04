@@ -10,8 +10,6 @@
   "fixed-center": true,
   "modules-left": [
     "custom/rofi",
-    "hyprland/workspaces",
-    "hyprland/window",
     "niri/workspaces",
     "niri/window"
   ],
@@ -34,26 +32,6 @@
     "format": "",
     "on-click": "rofi -show drun",
     "tooltip": false
-  },
-  "hyprland/workspaces": {
-    "all-outputs": false,
-    "active-only": false,
-    "show-special": true,
-    "persistent-workspaces": {
-      "*": [
-        1,
-        2,
-        3
-      ]
-    }
-  },
-  "hyprland/window": {
-    "format": "{}",
-    "rewrite": {
-      "(.{50}).*": "$1..."
-    },
-    "icon": true,
-    "icon-size": 16
   },
   "niri/workspaces": {
     "all-outputs": false

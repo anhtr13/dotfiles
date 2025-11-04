@@ -268,7 +268,7 @@ layout {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "waybar"
+spawn-sh-at-startup "waybar -c $XDG_CONFIG_HOME/waybar/configs/niri.jsonc"
 spawn-at-startup "swaync"
 spawn-at-startup "hypridle"
 spawn-at-startup "swww-daemon"

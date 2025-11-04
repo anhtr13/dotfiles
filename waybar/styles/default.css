@@ -33,13 +33,13 @@
 
 window#waybar {
     transition: all 0.1s linear;
-    background: transparent;
+    background: @base;
 }
 
 window#waybar > box {
     margin: 0px;
     padding: 0px;
-    border-radius: 6px;
+    border-radius: 0px;
     background: transparent;
 }
 
@@ -48,7 +48,7 @@ button {
 }
 
 tooltip {
-    border-radius: 6px;
+    border-radius: 0px;
     color: @white;
     background: @base;
     border: 1px solid @cyan0;
@@ -58,28 +58,25 @@ menu {
 	  color: @white;
     padding: 6px;
 	  background: @base;
-    border-radius: 6px;
+	  border-radius: 0px;
     border: 1px solid @blue0;
 }
 menuitem {
-    border-radius: 6px;
+	  border-radius: 0px;
     transition: all 0.1s linear;
 }
 
 .module {
     margin: 3px 2px;
-    border-radius: 9px;
-    padding: 0px 10px;
-    background: @base;
+    border-radius: 0px;
+    padding: 0px 6px;
     transition: all 0.1s linear;
 }
 
 #custom-rofi {
-    padding: 0px 8px;
+    padding-left: 15px;
+    padding-right: 2px;
     color: @cyan0;
-    border-radius: 9px 0px 0px 9px;
-    padding: 0px 5px 0px 10px;
-    margin: 3px 0px 3px 8px;
 }
 
 #custom-rofi:hover {
@@ -87,39 +84,32 @@ menuitem {
 }
 
 #workspaces {
-    padding: 0px 6px;
-    margin: 3px 2px 3px 0px;
-    border-radius: 0px 9px 9px 0px;
-    padding: 0px 6px 0px 3px;
-    margin: 3px 2px 3px 0px;
+    padding: 0px 5px;
 }
 #workspaces button {
-    margin: 5px 0px;
+    margin: 4px 0px;
     padding: 0px 2px;
-    border-radius: 6px;
+    border-radius: 0px;
     transition: all 0.1s linear;
     color: @white;
     background: transparent;
 }
 #workspaces button:hover {
     padding: 0px 5px;
-    margin: 5px 2px;
-    color: @base;
-    background: @green0;
+    border: 1px solid @green0;
 }
 #workspaces button.active {
     padding: 0px 5px;
-    color: @base;
-    background: @cyan0;
+    border: 1px solid @cyan0;
 }
 #workspaces button.urgent {
     padding: 0px 5px;
-    color: @base;
-    background: @red;
+    border: 1px solid @red;
 }
 
 #window {
     color: @white;
+    background: transparent;
 }
 
 #clock {
@@ -136,15 +126,9 @@ menuitem {
 
 #pulseaudio {
     color: @yellow;
-    border-radius: 9px 0px 0px 9px;
-    padding: 0px 5px 0px 10px;
-    margin: 3px 0px 3px 2px;
 }
 #pulseaudio.micro {
     color: @teal1;
-    border-radius: 0px 9px 9px 0px;
-    padding: 0px 10px 0px 5px;
-    margin: 3px 2px 3px 0px;
 }
 
 #network {
@@ -156,23 +140,14 @@ menuitem {
 
 #cpu {
     color: @purple1;
-    border-radius: 9px 0px 0px 9px;
-    padding: 0px 5px 0px 10px;
-    margin: 3px 0px 3px 2px;
 }
 
 #memory {
     color: @green1;
-    border-radius: 0px 9px 9px 0px;
-    padding: 0px 10px 0px 5px;
-    margin: 3px 2px 3px 0px;
 }
 
 #battery {
     color: @cyan1;
-    border-radius: 9px 0px 0px 9px;
-    padding: 0px 5px 0px 10px;
-    margin: 3px 0px 3px 2px;
 }
 
 #battery.charging, #battery.plugged {
@@ -184,9 +159,6 @@ menuitem {
 }
 
 #power-profiles-daemon {
-    border-radius: 0px 9px 9px 0px;
-    padding: 0px 10px 0px 5px;
-    margin: 3px 2px 3px 0px;
 }
 
 #power-profiles-daemon.performance {
@@ -202,6 +174,6 @@ menuitem {
 }
 
 #custom-notification {
-    margin-right: 8px;
+    padding-right: 15px;
     color: @purple2;
 }

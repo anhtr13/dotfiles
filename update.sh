@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pacman -Qqet >installed_packages.txt
+pacman -Qqe >installed_packages.txt
 
 source_dir=~/.config
 
