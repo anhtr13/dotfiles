@@ -2,62 +2,50 @@
 
 pacman -Qqe >installed_packages.txt
 
-source_dir=~/.config
-
+here=$(dirname "$(realpath "$0")")
+dirs=(".config" ".local")
 ignores=()
+
 while IFS= read -r line; do
   ignores+=("$line")
-done <.gitignore
+done <"$here/.gitignore"
 
-for cur_folder in */; do
-
-  source_folder="$source_dir/$cur_folder"
-
-  find $source_folder -type f -print0 | while IFS= read -r -d $'\0' source_file; do
-
-    path=${source_file#$source_dir}
-
-    flag=true
-    for ign in ${ignores[@]}; do
-      if [[ $path == $ign* ]]; then
-        flag=false
-        break
+for dir in "${dirs[@]}"; do
+  find "${here}/${dir}" -mindepth 1 -type d -print0 | while IFS= read -r -d $'\0' sub_dir; do
+    sub_dir_suffix=${sub_dir#"$here/"}
+    find "$HOME/$sub_dir_suffix" -type f -print0 | while IFS= read -r -d $'\0' file; do
+      file_suffix=${file#$HOME/}
+      flag=true
+      for ign in ${ignores[@]}; do
+        if [[ $file_suffix == *$ign* ]]; then
+          flag=false
+          break
+        fi
+      done
+      if $flag; then
+        if [[ -e "$here/$file_suffix" ]]; then
+          cp $file "$here/$file_suffix"
+        else
+          install -Dv $file "$here/$file_suffix"
+        fi
       fi
     done
-
-    if $flag; then
-      dest_file=${path#/}
-      if ! [[ -e $dest_file ]]; then
-        install -Dv $source_file $dest_file
-      else
-        cp $source_file $dest_file
-      fi
-    fi
-
   done
-
 done
 
-for folder in */; do
-  if [[ $folder != ".git" ]]; then
-
-    find $folder -type d -print0 | while IFS= read -r -d $'\0' cur_folder; do
-      source_folder="$source_dir/$cur_folder"
-      cur_folder="./$cur_folder"
-      if ! [[ -d $source_folder ]]; then
-        rm -rf $cur_folder
-        echo "Removed folder: $cur_folder"
-      fi
-    done
-
-    find $folder -type f -print0 | while IFS= read -r -d $'\0' cur_file; do
-      source_file="$source_dir/$cur_file"
-      cur_file="./$cur_file"
-      if ! [[ -e $source_file ]]; then
-        rm -rf $cur_file
-        echo "Removed file: $cur_file"
-      fi
-    done
-
-  fi
+for dir in "${dirs[@]}"; do
+  find "${here}/${dir}" -mindepth 1 -type d -print0 | while IFS= read -r -d $'\0' sub_dir; do
+    sub_dir_suffix=${sub_dir#"$here/"}
+    if ! [[ -d "$HOME/$sub_dir_suffix" ]]; then
+      rm -rf $sub_dir
+      echo "Removed folder: $sub_dir"
+    fi
+  done
+  find "${here}/${dir}" -type f -print0 | while IFS= read -r -d $'\0' file; do
+    file_suffix=${file#$here/}
+    if ! [[ -e "$HOME/$file_suffix" ]]; then
+      rm -rf $file
+      echo "Removed file: $file"
+    fi
+  done
 done

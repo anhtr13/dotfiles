@@ -1,7 +1,7 @@
-/tmux/plugins
-/zsh/plugins
-/zsh/.zshenv
-/zsh/.histfile
-/zsh/.zcompdump
-/vim/.netrwhist
-/nvim/lazy-lock.json
+.config/tmux/plugins
+.config/zsh/plugins
+.config/zsh/.zshenv
+.config/zsh/.histfile
+.config/zsh/.zcompdump
+.config/vim/.netrwhist
+.config/nvim/lazy-lock.json
