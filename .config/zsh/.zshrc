@@ -14,7 +14,6 @@ SAVEHIST=9600
 WORDCHARS='*?~&!#%^<>' # separate words by / - _ = . $ () {} [];
 
 eval "$(starship init zsh)"
-# eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/tokyo_night.json)"
 
 zmodload zsh/terminfo
 

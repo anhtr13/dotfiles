@@ -1,7 +1,5 @@
 #!/bin/bash
 
-pacman -Qqe >installed_packages.txt
-
 here=$(dirname "$(realpath "$0")")
 dirs=(".config" ".local")
 ignores=()
@@ -9,6 +7,8 @@ ignores=()
 while IFS= read -r line; do
   ignores+=("$line")
 done <"$here/.gitignore"
+
+pacman -Qqe >"$here/installed_packages.txt"
 
 for dir in "${dirs[@]}"; do
   find "${here}/${dir}" -mindepth 1 -type d -print0 | while IFS= read -r -d $'\0' sub_dir; do

@@ -10,7 +10,7 @@ list_row='8'
 
 cmd_term='ghostty'
 cmd_browser='brave'
-cmd_file='kitty sh -c lf'
+cmd_file='kitty sh -c yazi'
 cmd_editor='emacs'
 cmd_vpn='protonvpn-app'
 cmd_music='kitty sh -c kew'

@@ -6,7 +6,6 @@ if [[ -z "$message" ]]; then
 fi
 
 git add -A
-git commit -m "$message"
 
 rofi_theme="$XDG_CONFIG_HOME/rofi/themes/applet.rasi"
 yes='✓ Yes'
@@ -26,7 +25,9 @@ confirm_cmd() {
 
 selected=$(echo -e "$no\n$yes" | confirm_cmd)
 if [[ "$selected" == "$yes" ]]; then
-  echo $message
+  git commit -m "$message"
+  eval $(keychain --eval id_ed25519)
+  echo "Pushing '$message'..."
   git push origin main
 else
   exit
