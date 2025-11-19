@@ -5,3 +5,4 @@
 .config/zsh/.zcompdump
 .config/vim/.netrwhist
 .config/nvim/lazy-lock.json
+.config/yazi/plugins
