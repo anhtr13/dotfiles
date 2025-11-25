@@ -13,7 +13,6 @@ return {
 			desc = "Open yazi at the current file",
 		},
 		{
-			-- Open in the current working directory
 			"<leader>e",
 			"<cmd>Yazi cwd<cr>",
 			desc = "Open the file manager in nvim's working directory",
@@ -32,9 +31,8 @@ return {
 			show_help = "<f1>",
 		},
 	},
-	-- recommended for `open_for_directories=true`
 	init = function()
-		-- mark netrw as loaded so it's not loaded at all.
+		-- mark netrw as loaded so it's not loaded at all (recommended for `open_for_directories=true`).
 		-- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
 		vim.g.loaded_netrwPlugin = 1
 	end,
