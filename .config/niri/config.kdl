@@ -272,6 +272,7 @@ spawn-sh-at-startup "waybar -c $XDG_CONFIG_HOME/waybar/configs/niri.jsonc"
 spawn-at-startup "swaync"
 spawn-at-startup "hypridle"
 spawn-at-startup "swww-daemon"
+spawn-at-startup = "/usr/bin/emacs --daemon"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"

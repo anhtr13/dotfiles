@@ -5,4 +5,6 @@
 .config/zsh/.zcompdump
 .config/vim/.netrwhist
 .config/nvim/lazy-lock.json
+.config/nvim/nvim-pack-lock.json
+.config/nvim_lite/nvim-pack-lock.json
 .config/yazi/plugins

@@ -64,7 +64,6 @@ mpv
 msmtp
 mtools
 neomutt
-neovim
 network-manager-applet
 networkmanager
 ngrok

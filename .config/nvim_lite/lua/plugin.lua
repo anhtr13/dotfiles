@@ -1,49 +1,44 @@
--- Highlight, edit, and navigate code
-return {
-	"nvim-treesitter/nvim-treesitter",
-	dependencies = {
-		"nvim-treesitter/nvim-treesitter-textobjects",
-	},
-	config = function()
+-- ============================
+-- First load
+-- ============================
+
+vim.pack.add({
+	{ src = "https://github.com/stevearc/oil.nvim" },
+	{ src = "https://github.com/ibhagwan/fzf-lua" },
+})
+
+require("oil").setup()
+require("fzf-lua").setup()
+
+-- ============================
+-- Lazy load
+-- ============================
+
+local lazy = vim.api.nvim_create_augroup("LazyLoad", {})
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+	group = lazy,
+	once = true, -- Ensures the command only runs once
+	callback = function()
+		vim.pack.add({
+			{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+			{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" },
+		})
+
 		require("nvim-treesitter.configs").setup({
-			-- Add languages to be installed here that you want installed for treesitter
 			ensure_installed = {
-				"c",
 				"lua",
 				"vim",
 				"vimdoc",
 				"query",
-				"markdown",
-				"markdown_inline",
 				"bash",
-				"regex",
-				-- 'terraform',
-				"yaml",
-				"make",
-				"cmake",
-				"sql",
-				"dockerfile",
-				-- "toml",
-				"json",
-				-- 'java',
-				-- 'groovy',
 				"python",
-				"go",
-				"rust",
-				"zig",
-				"cpp",
-				"gitignore",
-				-- 'graphql',
-				"javascript",
-				"typescript",
-				"tsx",
-				-- 'css',
-				-- 'html',
-				"vue",
+				"dockerfile",
+				"python",
 			},
 			modules = {},
 			ignore_install = {},
-			auto_install = true, -- Autoinstall languages that are not installed
+			auto_install = true,
 			sync_install = false,
 			highlight = { enable = true },
 			indent = { enable = true },
@@ -51,17 +46,15 @@ return {
 				enable = true,
 				keymaps = {
 					init_selection = "{}",
-					scope_incremental = "{+",
-					node_incremental = "{]",
-					node_decremental = "{[",
+					node_incremental = "{+",
+					node_decremental = "{-",
 				},
 			},
 			textobjects = {
 				select = {
 					enable = true,
-					lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+					lookahead = true,
 					keymaps = {
-						-- You can use the capture groups defined in textobjects.scm
 						["<leader>("] = "@parameter.inner",
 						["<leader>)"] = "@parameter.outer",
 						["<leader>{"] = "@function.inner",
@@ -72,7 +65,7 @@ return {
 				},
 				move = {
 					enable = true,
-					set_jumps = true, -- whether to set jumps in the jumplist
+					set_jumps = true,
 					goto_next_start = {
 						["]f"] = "@function.outer",
 						["]c"] = "@class.outer",
@@ -92,14 +85,8 @@ return {
 				},
 				swap = {
 					enable = false,
-					swap_next = {
-						["<leader>j"] = "@parameter.inner",
-					},
-					swap_previous = {
-						["<leader>k"] = "@parameter.inner",
-					},
 				},
 			},
 		})
 	end,
-}
+})
