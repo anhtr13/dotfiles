@@ -5,16 +5,29 @@
 vim.pack.add({
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
+	{ src = "https://github.com/mason-org/mason.nvim" },
 })
 
 require("oil").setup()
 require("fzf-lua").setup()
+require("mason").setup({
+	PATH = "prepend",
+	max_concurrent_installers = 3,
+	ui = {
+		border = "single",
+		icons = {
+			package_installed = "✓",
+			package_pending = "➜",
+			package_uninstalled = "✗",
+		},
+	},
+})
 
 -- ============================
 -- Lazy load
 -- ============================
 
-local lazy = vim.api.nvim_create_augroup("LazyLoad", {})
+local lazy = vim.api.nvim_create_augroup("LazyLoad", { clear = true })
 
 vim.api.nvim_create_autocmd("BufReadPost", {
 	group = lazy,

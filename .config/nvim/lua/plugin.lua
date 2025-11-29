@@ -110,10 +110,10 @@ vim.g.loaded_netrwPlugin = 1 -- mark netrw as loaded so it's not loaded at all (
 -- Lazy load
 -- ============================
 
-local lazy = vim.api.nvim_create_augroup("LazyLoad", {})
+local lazy_plugs = vim.api.nvim_create_augroup("lazy.plugs", { clear = true })
 
 vim.api.nvim_create_autocmd("BufReadPre", {
-	group = lazy,
+	group = lazy_plugs,
 	once = true,
 	callback = function()
 		vim.pack.add({
@@ -151,7 +151,7 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 })
 
 vim.api.nvim_create_autocmd("BufReadPost", {
-	group = lazy,
+	group = lazy_plugs,
 	once = true, -- Ensures the command only runs once
 	callback = function()
 		vim.pack.add({
@@ -572,7 +572,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 vim.api.nvim_create_autocmd("InsertEnter", {
-	group = lazy,
+	group = lazy_plugs,
 	once = true,
 	callback = function()
 		vim.pack.add({

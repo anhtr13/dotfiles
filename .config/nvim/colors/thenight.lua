@@ -111,7 +111,7 @@ local hightlights = {
 	lCursor = { fg = colors.bg, bg = colors.fg },
 	CursorIM = { fg = colors.bg, bg = colors.fg },
 	CursorColumn = { bg = colors.bg_highlight },
-	CursorLine = { bg = colors.bg },
+	CursorLine = { bg = colors.bg_highlight },
 	Directory = { fg = colors.blue },
 	DiffAdd = { bg = colors.diff.add },
 	DiffChange = { bg = colors.diff.change },
@@ -219,6 +219,16 @@ local hightlights = {
 	DiagnosticUnderlineWarn = { undercurl = true, sp = colors.warning },
 	DiagnosticUnderlineInfo = { undercurl = true, sp = colors.info },
 	DiagnosticUnderlineHint = { undercurl = true, sp = colors.hint },
+
+	StatuslineNormal = { fg = colors.blue1, bold = true },
+	StatuslineInsert = { fg = colors.blue6, bold = true },
+	StatuslineVisual = { fg = colors.purple, bold = true },
+	StatuslineCommand = { fg = colors.green1, bold = true },
+	StatuslineTerminal = { fg = colors.green, bold = true },
+	StatuslineReplace = { fg = colors.magenta2, bold = true },
+
+	IblIndent = { fg = colors.fg_gutter },
+	IblScope = { fg = colors.yellow },
 
 	healthError = { fg = colors.error },
 	healthSuccess = { fg = colors.green1 },

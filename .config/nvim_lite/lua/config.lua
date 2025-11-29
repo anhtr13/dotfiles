@@ -2,47 +2,49 @@
 -- ======= Options ========
 -- ========================
 
-vim.opt.termguicolors = true -- Enable 24-bit colors
-vim.opt.number = true -- Line numbers
-vim.opt.relativenumber = true -- Relative line numbers
-vim.opt.cursorline = true -- Highlight current line
-vim.opt.wrap = true -- Wrap lines
-vim.opt.linebreak = true -- Companion to wrap, don't split words (default: false)
-vim.opt.whichwrap = "bs<>[]hl" -- Which "horizontal" keys are allowed to travel to prev/next line (default: 'b,s')
-vim.opt.scrolloff = 10 -- 10 lines above/below cursor
-vim.opt.mouse = "" -- Disable mouse support
-vim.opt.encoding = "UTF-8" -- Set encoding
-vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
+vim.o.termguicolors = true -- Enable 24-bit colors
+vim.o.number = true -- Line numbers
+vim.o.relativenumber = true -- Relative line numbers
+vim.o.cursorline = true -- Highlight current line
+vim.o.wrap = true -- Wrap lines
+vim.o.linebreak = true -- Companion to wrap, don't split words (default: false)
+vim.o.whichwrap = "bs<>[]hl" -- Which "horizontal" keys are allowed to travel to prev/next line (default: 'b,s')
+vim.o.scrolloff = 10 -- 10 lines above/below cursor
+vim.g.airline_extensions_tabline_enabled = 1
+vim.o.showtabline = 2
+vim.o.mouse = "" -- Disable mouse support
+vim.o.encoding = "UTF-8" -- Set encoding
+vim.o.completeopt = "menuone,noinsert,noselect"
 vim.opt.iskeyword:append("-") -- Treat dash as part of word
 vim.opt.runtimepath:remove("/usr/share/vim/vimfiles") -- Separate Vim plugins from Neovim in case Vim still in use (default: includes this path if Vim is installed)
 
-vim.opt.tabstop = 2 -- Tab width
-vim.opt.shiftwidth = 2 -- Indent width
-vim.opt.softtabstop = 2 -- Soft tab stop
-vim.opt.expandtab = true -- Use spaces instead of tabs
-vim.opt.smartindent = true -- Smart auto-indenting
-vim.opt.autoindent = true -- Copy indent from current line
+vim.o.tabstop = 2 -- Tab width
+vim.o.shiftwidth = 2 -- Indent width
+vim.o.softtabstop = 2 -- Soft tab stop
+vim.o.expandtab = true -- Use spaces instead of tabs
+vim.o.smartindent = true -- Smart auto-indenting
+vim.o.autoindent = true -- Copy indent from current line
 
-vim.opt.ignorecase = true -- Case insensitive search
-vim.opt.smartcase = true -- Case sensitive if uppercase in search
-vim.opt.incsearch = true -- Show matches as you type
+vim.o.ignorecase = true -- Case insensitive search
+vim.o.smartcase = true -- Case sensitive if uppercase in search
+vim.o.incsearch = true -- Show matches as you type
 
-vim.opt.backup = false -- Don't create backup files
-vim.opt.writebackup = false -- Don't create backup before writing
-vim.opt.swapfile = false -- Don't create swap files
-vim.opt.updatetime = 300 -- Faster completion
-vim.opt.timeoutlen = 500 -- Key timeout duration
-vim.opt.ttimeoutlen = 0 -- Key code timeout
-vim.opt.autoread = true -- Auto reload files changed outside vim
-vim.opt.autowrite = false -- Don't auto save
+vim.o.backup = false -- Don't create backup files
+vim.o.writebackup = false -- Don't create backup before writing
+vim.o.swapfile = false -- Don't create swap files
+vim.o.updatetime = 300 -- Faster completion
+vim.o.timeoutlen = 500 -- Key timeout duration
+vim.o.ttimeoutlen = 0 -- Key code timeout
+vim.o.autoread = true -- Auto reload files changed outside vim
+vim.o.autowrite = false -- Don't auto save
 
-vim.opt.foldcolumn = "1" -- '0' is not bad
-vim.opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
+vim.o.foldcolumn = "1" -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
 
-vim.opt.splitbelow = true -- Horizontal splits go below
-vim.opt.splitright = true -- Vertical splits go right
+vim.o.splitbelow = true -- Horizontal splits go below
+vim.o.splitright = true -- Vertical splits go right
 
 -- =======================
 -- ======== LSPs =========
@@ -123,6 +125,15 @@ vim.lsp.enable({
 	"pylyzer",
 })
 
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(ev)
+		local client = vim.lsp.get_client_by_id(ev.data.client_id)
+		if client ~= nil and client:supports_method("textDocument/completion") then
+			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+		end
+	end,
+})
+
 vim.diagnostic.config({
 	virtual_text = true,
 	virtual_lines = false,
@@ -162,48 +173,33 @@ vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Escape to normal mode
 vim.keymap.set("n", "<c-c>", ":nohlsearch<CR>", { desc = "Clear search highlights", noremap = true })
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position", noremap = true })
 
-vim.keymap.set("n", "grd", vim.lsp.buf.definition, { desc = "vim.lsp.buf.definition()", noremap = true, silent = true })
-vim.keymap.set(
-	"n",
-	"grt",
-	vim.lsp.buf.type_definition,
-	{ desc = "vim.lsp.buf.type_definition()", noremap = true, silent = true }
-)
+vim.keymap.set("n", "grd", vim.lsp.buf.definition, { desc = "vim.lsp.buf.definition()", noremap = true })
+vim.keymap.set("n", "grt", vim.lsp.buf.type_definition, { desc = "vim.lsp.buf.type_definition()", noremap = true })
 vim.keymap.set("n", "grh", function()
 	vim.lsp.buf.hover({ border = "single", max_height = 32, max_width = 132 })
-end, { desc = "vim.lsp.buf.hover()", silent = true })
+end, { desc = "vim.lsp.buf.hover()" })
 vim.keymap.set("n", "grI", function()
 	vim.diagnostic.open_float({ border = "single", max_height = 32, max_width = 132 })
-end, { desc = "vim.diagnostic.open_float(),", silent = true })
+end, { desc = "vim.diagnostic.open_float()," })
 
-vim.keymap.set("n", "<leader>/f", ":FzfLua files<CR>", { silent = true, desc = "FzfLua [f]iles" })
-vim.keymap.set("n", "<leader>/g", ":FzfLua live_grep<CR>", { silent = true, desc = "FzfLua live_[g]rep" })
-vim.keymap.set("n", "<leader>/b", ":FzfLua buffers<CR>", { silent = true, desc = "FzfLua [b]uffers" })
-vim.keymap.set("n", "<leader>//", ":FzfLua grep_curbuf<CR>", { silent = true, desc = "FzfLua grep_curbuf" })
-vim.keymap.set(
-	"n",
-	"<leader>/w",
-	":FzfLua diagnostics_workspace<CR>",
-	{ silent = true, desc = "FzfLua diagnostics_[w]orkspace" }
-)
-vim.keymap.set(
-	"n",
-	"<leader>/d",
-	":FzfLua diagnostics_document<CR>",
-	{ silent = true, desc = "FzfLua diagnostics_[d]ocument" }
-)
-vim.keymap.set("n", "<leader>/k", ":FzfLua keymaps<CR>", { silent = true, desc = "FzfLua [k]eymaps" })
+vim.keymap.set("n", "<leader>/f", ":FzfLua files<CR>", { desc = "FzfLua [f]iles" })
+vim.keymap.set("n", "<leader>/g", ":FzfLua live_grep<CR>", { desc = "FzfLua live_[g]rep" })
+vim.keymap.set("n", "<leader>/b", ":FzfLua buffers<CR>", { desc = "FzfLua [b]uffers" })
+vim.keymap.set("n", "<leader>//", ":FzfLua grep_curbuf<CR>", { desc = "FzfLua grep_curbuf" })
+vim.keymap.set("n", "<leader>/w", ":FzfLua diagnostics_workspace<CR>", { desc = "FzfLua diagnostics_[w]orkspace" })
+vim.keymap.set("n", "<leader>/d", ":FzfLua diagnostics_document<CR>", { desc = "FzfLua diagnostics_[d]ocument" })
+vim.keymap.set("n", "<leader>/k", ":FzfLua keymaps<CR>", { desc = "FzfLua [k]eymaps" })
 
 vim.keymap.set("n", "<leader>e", ":Oil<CR>", { desc = "Open Oil.nvim" })
 
-vim.keymap.set("n", "<Tab>l", ":bnext<CR>", { silent = true, desc = "Next buffer" })
-vim.keymap.set("n", "<Tab>h", ":bprevious<CR>", { silent = true, desc = "Previous buffer" })
-vim.keymap.set("n", "<Tab><Right>", ":bnext<CR>", { silent = true, desc = "Next buffer" })
-vim.keymap.set("n", "<Tab><Left>", ":bprevious<CR>", { silent = true, desc = "Previous buffer" })
-vim.keymap.set("n", "<Tab>x", ":bdelete!<CR>", { silent = true, desc = "Force close current buffer" })
-vim.keymap.set("n", "<Tab>cc", ":bdelete<CR>", { silent = true, desc = "Close current buffer" })
-vim.keymap.set("n", "<Tab>ca", ":%bd", { silent = true, desc = "Close all buffers" })
-vim.keymap.set("n", "<Tab>co", ":%bd|e#|bd#<CR>", { silent = true, desc = "Close all other buffers" })
+vim.keymap.set("n", "<Tab>l", ":bnext<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "<Tab>h", ":bprevious<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<Tab><Right>", ":bnext<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "<Tab><Left>", ":bprevious<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<Tab>x", ":bdelete!<CR>", { desc = "Force close current buffer" })
+vim.keymap.set("n", "<Tab>cc", ":bdelete<CR>", { desc = "Close current buffer" })
+vim.keymap.set("n", "<Tab>ca", ":%bd<CR>", { desc = "Close all buffers" })
+vim.keymap.set("n", "<Tab>co", ":%bd|e#|bd#<CR>", { desc = "Close all other buffers" })
 
 -- ========================
 -- ====== Statusline ======
@@ -272,10 +268,10 @@ vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
 			"  ",
 			"%#StatusLineBold#",
 			"%{v:lua.mode_icon()}  | ",
-			"%{v:lua.git_branch()} %f",
-			"%#StatusLine#",
-			"%=", -- Right-align everything after this
-			"%{v:lua.file_size()} / %{v:lua.file_type()}  |  %l:%c / %P  ",
+			"%{v:lua.git_branch()} %<%f",
+			"%#StatusLine#%=    ",
+			"%{v:lua.file_size()} / %{v:lua.file_type()}",
+			"  |  %l:%c / %P  ",
 		})
 	end,
 })
