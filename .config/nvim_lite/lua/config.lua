@@ -185,6 +185,8 @@ end, { desc = "vim.diagnostic.open_float()," })
 vim.keymap.set("n", "<leader>/f", ":FzfLua files<CR>", { desc = "FzfLua [f]iles" })
 vim.keymap.set("n", "<leader>/g", ":FzfLua live_grep<CR>", { desc = "FzfLua live_[g]rep" })
 vim.keymap.set("n", "<leader>/b", ":FzfLua buffers<CR>", { desc = "FzfLua [b]uffers" })
+vim.keymap.set("n", "<leader>/m", ":FzfLua marks<CR>", { desc = "FzfLua [m]arks" })
+vim.keymap.set("n", "<leader>/c", ":FzfLua command_history<CR>", { desc = "FzfLua [c]command_history" })
 vim.keymap.set("n", "<leader>//", ":FzfLua grep_curbuf<CR>", { desc = "FzfLua grep_curbuf" })
 vim.keymap.set("n", "<leader>/w", ":FzfLua diagnostics_workspace<CR>", { desc = "FzfLua diagnostics_[w]orkspace" })
 vim.keymap.set("n", "<leader>/d", ":FzfLua diagnostics_document<CR>", { desc = "FzfLua diagnostics_[d]ocument" })
@@ -211,10 +213,6 @@ local function git_branch()
 		return " [" .. branch .. "]"
 	end
 	return ""
-end
-
-local function file_type()
-	return vim.bo.filetype
 end
 
 local function file_size()
@@ -253,31 +251,22 @@ end
 
 _G.mode_icon = mode_icon
 _G.git_branch = git_branch
-_G.file_type = file_type
 _G.file_size = file_size
-
-vim.cmd([[
-  highlight StatusLineBold gui=bold cterm=bold
-]])
-
-vim.api.nvim_set_hl(0, "StatusLineBold", { bold = true })
 
 vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
 	callback = function()
 		vim.opt_local.statusline = table.concat({
-			"  ",
-			"%#StatusLineBold#",
-			"%{v:lua.mode_icon()}  | ",
-			"%{v:lua.git_branch()} %<%f",
-			"%#StatusLine#%=    ",
-			"%{v:lua.file_size()} / %{v:lua.file_type()}",
-			"  |  %l:%c / %P  ",
+			"%#Bold#",
+			" %{v:lua.mode_icon()} ",
+			"%#StatusLine#",
+			"| %<%t%{v:lua.git_branch()} %m%=    %y ",
+			"%{v:lua.file_size()} | %l:%c / %P ",
 		})
 	end,
 })
 
 vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
 	callback = function()
-		vim.opt_local.statusline = "  %{v:lua.git_branch()} %f%=%{v:lua.file_type()}  |  %l:%c / %P  "
+		vim.opt_local.statusline = " %{v:lua.git_branch()} %<%f    %=%y | %l:%c / %P "
 	end,
 })

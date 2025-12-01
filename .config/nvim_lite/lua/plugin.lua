@@ -27,7 +27,7 @@ require("mason").setup({
 -- Lazy load
 -- ============================
 
-local lazy = vim.api.nvim_create_augroup("LazyLoad", { clear = true })
+local lazy = vim.api.nvim_create_augroup("lazy.plugins", { clear = true })
 
 vim.api.nvim_create_autocmd("BufReadPost", {
 	group = lazy,

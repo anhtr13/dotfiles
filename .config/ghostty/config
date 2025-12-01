@@ -46,7 +46,6 @@ font-family = "CodeNewRoman Nerd Font Propo"
 font-size = 12
 clipboard-trim-trailing-spaces = true
 shell-integration = zsh
-# window-decoration = false
 # confirm-close-surface = false
 # background-opacity = 0.9
 
@@ -55,8 +54,9 @@ theme = Homebrew
 
 # window
 window-theme = ghostty
-window-padding-x = 6
-window-padding-y = 6
+window-decoration = none
+window-padding-x = 8
+window-padding-y = 2
 window-inherit-working-directory = false
 
 # unbind keys

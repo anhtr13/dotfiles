@@ -5,106 +5,41 @@
 -- ============================
 
 vim.pack.add({
-	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
-	{ src = "https://github.com/nvim-lua/plenary.nvim" },
+	{ src = "https://github.com/nvim-mini/mini.icons" },
 
-	{ src = "https://github.com/goolord/alpha-nvim" },
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
-	{ src = "https://github.com/3rd/image.nvim" },
-	{ src = "https://github.com/brianhuster/live-preview.nvim" },
-	{ src = "https://github.com/mason-org/mason.nvim" },
+	{ src = "https://github.com/stevearc/oil.nvim" },
+	{ src = "https://github.com/refractalize/oil-git-status.nvim" },
+	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
 	{ src = "https://github.com/folke/which-key.nvim" },
-	{ src = "https://github.com/mikavilpas/yazi.nvim" },
 })
 
 --------------------------------------
-local alpha = require("alpha")
-local dashboard = require("alpha.themes.dashboard")
-dashboard.config.opts.noautocmd = true
-dashboard.section.header.val = {
-	[[                                                                       ]],
-	[[                                                                       ]],
-	[[                                                                       ]],
-	[[                                                                       ]],
-	[[                                                                     ]],
-	[[       ████ ██████           █████      ██                     ]],
-	[[      ███████████             █████                             ]],
-	[[      █████████ ███████████████████ ███   ███████████   ]],
-	[[     █████████  ███    █████████████ █████ ██████████████   ]],
-	[[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
-	[[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
-	[[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
-	[[                                                                       ]],
-	[[                                                                       ]],
-	[[                                                                       ]],
-}
-dashboard.section.buttons.val = {
-	dashboard.button("Leader e", "  File explorer", "<leader>e"),
-	dashboard.button("Leader / f", "󰈞  Fuzzy find files", "<leader>/f"),
-	dashboard.button("Leader / g", "󰈬  Fuzzy live grep", "<leader>/g"),
-	dashboard.button("Leader ?", "󰌌  All keybindings", "<leader>?"),
-	dashboard.button(":q Enter", "  Quit Neovim", ":q<cr>"),
-}
-local handle = io.popen("fortune -s | cowsay -f small")
-if handle then
-	local fortune = handle:read("*a")
-	handle:close()
-	dashboard.section.footer.val = fortune
-end
-alpha.setup(dashboard.config)
+require("mini.icons").setup()
 
 --------------------------------------
 require("fzf-lua").setup()
 
 --------------------------------------
-require("image").setup({
-	integrations = {
-		markdown = {
-			enabled = false,
-		},
-		neorg = {
-			enabled = false,
-		},
-		typst = {
-			enabled = false,
-		},
+require("oil").setup({
+	view_options = {
+		show_hidden = true,
+	},
+	win_options = {
+		signcolumn = "yes:2",
 	},
 })
+require("oil-git-status").setup({})
 
 --------------------------------------
-require("livepreview.config").set({
-	picker = "fzf-lua",
-})
-
---------------------------------------
-require("mason").setup({
-	PATH = "prepend",
-	max_concurrent_installers = 3,
-	ui = {
-		border = "single",
-		icons = {
-			package_installed = "✓",
-			package_pending = "➜",
-			package_uninstalled = "✗",
-		},
-	},
+require("render-markdown").setup({
+	render_modes = { "n", "c", "t" },
 })
 
 --------------------------------------
 require("which-key").setup({
 	preset = "modern",
 })
-
---------------------------------------
-require("yazi").setup({
-	open_for_directories = true, -- open yazi instead of netrw
-	yazi_floating_window_border = "single",
-	floating_window_scaling_factor = 0.92,
-	keymaps = {
-		show_help = "<f1>",
-	},
-})
-vim.g.loaded_netrwPlugin = 1 -- mark netrw as loaded so it's not loaded at all (recommended for yazi = {open_for_directories=true}).
 
 -- ============================
 -- Lazy load
@@ -117,34 +52,55 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 	once = true,
 	callback = function()
 		vim.pack.add({
-			{ src = "https://github.com/moll/vim-bbye" },
-			{ src = "https://github.com/akinsho/bufferline.nvim" },
+			{ src = "https://github.com/3rd/image.nvim" },
+			{ src = "https://github.com/mason-org/mason.nvim" },
+			{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 		})
 
 		--------------------------------------
-		require("bufferline").setup({
-			options = {
-				numbers = "both", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
-				buffer_close_icon = "✘",
-				close_icon = "✘",
-				separator_style = "{'', ''}", -- "slant" | "slope" | "thick" | "thin" | { 'any', 'any' }
-				enforce_regular_tabs = true,
-				show_tab_indicators = false,
-				indicator = {
-					style = "underline", -- Options: 'icon', 'underline', 'none'
+		require("image").setup({
+			integrations = {
+				markdown = {
+					enabled = false,
+				},
+				neorg = {
+					enabled = false,
+				},
+				typst = {
+					enabled = false,
 				},
 			},
-			highlights = {
-				buffer_selected = {
-					bold = true,
-					italic = false,
+		})
+
+		--------------------------------------
+		require("mason").setup({
+			PATH = "prepend",
+			max_concurrent_installers = 3,
+			ui = {
+				border = "single",
+				icons = {
+					package_installed = "✓",
+					package_pending = "➜",
+					package_uninstalled = "✗",
 				},
-				separator = {
-					fg = "#000000",
-				},
-				fill = {
-					bg = "#000000",
-				},
+			},
+		})
+
+		--------------------------------------
+		require("gitsigns").setup({
+			signs = {
+				add = { text = "+" },
+				change = { text = "~" },
+				delete = { text = "_" },
+				topdelete = { text = "‾" },
+				changedelete = { text = "~" },
+			},
+			signs_staged = {
+				add = { text = "+" },
+				change = { text = "~" },
+				delete = { text = "_" },
+				topdelete = { text = "‾" },
+				changedelete = { text = "~" },
 			},
 		})
 	end,
@@ -168,7 +124,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 			{ src = "https://github.com/stevearc/conform.nvim" },
 			{ src = "https://github.com/mfussenegger/nvim-dap" },
 			{ src = "https://github.com/folke/flash.nvim" },
-			{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 			{ src = "https://github.com/MagicDuck/grug-far.nvim" },
 			{ src = "https://github.com/lukas-reineke/indent-blankline.nvim" },
 			{ src = "https://github.com/windwp/nvim-ts-autotag" },
@@ -509,24 +464,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		})
 
 		--------------------------------------
-		require("gitsigns").setup({
-			signs = {
-				add = { text = "+" },
-				change = { text = "~" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-			},
-			signs_staged = {
-				add = { text = "+" },
-				change = { text = "~" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-			},
-		})
-
-		--------------------------------------
 		require("grug-far").setup({})
 
 		--------------------------------------
@@ -564,7 +501,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 		--------------------------------------
 		require("ufo").setup({
-			provider_selector = function(bufnr, filetype, buftype)
+			provider_selector = function()
 				return { "treesitter", "indent" }
 			end,
 		})

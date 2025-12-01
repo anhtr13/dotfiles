@@ -3,19 +3,21 @@
 -- ============================
 
 -- Basic
+vim.cmd.colorscheme("lunaperche")
+vim.o.mouse = "" -- Disable mouse support
+vim.o.encoding = "UTF-8" -- Set encoding
+vim.o.whichwrap = "bs<>[]hl" -- Which "horizontal" keys are allowed to travel to prev/next line (default: 'b,s')
+vim.o.completeopt = "menuone,noselect" -- Completion options
 vim.o.termguicolors = true -- Enable 24-bit colors
 vim.o.number = true -- Line numbers
 vim.o.relativenumber = true -- Relative line numbers
 vim.o.cursorline = true -- Highlight current line
 vim.o.wrap = true -- Wrap lines
 vim.o.linebreak = true -- Companion to wrap, don't split words (default: false)
-vim.o.whichwrap = "bs<>[]hl" -- Which "horizontal" keys are allowed to travel to prev/next line (default: 'b,s')
 vim.o.scrolloff = 10 -- 10 lines above/below cursor
-vim.o.mouse = "" -- Disable mouse support
-vim.o.encoding = "UTF-8" -- Set encoding
-vim.o.completeopt = "menuone,noinsert,noselect"
+vim.o.showtabline = 2 -- show tabline
 vim.opt.iskeyword:append("-") -- Treat dash as part of word
-vim.opt.runtimepath:remove("/usr/share/vim/vimfiles") -- Separate Vim plugins from Neovim in case Vim still in use (default: includes this path if Vim is installed)
+vim.opt.runtimepath:remove("/usr/share/vim/vimfiles") -- Separate Vim plugins from Neovim in case Vim still in use
 
 -- Indentation
 vim.o.tabstop = 2 -- Tab width
@@ -58,18 +60,18 @@ vim.o.splitright = true -- Vertical splits go right
 vim.keymap.set("n", "<leader>/f", ":FzfLua files<CR>", { desc = "FzfLua [f]iles" })
 vim.keymap.set("n", "<leader>/g", ":FzfLua live_grep<CR>", { desc = "FzfLua live_[g]rep" })
 vim.keymap.set("n", "<leader>/b", ":FzfLua buffers<CR>", { desc = "FzfLua [b]uffers" })
+vim.keymap.set("n", "<leader>/m", ":FzfLua marks<CR>", { desc = "FzfLua [m]arks" })
+vim.keymap.set("n", "<leader>/c", ":FzfLua command_history<CR>", { desc = "FzfLua [c]command_history" })
 vim.keymap.set("n", "<leader>//", ":FzfLua grep_curbuf<CR>", { desc = "FzfLua grep_curbuf" })
 vim.keymap.set("n", "<leader>/w", ":FzfLua diagnostics_workspace<CR>", { desc = "FzfLua diagnostics_[w]orkspace" })
 vim.keymap.set("n", "<leader>/d", ":FzfLua diagnostics_document<CR>", { desc = "FzfLua diagnostics_[d]ocument" })
 vim.keymap.set("n", "<leader>/k", ":FzfLua keymaps<CR>", { desc = "FzfLua [k]eymaps" })
 
+vim.keymap.set("n", "<leader>e", ":Oil<CR>", { desc = "Oil" })
+
 vim.keymap.set("n", "<leader>?", function()
 	require("which-key").show({ global = false })
 end, { desc = "Buffer Local Keymaps (which-key)" })
-
-vim.keymap.set("n", "<leader>f", ":Yazi<CR>", { desc = "Open yazi at the current file" })
-vim.keymap.set("n", "<leader>e", ":Yazi cwd<CR>", { desc = "Open the file manager in nvim's working directory" })
-vim.keymap.set("n", "<leader>Y", ":Yazi toggle<CR>", { desc = "Resume the last yazi session" })
 
 -- Lazy-plugin keys
 local lazy_keys = vim.api.nvim_create_augroup("lazy.keys", { clear = true })
@@ -84,13 +86,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		vim.keymap.set("n", "<Tab>x", ":bdelete!<CR>", { desc = "Force close current buffer" })
 		vim.keymap.set("n", "<Tab>cc", ":bdelete<CR>", { desc = "Close current buffer" })
 		vim.keymap.set("n", "<Tab>ca", ":%bd<CR>", { desc = "Close all buffers" })
-		vim.keymap.set("n", "<Tab>co", ":BufferLineCloseOthers<CR>", { desc = "Close all others buffer" })
-		vim.keymap.set("n", "<Tab>ch", ":BufferLineCloseLeft<CR>", { desc = "Close all left buffers" })
-		vim.keymap.set("n", "<Tab>cl", ":BufferLineCloseRight<CR>", { desc = "Close all right buffers" })
-		vim.keymap.set("n", "<Tab>c<Left>", ":BufferLineCloseLeft<CR>", { desc = "Close all left buffers" })
-		vim.keymap.set("n", "<Tab>c<Right>", ":BufferLineCloseRight<CR>", { desc = "Close all right buffers" })
-		vim.keymap.set("n", "<Tab>od", ":BufferLineSortByDirectory<CR>", { desc = "Sort buffer by directory" })
-		vim.keymap.set("n", "<Tab>oe", ":BufferLineSortByExtension<CR>", { desc = "Sort buffer by extensiton" })
+		vim.keymap.set("n", "<Tab>co", ":%bd|e#|bd#<CR>", { desc = "Close all other buffers" })
 
 		vim.keymap.set("n", "<leader>F", function()
 			require("conform").format({ async = true })
@@ -153,39 +149,16 @@ vim.keymap.set("n", "<c-c>", ":nohlsearch<CR>", { desc = "Clear search highlight
 
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position", noremap = true })
 
--- ============================
--- Statusline
--- ============================
-
-local function mode_highlight()
-	local mode = vim.fn.mode()
-	if mode == "n" then
-		return "%#StatuslineNormal#"
-	elseif mode == "i" or mode == "ic" then
-		return "%#StatuslineInsert#"
-	elseif mode == "v" or mode == "V" or mode == "s" or mode == "S" then
-		return "%#StatuslineVisual#"
-	elseif mode == "r" or mode == "R" then
-		return "%#StatuslineReplace#"
-	elseif mode == "c" then
-		return "%#StatuslineCommand#"
-	elseif mode == "t" then
-		return "%#StatuslineTerminal#"
-	else
-		return "%#StatuslineNormal#" -- Default
-	end
-end
+-- ========================
+-- ====== Statusline ======
+-- ========================
 
 local function git_branch()
 	local branch = vim.fn.system("git branch --show-current 2>/dev/null | tr -d '\n'")
 	if branch ~= "" then
-		return " [" .. branch .. " ]"
+		return " [" .. branch .. "]"
 	end
 	return ""
-end
-
-local function file_type()
-	return vim.bo.filetype
 end
 
 local function file_size()
@@ -222,34 +195,33 @@ local function mode_icon()
 	return modes[mode] or (mode:upper())
 end
 
-_G.mode_highlight = mode_highlight
 _G.mode_icon = mode_icon
 _G.git_branch = git_branch
-_G.file_type = file_type
 _G.file_size = file_size
 
-vim.api.nvim_create_autocmd({ "ModeChanged", "BufEnter", "WinEnter", "VimEnter", "InsertEnter", "InsertLeave" }, {
+vim.api.nvim_set_hl(0, "TabLineFill", {
+	bg = "NONE",
+	underline = true,
+})
+vim.api.nvim_set_hl(0, "StatusLineBold", {
+	bold = true,
+})
+
+vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
 	callback = function()
 		vim.opt_local.statusline = table.concat({
-			"  ",
-			mode_highlight(),
-			mode_icon(),
-			"%#Bold#  | ",
-			git_branch(),
+			"%#StatusLineBold#",
+			" %{v:lua.mode_icon()} ",
 			"%#StatusLine#",
-			" %<%f%=    ",
-			file_size(),
-			" / ",
-			file_type(),
-			"  |  ",
-			mode_highlight(),
-			"%l:%c / %P  ",
+			"| %<%t%{v:lua.git_branch()} %m%=    %y ",
+			"%{v:lua.file_size()} | %l:%c / %P ",
 		})
 	end,
 })
+
 vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
 	callback = function()
-		vim.opt_local.statusline = "  %{v:lua.git_branch()} %f%=%{v:lua.file_type()}  |  %l:%c / %P  "
+		vim.opt_local.statusline = " %{v:lua.git_branch()} %<%f    %=%y | %l:%c / %P "
 	end,
 })
 
