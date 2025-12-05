@@ -10,7 +10,7 @@ vim.pack.add({
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/refractalize/oil-git-status.nvim" },
-	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
+	{ src = "https://github.com/mason-org/mason.nvim" },
 	{ src = "https://github.com/folke/which-key.nvim" },
 })
 
@@ -32,8 +32,16 @@ require("oil").setup({
 require("oil-git-status").setup({})
 
 --------------------------------------
-require("render-markdown").setup({
-	render_modes = { "n", "c", "t" },
+require("mason").setup({
+	PATH = "prepend",
+	max_concurrent_installers = 3,
+	ui = {
+		icons = {
+			package_installed = "✓",
+			package_pending = "➜",
+			package_uninstalled = "✗",
+		},
+	},
 })
 
 --------------------------------------
@@ -53,8 +61,8 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 	callback = function()
 		vim.pack.add({
 			{ src = "https://github.com/3rd/image.nvim" },
-			{ src = "https://github.com/mason-org/mason.nvim" },
 			{ src = "https://github.com/lewis6991/gitsigns.nvim" },
+			{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
 		})
 
 		--------------------------------------
@@ -68,20 +76,6 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 				},
 				typst = {
 					enabled = false,
-				},
-			},
-		})
-
-		--------------------------------------
-		require("mason").setup({
-			PATH = "prepend",
-			max_concurrent_installers = 3,
-			ui = {
-				border = "single",
-				icons = {
-					package_installed = "✓",
-					package_pending = "➜",
-					package_uninstalled = "✗",
 				},
 			},
 		})
@@ -102,6 +96,11 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 				topdelete = { text = "‾" },
 				changedelete = { text = "~" },
 			},
+		})
+
+		--------------------------------------
+		require("render-markdown").setup({
+			render_modes = { "n", "c", "t" },
 		})
 	end,
 })
@@ -125,7 +124,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 			{ src = "https://github.com/mfussenegger/nvim-dap" },
 			{ src = "https://github.com/folke/flash.nvim" },
 			{ src = "https://github.com/MagicDuck/grug-far.nvim" },
-			{ src = "https://github.com/lukas-reineke/indent-blankline.nvim" },
+			{ src = "https://github.com/saghen/blink.indent" },
 			{ src = "https://github.com/windwp/nvim-ts-autotag" },
 			{ src = "https://github.com/kevinhwang91/nvim-ufo" },
 		})
@@ -247,11 +246,9 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 					},
 				},
 				documentation = {
-					window = { border = "single" },
 					auto_show = true, -- auto show the documentation popup
 				},
 				menu = {
-					border = "single",
 					draw = {
 						padding = { 0, 1 }, -- padding only on right side
 						components = {
@@ -264,9 +261,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 						treesitter = { "lsp" },
 					},
 				},
-			},
-			signature = {
-				window = { border = "single" },
 			},
 			sources = {
 				default = { "lsp", "buffer", "snippets", "path" },
@@ -467,25 +461,12 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		require("grug-far").setup({})
 
 		--------------------------------------
-		require("ibl").setup({
-			indent = {
+		require("blink.indent").setup({
+			static = {
 				char = "▏",
 			},
 			scope = {
-				show_start = true,
-				show_end = true,
-				show_exact_scope = true,
-			},
-			exclude = {
-				filetypes = {
-					"help",
-					"startify",
-					"dashboard",
-					"packer",
-					"neogitstatus",
-					"NvimTree",
-					"Trouble",
-				},
+				char = "|",
 			},
 		})
 

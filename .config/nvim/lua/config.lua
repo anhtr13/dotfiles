@@ -1,13 +1,43 @@
 -- ============================
+-- Appearance
+-- ============================
+
+vim.cmd.colorscheme("wildcharm")
+
+vim.api.nvim_set_hl(0, "Identifier", { fg = "#969696" })
+vim.api.nvim_set_hl(0, "StatusLine", { bold = false, fg = "#000000", bg = "#c6c6c6" })
+vim.api.nvim_set_hl(0, "StatusLineBold", { bold = true })
+vim.api.nvim_set_hl(0, "FloatBorder", { link = "NormalFloat" })
+vim.api.nvim_set_hl(0, "TabLineSel", { link = "StatusLine" })
+vim.api.nvim_set_hl(0, "TabLineFill", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = true, sp = "#ff6969" })
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { undercurl = true, sp = "#ffff69" })
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { undercurl = true, sp = "#96ff96" })
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { undercurl = true, sp = "#96ffff" })
+
+vim.diagnostic.config({
+	virtual_text = true,
+	virtual_lines = false,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.INFO] = "",
+			[vim.diagnostic.severity.HINT] = "",
+		},
+	},
+})
+
+-- ============================
 -- Options
 -- ============================
 
 -- Basic
-vim.cmd.colorscheme("lunaperche")
 vim.o.mouse = "" -- Disable mouse support
 vim.o.encoding = "UTF-8" -- Set encoding
 vim.o.whichwrap = "bs<>[]hl" -- Which "horizontal" keys are allowed to travel to prev/next line (default: 'b,s')
 vim.o.completeopt = "menuone,noselect" -- Completion options
+vim.o.winborder = "single"
 vim.o.termguicolors = true -- Enable 24-bit colors
 vim.o.number = true -- Line numbers
 vim.o.relativenumber = true -- Relative line numbers
@@ -121,10 +151,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 vim.keymap.set("n", "grd", vim.lsp.buf.definition, { desc = "vim.lsp.buf.definition()", noremap = true })
 vim.keymap.set("n", "grt", vim.lsp.buf.type_definition, { desc = "vim.lsp.buf.type_definition()", noremap = true })
 vim.keymap.set("n", "grh", function()
-	vim.lsp.buf.hover({ border = "single", max_height = 32, max_width = 132 })
+	vim.lsp.buf.hover({ max_height = 32, max_width = 132 })
 end, { desc = "vim.lsp.buf.hover()" })
 vim.keymap.set("n", "grI", function()
-	vim.diagnostic.open_float({ border = "single", max_height = 32, max_width = 132 })
+	vim.diagnostic.open_float({ max_height = 32, max_width = 132 })
 end, { desc = "vim.diagnostic.open_float()," })
 
 -- Other keys
@@ -199,14 +229,6 @@ _G.mode_icon = mode_icon
 _G.git_branch = git_branch
 _G.file_size = file_size
 
-vim.api.nvim_set_hl(0, "TabLineFill", {
-	bg = "NONE",
-	underline = true,
-})
-vim.api.nvim_set_hl(0, "StatusLineBold", {
-	bold = true,
-})
-
 vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
 	callback = function()
 		vim.opt_local.statusline = table.concat({
@@ -251,39 +273,16 @@ vim.api.nvim_create_user_command(
 -- Break-points
 -- ============================
 
-vim.api.nvim_set_hl(0, "red", { ctermbg = 0, fg = "#e06c75", bg = "#31353f" })
-vim.api.nvim_set_hl(0, "blue", { ctermbg = 0, fg = "#61afef", bg = "#31353f" })
-vim.api.nvim_set_hl(0, "green", { ctermbg = 0, fg = "#98c379", bg = "#31353f" })
-vim.api.nvim_set_hl(0, "yellow", { ctermbg = 0, fg = "#e5c07b", bg = "#31353f" })
+vim.api.nvim_set_hl(0, "red", { ctermbg = 0, fg = "#ff6969", bg = "#262626" })
+vim.api.nvim_set_hl(0, "blue", { ctermbg = 0, fg = "#6996ff", bg = "#262626" })
+vim.api.nvim_set_hl(0, "green", { ctermbg = 0, fg = "#96ff96", bg = "#262626" })
+vim.api.nvim_set_hl(0, "yellow", { ctermbg = 0, fg = "#ffff96", bg = "#262626" })
 
 vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "red", linehl = "red", numhl = "red" })
 vim.fn.sign_define("DapBreakpointCondition", { text = "󰟃", texthl = "blue", linehl = "blue", numhl = "blue" })
 vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "red", linehl = "red", numhl = "red" })
 vim.fn.sign_define("DapLogPoint", { text = "", texthl = "yellow", linehl = "yellow", numhl = "yellow" })
 vim.fn.sign_define("DapStopped", { text = "", texthl = "green", linehl = "green", numhl = "green" })
-
--- ============================
--- Diagnostics
--- ============================
-
-vim.diagnostic.config({
-	virtual_text = true,
-	virtual_lines = false,
-	signs = {
-		text = {
-			[vim.diagnostic.severity.ERROR] = "",
-			[vim.diagnostic.severity.WARN] = "",
-			[vim.diagnostic.severity.INFO] = "",
-			[vim.diagnostic.severity.HINT] = "",
-		},
-		linehl = {
-			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
-		},
-		numhl = {
-			[vim.diagnostic.severity.WARN] = "WarningMsg",
-		},
-	},
-})
 
 -- ===================================
 -- Register additional file extensions
