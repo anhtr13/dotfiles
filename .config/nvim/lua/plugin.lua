@@ -8,28 +8,45 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-mini/mini.icons" },
 
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
-	{ src = "https://github.com/stevearc/oil.nvim" },
-	{ src = "https://github.com/refractalize/oil-git-status.nvim" },
+	{ src = "https://github.com/nvim-tree/nvim-tree.lua" },
 	{ src = "https://github.com/mason-org/mason.nvim" },
 	{ src = "https://github.com/folke/which-key.nvim" },
 })
 
 --------------------------------------
 require("mini.icons").setup()
+require("mini.icons").mock_nvim_web_devicons()
 
 --------------------------------------
 require("fzf-lua").setup()
 
 --------------------------------------
-require("oil").setup({
-	view_options = {
-		show_hidden = true,
+require("nvim-tree").setup({
+	actions = {
+		open_file = {
+			quit_on_open = true,
+		},
 	},
-	win_options = {
-		signcolumn = "yes:2",
+	renderer = {
+		indent_markers = {
+			enable = true,
+			inline_arrows = false,
+		},
+		icons = {
+			git_placement = "after",
+			glyphs = {
+				git = {
+					untracked = "",
+					deleted = "✗",
+					unstaged = "",
+					staged = "",
+					renamed = "",
+					ignored = "",
+				},
+			},
+		},
 	},
 })
-require("oil-git-status").setup({})
 
 --------------------------------------
 require("mason").setup({

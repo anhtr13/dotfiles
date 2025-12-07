@@ -2,18 +2,7 @@
 -- Appearance
 -- ============================
 
-vim.cmd.colorscheme("wildcharm")
-
-vim.api.nvim_set_hl(0, "Identifier", { fg = "#969696" })
-vim.api.nvim_set_hl(0, "StatusLine", { bold = false, fg = "#000000", bg = "#c6c6c6" })
-vim.api.nvim_set_hl(0, "StatusLineBold", { bold = true })
-vim.api.nvim_set_hl(0, "FloatBorder", { link = "NormalFloat" })
-vim.api.nvim_set_hl(0, "TabLineSel", { link = "StatusLine" })
-vim.api.nvim_set_hl(0, "TabLineFill", { bg = "NONE" })
-vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = true, sp = "#ff6969" })
-vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { undercurl = true, sp = "#ffff69" })
-vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { undercurl = true, sp = "#96ff96" })
-vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { undercurl = true, sp = "#96ffff" })
+vim.cmd.colorscheme("tokyo_night")
 
 vim.diagnostic.config({
 	virtual_text = true,
@@ -48,6 +37,8 @@ vim.o.scrolloff = 10 -- 10 lines above/below cursor
 vim.o.showtabline = 2 -- show tabline
 vim.opt.iskeyword:append("-") -- Treat dash as part of word
 vim.opt.runtimepath:remove("/usr/share/vim/vimfiles") -- Separate Vim plugins from Neovim in case Vim still in use
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- Indentation
 vim.o.tabstop = 2 -- Tab width
@@ -97,7 +88,7 @@ vim.keymap.set("n", "<leader>/w", ":FzfLua diagnostics_workspace<CR>", { desc = 
 vim.keymap.set("n", "<leader>/d", ":FzfLua diagnostics_document<CR>", { desc = "FzfLua diagnostics_[d]ocument" })
 vim.keymap.set("n", "<leader>/k", ":FzfLua keymaps<CR>", { desc = "FzfLua [k]eymaps" })
 
-vim.keymap.set("n", "<leader>e", ":Oil<CR>", { desc = "Oil" })
+vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "File explorer" })
 
 vim.keymap.set("n", "<leader>?", function()
 	require("which-key").show({ global = false })
@@ -183,25 +174,22 @@ vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position"
 -- ====== Statusline ======
 -- ========================
 
-local function git_branch()
-	local branch = vim.fn.system("git branch --show-current 2>/dev/null | tr -d '\n'")
-	if branch ~= "" then
-		return " [" .. branch .. "]"
-	end
-	return ""
-end
-
-local function file_size()
-	local size = vim.fn.getfsize(vim.fn.expand("%"))
-	if size < 0 then
-		return ""
-	end
-	if size < 1024 then
-		return size .. "B"
-	elseif size < 1024 * 1024 then
-		return string.format("%.1fK", size / 1024)
+local function mode_highlight()
+	local mode = vim.fn.mode()
+	if mode == "n" then
+		return "%#StatusLineNormal#"
+	elseif mode == "i" or mode == "ic" then
+		return "%#StatusLineInsert#"
+	elseif mode == "v" or mode == "V" or mode == "s" or mode == "S" then
+		return "%#StatusLineVisual#"
+	elseif mode == "r" or mode == "R" then
+		return "%#StatusLineReplace#"
+	elseif mode == "c" then
+		return "%#StatusLineCommand#"
+	elseif mode == "t" then
+		return "%#StatusLineTerminal#"
 	else
-		return string.format("%.1fM", size / 1024 / 1024)
+		return "%#StatusLineNormal#"
 	end
 end
 
@@ -225,18 +213,44 @@ local function mode_icon()
 	return modes[mode] or (mode:upper())
 end
 
+local function git_branch()
+	local branch = vim.fn.system("git branch --show-current 2>/dev/null | tr -d '\n'")
+	if branch ~= "" then
+		return " [" .. branch .. "]"
+	end
+	return ""
+end
+
+local function file_size()
+	local size = vim.fn.getfsize(vim.fn.expand("%"))
+	if size < 0 then
+		return ""
+	end
+	if size < 1024 then
+		return size .. "B"
+	elseif size < 1024 * 1024 then
+		return string.format("%.1fK", size / 1024)
+	else
+		return string.format("%.1fM", size / 1024 / 1024)
+	end
+end
+
+_G.mode_highlight = mode_highlight
 _G.mode_icon = mode_icon
 _G.git_branch = git_branch
 _G.file_size = file_size
 
-vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
+vim.api.nvim_create_autocmd({ "ModeChanged", "BufEnter", "WinEnter", "VimEnter", "InsertEnter", "InsertLeave" }, {
 	callback = function()
+		local mode_hl = mode_highlight()
 		vim.opt_local.statusline = table.concat({
-			"%#StatusLineBold#",
-			" %{v:lua.mode_icon()} ",
+			mode_hl,
+			"  %{v:lua.mode_icon()} ",
 			"%#StatusLine#",
-			"| %<%t%{v:lua.git_branch()} %m%=    %y ",
-			"%{v:lua.file_size()} | %l:%c / %P ",
+			"  %<%t%{v:lua.git_branch()} %m%=    %y ",
+			"%{v:lua.file_size()}  ",
+			mode_hl,
+			" %l:%c / %P ",
 		})
 	end,
 })

@@ -1,8 +1,5 @@
-@define-color base rgba(0, 0, 0, 0.9);
-
-* {
-  font-weight: 600;
-}
+@import "base.css";
+@define-color base #000000;
 
 window#waybar {
   transition: all 0.1s linear;
@@ -12,7 +9,7 @@ window#waybar {
 window#waybar > box {
   margin: 0px;
   padding: 0px;
-  border-radius: 4px;
+  border-radius: 0px;
   background: transparent;
 }
 
@@ -21,7 +18,7 @@ button {
 }
 
 tooltip {
-  border-radius: 4px;
+  border-radius: 0px;
   color: @white;
   background: @base;
   border: 1px solid @cyan0;
@@ -31,28 +28,26 @@ menu {
   color: @white;
   padding: 6px;
   background: @base;
-  border-radius: 4px;
+  border-radius: 0px;
   border: 1px solid @blue0;
 }
 menuitem {
-  border-radius: 4px;
+  border-radius: 0px;
   transition: all 0.1s linear;
 }
 
 .module {
-  margin: 6px 2px;
-  padding: 0px 10px;
-  border: 0px;
-  border-radius: 4px;
+  margin: 3px 2px;
+  border-radius: 0px;
+  padding: 0px 6px;
   transition: all 0.1s linear;
-  color: @base;
+  background: transparent;
 }
 
 #custom-rofi {
-  padding: 0px 6px;
-  margin: 6px 2px;
+  padding-left: 15px;
+  padding-right: 2px;
   color: @cyan0;
-  background: transparent
 }
 
 #custom-rofi:hover {
@@ -60,33 +55,27 @@ menuitem {
 }
 
 #workspaces {
-  padding: 0px;
-  margin: 0px;
-  background: transparent;
+  padding: 0px 5px;
 }
 #workspaces button {
-  margin: 7px 2px;
-  padding: 0px;
+  margin: 4px 0px;
+  padding: 0px 2px;
+  border-radius: 0px;
   transition: all 0.1s linear;
   color: @white;
-  border-radius: 4px;
   background: transparent;
 }
 #workspaces button:hover {
   padding: 0px 5px;
-  margin: 7px 2px;
-  color: @base;
-  background: @green0;
+  border: 1px solid @green0;
 }
 #workspaces button.active {
   padding: 0px 5px;
-  color: @base;
-  background: @cyan0;
+  border: 1px solid @cyan0;
 }
 #workspaces button.urgent {
   padding: 0px 5px;
-  color: @base;
-  background: @red;
+  border: 1px solid @red;
 }
 
 #window {
@@ -95,67 +84,67 @@ menuitem {
 }
 
 #clock {
-  background: @purple0;
+  color: @purple0;
 }
 
 #clock.date {
-  background: @orange;
+  color: @orange;
 }
 
 #backlight {
-  background: @white;
+  color: @white;
 }
 
 #pulseaudio {
-  background: @yellow;
+  color: @yellow;
 }
 #pulseaudio.micro {
-  background: @teal1;
+  color: @teal1;
 }
 
 #network {
-  background: @teal2;
+  color: @teal2;
 }
 #network.disconnected {
   color: @orange;
 }
 
 #cpu {
-  background: @purple1;
+  color: @purple1;
 }
 
 #memory {
-  background: @green1;
+  color: @green1;
 }
 
 #battery {
-  background: @cyan1;
+  color: @cyan1;
 }
 
 #battery.charging, #battery.plugged {
-  background: @green0;
+  color: @green0;
 }
 
 #battery.critical:not(.charging) {
-  background: @red;
+  color: @red;
 }
 
 #power-profiles-daemon {
 }
 
 #power-profiles-daemon.performance {
-  background: @purple2;
+  color: @purple2;
 }
 
 #power-profiles-daemon.balanced {
-  background: @blue1;
+  color: @blue1;
 }
 
 #power-profiles-daemon.power-saver {
-  background: @green0;
+  color: @green0;
 }
 
 #custom-notification {
-  margin-right: 8px;
-  background: @purple2;
+  padding-right: 15px;
+  color: @purple2;
 }

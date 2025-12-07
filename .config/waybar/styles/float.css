@@ -1,8 +1,5 @@
+@import "base.css";
 @define-color base #000000;
-
-* {
-  font-weight: 400;
-}
 
 window#waybar {
   transition: all 0.1s linear;
