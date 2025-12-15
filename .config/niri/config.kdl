@@ -62,7 +62,7 @@ input {
     }
 
     // Uncomment this to make the mouse warp to the center of newly focused windows.
-    // warp-mouse-to-focus
+    warp-mouse-to-focus
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
@@ -262,24 +262,21 @@ layout {
     }
 }
 
-// Add lines like this to spawn processes at startup.
+// Spawn processes at startup.
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
-// See the binds section below for more spawn examples.
-
-// This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-sh-at-startup "waybar -c $XDG_CONFIG_HOME/waybar/configs/niri.jsonc"
 spawn-at-startup "swaync"
 spawn-at-startup "hypridle"
 spawn-at-startup "swww-daemon"
-spawn-at-startup = "/usr/bin/emacs --daemon"
-
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
+spawn-sh-at-startup "emacs --daemon"
+spawn-sh-at-startup "waybar -c $XDG_CONFIG_HOME/waybar/configs/niri.jsonc"
+
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
-    // skip-at-startup
+    skip-at-startup
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.

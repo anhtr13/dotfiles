@@ -1,8 +1,8 @@
 local colors = {
 	fg = "#c8d3f5",
-	bg0 = "#1a1b26",
-	bg1 = "#232433",
-	bg2 = "#32344a",
+	bg0 = "#0f101a",
+	bg1 = "#1a1c2b",
+	bg2 = "#2a2b3d",
 	red0 = "#803d49",
 	red1 = "#f7768e",
 	blue0 = "#3e5380",
@@ -117,8 +117,6 @@ vim.api.nvim_set_hl(0, "SpecialComment", { link = "Comment" })
 vim.api.nvim_set_hl(0, "Todo", { fg = colors.blue1, bg = colors.none, italic = true })
 vim.api.nvim_set_hl(0, "Ignore", { fg = colors.grey, bg = colors.none })
 
-vim.api.nvim_set_hl(0, "@variable", { fg = colors.fg, bg = colors.none })
-
 vim.api.nvim_set_hl(0, "LspReferenceText", { bg = colors.blue0 })
 vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = colors.blue0 })
 vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg = colors.blue0 })
@@ -141,6 +139,19 @@ vim.api.nvim_set_hl(0, "StatusLineCommand", { fg = colors.black, bg = colors.gre
 vim.api.nvim_set_hl(0, "StatusLineTerminal", { fg = colors.black, bg = colors.teal, bold = true })
 vim.api.nvim_set_hl(0, "StatusLineReplace", { fg = colors.black, bg = colors.red1, bold = true })
 
+vim.api.nvim_set_hl(0, "MarkdownH1", { fg = colors.blue1, bg = colors.bg1, bold = true })
+vim.api.nvim_set_hl(0, "MarkdownH2", { fg = colors.green1, bg = colors.bg1, bold = true })
+vim.api.nvim_set_hl(0, "MarkdownH3", { fg = colors.orange, bg = colors.bg1, bold = true })
+vim.api.nvim_set_hl(0, "MarkdownH4", { fg = colors.purple, bg = colors.bg1, bold = true })
+vim.api.nvim_set_hl(0, "MarkdownH5", { fg = colors.yellow, bg = colors.bg1, bold = true })
+vim.api.nvim_set_hl(0, "MarkdownH6", { fg = colors.teal, bg = colors.bg1, bold = true })
+vim.api.nvim_set_hl(0, "MarkdownH1Bg", { fg = colors.blue1, bg = colors.bg1, bold = true })
+vim.api.nvim_set_hl(0, "MarkdownH2Bg", { fg = colors.green1, bg = colors.bg1, bold = true })
+vim.api.nvim_set_hl(0, "MarkdownH3Bg", { fg = colors.orange, bg = colors.bg1, bold = true })
+vim.api.nvim_set_hl(0, "MarkdownH4Bg", { fg = colors.purple, bg = colors.bg1, bold = true })
+vim.api.nvim_set_hl(0, "MarkdownH5Bg", { fg = colors.yellow, bg = colors.bg1, bold = true })
+vim.api.nvim_set_hl(0, "MarkdownH6Bg", { fg = colors.teal, bg = colors.bg1, bold = true })
+
 vim.api.nvim_set_hl(0, "Underlined", { fg = colors.none, bg = colors.none, underline = true })
 vim.api.nvim_set_hl(0, "Fg", { fg = colors.fg, bg = colors.none })
 vim.api.nvim_set_hl(0, "Grey", { fg = colors.grey, bg = colors.none })
@@ -153,9 +164,5 @@ vim.api.nvim_set_hl(0, "Purple", { fg = colors.purple, bg = colors.none })
 vim.api.nvim_set_hl(0, "RedItalic", { fg = colors.red1, bg = colors.none, italic = true })
 vim.api.nvim_set_hl(0, "BlueItalic", { fg = colors.blue1, bg = colors.none, italic = true })
 vim.api.nvim_set_hl(0, "OrangeItalic", { fg = colors.orange, bg = colors.none, italic = true })
-vim.api.nvim_set_hl(0, "htmlH1", { fg = colors.red1, bg = colors.none, bold = true })
-vim.api.nvim_set_hl(0, "htmlH2", { fg = colors.orange, bg = colors.none, bold = true })
-vim.api.nvim_set_hl(0, "htmlH3", { fg = colors.yellow, bg = colors.none, bold = true })
-vim.api.nvim_set_hl(0, "htmlH4", { fg = colors.green1, bg = colors.none, bold = true })
-vim.api.nvim_set_hl(0, "htmlH5", { fg = colors.blue1, bg = colors.none, bold = true })
-vim.api.nvim_set_hl(0, "htmlH6", { fg = colors.purple, bg = colors.none, bold = true })
+
+vim.api.nvim_set_hl(0, "@variable", { fg = colors.fg, bg = colors.none })

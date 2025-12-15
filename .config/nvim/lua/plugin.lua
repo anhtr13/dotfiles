@@ -86,7 +86,8 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 		require("image").setup({
 			integrations = {
 				markdown = {
-					enabled = false,
+					enabled = true,
+					only_render_image_at_cursor = true,
 				},
 				neorg = {
 					enabled = false,
@@ -118,6 +119,33 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 		--------------------------------------
 		require("render-markdown").setup({
 			render_modes = { "n", "c", "t" },
+			heading = {
+				icons = { "󰎦 ", "󰎩 ", "󰎬 ", "󰎮 ", "󰎰 ", "󰎵 " },
+				border = true,
+				above = " ",
+				below = "",
+				backgrounds = {
+					"MarkdownH1Bg",
+					"MarkdownH2Bg",
+					"MarkdownH3Bg",
+					"MarkdownH4Bg",
+					"MarkdownH5Bg",
+					"MarkdownH6Bg",
+				},
+				foregrounds = {
+					"MarkdownH1",
+					"MarkdownH2",
+					"MarkdownH3",
+					"MarkdownH4",
+					"MarkdownH5",
+					"MarkdownH6",
+				},
+			},
+			code = {
+				language_pad = 1,
+				left_pad = 1,
+				right_pad = 1,
+			},
 		})
 	end,
 })
@@ -142,7 +170,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 			{ src = "https://github.com/folke/flash.nvim" },
 			{ src = "https://github.com/MagicDuck/grug-far.nvim" },
 			{ src = "https://github.com/saghen/blink.indent" },
-			{ src = "https://github.com/windwp/nvim-ts-autotag" },
 			{ src = "https://github.com/kevinhwang91/nvim-ufo" },
 		})
 
@@ -488,16 +515,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		})
 
 		--------------------------------------
-		require("nvim-ts-autotag").setup({
-			opts = {
-				-- Defaults
-				enable_close = true, -- Auto close tags
-				enable_rename = true, -- Auto rename pairs of tags
-				enable_close_on_slash = false, -- Auto close on trailing </
-			},
-		})
-
-		--------------------------------------
 		require("ufo").setup({
 			provider_selector = function()
 				return { "treesitter", "indent" }
@@ -512,9 +529,20 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 	callback = function()
 		vim.pack.add({
 			{ src = "https://github.com/windwp/nvim-autopairs" },
+			{ src = "https://github.com/windwp/nvim-ts-autotag" },
 		})
 
 		--------------------------------------
 		require("nvim-autopairs").setup()
+
+		--------------------------------------
+		require("nvim-ts-autotag").setup({
+			opts = {
+				-- Defaults
+				enable_close = true, -- Auto close tags
+				enable_rename = true, -- Auto rename pairs of tags
+				enable_close_on_slash = false, -- Auto close on trailing </
+			},
+		})
 	end,
 })

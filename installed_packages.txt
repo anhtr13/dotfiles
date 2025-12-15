@@ -75,7 +75,6 @@ nvidia-dkms
 nvidia-settings
 obs-studio
 openssh
-openvpn
 pamixer
 pass
 pavucontrol
@@ -85,7 +84,6 @@ pipewire-jack
 pipewire-pulse
 poppler
 power-profiles-daemon
-proton-vpn-gtk-app
 python-pip
 qbittorrent
 qemu-full
@@ -101,6 +99,7 @@ starship
 sudo
 swaync
 swww
+systemd-resolvconf
 tcpdump
 tmux
 ufw
@@ -111,6 +110,7 @@ virt-manager
 virt-viewer
 waybar
 wget
+wireguard-tools
 wl-clipboard
 xclip
 xdg-desktop-portal-hyprland

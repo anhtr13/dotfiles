@@ -73,6 +73,8 @@ keybind = ctrl+enter=unbind
 keybind = ctrl+equal=unbind
 keybind = ctrl+insert=unbind
 keybind = ctrl+tab=unbind
+keybind = ctrl++=unbind
+keybind = ctrl+-=unbind
 keybind = shift+up=unbind
 keybind = shift+down=unbind
 keybind = super+ctrl+left_bracket=unbind
