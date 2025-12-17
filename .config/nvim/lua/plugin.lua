@@ -218,9 +218,9 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 			incremental_selection = {
 				enable = true,
 				keymaps = {
-					init_selection = "{}",
-					node_incremental = "{+",
-					node_decremental = "{-",
+					init_selection = "|",
+					node_incremental = "|+",
+					node_decremental = "|-",
 				},
 			},
 			textobjects = {

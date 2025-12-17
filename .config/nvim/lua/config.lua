@@ -17,6 +17,12 @@ vim.diagnostic.config({
 	},
 })
 
+vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "BreakPointRed", linehl = "BreakPointRed", numhl = "BreakPointRed" })
+vim.fn.sign_define("DapBreakpointCondition", { text = "󰟃", texthl = "BreakPointBlue", linehl = "BreakPointBlue", numhl = "BreakPointBlue" })
+vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "BreakPointRed", linehl = "BreakPointRed", numhl = "BreakPointRed" })
+vim.fn.sign_define("DapLogPoint", { text = "", texthl = "BreakPointYellow", linehl = "BreakPointYellow", numhl = "BreakPointYellow" })
+vim.fn.sign_define("DapStopped", { text = "", texthl = "BreakPointGreen", linehl = "BreakPointGreen", numhl = "BreakPointGreen" })
+
 -- ============================
 -- Options
 -- ============================
@@ -107,8 +113,8 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		vim.keymap.set("n", "<Tab><Left>", ":bprevious<CR>", { desc = "Previous buffer" })
 		vim.keymap.set("n", "<Tab>x", ":bdelete!<CR>", { desc = "Force close current buffer" })
 		vim.keymap.set("n", "<Tab>cc", ":bdelete<CR>", { desc = "Close current buffer" })
-		vim.keymap.set("n", "<Tab>ca", ":%bd<CR>", { desc = "Close all buffers" })
-		vim.keymap.set("n", "<Tab>co", ":%bd|e#|bd#<CR>", { desc = "Close all other buffers" })
+		vim.keymap.set("n", "<Tab>ca", ":BufDeleteAll<CR>", { desc = "Close all buffers" })
+		vim.keymap.set("n", "<Tab>co", ":BufDeleteOther<CR>", { desc = "Close all other buffers" })
 
 		vim.keymap.set("n", "<leader>F", function()
 			require("conform").format({ async = true })
@@ -266,38 +272,39 @@ vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
 -- User commands
 -- ============================
 
+function DeleteOtherBufs()
+	local current_buf = vim.api.nvim_get_current_buf()
+	local buffers = vim.api.nvim_list_bufs()
+	for _, buf_id in ipairs(buffers) do
+		if buf_id ~= current_buf and vim.api.nvim_buf_is_loaded(buf_id) then
+			pcall(vim.api.nvim_buf_delete, buf_id, { force = false })
+		end
+	end
+end
+
+function DeleteAllBufs()
+	local buffers = vim.api.nvim_list_bufs()
+	for _, buf_id in ipairs(buffers) do
+		if vim.api.nvim_buf_is_loaded(buf_id) then
+			pcall(vim.api.nvim_buf_delete, buf_id, { force = false })
+		end
+	end
+end
+
+vim.api.nvim_create_user_command("BufDeleteOther", DeleteOtherBufs, { bang = true, desc = "Delete all other buffers" })
+vim.api.nvim_create_user_command("BufDeleteAll", DeleteAllBufs, { bang = true, desc = "Delete all buffers" })
+
 vim.api.nvim_create_user_command(
 	"InstallLSPs",
 	"MasonInstall bash-language-server cmake-language-server dockerfile-language-server gopls json-lsp lua-language-server nginx-language-server pylyzer systemd-language-server tailwindcss-language-server vtsls vue-language-server yaml-language-server",
-	{
-		bang = true,
-		desc = "Install formatter via Mason",
-	}
+	{ bang = true, desc = "Install formatter via Mason" }
 )
 
 vim.api.nvim_create_user_command(
 	"InstallFomatters",
 	"MasonInstall black codespell goimports-reviser golines isort nginx-config-formatter prettierd shfmt sql-formatter stylua tombi",
-	{
-		bang = true,
-		desc = "Install formatter via Mason",
-	}
+	{ bang = true, desc = "Install formatter via Mason" }
 )
-
--- ============================
--- Break-points
--- ============================
-
-vim.api.nvim_set_hl(0, "red", { ctermbg = 0, fg = "#ff6969", bg = "#262626" })
-vim.api.nvim_set_hl(0, "blue", { ctermbg = 0, fg = "#6996ff", bg = "#262626" })
-vim.api.nvim_set_hl(0, "green", { ctermbg = 0, fg = "#96ff96", bg = "#262626" })
-vim.api.nvim_set_hl(0, "yellow", { ctermbg = 0, fg = "#ffff96", bg = "#262626" })
-
-vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "red", linehl = "red", numhl = "red" })
-vim.fn.sign_define("DapBreakpointCondition", { text = "󰟃", texthl = "blue", linehl = "blue", numhl = "blue" })
-vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "red", linehl = "red", numhl = "red" })
-vim.fn.sign_define("DapLogPoint", { text = "", texthl = "yellow", linehl = "yellow", numhl = "yellow" })
-vim.fn.sign_define("DapStopped", { text = "", texthl = "green", linehl = "green", numhl = "green" })
 
 -- ===================================
 -- Register additional file extensions
