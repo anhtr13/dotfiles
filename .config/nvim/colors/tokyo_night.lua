@@ -2,7 +2,7 @@ local colors = {
 	fg = "#c8d3f5",
 	bg0 = "#0f101a",
 	bg1 = "#1a1c2b",
-	bg2 = "#2a2b3d",
+	bg2 = "#232b3d",
 	red0 = "#803d49",
 	red1 = "#f7768e",
 	blue0 = "#3e5380",
@@ -26,7 +26,7 @@ vim.api.nvim_set_hl(0, "NormalFloat", { fg = colors.fg, bg = colors.bg0 })
 vim.api.nvim_set_hl(0, "FloatBorder", { link = "NormalFloat" })
 vim.api.nvim_set_hl(0, "Terminal", { fg = colors.fg, bg = colors.none })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = colors.bg0, bg = colors.none })
-vim.api.nvim_set_hl(0, "Folded", { fg = colors.none, bg = colors.bg0 })
+vim.api.nvim_set_hl(0, "Folded", { fg = colors.none, bg = colors.bg1 })
 vim.api.nvim_set_hl(0, "FoldColumn", { bg = colors.none })
 vim.api.nvim_set_hl(0, "SignColumn", { fg = colors.fg, bg = colors.none })
 vim.api.nvim_set_hl(0, "ToolbarLine", { fg = colors.fg, bg = colors.none })
@@ -38,7 +38,7 @@ vim.api.nvim_set_hl(0, "iCursor", { link = "Cursor" })
 vim.api.nvim_set_hl(0, "lCursor", { link = "Cursor" })
 vim.api.nvim_set_hl(0, "CursorIM", { link = "Cursor" })
 vim.api.nvim_set_hl(0, "CursorColumn", { fg = colors.none, bg = colors.bg1 })
-vim.api.nvim_set_hl(0, "CursorLine", { fg = colors.none, bg = colors.bg1 })
+vim.api.nvim_set_hl(0, "CursorLine", { fg = colors.none, bg = colors.bg0 })
 vim.api.nvim_set_hl(0, "LineNr", { fg = colors.grey, bg = colors.none })
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = colors.orange, bg = colors.none, bold = true })
 vim.api.nvim_set_hl(0, "DiffAdd", { fg = colors.none, bg = colors.green0 })
@@ -131,10 +131,10 @@ vim.api.nvim_set_hl(0, "DiagnosticError", { fg = colors.red1 })
 vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = colors.yellow1 })
 vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = colors.green2 })
 vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = colors.blue2 })
-vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { fg = colors.red1, bg = colors.bg0 })
-vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { fg = colors.yellow1, bg = colors.bg0 })
-vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { fg = colors.green2, bg = colors.bg0 })
-vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { fg = colors.blue2, bg = colors.bg0 })
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { fg = colors.red1, bg = colors.bg1 })
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { fg = colors.yellow1, bg = colors.bg1 })
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { fg = colors.green2, bg = colors.bg1 })
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { fg = colors.blue2, bg = colors.bg1 })
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = true, sp = colors.red1 })
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { undercurl = true, sp = colors.yellow1 })
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { undercurl = true, sp = colors.green2 })

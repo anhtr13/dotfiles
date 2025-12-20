@@ -21,6 +21,7 @@ dbeaver
 dmidecode
 dnsmasq
 docker
+ecryptfs-utils
 efibootmgr
 emacs
 fastfetch
