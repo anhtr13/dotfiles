@@ -72,7 +72,7 @@ ngrok
 ninja
 niri
 noto-fonts-cjk
-nvidia-dkms
+nvidia-open-dkms
 nvidia-settings
 obs-studio
 openssh

@@ -36,8 +36,14 @@ menuitem {
   transition: all 0.1s linear;
 }
 
+.modules-left, .modules-center, .modules-right {
+  background: transparent;
+  padding: 0px;
+  margin: 4px 0px 0px 0px;
+}
+
 .module {
-  margin: 3px 2px;
+  margin: 0px 2px;
   border-radius: 9px;
   padding: 0px 10px;
   background: @base;
@@ -48,7 +54,7 @@ menuitem {
   color: @cyan0;
   border-radius: 9px 0px 0px 9px;
   padding: 0px 5px 0px 10px;
-  margin: 3px 0px 3px 8px;
+  margin: 0px 0px 0px 8px;
 }
 
 #custom-rofi:hover {
@@ -58,7 +64,7 @@ menuitem {
 #workspaces {
   border-radius: 0px 9px 9px 0px;
   padding: 0px 6px 0px 3px;
-  margin: 3px 2px 3px 0px;
+  margin: 0px 2px 0px 0px;
 }
 #workspaces button {
   margin: 5px 0px;
@@ -105,13 +111,13 @@ menuitem {
   color: @yellow;
   border-radius: 9px 0px 0px 9px;
   padding: 0px 5px 0px 10px;
-  margin: 3px 0px 3px 2px;
+  margin: 0px 0px 0px 2px;
 }
 #pulseaudio.micro {
   color: @teal1;
   border-radius: 0px 9px 9px 0px;
   padding: 0px 10px 0px 5px;
-  margin: 3px 2px 3px 0px;
+  margin: 0px 2px 0px 0px;
 }
 
 #network {
@@ -125,21 +131,21 @@ menuitem {
   color: @purple1;
   border-radius: 9px 0px 0px 9px;
   padding: 0px 5px 0px 10px;
-  margin: 3px 0px 3px 2px;
+  margin: 0px 0px 0px 2px;
 }
 
 #memory {
   color: @green1;
   border-radius: 0px 9px 9px 0px;
   padding: 0px 10px 0px 5px;
-  margin: 3px 2px 3px 0px;
+  margin: 0px 2px 0px 0px;
 }
 
 #battery {
   color: @cyan1;
   border-radius: 9px 0px 0px 9px;
   padding: 0px 5px 0px 10px;
-  margin: 3px 0px 3px 2px;
+  margin: 0px 0px 0px 2px;
 }
 
 #battery.charging, #battery.plugged {
@@ -153,7 +159,7 @@ menuitem {
 #power-profiles-daemon {
   border-radius: 0px 9px 9px 0px;
   padding: 0px 10px 0px 5px;
-  margin: 3px 2px 3px 0px;
+  margin: 0px 2px 0px 0px;
 }
 
 #power-profiles-daemon.performance {

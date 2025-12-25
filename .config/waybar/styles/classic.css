@@ -36,6 +36,11 @@ menuitem {
   transition: all 0.1s linear;
 }
 
+.modules-left, .modules-center, .modules-right {
+  padding: 0px;
+  margin: 0px;
+}
+
 .module {
   margin: 3px 2px;
   border-radius: 0px;
