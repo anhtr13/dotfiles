@@ -130,10 +130,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		vim.keymap.set("n", "<leader>gf", ":GrugFar<CR>", { desc = "GrugFar", silent = true })
 		vim.keymap.set("n", "<leader>gw", ":GrugFarWithin<CR>", { desc = "GrugFarWithin", silent = true })
 
-		vim.keymap.set({ "n", "x", "o" }, "<leader>f", function()
+		vim.keymap.set({ "n", "x", "o" }, "f", function()
 			require("flash").jump()
 		end, { noremap = true, desc = "Flash jump" })
-		vim.keymap.set({ "n", "x", "o" }, "<leader>F", function()
+		vim.keymap.set({ "n", "x", "o" }, "F", function()
 			require("flash").treesitter()
 		end, { noremap = true, desc = "Flash treesitter" })
 		vim.keymap.set("c", "<c-f>", function()
