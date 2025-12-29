@@ -74,8 +74,10 @@ niri
 noto-fonts-cjk
 nvidia-open-dkms
 nvidia-settings
+nyx
 obs-studio
 openssh
+pam-gnupg
 pamixer
 pass
 pavucontrol
@@ -103,6 +105,7 @@ swww
 systemd-resolvconf
 tcpdump
 tmux
+torbrowser-launcher
 ufw
 unixodbc
 unzip

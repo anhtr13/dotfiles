@@ -10,7 +10,7 @@ list_row='6'
 
 option_github=" Github"
 option_reddit=" Reddit"
-option_gmail=" Gmail"
+option_email=" Email"
 option_youtube=" Youtube"
 option_translate="󰊿 Translate"
 
@@ -25,12 +25,12 @@ rofi_cmd() {
 }
 
 run_rofi() {
-  echo -e "$option_github\n$option_reddit\n$option_gmail\n$option_youtube\n$option_translate" | rofi_cmd
+  echo -e "$option_github\n$option_reddit\n$option_email\n$option_youtube\n$option_translate" | rofi_cmd
 }
 
 chosen="$(run_rofi)"
 case ${chosen} in
-$option_gmail)
+$option_email)
   xdg-open 'https://mail.google.com/'
   ;;
 $option_youtube)

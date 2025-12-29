@@ -141,7 +141,7 @@ vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { undercurl = true, sp = color
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { undercurl = true, sp = colors.blue2 })
 
 vim.api.nvim_set_hl(0, "StatusLineNormal", { fg = colors.black, bg = colors.blue1, bold = true })
-vim.api.nvim_set_hl(0, "StatusLineInsert", { fg = colors.black, bg = colors.yellow0, bold = true })
+vim.api.nvim_set_hl(0, "StatusLineInsert", { fg = colors.black, bg = colors.yellow1, bold = true })
 vim.api.nvim_set_hl(0, "StatusLineVisual", { fg = colors.black, bg = colors.purple, bold = true })
 vim.api.nvim_set_hl(0, "StatusLineCommand", { fg = colors.black, bg = colors.green2, bold = true })
 vim.api.nvim_set_hl(0, "StatusLineTerminal", { fg = colors.black, bg = colors.teal, bold = true })
