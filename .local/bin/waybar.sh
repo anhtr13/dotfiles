@@ -33,4 +33,6 @@ run_rofi() {
 }
 
 chosen="$(run_rofi)"
-cat "$source/$chosen" >$target
+if [[ -f "$source/$chosen" ]]; then
+  cat "$source/$chosen" >$target
+fi

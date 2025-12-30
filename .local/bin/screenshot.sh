@@ -39,13 +39,13 @@ fi
 
 grimshot() {
   grim "$@" "$file_path"
-  if [ -e "$file_path" ]; then
+  if [[ -e "$file_path" ]]; then
     notify-send -i "$file_path" "Grim" "Screenshot saved: $file_name"
   fi
 }
 
 run_cmd() {
-  if [ $XDG_CURRENT_DESKTOP == 'Hyprland' ]; then
+  if [[ $XDG_CURRENT_DESKTOP == 'Hyprland' ]]; then
     if [[ "$1" == '--screen' ]]; then
       hyprshot -m output -f $file_name -o $dir
     elif [[ "$1" == '--region' ]]; then
