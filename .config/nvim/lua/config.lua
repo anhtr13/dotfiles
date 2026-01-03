@@ -83,69 +83,15 @@ vim.o.splitright = true -- Vertical splits go right
 -- Keymaps
 -- ============================
 
--- Plugin keys
-vim.keymap.set("n", "<leader>/f", ":FzfLua files<CR>", { desc = "FzfLua [f]iles", silent = true })
-vim.keymap.set("n", "<leader>/g", ":FzfLua live_grep<CR>", { desc = "FzfLua live_[g]rep", silent = true })
-vim.keymap.set("n", "<leader>/b", ":FzfLua buffers<CR>", { desc = "FzfLua [b]uffers", silent = true })
-vim.keymap.set("n", "<leader>/m", ":FzfLua marks<CR>", { desc = "FzfLua [m]arks", silent = true })
-vim.keymap.set("n", "<leader>/c", ":FzfLua command_history<CR>", { desc = "FzfLua [c]command_history", silent = true })
-vim.keymap.set("n", "<leader>//", ":FzfLua grep_curbuf<CR>", { desc = "FzfLua grep_curbuf", silent = true })
-vim.keymap.set("n", "<leader>/.", ":FzfLua resume<CR>", { desc = "FzfLua resume", silent = true })
-vim.keymap.set("n", "<leader>/w", ":FzfLua diagnostics_workspace<CR>", { desc = "FzfLua diagnostics_[w]orkspace", silent = true })
-vim.keymap.set("n", "<leader>/d", ":FzfLua diagnostics_document<CR>", { desc = "FzfLua diagnostics_[d]ocument", silent = true })
-vim.keymap.set("n", "<leader>/k", ":FzfLua keymaps<CR>", { desc = "FzfLua [k]eymaps", silent = true })
+vim.keymap.set("n", "<Tab>l", ":bnext<CR>", { desc = "Next buffer", silent = true })
+vim.keymap.set("n", "<Tab>h", ":bprevious<CR>", { desc = "Previous buffer", silent = true })
+vim.keymap.set("n", "<Tab><Right>", ":bnext<CR>", { desc = "Next buffer", silent = true })
+vim.keymap.set("n", "<Tab><Left>", ":bprevious<CR>", { desc = "Previous buffer", silent = true })
+vim.keymap.set("n", "<Tab>x", ":bdelete!<CR>", { desc = "Force close current buffer", silent = true })
+vim.keymap.set("n", "<Tab>cc", ":bdelete<CR>", { desc = "Close current buffer", silent = true })
+vim.keymap.set("n", "<Tab>ca", ":BufDeleteAll<CR>", { desc = "Close all buffers", silent = true })
+vim.keymap.set("n", "<Tab>co", ":BufDeleteOther<CR>", { desc = "Close all other buffers", silent = true })
 
-vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "File explorer", silent = true })
-
-vim.keymap.set("n", "<leader>?", function()
-	require("which-key").show({ global = false })
-end, { desc = "Buffer Local Keymaps (which-key)" })
-
--- Lazy-plugin keys
-local lazy_keys = vim.api.nvim_create_augroup("lazy.keys", { clear = true })
-vim.api.nvim_create_autocmd("BufReadPost", {
-	group = lazy_keys,
-	once = true,
-	callback = function()
-		vim.keymap.set("n", "<Tab>l", ":bnext<CR>", { desc = "Next buffer", silent = true })
-		vim.keymap.set("n", "<Tab>h", ":bprevious<CR>", { desc = "Previous buffer", silent = true })
-		vim.keymap.set("n", "<Tab><Right>", ":bnext<CR>", { desc = "Next buffer", silent = true })
-		vim.keymap.set("n", "<Tab><Left>", ":bprevious<CR>", { desc = "Previous buffer", silent = true })
-		vim.keymap.set("n", "<Tab>x", ":bdelete!<CR>", { desc = "Force close current buffer", silent = true })
-		vim.keymap.set("n", "<Tab>cc", ":bdelete<CR>", { desc = "Close current buffer", silent = true })
-		vim.keymap.set("n", "<Tab>ca", ":BufDeleteAll<CR>", { desc = "Close all buffers", silent = true })
-		vim.keymap.set("n", "<Tab>co", ":BufDeleteOther<CR>", { desc = "Close all other buffers", silent = true })
-
-		vim.keymap.set("n", "<leader>F", function()
-			require("conform").format({ async = true })
-		end, { noremap = true, desc = "[F]ormat buffer" })
-
-		vim.keymap.set("n", "gdb", ":DapToggleBreakpoint<CR>", { desc = "[d]ebugger [b]reak point", silent = true })
-		vim.keymap.set("n", "gdc", ":DapContinue<CR>", { desc = "[d]ebugger [c]ontinue", silent = true })
-		vim.keymap.set("n", "gdo", ":DapStepOver<CR>", { desc = "[d]ebugger step [o]ver", silent = true })
-		vim.keymap.set("n", "gdi", ":DapStepInto<CR>", { desc = "[d]ebugger step [i]nto", silent = true })
-		vim.keymap.set("n", "gdu", ":DapStepOut<CR>", { desc = "[d]ebugger step o[u]t", silent = true })
-		vim.keymap.set("n", "gdx", ":DapTerminate<CR>", { desc = "[d]ebugger e[x]it", silent = true })
-
-		vim.keymap.set("n", "<leader>gf", ":GrugFar<CR>", { desc = "GrugFar", silent = true })
-		vim.keymap.set("n", "<leader>gw", ":GrugFarWithin<CR>", { desc = "GrugFarWithin", silent = true })
-
-		vim.keymap.set({ "n", "x", "o" }, "f", function()
-			require("flash").jump()
-		end, { noremap = true, desc = "Flash jump" })
-		vim.keymap.set({ "n", "x", "o" }, "F", function()
-			require("flash").treesitter()
-		end, { noremap = true, desc = "Flash treesitter" })
-		vim.keymap.set("c", "<c-f>", function()
-			require("flash").toggle()
-		end, { noremap = true, desc = "Toggle Flash (search mode)" })
-
-		vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "Open all folds" })
-		vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "Close all folds" })
-	end,
-})
-
--- Lsp keys
 vim.keymap.set("n", "grd", vim.lsp.buf.definition, { desc = "vim.lsp.buf.definition()", noremap = true })
 vim.keymap.set("n", "grt", vim.lsp.buf.type_definition, { desc = "vim.lsp.buf.type_definition()", noremap = true })
 vim.keymap.set("n", "grh", function()
@@ -155,7 +101,6 @@ vim.keymap.set("n", "grI", function()
 	vim.diagnostic.open_float({ max_height = 32, max_width = 132 })
 end, { desc = "vim.diagnostic.open_float()," })
 
--- Other keys
 vim.keymap.set({ "n", "v" }, "<c-Up>", "10k", { noremap = true })
 vim.keymap.set({ "n", "v" }, "<c-Down>", "10j", { noremap = true })
 vim.keymap.set({ "n", "v" }, "<c-k>", "10k", { noremap = true })
@@ -178,7 +123,7 @@ vim.keymap.set("n", "<c-c>", ":nohlsearch<CR>", { desc = "Clear search highlight
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position", noremap = true })
 
 -- ========================
--- ====== Statusline ======
+-- Statusline
 -- ========================
 
 local function mode_highlight()
@@ -267,6 +212,136 @@ vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
 		vim.opt_local.statusline = " %{v:lua.git_branch()} %<%f    %=%y | %l:%c / %P "
 	end,
 })
+
+-- ================================
+-- Treesitter incremental selection
+-- ================================
+
+_G.selected_nodes = {} ---@type TSNode[]
+
+local function ts_get_node_at_cursor()
+	local cursor = vim.api.nvim_win_get_cursor(0)
+	local row = cursor[1] - 1
+	local col = cursor[2]
+
+	local ok, root_parser = pcall(vim.treesitter.get_parser, 0, nil, {})
+	if not ok or not root_parser then
+		return
+	end
+
+	root_parser:parse({ vim.fn.line("w0") - 1, vim.fn.line("w$") })
+	local lang_tree = root_parser:language_for_range({ row, col, row, col })
+
+	return lang_tree:named_node_for_range({ row, col, row, col }, { ignore_injections = false })
+end
+
+local function ts_select_node(node)
+	if not node then
+		return
+	end
+	local start_row, start_col, end_row, end_col = node:range()
+
+	local last_line = vim.api.nvim_buf_line_count(0)
+	local end_row_pos = math.min(end_row + 1, last_line)
+	local end_col_pos = end_col
+
+	if end_row + 1 > last_line then
+		local last_line_text = vim.api.nvim_buf_get_lines(0, last_line - 1, last_line, true)[1]
+		end_col_pos = #last_line_text
+	end
+
+	local mode = vim.api.nvim_get_mode()
+	if mode.mode ~= "v" then
+		vim.api.nvim_cmd({ cmd = "normal", bang = true, args = { "v" } }, {})
+	end
+
+	vim.api.nvim_win_set_cursor(0, { start_row + 1, start_col })
+	vim.cmd("normal! o")
+	vim.api.nvim_win_set_cursor(0, { end_row_pos, end_col_pos > 0 and end_col_pos - 1 or 0 })
+end
+
+local function init_selection()
+	_G.selected_nodes = {}
+
+	local current_node = ts_get_node_at_cursor()
+	if not current_node then
+		return
+	end
+
+	table.insert(_G.selected_nodes, current_node)
+	ts_select_node(current_node)
+end
+
+local function incr_selection()
+	if #_G.selected_nodes == 0 then
+		return
+	end
+
+	local current_node = _G.selected_nodes[#_G.selected_nodes]
+
+	if not current_node then
+		return
+	end
+
+	local node = current_node
+	local root_searched = false
+	while true do
+		local parent = node:parent()
+		if not parent then
+			if root_searched then
+				return
+			end
+			local ok, root_parser = pcall(vim.treesitter.get_parser)
+			if not ok or root_parser == nil then
+				return
+			end
+			root_parser:parse({ vim.fn.line("w0") - 1, vim.fn.line("w$") })
+
+			local range = { node:range() }
+			local current_parser = root_parser:language_for_range(range)
+
+			if root_parser ~= current_parser then
+				local parser = current_parser:parent()
+				if parser == nil then
+					return
+				end
+				current_parser = parser
+			end
+
+			if root_parser == current_parser then
+				root_searched = true
+			end
+
+			parent = current_parser:named_node_for_range(range)
+			if parent == nil then
+				return
+			end
+		end
+
+		local range = { node:range() }
+		local parent_range = { parent:range() }
+		if not vim.deep_equal(range, parent_range) then
+			table.insert(_G.selected_nodes, parent)
+			ts_select_node(parent)
+			return
+		end
+		node = parent
+	end
+end
+
+local function decr_selection()
+	if #_G.selected_nodes > 1 then
+		table.remove(_G.selected_nodes)
+		local current_node = _G.selected_nodes[#_G.selected_nodes]
+		if current_node then
+			ts_select_node(current_node)
+		end
+	end
+end
+
+vim.keymap.set("n", "||", init_selection, { desc = "Treesitter init selection" })
+vim.keymap.set("x", "|+", incr_selection, { desc = "Treesitter increase selection" })
+vim.keymap.set("x", "|-", decr_selection, { desc = "Treesitter decrease selection" })
 
 -- ============================
 -- User commands

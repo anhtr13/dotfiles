@@ -1,5 +1,3 @@
----@diagnostic disable:undefined-field
-
 -- ============================
 -- First load
 -- ============================
@@ -9,7 +7,6 @@ vim.pack.add({
 
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
 	{ src = "https://github.com/nvim-tree/nvim-tree.lua" },
-	{ src = "https://github.com/mason-org/mason.nvim" },
 	{ src = "https://github.com/folke/which-key.nvim" },
 })
 
@@ -19,6 +16,17 @@ require("mini.icons").mock_nvim_web_devicons()
 
 --------------------------------------
 require("fzf-lua").setup()
+
+vim.keymap.set("n", "<leader>/f", ":FzfLua files<CR>", { desc = "FzfLua [f]iles", silent = true })
+vim.keymap.set("n", "<leader>/g", ":FzfLua live_grep<CR>", { desc = "FzfLua live_[g]rep", silent = true })
+vim.keymap.set("n", "<leader>/b", ":FzfLua buffers<CR>", { desc = "FzfLua [b]uffers", silent = true })
+vim.keymap.set("n", "<leader>/m", ":FzfLua marks<CR>", { desc = "FzfLua [m]arks", silent = true })
+vim.keymap.set("n", "<leader>/c", ":FzfLua command_history<CR>", { desc = "FzfLua [c]command_history", silent = true })
+vim.keymap.set("n", "<leader>//", ":FzfLua grep_curbuf<CR>", { desc = "FzfLua grep_curbuf", silent = true })
+vim.keymap.set("n", "<leader>/.", ":FzfLua resume<CR>", { desc = "FzfLua resume", silent = true })
+vim.keymap.set("n", "<leader>/w", ":FzfLua diagnostics_workspace<CR>", { desc = "FzfLua diagnostics_[w]orkspace", silent = true })
+vim.keymap.set("n", "<leader>/d", ":FzfLua diagnostics_document<CR>", { desc = "FzfLua diagnostics_[d]ocument", silent = true })
+vim.keymap.set("n", "<leader>/k", ":FzfLua keymaps<CR>", { desc = "FzfLua [k]eymaps", silent = true })
 
 --------------------------------------
 require("nvim-tree").setup({
@@ -48,29 +56,157 @@ require("nvim-tree").setup({
 	},
 })
 
---------------------------------------
-require("mason").setup({
-	PATH = "prepend",
-	max_concurrent_installers = 3,
-	ui = {
-		icons = {
-			package_installed = "✓",
-			package_pending = "➜",
-			package_uninstalled = "✗",
-		},
-	},
-})
+vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "File explorer", silent = true })
 
 --------------------------------------
 require("which-key").setup({
 	preset = "modern",
 })
 
+vim.keymap.set("n", "<leader>?", function()
+	require("which-key").show({ global = false })
+end, { desc = "Buffer Local Keymaps (which-key)" })
+
 -- ============================
 -- Lazy load
 -- ============================
 
 local lazy_plugs = vim.api.nvim_create_augroup("lazy.plugs", { clear = true })
+
+vim.api.nvim_create_autocmd("VimEnter", {
+	group = lazy_plugs,
+	once = true,
+	callback = function()
+		vim.pack.add({
+			{ src = "https://github.com/rafamadriz/friendly-snippets" },
+
+			{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
+			{ src = "https://github.com/mason-org/mason.nvim" },
+			{ src = "https://github.com/saghen/blink.cmp", version = "v1.8.0" },
+		})
+
+		--------------------------------------
+		local ts_parsers = {
+			"c",
+			"lua",
+			"vim",
+			"vimdoc",
+			"query",
+			"markdown",
+			"markdown_inline",
+			"bash",
+			"regex",
+			-- 'terraform',
+			"yaml",
+			"make",
+			"cmake",
+			"sql",
+			"dockerfile",
+			-- "toml",
+			"json",
+			-- 'java',
+			-- 'groovy',
+			"python",
+			"go",
+			"rust",
+			"zig",
+			"cpp",
+			"gitignore",
+			-- 'graphql',
+			"javascript",
+			"typescript",
+			"tsx",
+			-- 'css',
+			-- 'html',
+			"vue",
+		}
+
+		local treesitter = require("nvim-treesitter")
+		treesitter.install(ts_parsers)
+
+		vim.api.nvim_create_autocmd("FileType", {
+			group = vim.api.nvim_create_augroup("treesitter.setup", { clear = true }),
+			desc = "Enable treesitter highlighting",
+			callback = function(event)
+				local lang = vim.treesitter.language.get_lang(event.match) or event.match
+				local buf = event.buf
+				if vim.tbl_contains(ts_parsers, lang) then
+					pcall(vim.treesitter.start, buf, lang)
+				end
+			end,
+		})
+
+		--------------------------------------
+		require("mason").setup({
+			PATH = "prepend",
+			max_concurrent_installers = 3,
+			ui = {
+				icons = {
+					package_installed = "✓",
+					package_pending = "➜",
+					package_uninstalled = "✗",
+				},
+			},
+		})
+
+		--------------------------------------
+		require("blink.cmp").setup({
+			keymap = {
+				preset = "none",
+				["<Up>"] = { "select_prev", "fallback" },
+				["<Down>"] = { "select_next", "fallback" },
+				["<C-y>"] = { "select_and_accept", "fallback" },
+				["<C-p>"] = { "select_prev", "fallback_to_mappings" },
+				["<C-n>"] = { "select_next", "fallback_to_mappings" },
+				["<C-c>"] = { "cancel", "fallback" },
+				["<C-u>"] = { "scroll_documentation_up", "fallback" },
+				["<C-d>"] = { "scroll_documentation_down", "fallback" },
+				["<Tab>"] = { "snippet_forward", "fallback" },
+				["<S-Tab>"] = { "snippet_backward", "fallback" },
+				["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+				["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+				["<CR>"] = { "accept", "fallback" },
+			},
+			appearance = {
+				nerd_font_variant = "mono", -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+			},
+			completion = {
+				accept = {
+					auto_brackets = {
+						enabled = true,
+					},
+				},
+				documentation = {
+					auto_show = true, -- auto show the documentation popup
+				},
+				menu = {
+					draw = {
+						padding = { 0, 1 }, -- padding only on right side
+						components = {
+							kind_icon = {
+								text = function(ctx)
+									return " " .. ctx.kind_icon .. ctx.icon_gap .. " "
+								end,
+							},
+						},
+						treesitter = { "lsp" },
+					},
+				},
+			},
+			sources = {
+				default = { "lsp", "buffer", "snippets", "path" },
+			},
+			fuzzy = {
+				implementation = "rust",
+				sorts = {
+					"exact",
+					"score",
+					"sort_text",
+				},
+			},
+		})
+	end,
+})
 
 vim.api.nvim_create_autocmd("BufReadPre", {
 	group = lazy_plugs,
@@ -152,18 +288,15 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 
 vim.api.nvim_create_autocmd("BufReadPost", {
 	group = lazy_plugs,
-	once = true, -- Ensures the command only runs once
+	once = true,
 	callback = function()
 		vim.pack.add({
-			{ src = "https://github.com/rafamadriz/friendly-snippets" },
 			{ src = "https://github.com/kevinhwang91/promise-async" },
-			{ src = "https://github.com/rcarriga/nvim-dap-ui" },
+			{ src = "https://github.com/igorlfs/nvim-dap-view" },
 			{ src = "https://github.com/leoluz/nvim-dap-go" },
-			{ src = "https://github.com/nvim-neotest/nvim-nio" },
 
-			{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-			{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" },
-			{ src = "https://github.com/saghen/blink.cmp", version = "v1.8.0" },
+			{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
+			{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
 			{ src = "https://github.com/numToStr/Comment.nvim" },
 			{ src = "https://github.com/stevearc/conform.nvim" },
 			{ src = "https://github.com/mfussenegger/nvim-dap" },
@@ -174,150 +307,67 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		})
 
 		--------------------------------------
-		require("nvim-treesitter.configs").setup({
-			ensure_installed = {
-				"c",
-				"lua",
-				"vim",
-				"vimdoc",
-				"query",
-				"markdown",
-				"markdown_inline",
-				"bash",
-				"regex",
-				-- 'terraform',
-				"yaml",
-				"make",
-				"cmake",
-				"sql",
-				"dockerfile",
-				-- "toml",
-				"json",
-				-- 'java',
-				-- 'groovy',
-				"python",
-				"go",
-				"rust",
-				"zig",
-				"cpp",
-				"gitignore",
-				-- 'graphql',
-				"javascript",
-				"typescript",
-				"tsx",
-				-- 'css',
-				-- 'html',
-				"vue",
+		require("nvim-treesitter-textobjects").setup({
+			select = {
+				lookahead = true,
 			},
-			modules = {},
-			ignore_install = {},
-			auto_install = true,
-			sync_install = false,
-			highlight = { enable = true },
-			indent = { enable = true },
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "|",
-					node_incremental = "|+",
-					node_decremental = "|-",
-				},
-			},
-			textobjects = {
-				select = {
-					enable = true,
-					lookahead = true,
-					keymaps = {
-						["<leader>("] = "@parameter.inner",
-						["<leader>)"] = "@parameter.outer",
-						["<leader>{"] = "@function.inner",
-						["<leader>}"] = "@function.outer",
-						["<leader>["] = "@class.inner",
-						["<leader>]"] = "@class.outer",
-					},
-				},
-				move = {
-					enable = true,
-					set_jumps = true,
-					goto_next_start = {
-						["]f"] = "@function.outer",
-						["]c"] = "@class.outer",
-					},
-					goto_next_end = {
-						["]F"] = "@function.outer",
-						["]C"] = "@class.outer",
-					},
-					goto_previous_start = {
-						["[f"] = "@function.outer",
-						["[c"] = "@class.outer",
-					},
-					goto_previous_end = {
-						["[F"] = "@function.outer",
-						["[C"] = "@class.outer",
-					},
-				},
-				swap = {
-					enable = false,
-				},
+			move = {
+				set_jumps = true,
 			},
 		})
 
+		local textobjects_select = require("nvim-treesitter-textobjects.select")
+		local textobjects_move = require("nvim-treesitter-textobjects.move")
+
+		vim.keymap.set({ "x", "o" }, "|(", function()
+			textobjects_select.select_textobject("@parameter.inner", "textobjects")
+		end, { desc = "Select inner parameter" })
+		vim.keymap.set({ "x", "o" }, "|)", function()
+			textobjects_select.select_textobject("@parameter.outer", "textobjects")
+		end, { desc = "Select outer parameter" })
+		vim.keymap.set({ "x", "o" }, "|{", function()
+			textobjects_select.select_textobject("@function.inner", "textobjects")
+		end, { desc = "Select inner function" })
+		vim.keymap.set({ "x", "o" }, "|}", function()
+			textobjects_select.select_textobject("@function.outer", "textobjects")
+		end, { desc = "Select outer function" })
+		vim.keymap.set({ "x", "o" }, "|[", function()
+			textobjects_select.select_textobject("@class.inner", "textobjects")
+		end, { desc = "Select inner class" })
+		vim.keymap.set({ "x", "o" }, "|]", function()
+			textobjects_select.select_textobject("@class.outer", "textobjects")
+		end, { desc = "Select outer class" })
+
+		vim.keymap.set({ "n", "x", "o" }, "]f", function()
+			textobjects_move.goto_next_start("@function.outer", "textobjects")
+		end, { desc = "Go to next function start" })
+		vim.keymap.set({ "n", "x", "o" }, "]c", function()
+			textobjects_move.goto_next_start("@class.outer", "textobjects")
+		end, { desc = "Go to next class start" })
+
+		vim.keymap.set({ "n", "x", "o" }, "]F", function()
+			textobjects_move.goto_next_end("@function.outer", "textobjects")
+		end, { desc = "Go to next function end" })
+		vim.keymap.set({ "n", "x", "o" }, "]C", function()
+			textobjects_move.goto_next_end("@class.outer", "textobjects")
+		end, { desc = "Go to next class end" })
+
+		vim.keymap.set({ "n", "x", "o" }, "[f", function()
+			textobjects_move.goto_previous_start("@function.outer", "textobjects")
+		end, { desc = "Go to previous function start" })
+		vim.keymap.set({ "n", "x", "o" }, "[c", function()
+			textobjects_move.goto_previous_start("@class.outer", "textobjects")
+		end, { desc = "Go to previous class start" })
+
+		vim.keymap.set({ "n", "x", "o" }, "[F", function()
+			textobjects_move.goto_previous_end("@function.outer", "textobjects")
+		end, { desc = "Go to previous function end" })
+		vim.keymap.set({ "n", "x", "o" }, "[C", function()
+			textobjects_move.goto_previous_end("@class.outer", "textobjects")
+		end, { desc = "Go to previous class end" })
+
 		--------------------------------------
-		require("blink.cmp").setup({
-			keymap = {
-				preset = "none",
-				["<Up>"] = { "select_prev", "fallback" },
-				["<Down>"] = { "select_next", "fallback" },
-				["<C-y>"] = { "select_and_accept", "fallback" },
-				["<C-p>"] = { "select_prev", "fallback_to_mappings" },
-				["<C-n>"] = { "select_next", "fallback_to_mappings" },
-				["<C-c>"] = { "cancel", "fallback" },
-				["<C-u>"] = { "scroll_documentation_up", "fallback" },
-				["<C-d>"] = { "scroll_documentation_down", "fallback" },
-				["<Tab>"] = { "snippet_forward", "fallback" },
-				["<S-Tab>"] = { "snippet_backward", "fallback" },
-				["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
-				["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-				["<CR>"] = { "accept", "fallback" },
-			},
-			appearance = {
-				nerd_font_variant = "mono", -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-			},
-			completion = {
-				accept = {
-					auto_brackets = {
-						enabled = true,
-					},
-				},
-				documentation = {
-					auto_show = true, -- auto show the documentation popup
-				},
-				menu = {
-					draw = {
-						padding = { 0, 1 }, -- padding only on right side
-						components = {
-							kind_icon = {
-								text = function(ctx)
-									return " " .. ctx.kind_icon .. ctx.icon_gap .. " "
-								end,
-							},
-						},
-						treesitter = { "lsp" },
-					},
-				},
-			},
-			sources = {
-				default = { "lsp", "buffer", "snippets", "path" },
-			},
-			fuzzy = {
-				implementation = "rust",
-				sorts = {
-					"exact",
-					"score",
-					"sort_text",
-				},
-			},
-		})
+		require("treesitter-context").setup()
 
 		--------------------------------------
 		require("Comment").setup()
@@ -389,24 +439,34 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 			},
 		})
 
+		vim.keymap.set("n", "<leader>F", function()
+			require("conform").format({ async = true })
+		end, { noremap = true, desc = "[F]ormat buffer" })
+
 		--------------------------------------
-		require("dapui").setup()
+		require("dap-view").setup({
+			auto_toggle = true,
+		})
+
 		require("dap-go").setup()
-		local dap = require("dap")
-		local dapui = require("dapui")
 		-- Setup gdb for debugging C/C++/Rust, requires gdb 14.0+
 		-- Make sure build file with -g flag before debugging
+
+		local dap = require("dap")
+
 		dap.adapters.gdb = {
 			type = "executable",
 			command = "gdb",
 			args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
 		}
+
 		dap.adapters["rust-gdb"] = {
 			type = "executable",
 			command = "rust-gdb",
 			args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
 		}
-		dap.configurations.c = {
+
+		dap.configurations["c"] = {
 			{
 				name = "Launch",
 				type = "gdb",
@@ -441,8 +501,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 				cwd = "${workspaceFolder}",
 			},
 		}
-		dap.configurations.cpp = dap.configurations.c
-		dap.configurations.rust = {
+
+		dap.configurations["cpp"] = dap.configurations.c
+
+		dap.configurations["rust"] = {
 			{
 				name = "Launch",
 				type = "rust-gdb",
@@ -478,19 +540,13 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 				cwd = "${workspaceFolder}",
 			},
 		}
-		-- Binding dap & dap-ui
-		dap.listeners.before.attach.dapui_config = function()
-			dapui.open()
-		end
-		dap.listeners.before.launch.dapui_config = function()
-			dapui.open()
-		end
-		dap.listeners.before.event_terminated.dapui_config = function()
-			dapui.close()
-		end
-		dap.listeners.before.event_exited.dapui_config = function()
-			dapui.close()
-		end
+
+		vim.keymap.set("n", "gdb", ":DapToggleBreakpoint<CR>", { desc = "[d]ebugger [b]reak point", silent = true })
+		vim.keymap.set("n", "gdc", ":DapContinue<CR>", { desc = "[d]ebugger [c]ontinue", silent = true })
+		vim.keymap.set("n", "gdo", ":DapStepOver<CR>", { desc = "[d]ebugger step [o]ver", silent = true })
+		vim.keymap.set("n", "gdi", ":DapStepInto<CR>", { desc = "[d]ebugger step [i]nto", silent = true })
+		vim.keymap.set("n", "gdu", ":DapStepOut<CR>", { desc = "[d]ebugger step o[u]t", silent = true })
+		vim.keymap.set("n", "gdx", ":DapTerminate<CR>", { desc = "[d]ebugger e[x]it", silent = true })
 
 		--------------------------------------
 		require("flash").setup({
@@ -501,8 +557,21 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 			},
 		})
 
+		vim.keymap.set({ "n", "x", "o" }, "f", function()
+			require("flash").jump()
+		end, { noremap = true, desc = "Flash jump" })
+		vim.keymap.set({ "n", "x", "o" }, "F", function()
+			require("flash").treesitter()
+		end, { noremap = true, desc = "Flash treesitter" })
+		vim.keymap.set("c", "<c-f>", function()
+			require("flash").toggle()
+		end, { noremap = true, desc = "Toggle Flash (search mode)" })
+
 		--------------------------------------
 		require("grug-far").setup({})
+
+		vim.keymap.set("n", "<leader>gf", ":GrugFar<CR>", { desc = "GrugFar", silent = true })
+		vim.keymap.set("n", "<leader>gw", ":GrugFarWithin<CR>", { desc = "GrugFarWithin", silent = true })
 
 		--------------------------------------
 		require("blink.indent").setup({
@@ -520,6 +589,9 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 				return { "treesitter", "indent" }
 			end,
 		})
+
+		vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "Open all folds" })
+		vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "Close all folds" })
 	end,
 })
 

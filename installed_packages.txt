@@ -106,6 +106,7 @@ systemd-resolvconf
 tcpdump
 tmux
 torbrowser-launcher
+tree-sitter-cli
 ufw
 unixodbc
 unzip
