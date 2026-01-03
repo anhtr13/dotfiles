@@ -1,6 +1,6 @@
 # Dotfiles
 
-Personal configuration files for a mouse-free Linux experience!
+Very personal Linux configurations.
 
 ## Preview
 

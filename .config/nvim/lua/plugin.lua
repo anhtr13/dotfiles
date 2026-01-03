@@ -67,14 +67,17 @@ vim.keymap.set("n", "<leader>?", function()
 	require("which-key").show({ global = false })
 end, { desc = "Buffer Local Keymaps (which-key)" })
 
+--------------------------------------
+require("custom").Statusline.setup()
+
 -- ============================
 -- Lazy load
 -- ============================
 
-local lazy_plugs = vim.api.nvim_create_augroup("lazy.plugs", { clear = true })
+local lazy_load = vim.api.nvim_create_augroup("lazy_load", { clear = true })
 
 vim.api.nvim_create_autocmd("VimEnter", {
-	group = lazy_plugs,
+	group = lazy_load,
 	once = true,
 	callback = function()
 		vim.pack.add({
@@ -209,7 +212,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 vim.api.nvim_create_autocmd("BufReadPre", {
-	group = lazy_plugs,
+	group = lazy_load,
 	once = true,
 	callback = function()
 		vim.pack.add({
@@ -287,7 +290,7 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 })
 
 vim.api.nvim_create_autocmd("BufReadPost", {
-	group = lazy_plugs,
+	group = lazy_load,
 	once = true,
 	callback = function()
 		vim.pack.add({
@@ -365,6 +368,11 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		vim.keymap.set({ "n", "x", "o" }, "[C", function()
 			textobjects_move.goto_previous_end("@class.outer", "textobjects")
 		end, { desc = "Go to previous class end" })
+
+		local incremental_selection = require("custom").TS_Incremental_Selection
+		vim.keymap.set("n", "||", incremental_selection.init_selection, { desc = "Treesitter init selection" })
+		vim.keymap.set("x", "|+", incremental_selection.incr_selection, { desc = "Treesitter increase selection" })
+		vim.keymap.set("x", "|-", incremental_selection.decr_selection, { desc = "Treesitter decrease selection" })
 
 		--------------------------------------
 		require("treesitter-context").setup()
@@ -596,7 +604,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 vim.api.nvim_create_autocmd("InsertEnter", {
-	group = lazy_plugs,
+	group = lazy_load,
 	once = true,
 	callback = function()
 		vim.pack.add({
