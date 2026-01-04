@@ -1,3 +1,5 @@
+---- Custom tokyonight colorscheme ----
+
 local colors = {
 	fg = "#c8d3f5",
 	bg0 = "#0f101a",

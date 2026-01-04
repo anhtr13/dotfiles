@@ -1,8 +1,8 @@
 ---@diagnostic disable:undefined-field
 
--- ===================================
--- LSP util functions
--- ===================================
+-- ====================
+-- Utils
+-- ====================
 
 local function rust_reload_workspace(bufnr)
 	local clients = vim.lsp.get_clients({ bufnr = bufnr, name = "rust_analyzer" })
@@ -156,9 +156,9 @@ local vue_plugin = {
 	configNamespace = "typescript",
 }
 
--- ===================================
--- LSP configs
--- ===================================
+-- ====================
+-- Configs
+-- ====================
 
 vim.lsp.config["bash_ls"] = {
 	cmd = { "bash-language-server", "start" },
@@ -572,9 +572,9 @@ vim.lsp.config("*", {
 	},
 })
 
--- ===================================
--- Enable LSPs
--- ===================================
+-- ====================
+-- Enable
+-- ====================
 
 vim.lsp.enable({
 	"bash_ls",

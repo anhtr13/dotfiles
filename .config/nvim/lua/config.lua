@@ -2,7 +2,7 @@
 -- Appearance
 -- ============================
 
-vim.cmd.colorscheme("tokyo_night")
+vim.cmd.colorscheme("tokio_night")
 
 vim.diagnostic.config({
 	virtual_text = true,

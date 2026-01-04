@@ -4,9 +4,9 @@
 
 _G.selected_nodes = {} ---@type TSNode[]
 
-TS_Incremental_Selection = {}
+local M = {}
 
-TS_Incremental_Selection.get_node_at_cursor = function()
+M.get_node_at_cursor = function()
 	local cursor = vim.api.nvim_win_get_cursor(0)
 	local row = cursor[1] - 1
 	local col = cursor[2]
@@ -22,7 +22,7 @@ TS_Incremental_Selection.get_node_at_cursor = function()
 	return lang_tree:named_node_for_range({ row, col, row, col }, { ignore_injections = false })
 end
 
-TS_Incremental_Selection.select_node = function(node)
+M.select_node = function(node)
 	if not node then
 		return
 	end
@@ -47,19 +47,19 @@ TS_Incremental_Selection.select_node = function(node)
 	vim.api.nvim_win_set_cursor(0, { end_row_pos, end_col_pos > 0 and end_col_pos - 1 or 0 })
 end
 
-TS_Incremental_Selection.init_selection = function()
+M.init_selection = function()
 	_G.selected_nodes = {}
 
-	local current_node = TS_Incremental_Selection.get_node_at_cursor()
+	local current_node = M.get_node_at_cursor()
 	if not current_node then
 		return
 	end
 
 	table.insert(_G.selected_nodes, current_node)
-	TS_Incremental_Selection.select_node(current_node)
+	M.select_node(current_node)
 end
 
-TS_Incremental_Selection.incr_selection = function()
+M.incr_selection = function()
 	if #_G.selected_nodes == 0 then
 		return
 	end
@@ -109,114 +109,21 @@ TS_Incremental_Selection.incr_selection = function()
 		local parent_range = { parent:range() }
 		if not vim.deep_equal(range, parent_range) then
 			table.insert(_G.selected_nodes, parent)
-			TS_Incremental_Selection.select_node(parent)
+			M.select_node(parent)
 			return
 		end
 		node = parent
 	end
 end
 
-TS_Incremental_Selection.decr_selection = function()
+M.decr_selection = function()
 	if #_G.selected_nodes > 1 then
 		table.remove(_G.selected_nodes)
 		local current_node = _G.selected_nodes[#_G.selected_nodes]
 		if current_node then
-			TS_Incremental_Selection.select_node(current_node)
+			M.select_node(current_node)
 		end
 	end
 end
 
--- ========================
--- Statusline
--- ========================
-
-Statusline = {}
-
-_G.mode_highlight = function()
-	local mode = vim.fn.mode()
-	if mode == "n" then
-		return "%#StatusLineNormal#"
-	elseif mode == "i" or mode == "ic" then
-		return "%#StatusLineInsert#"
-	elseif mode == "v" or mode == "V" or mode == "s" or mode == "S" then
-		return "%#StatusLineVisual#"
-	elseif mode == "r" or mode == "R" then
-		return "%#StatusLineReplace#"
-	elseif mode == "c" then
-		return "%#StatusLineCommand#"
-	elseif mode == "t" then
-		return "%#StatusLineTerminal#"
-	else
-		return "%#StatusLineNormal#"
-	end
-end
-
-_G.mode_icon = function()
-	local mode = vim.fn.mode()
-	local modes = {
-		n = "NORMAL",
-		i = "INSERT",
-		v = "VISUAL",
-		V = "V-LINE",
-		["\22"] = "V-BLOCK", -- Ctrl-V
-		c = "COMMAND",
-		s = "SELECT",
-		S = "S-LINE",
-		["\19"] = "S-BLOCK", -- Ctrl-S
-		R = "REPLACE",
-		r = "REPLACE",
-		["!"] = "SHELL",
-		t = "TERMINAL",
-	}
-	return modes[mode] or (mode:upper())
-end
-
-_G.git_branch = function()
-	local branch = vim.fn.system("git branch --show-current 2>/dev/null | tr -d '\n'")
-	if branch ~= "" then
-		return " [" .. branch .. "]"
-	end
-	return ""
-end
-
-_G.file_size = function()
-	local size = vim.fn.getfsize(vim.fn.expand("%"))
-	if size < 0 then
-		return ""
-	end
-	if size < 1024 then
-		return size .. "B"
-	elseif size < 1024 * 1024 then
-		return string.format("%.1fK", size / 1024)
-	else
-		return string.format("%.1fM", size / 1024 / 1024)
-	end
-end
-
-Statusline.setup = function()
-	vim.api.nvim_create_autocmd({ "ModeChanged", "BufEnter", "WinEnter", "VimEnter", "InsertEnter", "InsertLeave" }, {
-		callback = function()
-			local mode_hl = _G.mode_highlight()
-			vim.opt_local.statusline = table.concat({
-				mode_hl,
-				"  %{v:lua.mode_icon()} ",
-				"%#StatusLine#",
-				"  %<%t%{v:lua.git_branch()} %m%=    %y ",
-				"%{v:lua.file_size()}  ",
-				mode_hl,
-				" %l:%c / %P ",
-			})
-		end,
-	})
-
-	vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
-		callback = function()
-			vim.opt_local.statusline = " %{v:lua.git_branch()} %<%f    %=%y | %l:%c / %P "
-		end,
-	})
-end
-
-return {
-	Statusline = Statusline,
-	TS_Incremental_Selection = TS_Incremental_Selection,
-}
+return M

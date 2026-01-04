@@ -1,5 +1,5 @@
 -- ============================
--- First load
+-- Core plugins
 -- ============================
 
 vim.pack.add({
@@ -7,6 +7,8 @@ vim.pack.add({
 
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
 	{ src = "https://github.com/nvim-tree/nvim-tree.lua" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
+	{ src = "https://github.com/mason-org/mason.nvim" },
 	{ src = "https://github.com/folke/which-key.nvim" },
 })
 
@@ -59,6 +61,119 @@ require("nvim-tree").setup({
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "File explorer", silent = true })
 
 --------------------------------------
+local ts = require("nvim-treesitter")
+local ts_setup = vim.api.nvim_create_augroup("treesitter.setup", { clear = true })
+
+vim.api.nvim_create_autocmd("BufReadPre", {
+	group = ts_setup,
+	once = true,
+	desc = "Install core treesitter parsers",
+	callback = function()
+		ts.install({
+			"c",
+			"lua",
+			"vim",
+			"vimdoc",
+			"query",
+			"markdown",
+			"markdown_inline",
+			"go",
+			"rust",
+			"zig",
+			"cpp",
+			"haskell",
+			"bash",
+			"python",
+      "commonlisp",
+			-- 'terraform',
+			"kdl",
+      "rasi",
+			"regex",
+			"yaml",
+			"json",
+			"toml",
+			"nix",
+			"make",
+			"cmake",
+			"editorconfig",
+			"sql",
+			"dockerfile",
+			"nginx",
+			-- 'java',
+			-- 'groovy',
+			"gitignore",
+			-- 'graphql',
+			"javascript",
+			"typescript",
+			-- 'css',
+			-- 'html',
+			"vue",
+		}, { max_jobs = 8 })
+		vim.api.nvim_command("TSUpdate")
+	end,
+})
+
+local function enable_treesitter(buf, lang)
+	if not vim.api.nvim_buf_is_valid(buf) then
+		return
+	end
+
+	local ok = pcall(vim.treesitter.start, buf, lang)
+	if ok then
+		for _, win in ipairs(vim.api.nvim_list_wins()) do
+			if vim.api.nvim_win_get_buf(win) == buf and vim.api.nvim_win_is_valid(win) then
+				vim.wo[win].foldmethod = "expr"
+				vim.wo[win].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+			end
+		end
+	end
+end
+
+local ignore_filetypes = {
+	checkhealth = true,
+	lazy = true,
+	mason = true,
+	notify = true,
+	noice = true,
+	qf = true,
+	toggleterm = true,
+	NvimTree = true,
+	fzf = true,
+}
+
+vim.api.nvim_create_autocmd("FileType", {
+	group = ts_setup,
+	desc = "Enable treesitter highlighting and indentation",
+	callback = function(event)
+		if ignore_filetypes[event.match] then
+			return
+		end
+
+		-- Skip treesitter on large files
+		local stats = vim.uv.fs_stat(vim.api.nvim_buf_get_name(event.buf))
+		if vim.api.nvim_buf_line_count(event.buf) > 5000 or (stats and stats.size > 100 * 1024) then
+			return
+		end
+
+		local lang = vim.treesitter.language.get_lang(event.match) or event.match
+		enable_treesitter(event.buf, lang)
+	end,
+})
+
+--------------------------------------
+require("mason").setup({
+	PATH = "prepend",
+	max_concurrent_installers = 3,
+	ui = {
+		icons = {
+			package_installed = "✓",
+			package_pending = "➜",
+			package_uninstalled = "✗",
+		},
+	},
+})
+
+--------------------------------------
 require("which-key").setup({
 	preset = "modern",
 })
@@ -68,7 +183,7 @@ vim.keymap.set("n", "<leader>?", function()
 end, { desc = "Buffer Local Keymaps (which-key)" })
 
 --------------------------------------
-require("custom").Statusline.setup()
+require("utils.statusline").setup()
 
 -- ============================
 -- Lazy load
@@ -76,80 +191,17 @@ require("custom").Statusline.setup()
 
 local lazy_load = vim.api.nvim_create_augroup("lazy_load", { clear = true })
 
-vim.api.nvim_create_autocmd("VimEnter", {
+vim.api.nvim_create_autocmd("BufReadPre", {
 	group = lazy_load,
 	once = true,
 	callback = function()
 		vim.pack.add({
 			{ src = "https://github.com/rafamadriz/friendly-snippets" },
 
-			{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
-			{ src = "https://github.com/mason-org/mason.nvim" },
 			{ src = "https://github.com/saghen/blink.cmp", version = "v1.8.0" },
-		})
-
-		--------------------------------------
-		local ts_parsers = {
-			"c",
-			"lua",
-			"vim",
-			"vimdoc",
-			"query",
-			"markdown",
-			"markdown_inline",
-			"bash",
-			"regex",
-			-- 'terraform',
-			"yaml",
-			"make",
-			"cmake",
-			"sql",
-			"dockerfile",
-			-- "toml",
-			"json",
-			-- 'java',
-			-- 'groovy',
-			"python",
-			"go",
-			"rust",
-			"zig",
-			"cpp",
-			"gitignore",
-			-- 'graphql',
-			"javascript",
-			"typescript",
-			"tsx",
-			-- 'css',
-			-- 'html',
-			"vue",
-		}
-
-		local treesitter = require("nvim-treesitter")
-		treesitter.install(ts_parsers)
-
-		vim.api.nvim_create_autocmd("FileType", {
-			group = vim.api.nvim_create_augroup("treesitter.setup", { clear = true }),
-			desc = "Enable treesitter highlighting",
-			callback = function(event)
-				local lang = vim.treesitter.language.get_lang(event.match) or event.match
-				local buf = event.buf
-				if vim.tbl_contains(ts_parsers, lang) then
-					pcall(vim.treesitter.start, buf, lang)
-				end
-			end,
-		})
-
-		--------------------------------------
-		require("mason").setup({
-			PATH = "prepend",
-			max_concurrent_installers = 3,
-			ui = {
-				icons = {
-					package_installed = "✓",
-					package_pending = "➜",
-					package_uninstalled = "✗",
-				},
-			},
+			{ src = "https://github.com/lewis6991/gitsigns.nvim" },
+			{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
+			{ src = "https://github.com/3rd/image.nvim" },
 		})
 
 		--------------------------------------
@@ -208,34 +260,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
 				},
 			},
 		})
-	end,
-})
-
-vim.api.nvim_create_autocmd("BufReadPre", {
-	group = lazy_load,
-	once = true,
-	callback = function()
-		vim.pack.add({
-			{ src = "https://github.com/3rd/image.nvim" },
-			{ src = "https://github.com/lewis6991/gitsigns.nvim" },
-			{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
-		})
-
-		--------------------------------------
-		require("image").setup({
-			integrations = {
-				markdown = {
-					enabled = true,
-					only_render_image_at_cursor = true,
-				},
-				neorg = {
-					enabled = false,
-				},
-				typst = {
-					enabled = false,
-				},
-			},
-		})
 
 		--------------------------------------
 		require("gitsigns").setup({
@@ -286,6 +310,22 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 				right_pad = 1,
 			},
 		})
+
+		--------------------------------------
+		require("image").setup({
+			integrations = {
+				markdown = {
+					enabled = true,
+					only_render_image_at_cursor = true,
+				},
+				neorg = {
+					enabled = false,
+				},
+				typst = {
+					enabled = false,
+				},
+			},
+		})
 	end,
 })
 
@@ -306,7 +346,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 			{ src = "https://github.com/folke/flash.nvim" },
 			{ src = "https://github.com/MagicDuck/grug-far.nvim" },
 			{ src = "https://github.com/saghen/blink.indent" },
-			{ src = "https://github.com/kevinhwang91/nvim-ufo" },
 		})
 
 		--------------------------------------
@@ -369,7 +408,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 			textobjects_move.goto_previous_end("@class.outer", "textobjects")
 		end, { desc = "Go to previous class end" })
 
-		local incremental_selection = require("custom").TS_Incremental_Selection
+		local incremental_selection = require("utils.ts_incremental_selection")
 		vim.keymap.set("n", "||", incremental_selection.init_selection, { desc = "Treesitter init selection" })
 		vim.keymap.set("x", "|+", incremental_selection.incr_selection, { desc = "Treesitter increase selection" })
 		vim.keymap.set("x", "|-", incremental_selection.decr_selection, { desc = "Treesitter decrease selection" })
@@ -457,11 +496,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		})
 
 		require("dap-go").setup()
-		-- Setup gdb for debugging C/C++/Rust, requires gdb 14.0+
-		-- Make sure build file with -g flag before debugging
 
 		local dap = require("dap")
 
+		-- gdb for debugging C/C++/Rust, requires gdb 14.0+
 		dap.adapters.gdb = {
 			type = "executable",
 			command = "gdb",
@@ -590,16 +628,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 				char = "|",
 			},
 		})
-
-		--------------------------------------
-		require("ufo").setup({
-			provider_selector = function()
-				return { "treesitter", "indent" }
-			end,
-		})
-
-		vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "Open all folds" })
-		vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "Close all folds" })
 	end,
 })
 

@@ -173,27 +173,6 @@ vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Escape to normal mode
 vim.keymap.set("n", "<c-c>", ":nohlsearch<CR>", { desc = "Clear search highlights", noremap = true })
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position", noremap = true })
 
-vim.keymap.set("n", "grd", vim.lsp.buf.definition, { desc = "vim.lsp.buf.definition()", noremap = true })
-vim.keymap.set("n", "grt", vim.lsp.buf.type_definition, { desc = "vim.lsp.buf.type_definition()", noremap = true })
-vim.keymap.set("n", "grh", function()
-	vim.lsp.buf.hover({ border = "single", max_height = 32, max_width = 132 })
-end, { desc = "vim.lsp.buf.hover()" })
-vim.keymap.set("n", "grI", function()
-	vim.diagnostic.open_float({ border = "single", max_height = 32, max_width = 132 })
-end, { desc = "vim.diagnostic.open_float()," })
-
-vim.keymap.set("n", "<leader>/f", ":FzfLua files<CR>", { desc = "FzfLua [f]iles", silent = true })
-vim.keymap.set("n", "<leader>/g", ":FzfLua live_grep<CR>", { desc = "FzfLua live_[g]rep", silent = true })
-vim.keymap.set("n", "<leader>/b", ":FzfLua buffers<CR>", { desc = "FzfLua [b]uffers", silent = true })
-vim.keymap.set("n", "<leader>/m", ":FzfLua marks<CR>", { desc = "FzfLua [m]arks", silent = true })
-vim.keymap.set("n", "<leader>/c", ":FzfLua command_history<CR>", { desc = "FzfLua [c]command_history", silent = true })
-vim.keymap.set("n", "<leader>//", ":FzfLua grep_curbuf<CR>", { desc = "FzfLua grep_curbuf", silent = true })
-vim.keymap.set("n", "<leader>/w", ":FzfLua diagnostics_workspace<CR>", { desc = "FzfLua diagnostics_[w]orkspace", silent = true })
-vim.keymap.set("n", "<leader>/d", ":FzfLua diagnostics_document<CR>", { desc = "FzfLua diagnostics_[d]ocument", silent = true })
-vim.keymap.set("n", "<leader>/k", ":FzfLua keymaps<CR>", { desc = "FzfLua [k]eymaps", silent = true })
-
-vim.keymap.set("n", "<leader>e", ":Oil<CR>", { desc = "Open Oil.nvim", silent = true })
-
 vim.keymap.set("n", "<Tab>l", ":bnext<CR>", { desc = "Next buffer", silent = true })
 vim.keymap.set("n", "<Tab>h", ":bprevious<CR>", { desc = "Previous buffer", silent = true })
 vim.keymap.set("n", "<Tab><Right>", ":bnext<CR>", { desc = "Next buffer", silent = true })
@@ -203,70 +182,11 @@ vim.keymap.set("n", "<Tab>cc", ":bdelete<CR>", { desc = "Close current buffer", 
 vim.keymap.set("n", "<Tab>ca", ":%bd<CR>", { desc = "Close all buffers", silent = true })
 vim.keymap.set("n", "<Tab>co", ":%bd|e#|bd#<CR>", { desc = "Close all other buffers", silent = true })
 
--- ========================
--- ====== Statusline ======
--- ========================
-
-local function git_branch()
-	local branch = vim.fn.system("git branch --show-current 2>/dev/null | tr -d '\n'")
-	if branch ~= "" then
-		return " [" .. branch .. "]"
-	end
-	return ""
-end
-
-local function file_size()
-	local size = vim.fn.getfsize(vim.fn.expand("%"))
-	if size < 0 then
-		return ""
-	end
-	if size < 1024 then
-		return size .. "B"
-	elseif size < 1024 * 1024 then
-		return string.format("%.1fK", size / 1024)
-	else
-		return string.format("%.1fM", size / 1024 / 1024)
-	end
-end
-
-local function mode_icon()
-	local mode = vim.fn.mode()
-	local modes = {
-		n = "NORMAL",
-		i = "INSERT",
-		v = "VISUAL",
-		V = "V-LINE",
-		["\22"] = "V-BLOCK", -- Ctrl-V
-		c = "COMMAND",
-		s = "SELECT",
-		S = "S-LINE",
-		["\19"] = "S-BLOCK", -- Ctrl-S
-		R = "REPLACE",
-		r = "REPLACE",
-		["!"] = "SHELL",
-		t = "TERMINAL",
-	}
-	return modes[mode] or (mode:upper())
-end
-
-_G.mode_icon = mode_icon
-_G.git_branch = git_branch
-_G.file_size = file_size
-
-vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
-	callback = function()
-		vim.opt_local.statusline = table.concat({
-			"%#Bold#",
-			" %{v:lua.mode_icon()} ",
-			"%#StatusLine#",
-			"| %<%t%{v:lua.git_branch()} %m%=    %y ",
-			"%{v:lua.file_size()} | %l:%c / %P ",
-		})
-	end,
-})
-
-vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
-	callback = function()
-		vim.opt_local.statusline = " %{v:lua.git_branch()} %<%f    %=%y | %l:%c / %P "
-	end,
-})
+vim.keymap.set("n", "grd", vim.lsp.buf.definition, { desc = "vim.lsp.buf.definition()", noremap = true })
+vim.keymap.set("n", "grt", vim.lsp.buf.type_definition, { desc = "vim.lsp.buf.type_definition()", noremap = true })
+vim.keymap.set("n", "grh", function()
+	vim.lsp.buf.hover({ border = "single", max_height = 32, max_width = 132 })
+end, { desc = "vim.lsp.buf.hover()" })
+vim.keymap.set("n", "grI", function()
+	vim.diagnostic.open_float({ border = "single", max_height = 32, max_width = 132 })
+end, { desc = "vim.diagnostic.open_float()," })
