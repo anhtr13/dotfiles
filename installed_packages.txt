@@ -113,6 +113,9 @@ unzip
 vim
 virt-manager
 virt-viewer
+vulkan-intel
+vulkan-nouveau
+vulkan-tools
 waybar
 wget
 wireguard-tools

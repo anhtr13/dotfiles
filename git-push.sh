@@ -26,9 +26,26 @@ confirm_cmd() {
 selected=$(echo -e "$no\n$yes" | confirm_cmd)
 if [[ "$selected" == "$yes" ]]; then
   git commit -m "$message"
+
   eval $(keychain --eval id_ed25519)
+
   echo "Pushing '$message'..."
-  git push origin main
+
+  git push github main &
+  PIDS[0]=$!
+  git push codeberg main &
+  PIDS[1]=$!
+
+  failures=0
+  for pid in "${PIDS[@]}"; do
+    wait "$pid" || ((++failures))
+  done
+
+  if ((failures > 0)); then
+    echo "Warning: $failures background processes failed."
+  else
+    echo "All push are complete."
+  fi
 else
   exit
 fi

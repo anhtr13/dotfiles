@@ -62,72 +62,47 @@ vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "File explorer"
 
 --------------------------------------
 local ts = require("nvim-treesitter")
-local ts_setup = vim.api.nvim_create_augroup("treesitter.setup", { clear = true })
-
-vim.api.nvim_create_autocmd("BufReadPre", {
-	group = ts_setup,
-	once = true,
-	desc = "Install core treesitter parsers",
-	callback = function()
-		ts.install({
-			"c",
-			"lua",
-			"vim",
-			"vimdoc",
-			"query",
-			"markdown",
-			"markdown_inline",
-			"go",
-			"rust",
-			"zig",
-			"cpp",
-			"haskell",
-			"bash",
-			"python",
-      "commonlisp",
-			-- 'terraform',
-			"kdl",
-      "rasi",
-			"regex",
-			"yaml",
-			"json",
-			"toml",
-			"nix",
-			"make",
-			"cmake",
-			"editorconfig",
-			"sql",
-			"dockerfile",
-			"nginx",
-			-- 'java',
-			-- 'groovy',
-			"gitignore",
-			-- 'graphql',
-			"javascript",
-			"typescript",
-			-- 'css',
-			-- 'html',
-			"vue",
-		}, { max_jobs = 8 })
-		vim.api.nvim_command("TSUpdate")
-	end,
-})
-
-local function enable_treesitter(buf, lang)
-	if not vim.api.nvim_buf_is_valid(buf) then
-		return
-	end
-
-	local ok = pcall(vim.treesitter.start, buf, lang)
-	if ok then
-		for _, win in ipairs(vim.api.nvim_list_wins()) do
-			if vim.api.nvim_win_get_buf(win) == buf and vim.api.nvim_win_is_valid(win) then
-				vim.wo[win].foldmethod = "expr"
-				vim.wo[win].foldexpr = "v:lua.vim.treesitter.foldexpr()"
-			end
-		end
-	end
-end
+local ts_setup_group = vim.api.nvim_create_augroup("treesitter.setup", { clear = true })
+local parsers = {
+	"c",
+	"lua",
+	"vim",
+	"vimdoc",
+	"query",
+	"markdown",
+	"markdown_inline",
+	"go",
+	"rust",
+	"zig",
+	"cpp",
+	"haskell",
+	"bash",
+	"python",
+	"commonlisp",
+	-- 'terraform',
+	"kdl",
+	"rasi",
+	"regex",
+	"yaml",
+	"json",
+	"toml",
+	"nix",
+	"make",
+	"cmake",
+	"editorconfig",
+	"sql",
+	"dockerfile",
+	"nginx",
+	-- 'java',
+	-- 'groovy',
+	"gitignore",
+	-- 'graphql',
+	"javascript",
+	"typescript",
+	-- 'css',
+	-- 'html',
+	"vue",
+}
 
 local ignore_filetypes = {
 	checkhealth = true,
@@ -141,22 +116,29 @@ local ignore_filetypes = {
 	fzf = true,
 }
 
+vim.api.nvim_create_autocmd("VimEnter", {
+	group = ts_setup_group,
+	once = true,
+	desc = "Install treesitter parsers",
+	callback = function()
+		ts.install(parsers, { max_jobs = 8 })
+		-- vim.api.nvim_command("TSUpdate")
+	end,
+})
+
 vim.api.nvim_create_autocmd("FileType", {
-	group = ts_setup,
-	desc = "Enable treesitter highlighting and indentation",
+	group = ts_setup_group,
+	desc = "Enable treesitter highlighting and folds",
 	callback = function(event)
-		if ignore_filetypes[event.match] then
+		if not vim.api.nvim_buf_is_valid(event.buf) or ignore_filetypes[event.match] then
 			return
 		end
-
-		-- Skip treesitter on large files
-		local stats = vim.uv.fs_stat(vim.api.nvim_buf_get_name(event.buf))
-		if vim.api.nvim_buf_line_count(event.buf) > 5000 or (stats and stats.size > 100 * 1024) then
-			return
-		end
-
 		local lang = vim.treesitter.language.get_lang(event.match) or event.match
-		enable_treesitter(event.buf, lang)
+		local ok = pcall(vim.treesitter.start, event.buf, lang)
+		if ok then
+			vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+			vim.wo[0][0].foldmethod = "expr"
+		end
 	end,
 })
 
@@ -189,7 +171,7 @@ require("utils.statusline").setup()
 -- Lazy load
 -- ============================
 
-local lazy_load = vim.api.nvim_create_augroup("lazy_load", { clear = true })
+local lazy_load = vim.api.nvim_create_augroup("lazy_load_plugins", { clear = true })
 
 vim.api.nvim_create_autocmd("BufReadPre", {
 	group = lazy_load,
