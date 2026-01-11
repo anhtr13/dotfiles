@@ -367,9 +367,8 @@ vim.lsp.config["rust_analyzer"] = {
 
 --------------------------------------
 vim.lsp.config["systemd_ls"] = {
-	cmd = { "systemd-language-server" },
+	cmd = { "systemd-lsp" },
 	filetypes = { "systemd" },
-	root_markers = { ".git" },
 }
 
 --------------------------------------

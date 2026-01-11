@@ -36,13 +36,13 @@ if [[ "$selected" == "$yes" ]]; then
   git push codeberg main &
   PIDS[1]=$!
 
-  failures=0
+  failed_count=0
   for pid in "${PIDS[@]}"; do
-    wait "$pid" || ((++failures))
+    wait "$pid" || ((++failed_count))
   done
 
-  if ((failures > 0)); then
-    echo "Warning: $failures background processes failed."
+  if ((failed_count > 0)); then
+    echo "Warning: $failed_count background processes failed."
   else
     echo "All push are complete."
   fi

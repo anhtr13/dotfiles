@@ -47,9 +47,9 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- Indentation
-vim.o.tabstop = 2 -- Tab width
-vim.o.shiftwidth = 2 -- Indent width
-vim.o.softtabstop = 2 -- Soft tab stop
+vim.o.tabstop = 4 -- Tab width
+vim.o.shiftwidth = 4 -- Indent width
+vim.o.softtabstop = 4 -- Soft tab stop
 vim.o.expandtab = true -- Use spaces instead of tabs
 vim.o.smartindent = true -- Smart auto-indenting
 vim.o.autoindent = true -- Copy indent from current line

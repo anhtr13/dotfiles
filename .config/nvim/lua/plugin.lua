@@ -265,7 +265,9 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 		require("render-markdown").setup({
 			render_modes = { "n", "c", "t" },
 			heading = {
-				icons = { "󰎦 ", "󰎩 ", "󰎬 ", "󰎮 ", "󰎰 ", "󰎵 " },
+				-- icons = { "[ 󰬺 ] ", " [ 󰬻 ] ", "  [ 󰬼 ] ", "   [ 󰬽 ] ", "    [ 󰬾 ] ", "     [ 󰬿 ] " },
+				icons = { " 󰬺 | ", "  󰬻 | ", "   󰬼 | ", "    󰬽 | ", "     󰬾 | ", "      󰬿 | " },
+				position = "inline",
 				border = true,
 				above = " ",
 				below = "",
@@ -290,6 +292,9 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 				language_pad = 1,
 				left_pad = 1,
 				right_pad = 1,
+			},
+			completions = {
+				blink = { enabled = true },
 			},
 		})
 

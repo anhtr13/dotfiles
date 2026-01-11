@@ -1,8 +1,8 @@
 # zshrc
 
-# sudo git clone https://github.com/zsh-users/zsh-autosuggestions /usr/share/zsh/plugins/zsh-autosuggestions
+# https://github.com/zsh-users/zsh-autosuggestions
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-# sudo git clone https://github.com/zsh-users/zsh-history-substring-search /usr/share/zsh/plugins/zsh-history-substring-search
+# https://github.com/zsh-users/zsh-history-substring-search
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 
 [[ -f ${ZDOTDIR}/aliasrc ]] && source ${ZDOTDIR}/aliasrc
@@ -52,8 +52,8 @@ bindkey '^[z' undo                           # Alt + z
 
 echo -en "\e]0;$PWD\a" #-- Set icon name and window title to $PWD
 function chpwd() {
-  echo -en "\e]0;$PWD\a" #-- Set icon name and window title after cd
+    echo -en "\e]0;$PWD\a" #-- Set icon name and window title after cd
 }
 
-# sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting /usr/share/zsh/plugins/zsh-syntax-highlighting
+# https://github.com/zsh-users/zsh-syntax-highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
