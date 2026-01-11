@@ -150,7 +150,7 @@ vim.api.nvim_create_user_command("BufDeleteAll", DeleteAllBufs, { bang = true, d
 
 vim.api.nvim_create_user_command(
 	"InstallLSPs",
-	"MasonInstall bash-language-server cmake-language-server dockerfile-language-server gopls json-lsp lua-language-server nginx-language-server pylyzer systemd-language-server tailwindcss-language-server vtsls vue-language-server yaml-language-server",
+	"MasonInstall bash-language-server cmake-language-server dockerfile-lsp gopls json-lsp lua-language-server nginx-language-server pylyzer systemd-language-server tailwindcss-language-server vtsls vue-language-server yaml-language-server",
 	{ bang = true, desc = "Install formatter via Mason" }
 )
 
