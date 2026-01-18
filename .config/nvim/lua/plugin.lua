@@ -266,7 +266,7 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 			render_modes = { "n", "c", "t" },
 			heading = {
 				-- icons = { "[ 󰬺 ] ", " [ 󰬻 ] ", "  [ 󰬼 ] ", "   [ 󰬽 ] ", "    [ 󰬾 ] ", "     [ 󰬿 ] " },
-				icons = { " 󰬺 | ", "  󰬻 | ", "   󰬼 | ", "    󰬽 | ", "     󰬾 | ", "      󰬿 | " },
+				icons = { "[ 󰉫 ] ", " [ 󰉬 ] ", "  [ 󰉭 ] ", "   [ 󰉮 ] ", "    [ 󰉯 ] ", "     [ 󰉰 ] " },
 				position = "inline",
 				border = true,
 				above = " ",

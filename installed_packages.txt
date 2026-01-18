@@ -55,6 +55,8 @@ libguestfs
 linux
 linux-firmware
 linux-headers
+linux-lts
+linux-lts-headers
 llvm
 lolcat
 lua-language-server
