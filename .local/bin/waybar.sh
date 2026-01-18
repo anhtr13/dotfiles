@@ -34,5 +34,5 @@ run_rofi() {
 
 chosen="$(run_rofi)"
 if [[ -f "$source/$chosen" ]]; then
-  cat "$source/$chosen" >$target
+  echo "@import \"./styles/$chosen\";" >$target
 fi

@@ -1,4 +1,4 @@
-@import "base.css";
+@import "../colors.css";
 @define-color base #000000;
 
 window#waybar {
