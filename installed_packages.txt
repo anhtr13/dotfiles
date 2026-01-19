@@ -125,7 +125,6 @@ wl-clipboard
 xclip
 xdg-desktop-portal-hyprland
 yay
-yazi
 zathura
 zathura-pdf-poppler
 zoxide

@@ -99,8 +99,9 @@ local parsers = {
 	-- 'graphql',
 	"javascript",
 	"typescript",
-	-- 'css',
+	"css",
 	-- 'html',
+	"xml",
 	"vue",
 }
 
@@ -182,7 +183,6 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 
 			{ src = "https://github.com/saghen/blink.cmp", version = "v1.8.0" },
 			{ src = "https://github.com/lewis6991/gitsigns.nvim" },
-			{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
 			{ src = "https://github.com/3rd/image.nvim" },
 		})
 
@@ -262,48 +262,11 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 		})
 
 		--------------------------------------
-		require("render-markdown").setup({
-			render_modes = { "n", "c", "t" },
-			heading = {
-				-- icons = { "[ 󰬺 ] ", " [ 󰬻 ] ", "  [ 󰬼 ] ", "   [ 󰬽 ] ", "    [ 󰬾 ] ", "     [ 󰬿 ] " },
-				icons = { "[ 󰉫 ] ", " [ 󰉬 ] ", "  [ 󰉭 ] ", "   [ 󰉮 ] ", "    [ 󰉯 ] ", "     [ 󰉰 ] " },
-				position = "inline",
-				border = true,
-				above = " ",
-				below = "",
-				backgrounds = {
-					"MarkdownH1Bg",
-					"MarkdownH2Bg",
-					"MarkdownH3Bg",
-					"MarkdownH4Bg",
-					"MarkdownH5Bg",
-					"MarkdownH6Bg",
-				},
-				foregrounds = {
-					"MarkdownH1",
-					"MarkdownH2",
-					"MarkdownH3",
-					"MarkdownH4",
-					"MarkdownH5",
-					"MarkdownH6",
-				},
-			},
-			code = {
-				language_pad = 1,
-				left_pad = 1,
-				right_pad = 1,
-			},
-			completions = {
-				blink = { enabled = true },
-			},
-		})
-
-		--------------------------------------
 		require("image").setup({
 			integrations = {
 				markdown = {
 					enabled = true,
-					only_render_image_at_cursor = true,
+					only_render_image_at_cursor = false,
 				},
 				neorg = {
 					enabled = false,
@@ -434,16 +397,16 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 					args = {
 						"--config",
 						[[{
-              "language": "postgresql",
-              "useTabs": true,
-              "tabWidth": 2,
-              "keywordCase": "upper",
-              "dataTypeCase": "lower",
-              "identifierCase": "lower",
-              "functionCase": "lower",
-              "linesBetweenQueries": 1,
-              "newlineBeforeSemicolon": false
-            }]],
+                            "language": "postgresql",
+                            "useTabs": true,
+                            "tabWidth": 2,
+                            "keywordCase": "upper",
+                            "dataTypeCase": "lower",
+                            "identifierCase": "lower",
+                            "functionCase": "lower",
+                            "linesBetweenQueries": 1,
+                            "newlineBeforeSemicolon": false
+                        }]],
 					},
 				},
 			},
@@ -461,6 +424,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 				nginx = { "nginxfmt" },
 				json = { "json_fmt" },
 				jsonc = { "json_fmt" },
+				markdown = { "prettierd", "prettier", stop_after_first = true },
 				javascript = { "prettierd", "prettier", stop_after_first = true },
 				typescript = { "prettierd", "prettier", stop_after_first = true },
 				vue = { "prettierd", "prettier", stop_after_first = true },
