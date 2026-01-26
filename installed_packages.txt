@@ -52,6 +52,7 @@ kew
 keychain
 kitty
 libguestfs
+libreoffice-still
 linux
 linux-firmware
 linux-headers

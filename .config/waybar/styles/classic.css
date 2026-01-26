@@ -1,5 +1,4 @@
 @import "../colors.css";
-@define-color base #000000;
 
 window#waybar {
   transition: all 0.1s linear;
