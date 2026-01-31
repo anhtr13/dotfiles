@@ -122,6 +122,7 @@ vulkan-tools
 waybar
 wget
 wireguard-tools
+wireshark-cli
 wl-clipboard
 xclip
 xdg-desktop-portal-hyprland
