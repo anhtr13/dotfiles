@@ -10,13 +10,13 @@ M.mode_highlight = function()
 		return "%#StatusLineNormal#"
 	elseif mode == "i" or mode == "ic" then
 		return "%#StatusLineInsert#"
-	elseif mode == "v" or mode == "V" or mode == "s" or mode == "S" then
+	elseif mode == "v" or mode == "V" or mode == "\22" or mode == "s" or mode == "S" or mode == "\19" then
 		return "%#StatusLineVisual#"
 	elseif mode == "r" or mode == "R" then
 		return "%#StatusLineReplace#"
 	elseif mode == "c" then
 		return "%#StatusLineCommand#"
-	elseif mode == "t" then
+	elseif mode == "t" or mode == "!" then
 		return "%#StatusLineTerminal#"
 	else
 		return "%#StatusLineNormal#"
@@ -26,19 +26,19 @@ end
 M.mode_icon = function()
 	local mode = vim.fn.mode()
 	local modes = {
-		n = "NORMAL",
-		i = "INSERT",
-		v = "VISUAL",
-		V = "V-LINE",
-		["\22"] = "V-BLOCK", -- Ctrl-V
-		c = "COMMAND",
-		s = "SELECT",
-		S = "S-LINE",
-		["\19"] = "S-BLOCK", -- Ctrl-S
-		R = "REPLACE",
-		r = "REPLACE",
+		n = "NOR",
+		i = "INS",
+		v = "VIS",
+		V = "V-L",
+		["\22"] = "V-B", -- Ctrl-V
+		c = "CMD",
+		s = "SEL",
+		S = "S-L",
+		["\19"] = "S-B", -- Ctrl-S
+		R = "RPL",
+		r = "RPL",
 		["!"] = "SHELL",
-		t = "TERMINAL",
+		t = "TERM",
 	}
 	return modes[mode] or (mode:upper())
 end
@@ -76,19 +76,19 @@ M.setup = function()
 			local mode_hl = _G.mode_highlight()
 			vim.opt_local.statusline = table.concat({
 				mode_hl,
-				"  %{v:lua.mode_icon()} ",
+				" %{v:lua.mode_icon()} ",
 				"%#StatusLine#",
-				"  %<%t%{v:lua.git_branch()} %m%=    %y ",
-				"%{v:lua.file_size()}  ",
+				" %<%t%{v:lua.git_branch()} %m%=    %y ",
+				"%{v:lua.file_size()} | %P ",
 				mode_hl,
-				" %l:%c / %P ",
+				" %l:%c ",
 			})
 		end,
 	})
 
 	vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
 		callback = function()
-			vim.opt_local.statusline = " %{v:lua.git_branch()} %<%f    %=%y | %l:%c / %P "
+			vim.opt_local.statusline = " %{v:lua.git_branch()} %<%f    %=%y | %P / %l:%c "
 		end,
 	})
 end

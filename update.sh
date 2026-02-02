@@ -22,7 +22,7 @@ track_dirs=(
   ".config/waybar"
   ".config/yazi"
   ".config/zsh"
-  # ".doom.d"
+  ".doom.d"
 )
 
 ignores=()

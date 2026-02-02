@@ -243,19 +243,19 @@ end
 StatusLine.mode_icon = function()
 	local mode = vim.fn.mode()
 	local modes = {
-		n = "NORMAL",
-		i = "INSERT",
-		v = "VISUAL",
-		V = "V-LINE",
-		["\22"] = "V-BLOCK", -- Ctrl-V
-		c = "COMMAND",
-		s = "SELECT",
-		S = "S-LINE",
-		["\19"] = "S-BLOCK", -- Ctrl-S
-		R = "REPLACE",
-		r = "REPLACE",
+		n = "NOR",
+		i = "INS",
+		v = "VIS",
+		V = "V-L",
+		["\22"] = "V-B", -- Ctrl-V
+		c = "CMD",
+		s = "SEL",
+		S = "S-L",
+		["\19"] = "S-B", -- Ctrl-S
+		R = "RPL",
+		r = "RPL",
 		["!"] = "SHELL",
-		t = "TERMINAL",
+		t = "TERM",
 	}
 	return modes[mode] or (mode:upper())
 end
@@ -272,14 +272,14 @@ StatusLine.setup = function()
 				" %{v:lua.mode_icon()} ",
 				"%#StatusLine#",
 				"| %<%t%{v:lua.git_branch()} %m%=    %y ",
-				"%{v:lua.file_size()} | %l:%c / %P ",
+				"%{v:lua.file_size()} | %P / %l:%c ",
 			})
 		end,
 	})
 
 	vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
 		callback = function()
-			vim.opt_local.statusline = " %{v:lua.git_branch()} %<%f    %=%y | %l:%c / %P "
+			vim.opt_local.statusline = " %{v:lua.git_branch()} %<%f    %=%y | %P / %l:%c "
 		end,
 	})
 end
