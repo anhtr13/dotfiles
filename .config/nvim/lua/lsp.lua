@@ -24,4 +24,5 @@ vim.lsp.enable({
 	"vtsls",
 	"vue_ls",
 	"yaml_ls",
+	"zig_ls",
 })

@@ -75,6 +75,7 @@ ngrok
 ninja
 niri
 noto-fonts-cjk
+nsxiv
 nvidia-open-dkms
 nvidia-settings
 nyx
@@ -131,3 +132,19 @@ zathura
 zathura-pdf-poppler
 zoxide
 zsh
+
+# Rust packages:
+bob-nvim v4.1.5:
+    bob
+fnm v1.38.1:
+    fnm
+rustlings v6.5.0:
+    rustlings
+treer v0.1.0 (https://github.com/anhtr13/treer#205f1aae):
+    treer
+yazi-build v26.1.4 (https://github.com/sxyazi/yazi.git#e6d99571):
+    yazi-build
+yazi-cli v26.1.4 (https://github.com/sxyazi/yazi.git#e6d99571):
+    ya
+yazi-fm v26.1.4 (https://github.com/sxyazi/yazi.git#e6d99571):
+    yazi

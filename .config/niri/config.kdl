@@ -267,7 +267,7 @@ layout {
 // which may be more convenient to use.
 spawn-at-startup "swaync"
 spawn-at-startup "hypridle"
-spawn-at-startup "swww-daemon"
+spawn-at-startup "awww-daemon"
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 spawn-sh-at-startup "emacs --daemon"

@@ -9,34 +9,6 @@ track_dirs=(
 )
 
 ##############################
-# Yay for AUR
-##############################
-
-sudo pacman -S --needed git base-devel
-if ! $(pacman -Q yay >/dev/null); then
-    git clone https://aur.archlinux.org/yay.git $HOME/yay
-    cd $HOME/yay
-    makepkg -si
-    cd $here
-fi
-
-##############################
-# Install core packages
-##############################
-
-pkgs=()
-while IFS= read -r line; do
-    pkgs+=("$line")
-done <"$here/installed_packages.txt"
-
-pkgs_to_install=($(comm -12 <(pacman -Slq | sort -u) <(printf '%s\n' "${pkgs[@]}" | sort -u)))
-sudo pacman -S --needed "${pkgs_to_install[@]}"
-
-pkgs_not_found=($(comm -23 <(printf '%s\n' "${pkgs[@]}" | sort -u) <(printf '%s\n' "${pkgs_to_install[@]}" | sort -u)))
-printf "\\n--------------------------------------------------\\nPackages not found and ignored:\\n\\n"
-printf "%s\\n" "${pkgs_not_found[@]}"
-
-##############################
 # Copy config files
 ##############################
 
@@ -62,3 +34,31 @@ fi
 if ! [[ -e "/usr/share/zsh/plugins/zsh-syntax-highlighting" ]]; then
     sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting /usr/share/zsh/plugins/zsh-syntax-highlighting
 fi
+
+# ##############################
+# # Setup AUR
+# ##############################
+#
+# sudo pacman -S --needed git base-devel
+# if ! $(pacman -Q yay >/dev/null); then
+#     git clone https://aur.archlinux.org/yay.git $HOME/yay
+#     cd $HOME/yay
+#     makepkg -si
+#     cd $here
+# fi
+#
+# ##############################
+# # Install core packages
+# ##############################
+#
+# pkgs=()
+# while IFS= read -r line; do
+#     pkgs+=("$line")
+# done <"$here/installed_packages.txt"
+#
+# pkgs_to_install=($(comm -12 <(pacman -Slq | sort -u) <(printf '%s\n' "${pkgs[@]}" | sort -u)))
+# sudo pacman -S --needed "${pkgs_to_install[@]}"
+#
+# pkgs_not_found=($(comm -23 <(printf '%s\n' "${pkgs[@]}" | sort -u) <(printf '%s\n' "${pkgs_to_install[@]}" | sort -u)))
+# printf "\\n--------------------------------------------------\\nPackages not found and ignored:\\n\\n"
+# printf "%s\\n" "${pkgs_not_found[@]}"
