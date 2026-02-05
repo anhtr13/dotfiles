@@ -73,7 +73,9 @@ menuitem {
   padding: 0px 5px;
   border: 1px solid @green0;
 }
-#workspaces button.active {
+#workspaces button.active,
+#workspaces button.focused,
+#workspaces button.visible {
   padding: 0px 5px;
   border: 1px solid @cyan0;
 }

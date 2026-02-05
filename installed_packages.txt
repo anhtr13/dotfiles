@@ -104,6 +104,7 @@ slurp
 sof-firmware
 starship
 sudo
+sway
 swaync
 swww
 systemd-resolvconf

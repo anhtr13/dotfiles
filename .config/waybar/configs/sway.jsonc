@@ -11,6 +11,7 @@
   "modules-left": [
     "custom/rofi",
     "sway/workspaces",
+    "sway/mode",
     "sway/window"
   ],
   "modules-center": [
@@ -35,6 +36,10 @@
   },
   "sway/workspaces": {
     "all-outputs": false
+  },
+  "sway/mode": {
+      "format": "Mode: {}",
+      "tooltip": false
   },
   "sway/window": {
     "format": "{}",

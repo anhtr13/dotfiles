@@ -21,8 +21,8 @@ if [[ -z "$XDG_RUNTIME_DIR" ]]; then
 fi
 
 export GOPATH="$HOME/go"
-export ZIGPATH="$HOME/zig/zig-x86_64-linux-0.15.2"
-export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin:$GOPATH:$ZIGPATH"
+export ZIGPATH="$HOME/zig"
+export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin:$GOPATH/bin:$ZIGPATH/zig-x86_64-linux-0.15.2"
 
 export EDITOR="/usr/bin/nvim"
 export MANPAGER="nvim +Man!" # Use nvim for man page

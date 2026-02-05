@@ -15,7 +15,7 @@
 .notification {
   color: @white;
   border: 2px solid @cyan;
-  background: alpha(@base, 0.65)
+  background: alpha(@base, 0.9)
 }
 
 .notification button {
@@ -73,7 +73,7 @@
 
 /* Control center */
 .control-center {
-  background: alpha(@base, 0.65);
+  background: alpha(@base, 0.9);
   border: 2px solid @cyan;
   padding: 4px;
 }

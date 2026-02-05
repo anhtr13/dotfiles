@@ -80,7 +80,9 @@ menuitem {
   color: @base;
   background: @green0;
 }
-#workspaces button.active {
+#workspaces button.active,
+#workspaces button.focused,
+#workspaces button.visible {
   padding: 0px 5px;
   color: @base;
   background: @cyan0;

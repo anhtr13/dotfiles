@@ -4,11 +4,16 @@
 #
 
 focus_follows_mouse always
+default_border pixel 3
+gaps top 4
+gaps inner 6
+gaps outer 3
 
 # Exec once
 exec waybar -c $XDG_CONFIG_HOME/waybar/configs/sway.jsonc
 exec swaync
 exec awww-daemon
+exec emacs --daemon
 
 ### Variables
 set $mod Mod4
@@ -21,14 +26,14 @@ set $mod Mod4
     bindsym $mod+c kill
     bindsym $mod+f floating toggle
     bindsym $mod+m exec swaymsg mark swapme
-    bindsym $mod+Return exec swaymsg fullscreen toggle
+    bindsym $mod+Return exec sway-maximizescreen.sh
     bindsym $mod+Space exec launcher.sh
 
-    bindsym $mod+Ctrl+Return exec swaymsg fullscreen global
+    bindsym $mod+Ctrl+Return exec swaymsg fullscreen toggle
     bindsym $mod+Ctrl+Space exec shortcuts.sh
     bindsym $mod+Ctrl+P exec powermenu.sh
     bindsym $mod+Ctrl+L exec hotlinks.sh
-    bindsym $mod+Ctrl+T exec kitty
+    bindsym $mod+Ctrl+T exec ghostty
     bindsym $mod+Ctrl+O exec setting.sh
     bindsym $mod+Ctrl+R exec swaymsg layout toggle split
 
