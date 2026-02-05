@@ -111,16 +111,12 @@ vim.keymap.set({ "n", "v" }, "<c-l>", "10l", { noremap = true })
 vim.keymap.set("i", "<c-z>", "<ESC>u", { desc = "Undo and back to normal mode", noremap = true })
 vim.keymap.set("i", "<c-r>", "<ESC><c-r>", { desc = "Redo and back to normal mode", noremap = true })
 vim.keymap.set({ "n", "v" }, "<c-z>", "u", { desc = "Undo", noremap = true })
-
 vim.keymap.set("n", "<c-s>", "<cmd>:w<CR>", { desc = "Save file", noremap = true })
 vim.keymap.set({ "i", "v" }, "<c-s>", "<ESC><cmd>:w<CR>", { desc = "Save and back to normal mode", noremap = true })
-
 vim.keymap.set({ "n", "i", "v", "x", "s", "o", "t", "c", "l" }, "<c-q>", "<ESC>", { desc = "<ESC>", noremap = true })
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Escape to normal mode", noremap = true })
-
 vim.keymap.set("n", "<c-c>", ":nohlsearch<CR>", { desc = "Clear search highlights", noremap = true })
-
-vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position", noremap = true })
+-- vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position", noremap = true })
 
 -- ============================
 -- User commands
@@ -151,13 +147,13 @@ vim.api.nvim_create_user_command("BufDeleteAll", DeleteAllBufs, { bang = true, d
 vim.api.nvim_create_user_command(
 	"InstallLSPs",
 	"MasonInstall bash-language-server cmake-language-server dockerfile-lsp gopls json-lsp lua-language-server nginx-language-server pylyzer systemd-lsp tailwindcss-language-server vtsls vue-language-server yaml-language-server",
-	{ bang = true, desc = "Install formatter via Mason" }
+	{ bang = true, desc = "Install core lsps" }
 )
 
 vim.api.nvim_create_user_command(
 	"InstallFomatters",
 	"MasonInstall black codespell goimports-reviser golines isort nginx-config-formatter prettierd shfmt sql-formatter stylua tombi",
-	{ bang = true, desc = "Install formatter via Mason" }
+	{ bang = true, desc = "Install core formatters" }
 )
 
 -- ===================================

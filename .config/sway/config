@@ -3,13 +3,25 @@
 # Read `man 5 sway` for a complete reference.
 #
 
+#
+# Appearance:
+#
 focus_follows_mouse always
 default_border pixel 3
 gaps top 4
 gaps inner 6
 gaps outer 3
 
+# class                   border      background  text        indicator   child_border
+client.focused            #00ff00     #00ff00     #000000     #ffff00     #00ff00
+client.focused_inactive   #232323     #232323     #969696     #696969     #232323
+client.unfocused          #232323     #232323     #969696     #696969     #232323
+client.urgent             #ff0000     #ff0000     #ffffff     #ffff00     #ff0000
+client.placeholder        #000000     #0c0c0c     #ffffff     #000000     #0c0c0c
+
+#
 # Exec once
+#
 exec waybar -c $XDG_CONFIG_HOME/waybar/configs/sway.jsonc
 exec swaync
 exec awww-daemon
@@ -39,9 +51,6 @@ set $mod Mod4
 
     # Drag floating windows by holding down $mod and left mouse button.
     floating_modifier $mod normal
-
-    # Reload the configuration file
-    bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+Escape exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
@@ -111,16 +120,16 @@ set $mod Mod4
 # Resizing containers:
 #
 mode "resize" {
-    bindsym Left resize shrink width 10px
-    bindsym Right resize grow width 10px
-    bindsym Up resize shrink height 10px
-    bindsym Down resize grow height 10px
+    bindsym Comma resize shrink width 20px
+    bindsym Period resize grow width 20px
+    bindsym Page_Up resize shrink height 20px
+    bindsym Page_Down resize grow height 20px
 
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym $mod+s mode "resize"
 #
 # Utilities:
 #
@@ -136,5 +145,9 @@ bindsym $mod+r mode "resize"
     bindsym Print exec screenshot.sh
     bindsym $mod+Print exec screenshot.sh
 
+#
+# Customize:
+#
+for_window [app_id="kitty"] floating enable, resize set 900px 690px
 
 include /etc/sway/config.d/*

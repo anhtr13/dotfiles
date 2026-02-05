@@ -1,12 +1,11 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 usage() {
     echo "Usage: $(basename "$0") [-d DEFAULT_BORDER_PX] [-m MAXIMIZED_BORDER_PX]"
 }
 
 get_waybar_height() {
-    # Waybar's config is JSONC, ie it contains comments. We need to strip
-    # these for jq.
+    # Waybar's config is JSONC, ie it contains comments. We need to strip these for jq.
     rg -v '//' ~/.config/waybar/configs/sway.jsonc | jq -er '.height'
 }
 
@@ -71,19 +70,17 @@ maximize_current_node() {
 
     read -r output_width output_height <<<"$(current_output_resolution)"
     bar_height="$(get_waybar_height)"
-    echo $output_height
 
-    swaymsg "border pixel ${MAXIMIZED_BORDER_PX};
-    floating enable; resize set ${output_width} $((output_height - bar_height))"
+    swaymsg "border pixel ${MAXIMIZED_BORDER_PX}; floating enable;
+    resize set ${output_width} $((output_height - bar_height)); border none"
     wait_for_focus_change "border pixel ${DEFAULT_BORDER_PX}, floating disable"
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-    # Legacy. This is the simplest way of "maximizing" a window, by just moving it
-    # to a new workspace
+    # Legacy. This is the simplest way of "maximizing" a window, by just moving it to a new workspace
     # move_win_to_new_ws
 
-    DEFAULT_BORDER_PX=2
+    DEFAULT_BORDER_PX=3
     MAXIMIZED_BORDER_PX=10
 
     while [[ -n "$*" ]]; do
