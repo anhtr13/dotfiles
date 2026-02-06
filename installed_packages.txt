@@ -33,7 +33,6 @@ gdb
 ghostty
 gimp
 git
-gnome-characters
 grim
 grub
 hypridle
@@ -75,9 +74,11 @@ ngrok
 ninja
 niri
 noto-fonts-cjk
+noto-fonts-emoji
 nsxiv
-nvidia-open-dkms
-nvidia-settings
+nvidia-580xx-dkms
+nvidia-580xx-settings
+nvidia-580xx-utils
 nyx
 obs-studio
 openssh
@@ -98,6 +99,7 @@ reflector
 resvg
 ripgrep
 rofi
+rofimoji
 rsync
 sl
 slurp
