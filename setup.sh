@@ -8,6 +8,8 @@ track_dirs=(
     ".doom.d"
 )
 
+sudo pacman -S --needed base-devel git
+
 ##############################
 # Copy config files
 ##############################
@@ -22,7 +24,10 @@ done
 ##############################
 
 # System-wide zshenv
-sudo cp -r "$here/.config/zsh/etc-zsh-zshenv" /etc/zsh/zshenv
+if ! [[ -f /etc/zsh/zshenv ]]; then
+    sudo mkdir -p /etc/zsh && sudo touch /etc/zsh/zshenv
+fi
+cat "$here/.config/zsh/etc-zsh-zshenv" | sudo tee /etc/zsh/zshenv
 
 # Zsh plugins
 if ! [[ -e "/usr/share/zsh/plugins/zsh-autosuggestions" ]]; then
@@ -38,27 +43,38 @@ fi
 # ##############################
 # # Setup AUR
 # ##############################
-#
-# sudo pacman -S --needed git base-devel
-# if ! $(pacman -Q yay >/dev/null); then
-#     git clone https://aur.archlinux.org/yay.git $HOME/yay
-#     cd $HOME/yay
-#     makepkg -si
-#     cd $here
-# fi
-#
+
+if ! $(pacman -Q yay >/dev/null); then
+    git clone https://aur.archlinux.org/yay.git $HOME/yay
+    cd $HOME/yay
+    makepkg -si
+    cd $here
+fi
+
 # ##############################
 # # Install core packages
 # ##############################
-#
-# pkgs=()
-# while IFS= read -r line; do
-#     pkgs+=("$line")
-# done <"$here/installed_packages.txt"
-#
-# pkgs_to_install=($(comm -12 <(pacman -Slq | sort -u) <(printf '%s\n' "${pkgs[@]}" | sort -u)))
-# sudo pacman -S --needed "${pkgs_to_install[@]}"
-#
-# pkgs_not_found=($(comm -23 <(printf '%s\n' "${pkgs[@]}" | sort -u) <(printf '%s\n' "${pkgs_to_install[@]}" | sort -u)))
-# printf "\\n--------------------------------------------------\\nPackages not found and ignored:\\n\\n"
-# printf "%s\\n" "${pkgs_not_found[@]}"
+
+pkgs=()
+ignore=false
+
+while IFS= read -r line; do
+    if [[ "$line" == "----- START BLOCK -----" ]]; then
+        ignore=true
+        continue
+    elif [[ "$line" == "----- END BLOCK -----" ]]; then
+        ignore=false
+        continue
+    fi
+
+    if ! $ignore && [[ -n "$line" ]]; then
+        pkgs+=("$line")
+    fi
+done <"$here/installed_packages.txt"
+
+pkgs_to_install=($(comm -12 <(pacman -Slq | sort -u) <(printf '%s\n' "${pkgs[@]}" | sort -u)))
+sudo pacman -S --needed "${pkgs_to_install[@]}"
+
+pkgs_not_found=($(comm -23 <(printf '%s\n' "${pkgs[@]}" | sort -u) <(printf '%s\n' "${pkgs_to_install[@]}" | sort -u)))
+printf "\\n--------------------------------------------------\\nPackages not found and ignored:\\n\\n"
+printf "%s\\n" "${pkgs_not_found[@]}"

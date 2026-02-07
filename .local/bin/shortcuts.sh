@@ -8,7 +8,7 @@ mesg="# Pacman: $(pacman -Q | wc -l) packages installed."
 list_col='1'
 list_row='6'
 
-cmd_term='ghostty'
+cmd_term='kitty'
 cmd_browser='brave'
 cmd_file='kitty sh -c yazi'
 cmd_pdf='zathura'

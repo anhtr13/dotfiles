@@ -1,9 +1,9 @@
 # zshrc
 
 # https://github.com/zsh-users/zsh-autosuggestions
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # https://github.com/zsh-users/zsh-history-substring-search
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 [[ -f ${ZDOTDIR}/aliasrc ]] && source ${ZDOTDIR}/aliasrc
 [[ -f ${ZDOTDIR}/optionrc ]] && source ${ZDOTDIR}/optionrc
@@ -56,4 +56,4 @@ function chpwd() {
 }
 
 # https://github.com/zsh-users/zsh-syntax-highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

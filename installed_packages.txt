@@ -7,12 +7,9 @@ base
 base-devel
 bluez
 bluez-utils
-brave-bin
-bridge-utils
 brightnessctl
 btop
 cava
-cbonsai-git
 clang
 cmake
 cmatrix
@@ -26,7 +23,6 @@ efibootmgr
 emacs
 fastfetch
 fd
-firefox
 fortune-mod
 fzf
 gdb
@@ -47,7 +43,6 @@ ipset
 iptables-nft
 isync
 jq
-kew
 keychain
 kitty
 libguestfs
@@ -70,23 +65,17 @@ mtools
 neomutt
 network-manager-applet
 networkmanager
-ngrok
 ninja
 niri
 noto-fonts-cjk
 noto-fonts-emoji
 nsxiv
-nvidia-580xx-dkms
-nvidia-580xx-settings
-nvidia-580xx-utils
 nyx
 obs-studio
 openssh
-pam-gnupg
 pamixer
 pass
 pavucontrol
-pipes.sh
 pipewire
 pipewire-jack
 pipewire-pulse
@@ -104,11 +93,9 @@ rsync
 sl
 slurp
 sof-firmware
-starship
 sudo
 sway
 swaync
-swww
 systemd-resolvconf
 tcpdump
 tmux
@@ -130,19 +117,38 @@ wireshark-cli
 wl-clipboard
 xclip
 xdg-desktop-portal-hyprland
-yay
 zathura
 zathura-pdf-poppler
 zoxide
 zsh
 
-# Rust packages:
+----- START BLOCK -----
+# Packages installed via AUR:
+brave-bin
+bridge-utils
+cbonsai-git
+kew
+librewolf-bin
+ngrok
+nvidia-580xx-dkms
+nvidia-580xx-settings
+nvidia-580xx-utils
+pam-gnupg
+pipes.sh
+yay
+----- END BLOCK -----
+
+
+----- START BLOCK -----
+# Packages installed via cargo:
 bob-nvim v4.1.5:
     bob
 fnm v1.38.1:
     fnm
 rustlings v6.5.0:
     rustlings
+starship v1.24.2:
+    starship
 treer v0.1.0 (https://github.com/anhtr13/treer#205f1aae):
     treer
 yazi-build v26.1.4 (https://github.com/sxyazi/yazi.git#e6d99571):
@@ -151,3 +157,5 @@ yazi-cli v26.1.4 (https://github.com/sxyazi/yazi.git#e6d99571):
     ya
 yazi-fm v26.1.4 (https://github.com/sxyazi/yazi.git#e6d99571):
     yazi
+----- END BLOCK -----
+
