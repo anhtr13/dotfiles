@@ -27,7 +27,6 @@ foot
 fortune-mod
 fzf
 gdb
-ghostty
 gimp
 git
 grim

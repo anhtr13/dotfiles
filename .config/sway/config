@@ -49,6 +49,7 @@ set $mod Mod4
     bindsym $mod+Ctrl+L exec hotlinks.sh
     bindsym $mod+Ctrl+T exec kitty
     bindsym $mod+Ctrl+O exec setting.sh
+    bindsym $mod+Ctrl+E exec emoji_picker.sh
     bindsym $mod+Ctrl+R exec swaymsg layout toggle split
 
     # Drag floating windows by holding down $mod and left mouse button.

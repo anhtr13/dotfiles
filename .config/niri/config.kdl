@@ -378,6 +378,7 @@ binds {
     Mod+Ctrl+O     hotkey-overlay-title="Open Setting" { spawn "setting.sh"; }
     Mod+Ctrl+P     hotkey-overlay-title="Open Powers-menu" { spawn "powermenu.sh"; }
     Mod+Ctrl+L     hotkey-overlay-title="Open Hot-links" { spawn "hotlinks.sh"; }
+    Mod+Ctrl+E     hotkey-overlay-title="Open emoji picker" { spawn "emoji_picker.sh"; }
     Mod+Ctrl+Space hotkey-overlay-title="Open shortcuts" { spawn "shortcuts.sh"; }
     Mod+Ctrl+Return { fullscreen-window; }
 
