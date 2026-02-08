@@ -23,6 +23,7 @@ efibootmgr
 emacs
 fastfetch
 fd
+foot
 fortune-mod
 fzf
 gdb
@@ -122,7 +123,7 @@ zathura-pdf-poppler
 zoxide
 zsh
 
------ START BLOCK -----
+----- START -----
 # Packages installed via AUR:
 brave-bin
 bridge-utils
@@ -136,10 +137,10 @@ nvidia-580xx-utils
 pam-gnupg
 pipes.sh
 yay
------ END BLOCK -----
+----- END -----
 
 
------ START BLOCK -----
+----- START -----
 # Packages installed via cargo:
 bob-nvim v4.1.5:
     bob
@@ -157,5 +158,5 @@ yazi-cli v26.1.4 (https://github.com/sxyazi/yazi.git#e6d99571):
     ya
 yazi-fm v26.1.4 (https://github.com/sxyazi/yazi.git#e6d99571):
     yazi
------ END BLOCK -----
+----- END -----
 

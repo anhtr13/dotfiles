@@ -27,6 +27,7 @@ exec waybar -c $XDG_CONFIG_HOME/waybar/configs/sway.jsonc
 exec swaync
 exec awww-daemon
 exec emacs --daemon
+exec foot --server
 
 ### Variables
 set $mod Mod4
@@ -46,7 +47,7 @@ set $mod Mod4
     bindsym $mod+Ctrl+Space exec shortcuts.sh
     bindsym $mod+Ctrl+P exec powermenu.sh
     bindsym $mod+Ctrl+L exec hotlinks.sh
-    bindsym $mod+Ctrl+T exec ghostty
+    bindsym $mod+Ctrl+T exec kitty
     bindsym $mod+Ctrl+O exec setting.sh
     bindsym $mod+Ctrl+R exec swaymsg layout toggle split
 
@@ -149,6 +150,6 @@ bindsym $mod+s mode "resize"
 #
 # Customize:
 #
-for_window [app_id="kitty"] floating enable, resize set 900px 690px
+for_window [app_id="footclient"] floating enable, resize set 900px 690px
 
 include /etc/sway/config.d/*

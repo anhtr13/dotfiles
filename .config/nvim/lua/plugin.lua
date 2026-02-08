@@ -19,16 +19,16 @@ require("mini.icons").mock_nvim_web_devicons()
 --------------------------------------
 require("fzf-lua").setup()
 
-vim.keymap.set("n", "<leader>/f", ":FzfLua files<CR>", { desc = "FzfLua [f]iles", silent = true })
-vim.keymap.set("n", "<leader>/g", ":FzfLua live_grep<CR>", { desc = "FzfLua live_[g]rep", silent = true })
-vim.keymap.set("n", "<leader>/b", ":FzfLua buffers<CR>", { desc = "FzfLua [b]uffers", silent = true })
-vim.keymap.set("n", "<leader>/m", ":FzfLua marks<CR>", { desc = "FzfLua [m]arks", silent = true })
-vim.keymap.set("n", "<leader>/c", ":FzfLua command_history<CR>", { desc = "FzfLua [c]command_history", silent = true })
-vim.keymap.set("n", "<leader>//", ":FzfLua grep_curbuf<CR>", { desc = "FzfLua grep_curbuf", silent = true })
-vim.keymap.set("n", "<leader>/.", ":FzfLua resume<CR>", { desc = "FzfLua resume", silent = true })
-vim.keymap.set("n", "<leader>/w", ":FzfLua diagnostics_workspace<CR>", { desc = "FzfLua diagnostics_[w]orkspace", silent = true })
-vim.keymap.set("n", "<leader>/d", ":FzfLua diagnostics_document<CR>", { desc = "FzfLua diagnostics_[d]ocument", silent = true })
-vim.keymap.set("n", "<leader>/k", ":FzfLua keymaps<CR>", { desc = "FzfLua [k]eymaps", silent = true })
+vim.keymap.set("n", "<leader>/f", require("fzf-lua").files, { desc = "FzfLua [f]iles", silent = true })
+vim.keymap.set("n", "<leader>/g", require("fzf-lua").live_grep, { desc = "FzfLua live_[g]rep", silent = true })
+vim.keymap.set("n", "<leader>/b", require("fzf-lua").buffers, { desc = "FzfLua [b]uffers", silent = true })
+vim.keymap.set("n", "<leader>/m", require("fzf-lua").marks, { desc = "FzfLua [m]arks", silent = true })
+vim.keymap.set("n", "<leader>/c", require("fzf-lua").command_history, { desc = "FzfLua [c]command_history", silent = true })
+vim.keymap.set("n", "<leader>//", require("fzf-lua").grep_curbuf, { desc = "FzfLua grep_curbuf", silent = true })
+vim.keymap.set("n", "<leader>/.", require("fzf-lua").resume, { desc = "FzfLua resume", silent = true })
+vim.keymap.set("n", "<leader>/w", require("fzf-lua").diagnostics_workspace, { desc = "FzfLua diagnostics_[w]orkspace", silent = true })
+vim.keymap.set("n", "<leader>/d", require("fzf-lua").diagnostics_document, { desc = "FzfLua diagnostics_[d]ocument", silent = true })
+vim.keymap.set("n", "<leader>/k", require("fzf-lua").keymaps, { desc = "FzfLua [k]eymaps", silent = true })
 
 --------------------------------------
 require("nvim-tree").setup({
@@ -58,7 +58,7 @@ require("nvim-tree").setup({
 	},
 })
 
-vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "File explorer", silent = true })
+vim.keymap.set("n", "<leader>e", require("nvim-tree.api").tree.toggle, { desc = "File explorer", silent = true })
 
 --------------------------------------
 local ts = require("nvim-treesitter")
@@ -90,6 +90,8 @@ local parsers = {
 	"make",
 	"cmake",
 	"editorconfig",
+	"http",
+	"ini",
 	"sql",
 	"dockerfile",
 	"nginx",
@@ -538,12 +540,12 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 			},
 		}
 
-		vim.keymap.set("n", "gdb", ":DapToggleBreakpoint<CR>", { desc = "[d]ebugger [b]reak point", silent = true })
-		vim.keymap.set("n", "gdc", ":DapContinue<CR>", { desc = "[d]ebugger [c]ontinue", silent = true })
-		vim.keymap.set("n", "gdo", ":DapStepOver<CR>", { desc = "[d]ebugger step [o]ver", silent = true })
-		vim.keymap.set("n", "gdi", ":DapStepInto<CR>", { desc = "[d]ebugger step [i]nto", silent = true })
-		vim.keymap.set("n", "gdu", ":DapStepOut<CR>", { desc = "[d]ebugger step o[u]t", silent = true })
-		vim.keymap.set("n", "gdx", ":DapTerminate<CR>", { desc = "[d]ebugger e[x]it", silent = true })
+		vim.keymap.set("n", "gdb", require("dap").toggle_breakpoint, { desc = "[d]ebugger [b]reak point", silent = true })
+		vim.keymap.set("n", "gdc", require("dap").continue, { desc = "[d]ebugger [c]ontinue", silent = true })
+		vim.keymap.set("n", "gdo", require("dap").step_over, { desc = "[d]ebugger step [o]ver", silent = true })
+		vim.keymap.set("n", "gdi", require("dap").step_into, { desc = "[d]ebugger step [i]nto", silent = true })
+		vim.keymap.set("n", "gdu", require("dap").step_out, { desc = "[d]ebugger step o[u]t", silent = true })
+		vim.keymap.set("n", "gdx", require("dap").terminate, { desc = "[d]ebugger e[x]it", silent = true })
 
 		--------------------------------------
 		require("flash").setup({
@@ -554,15 +556,9 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 			},
 		})
 
-		vim.keymap.set({ "n", "x", "o" }, "f", function()
-			require("flash").jump()
-		end, { noremap = true, desc = "Flash jump" })
-		vim.keymap.set({ "n", "x", "o" }, "F", function()
-			require("flash").treesitter()
-		end, { noremap = true, desc = "Flash treesitter" })
-		vim.keymap.set("c", "<c-f>", function()
-			require("flash").toggle()
-		end, { noremap = true, desc = "Toggle Flash (search mode)" })
+		vim.keymap.set({ "n", "x", "o" }, "f", require("flash").jump, { noremap = true, desc = "Flash jump" })
+		vim.keymap.set({ "n", "x", "o" }, "F", require("flash").treesitter, { noremap = true, desc = "Flash treesitter" })
+		vim.keymap.set("c", "<c-f>", require("flash").toggle, { noremap = true, desc = "Toggle Flash (search mode)" })
 
 		--------------------------------------
 		require("grug-far").setup({})

@@ -59,10 +59,10 @@ pkgs=()
 ignore=false
 
 while IFS= read -r line; do
-    if [[ "$line" == "----- START BLOCK -----" ]]; then
+    if [[ "$line" == "----- START -----" ]]; then
         ignore=true
         continue
-    elif [[ "$line" == "----- END BLOCK -----" ]]; then
+    elif [[ "$line" == "----- END -----" ]]; then
         ignore=false
         continue
     fi

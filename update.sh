@@ -8,6 +8,7 @@ here=$(dirname "$(realpath "$0")")
 track_dirs=(
     ".local/bin"
     ".config/fastfetch"
+    ".config/foot"
     ".config/ghostty"
     ".config/hypr"
     ".config/kitty"
@@ -33,13 +34,13 @@ done <"$here/.gitignore"
 
 pacman -Qqne >"$here/installed_packages.txt"
 
-printf "\n%s\n%s\n" "----- START BLOCK -----" "# Packages installed via AUR:" >>"$here/installed_packages.txt"
+printf "\n%s\n%s\n" "----- START -----" "# Packages installed via AUR:" >>"$here/installed_packages.txt"
 pacman -Qqme >>"$here/installed_packages.txt"
-printf "%s\n\n" "----- END BLOCK -----" >>"$here/installed_packages.txt"
+printf "%s\n\n" "----- END -----" >>"$here/installed_packages.txt"
 
-printf "\n%s\n%s\n" "----- START BLOCK -----" "# Packages installed via cargo:" >>"$here/installed_packages.txt"
+printf "\n%s\n%s\n" "----- START -----" "# Packages installed via cargo:" >>"$here/installed_packages.txt"
 cargo install --list >>"$here/installed_packages.txt"
-printf "%s\n\n" "----- END BLOCK -----" >>"$here/installed_packages.txt"
+printf "%s\n\n" "----- END -----" >>"$here/installed_packages.txt"
 
 for dir in "${track_dirs[@]}"; do
     find "$target/$dir" -type f -print0 | while IFS= read -r -d $'\0' file; do

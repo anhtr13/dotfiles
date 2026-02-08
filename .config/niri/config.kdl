@@ -270,8 +270,9 @@ spawn-at-startup "hypridle"
 spawn-at-startup "awww-daemon"
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
-spawn-sh-at-startup "emacs --daemon"
 spawn-sh-at-startup "waybar -c $XDG_CONFIG_HOME/waybar/configs/niri.jsonc"
+spawn-sh-at-startup "emacs --daemon"
+spawn-sh-at-startup "foot --server"
 
 
 hotkey-overlay {
@@ -315,7 +316,7 @@ window-rule {
     // This regular expression is intentionally made as specific as possible,
     // since this is the default config, and we want no false positives.
     // You can get away with just app-id="wezterm" if you want.
-    match app-id=r#"kitty$"#
+    match app-id=r#"footclient$"#
     default-window-height { fixed 690; }
     default-column-width  { fixed 900; }
     open-floating true
@@ -373,7 +374,7 @@ binds {
     Mod+Shift+F { switch-focus-between-floating-and-tiling; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+Ctrl+T     hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
+    Mod+Ctrl+T     hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+Ctrl+O     hotkey-overlay-title="Open Setting" { spawn "setting.sh"; }
     Mod+Ctrl+P     hotkey-overlay-title="Open Powers-menu" { spawn "powermenu.sh"; }
     Mod+Ctrl+L     hotkey-overlay-title="Open Hot-links" { spawn "hotlinks.sh"; }

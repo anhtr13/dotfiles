@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 usage() {
     echo "Usage: $(basename "$0") [-d DEFAULT_BORDER_PX] [-m MAXIMIZED_BORDER_PX]"

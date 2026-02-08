@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 theme="$XDG_CONFIG_HOME/rofi/themes/applet.rasi"
 
@@ -15,34 +15,34 @@ option_youtube=" Youtube"
 option_translate="󰊿 Translate"
 
 rofi_cmd() {
-  rofi -theme-str "listview {columns: $list_col; lines: $list_row;}" \
-    -theme-str 'textbox-prompt-colon {str: "";}' \
-    -dmenu \
-    -p "$prompt" \
-    -mesg "$mesg" \
-    -markup-rows \
-    -theme ${theme}
+    rofi -theme-str "listview {columns: $list_col; lines: $list_row;}" \
+        -theme-str 'textbox-prompt-colon {str: "";}' \
+        -dmenu \
+        -p "$prompt" \
+        -mesg "$mesg" \
+        -markup-rows \
+        -theme ${theme}
 }
 
 run_rofi() {
-  echo -e "$option_github\n$option_reddit\n$option_email\n$option_youtube\n$option_translate" | rofi_cmd
+    echo -e "$option_github\n$option_reddit\n$option_email\n$option_youtube\n$option_translate" | rofi_cmd
 }
 
 chosen="$(run_rofi)"
 case ${chosen} in
 $option_email)
-  xdg-open 'https://mail.google.com/'
-  ;;
+    xdg-open 'https://mail.google.com/'
+    ;;
 $option_youtube)
-  xdg-open 'https://www.youtube.com/'
-  ;;
+    xdg-open 'https://www.youtube.com/'
+    ;;
 $option_github)
-  xdg-open 'https://www.github.com/'
-  ;;
+    xdg-open 'https://www.github.com/'
+    ;;
 $option_reddit)
-  xdg-open 'https://www.reddit.com/'
-  ;;
+    xdg-open 'https://www.reddit.com/'
+    ;;
 $option_translate)
-  xdg-open 'https://translate.google.com/?sl=en&tl=vi&op=translate'
-  ;;
+    xdg-open 'https://translate.google.com/?sl=en&tl=vi&op=translate'
+    ;;
 esac

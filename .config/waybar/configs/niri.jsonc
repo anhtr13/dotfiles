@@ -120,7 +120,7 @@
       "󰤥 ",
       "󰤨 "
     ],
-    "on-click": "kitty sh -c nmtui"
+    "on-click": "footclient sh -c nmtui"
   },
   "cpu": {
     "interval": 12,
