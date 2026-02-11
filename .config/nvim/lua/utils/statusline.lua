@@ -78,7 +78,7 @@ M.setup = function()
 				mode_hl,
 				" %{v:lua.mode_icon()} ",
 				"%#StatusLine#",
-				" %<%t%{v:lua.git_branch()} %m%=    %y ",
+				" %<%t%{v:lua.git_branch()} %m%r%=    %y ",
 				"%{v:lua.file_size()} | %P ",
 				mode_hl,
 				" %l:%c ",

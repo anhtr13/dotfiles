@@ -49,7 +49,9 @@ confirm_exit() {
 confirm_run() {
     selected="$(confirm_exit)"
     if [[ "$selected" == "$yes" ]]; then
-        ${1} && ${2}
+        for cmd in "$@"; do
+            ${cmd}
+        done
     else
         exit
     fi

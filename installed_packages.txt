@@ -73,6 +73,7 @@ nsxiv
 nyx
 obs-studio
 openssh
+otf-codenewroman-nerd
 pamixer
 pass
 pavucontrol
@@ -101,6 +102,7 @@ tcpdump
 tmux
 torbrowser-launcher
 tree-sitter-cli
+ttf-sourcecodepro-nerd
 ufw
 unixodbc
 unzip
@@ -149,7 +151,7 @@ rustlings v6.5.0:
     rustlings
 starship v1.24.2:
     starship
-treer v0.1.0 (https://github.com/anhtr13/treer#205f1aae):
+treer v0.1.4:
     treer
 yazi-build v26.1.4 (https://github.com/sxyazi/yazi.git#e6d99571):
     yazi-build

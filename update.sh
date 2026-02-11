@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Tracking any changes in $target/$track_dirs and update them in $here/$track_dirs
 #

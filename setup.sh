@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/usr/bin/env bash
 
 here=$(dirname "$(realpath "$0")")
 target=$HOME
@@ -15,8 +15,7 @@ sudo pacman -S --needed base-devel git
 ##############################
 
 for dir in "${track_dirs[@]}"; do
-    mkdir -p "$target/$dir"
-    cp -r "$here/$dir" "$target/$dir"
+    cp -r "$here/$dir" "$target"
 done
 
 ##############################
@@ -73,7 +72,7 @@ while IFS= read -r line; do
 done <"$here/installed_packages.txt"
 
 pkgs_to_install=($(comm -12 <(pacman -Slq | sort -u) <(printf '%s\n' "${pkgs[@]}" | sort -u)))
-sudo pacman -S --needed "${pkgs_to_install[@]}"
+sudo pacman -Syu --needed "${pkgs_to_install[@]}"
 
 pkgs_not_found=($(comm -23 <(printf '%s\n' "${pkgs[@]}" | sort -u) <(printf '%s\n' "${pkgs_to_install[@]}" | sort -u)))
 printf "\\n--------------------------------------------------\\nPackages not found and ignored:\\n\\n"

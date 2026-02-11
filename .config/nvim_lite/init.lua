@@ -271,7 +271,7 @@ StatusLine.setup = function()
 				"%#Bold#",
 				" %{v:lua.mode_icon()} ",
 				"%#StatusLine#",
-				"| %<%t%{v:lua.git_branch()} %m%=    %y ",
+				"| %<%t%{v:lua.git_branch()} %m%r%=    %y ",
 				"%{v:lua.file_size()} | %P / %l:%c ",
 			})
 		end,
@@ -301,15 +301,16 @@ vim.keymap.set("n", "<leader>e", ":Oil<CR>", { desc = "Open Oil.nvim", silent = 
 
 --------------------------------------
 require("fzf-lua").setup()
-vim.keymap.set("n", "<leader>/f", ":FzfLua files<CR>", { desc = "FzfLua [f]iles", silent = true })
-vim.keymap.set("n", "<leader>/g", ":FzfLua live_grep<CR>", { desc = "FzfLua live_[g]rep", silent = true })
-vim.keymap.set("n", "<leader>/b", ":FzfLua buffers<CR>", { desc = "FzfLua [b]uffers", silent = true })
-vim.keymap.set("n", "<leader>/m", ":FzfLua marks<CR>", { desc = "FzfLua [m]arks", silent = true })
-vim.keymap.set("n", "<leader>/c", ":FzfLua command_history<CR>", { desc = "FzfLua [c]command_history", silent = true })
-vim.keymap.set("n", "<leader>//", ":FzfLua grep_curbuf<CR>", { desc = "FzfLua grep_curbuf", silent = true })
-vim.keymap.set("n", "<leader>/w", ":FzfLua diagnostics_workspace<CR>", { desc = "FzfLua diagnostics_[w]orkspace", silent = true })
-vim.keymap.set("n", "<leader>/d", ":FzfLua diagnostics_document<CR>", { desc = "FzfLua diagnostics_[d]ocument", silent = true })
-vim.keymap.set("n", "<leader>/k", ":FzfLua keymaps<CR>", { desc = "FzfLua [k]eymaps", silent = true })
+vim.keymap.set("n", "<leader>/f", require("fzf-lua").files, { desc = "FzfLua [f]iles", silent = true })
+vim.keymap.set("n", "<leader>/g", require("fzf-lua").live_grep, { desc = "FzfLua live_[g]rep", silent = true })
+vim.keymap.set("n", "<leader>/b", require("fzf-lua").buffers, { desc = "FzfLua [b]uffers", silent = true })
+vim.keymap.set("n", "<leader>/m", require("fzf-lua").marks, { desc = "FzfLua [m]arks", silent = true })
+vim.keymap.set("n", "<leader>/c", require("fzf-lua").command_history, { desc = "FzfLua [c]command_history", silent = true })
+vim.keymap.set("n", "<leader>//", require("fzf-lua").grep_curbuf, { desc = "FzfLua grep_curbuf", silent = true })
+vim.keymap.set("n", "<leader>/.", require("fzf-lua").resume, { desc = "FzfLua resume", silent = true })
+vim.keymap.set("n", "<leader>/w", require("fzf-lua").diagnostics_workspace, { desc = "FzfLua diagnostics_[w]orkspace", silent = true })
+vim.keymap.set("n", "<leader>/d", require("fzf-lua").diagnostics_document, { desc = "FzfLua diagnostics_[d]ocument", silent = true })
+vim.keymap.set("n", "<leader>/k", require("fzf-lua").keymaps, { desc = "FzfLua [k]eymaps", silent = true })
 
 --------------------------------------
 local ts = require("nvim-treesitter")
@@ -398,7 +399,65 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	once = true, -- Ensures the command only runs once
 	callback = function()
 		vim.pack.add({
+			{ src = "https://github.com/saghen/blink.cmp", version = "v1.8.0" },
 			{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
+		})
+
+		--------------------------------------
+		require("blink.cmp").setup({
+			keymap = {
+				preset = "none",
+				["<Up>"] = { "select_prev", "fallback" },
+				["<Down>"] = { "select_next", "fallback" },
+				["<C-y>"] = { "select_and_accept", "fallback" },
+				["<C-p>"] = { "select_prev", "fallback_to_mappings" },
+				["<C-n>"] = { "select_next", "fallback_to_mappings" },
+				["<C-c>"] = { "cancel", "fallback" },
+				["<C-u>"] = { "scroll_documentation_up", "fallback" },
+				["<C-d>"] = { "scroll_documentation_down", "fallback" },
+				["<Tab>"] = { "snippet_forward", "fallback" },
+				["<S-Tab>"] = { "snippet_backward", "fallback" },
+				["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+				["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+				["<CR>"] = { "accept", "fallback" },
+			},
+			appearance = {
+				nerd_font_variant = "mono", -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+			},
+			completion = {
+				accept = {
+					auto_brackets = {
+						enabled = true,
+					},
+				},
+				documentation = {
+					auto_show = true, -- auto show the documentation popup
+				},
+				menu = {
+					draw = {
+						padding = { 0, 1 }, -- padding only on right side
+						components = {
+							kind_icon = {
+								text = function(ctx)
+									return " " .. ctx.kind_icon .. ctx.icon_gap .. " "
+								end,
+							},
+						},
+						treesitter = { "lsp" },
+					},
+				},
+			},
+			sources = {
+				default = { "lsp", "buffer", "snippets", "path" },
+			},
+			fuzzy = {
+				implementation = "rust",
+				sorts = {
+					"exact",
+					"score",
+					"sort_text",
+				},
+			},
 		})
 
 		--------------------------------------

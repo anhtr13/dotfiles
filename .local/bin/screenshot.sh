@@ -38,6 +38,7 @@ if [[ ! -d "$dir" ]]; then
 fi
 
 grimshot() {
+    sleep 0.15
     grim "$@" "$file_path"
     if [[ -e "$file_path" ]]; then
         notify-send -i "$file_path" "Grim" "Screenshot saved: $file_name"
@@ -46,7 +47,6 @@ grimshot() {
 
 run_cmd() {
     if [[ "$1" == '--screen' ]]; then
-        sleep 0.1
         grimshot
     elif [[ "$1" == '--region' ]]; then
         grimshot "-g" "$(slurp -w 0)"
