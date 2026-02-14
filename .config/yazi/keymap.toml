@@ -1,0 +1,7 @@
+[mgr]
+prepend_keymap = [
+    { on = "<C-j>", run = "arrow 10", desc = "Down 10 lines" },
+    { on = "<C-k>", run = "arrow -10", desc = "Up 10 lines" },
+    { on = "<C-Down>", run = "arrow 10", desc = "Down 10 lines" },
+    { on = "<C-Up>", run = "arrow -10", desc = "Up 10 lines" }
+]
