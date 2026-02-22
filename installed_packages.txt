@@ -43,6 +43,7 @@ ipset
 iptables-nft
 isync
 jq
+kew
 keychain
 kitty
 libguestfs
@@ -129,7 +130,6 @@ zsh
 brave-bin
 bridge-utils
 cbonsai-git
-kew
 librewolf-bin
 ngrok
 nvidia-580xx-dkms

@@ -439,7 +439,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 			},
 		})
 
-		vim.keymap.set("n", "<leader>F", function()
+		vim.keymap.set("n", "<leader>f", function()
 			require("conform").format({ async = true })
 		end, { noremap = true, desc = "[F]ormat buffer" })
 

@@ -1,6 +1,13 @@
+-- ===================================================
+-- Nvim_lite                      
+-- Minimal Neovim config, requires v0.12 or later. 
+-- ===================================================
+
 -- ========================
--- ======= Options ========
+-- Options
 -- ========================
+
+vim.g.mapleader = " "
 
 vim.o.termguicolors = true -- Enable 24-bit colors
 vim.o.number = true -- Line numbers
@@ -47,7 +54,7 @@ vim.o.splitbelow = true -- Horizontal splits go below
 vim.o.splitright = true -- Vertical splits go right
 
 -- ========================
--- ======= Keymaps ========
+-- Keymaps
 -- ========================
 
 vim.keymap.set({ "n", "v" }, "<c-Up>", "10k", { noremap = true })
@@ -399,6 +406,8 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	once = true, -- Ensures the command only runs once
 	callback = function()
 		vim.pack.add({
+			{ src = "https://github.com/rafamadriz/friendly-snippets" },
+
 			{ src = "https://github.com/saghen/blink.cmp", version = "v1.8.0" },
 			{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
 		})
@@ -527,7 +536,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 -- =======================
--- ======== LSPs =========
+-- LSP
 -- =======================
 
 vim.lsp.config["bash_ls"] = {

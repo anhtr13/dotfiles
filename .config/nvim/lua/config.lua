@@ -27,6 +27,9 @@ vim.fn.sign_define("DapStopped", { text = "", texthl = "BreakPointGreen", lin
 -- Options
 -- ============================
 
+-- Leader
+vim.g.mapleader = " "
+
 -- Basic
 vim.o.mouse = "" -- Disable mouse support
 vim.o.encoding = "UTF-8" -- Set encoding

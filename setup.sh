@@ -10,17 +10,17 @@ track_dirs=(
 
 sudo pacman -S --needed base-devel git
 
-##############################
-# Copy config files
-##############################
+# ============================
+# Config files
+# ============================
 
 for dir in "${track_dirs[@]}"; do
     cp -r "$here/$dir" "$target"
 done
 
-##############################
+# ============================
 # Zsh
-##############################
+# ============================
 
 # System-wide zshenv
 if ! [[ -f /etc/zsh/zshenv ]]; then
@@ -39,9 +39,9 @@ if ! [[ -e "/usr/share/zsh/plugins/zsh-syntax-highlighting" ]]; then
     sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting /usr/share/zsh/plugins/zsh-syntax-highlighting
 fi
 
-# ##############################
-# # Setup AUR
-# ##############################
+# ============================
+# AUR
+# ============================
 
 if ! $(pacman -Q yay >/dev/null); then
     git clone https://aur.archlinux.org/yay.git $HOME/yay
@@ -50,9 +50,9 @@ if ! $(pacman -Q yay >/dev/null); then
     cd $here
 fi
 
-# ##############################
-# # Install core packages
-# ##############################
+# ============================
+# Core packages
+# ============================
 
 pkgs=()
 ignore=false
