@@ -384,11 +384,11 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 				},
 				golines = {
 					command = "golines",
-					args = { "--max-len", "132", "--tab-len", "2", "--shorten-comments" }, -- no "$FILENAME" to read from stdout of the previous plugin (goimports_reviser)
+					args = { "--max-len", "132", "--tab-len", "4", "--shorten-comments" }, -- no "$FILENAME" to read from stdout of the previous plugin (goimports_reviser)
 				},
 				json_fmt = {
 					command = "jq",
-					args = { ".", "$FILENAME" },
+					args = { "--tab", ".", "$FILENAME" },
 				},
 				nginxfmt = {
 					command = "nginxfmt",
@@ -401,7 +401,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 						[[{
                             "language": "postgresql",
                             "useTabs": true,
-                            "tabWidth": 2,
+                            "tabWidth": 4,
                             "keywordCase": "upper",
                             "dataTypeCase": "lower",
                             "identifierCase": "lower",

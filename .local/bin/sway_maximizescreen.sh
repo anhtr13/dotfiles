@@ -5,7 +5,7 @@ usage() {
 }
 
 get_waybar_height() {
-    # Waybar's config is JSONC, ie it contains comments. We need to strip these for jq.
+    # Strip comments in Waybar's config.
     rg -v '//' ~/.config/waybar/configs/sway.jsonc | jq -er '.height'
 }
 
@@ -77,7 +77,7 @@ maximize_current_node() {
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-    # Legacy. This is the simplest way of "maximizing" a window, by just moving it to a new workspace
+    # Legacy: maximizing a window by just moving it to a new workspace
     # move_win_to_new_ws
 
     DEFAULT_BORDER_PX=3

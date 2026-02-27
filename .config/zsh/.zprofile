@@ -20,17 +20,17 @@ if [[ -z "$XDG_RUNTIME_DIR" ]]; then
     export XDG_RUNTIME_DIR="/run/user/$UID"
 fi
 
+export GOROOT="/usr/local/go"
 export GOPATH="$HOME/go"
-export ZIGPATH="$HOME/zig"
-export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin:$GOPATH/bin:$ZIGPATH/zig-x86_64-linux-0.15.2"
+export CARGODIR="$HOME/.cargo"
+export ZIGDIR="$HOME/zig"
+export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin:$CARGODIR/bin:$GOROOT/bin:$GOPATH/bin:$ZIGDIR/zig-x86_64-linux-0.15.2"
+export LLVM_SYMBOLIZER_PATH="/usr/bin/llvm-symbolizer"
 
 export EDITOR="/usr/bin/nvim"
 export MANPAGER="nvim +Man!" # Use nvim for man page
 export MYVIMRC="~/.config/vim/vimrc"
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
-export LLVM_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer
-
-. "$HOME/.cargo/env"
 
 eval "$(fnm env --use-on-cd --shell zsh)" # Node version manager
 # eval $(keychain --eval id_ed25519)

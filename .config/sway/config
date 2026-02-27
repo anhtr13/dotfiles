@@ -40,7 +40,7 @@ set $mod Mod4
     bindsym $mod+c kill
     bindsym $mod+f floating toggle
     bindsym $mod+m exec swaymsg mark swapme
-    bindsym $mod+Return exec sway-maximizescreen.sh
+    bindsym $mod+Return exec sway_maximizescreen.sh
     bindsym $mod+Space exec launcher.sh
 
     bindsym $mod+Ctrl+Return exec swaymsg fullscreen toggle
