@@ -137,12 +137,13 @@ nvidia-580xx-settings
 nvidia-580xx-utils
 pam-gnupg
 pipes.sh
-yay
+yay-bin
+yay-bin-debug
 ----- END -----
 
 
 ----- START -----
-# Packages installed via cargo:
+# Packages installed via Cargo:
 bob-nvim v4.1.5:
     bob
 fnm v1.38.1:

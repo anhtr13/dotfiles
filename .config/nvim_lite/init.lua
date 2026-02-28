@@ -1,6 +1,6 @@
 -- ===================================================
--- Nvim_lite                      
--- Minimal Neovim config, requires v0.12 or later. 
+-- Nvim_lite
+-- Minimal Neovim config, requires v0.12 or later.
 -- ===================================================
 
 -- ========================
@@ -303,7 +303,9 @@ vim.pack.add({
 })
 
 --------------------------------------
-require("oil").setup()
+require("oil").setup({
+	view_options = { show_hidden = true },
+})
 vim.keymap.set("n", "<leader>e", ":Oil<CR>", { desc = "Open Oil.nvim", silent = true })
 
 --------------------------------------

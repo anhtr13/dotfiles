@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-message="$1"
-if [[ -z "$message" ]]; then
-    message="Update #$(git rev-list --count HEAD)"
-fi
-
-git add -A
-
 rofi_theme="$XDG_CONFIG_HOME/rofi/themes/applet.rasi"
 yes='✓ Yes'
 no='✗ No'
@@ -23,18 +16,27 @@ confirm_cmd() {
         -theme ${rofi_theme}
 }
 
+message="$1"
+if [[ -z "$message" ]]; then
+    message="Update #$(git rev-list --count HEAD)"
+fi
+
+mapfile -t origins < <(git remote)
+
 selected=$(echo -e "$no\n$yes" | confirm_cmd)
+
 if [[ "$selected" == "$yes" ]]; then
+    git add -A
     git commit -m "$message"
 
     eval $(keychain --eval id_ed25519)
 
     echo "Pushing '$message'..."
 
-    git push github main &
-    PIDS[0]=$!
-    git push codeberg main &
-    PIDS[1]=$!
+    for i in "${!origins[@]}"; do
+        git push "${origins[$i]}" main &
+        PIDS[$i]=$!
+    done
 
     failed_count=0
     for pid in "${PIDS[@]}"; do
@@ -46,6 +48,4 @@ if [[ "$selected" == "$yes" ]]; then
     else
         echo "All push are complete."
     fi
-else
-    exit
 fi

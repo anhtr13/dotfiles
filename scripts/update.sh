@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 #
-# Tracking any changes in $target/$track_dirs and update them in $here/$track_dirs
+# Update any changes in $target/$trackings to $dotdir
 #
 
+dotdir=$(dirname $(dirname $(realpath "$0")))
 target=$HOME
-here=$(dirname "$(realpath "$0")")
-track_dirs=(
+trackings=(
     ".local/bin"
     ".config/fastfetch"
     ".config/foot"
@@ -30,19 +30,19 @@ track_dirs=(
 ignores=()
 while IFS= read -r line; do
     ignores+=("$line")
-done <"$here/.gitignore"
+done <"$dotdir/.gitignore"
 
-pacman -Qqne >"$here/installed_packages.txt"
+pacman -Qqne >"$dotdir/installed_packages.txt"
 
-printf "\n%s\n%s\n" "----- START -----" "# Packages installed via AUR:" >>"$here/installed_packages.txt"
-pacman -Qqme >>"$here/installed_packages.txt"
-printf "%s\n\n" "----- END -----" >>"$here/installed_packages.txt"
+printf "\n%s\n%s\n" "----- START -----" "# Packages installed via AUR:" >>"$dotdir/installed_packages.txt"
+pacman -Qqme >>"$dotdir/installed_packages.txt"
+printf "%s\n\n" "----- END -----" >>"$dotdir/installed_packages.txt"
 
-printf "\n%s\n%s\n" "----- START -----" "# Packages installed via cargo:" >>"$here/installed_packages.txt"
-cargo install --list >>"$here/installed_packages.txt"
-printf "%s\n\n" "----- END -----" >>"$here/installed_packages.txt"
+printf "\n%s\n%s\n" "----- START -----" "# Packages installed via Cargo:" >>"$dotdir/installed_packages.txt"
+cargo install --list >>"$dotdir/installed_packages.txt"
+printf "%s\n\n" "----- END -----" >>"$dotdir/installed_packages.txt"
 
-for dir in "${track_dirs[@]}"; do
+for dir in "${trackings[@]}"; do
     find "$target/$dir" -type f -print0 | while IFS= read -r -d $'\0' file; do
         file_suffix=${file#$target/}
         flag=true
@@ -53,25 +53,25 @@ for dir in "${track_dirs[@]}"; do
             fi
         done
         if $flag; then
-            if [[ -e "$here/$file_suffix" ]]; then
-                cp $file "$here/$file_suffix"
+            if [[ -e "$dotdir/$file_suffix" ]]; then
+                cp $file "$dotdir/$file_suffix"
             else
-                install -Dv $file "$here/$file_suffix"
+                install -Dv $file "$dotdir/$file_suffix"
             fi
         fi
     done
 done
 
-for dir in "${track_dirs[@]}"; do
-    find "${here}/${dir}" -mindepth 1 -type d -print0 | while IFS= read -r -d $'\0' sub_dir; do
-        dir_suffix=${sub_dir#"$here/"}
+for dir in "${trackings[@]}"; do
+    find "${dotdir}/${dir}" -mindepth 1 -type d -print0 | while IFS= read -r -d $'\0' sub_dir; do
+        dir_suffix=${sub_dir#"$dotdir/"}
         if ! [[ -d "$target/$dir_suffix" ]]; then
             rm -rf $sub_dir
             echo "Removed folder: $sub_dir"
         fi
     done
-    find "${here}/${dir}" -type f -print0 | while IFS= read -r -d $'\0' file; do
-        file_suffix=${file#"$here/"}
+    find "${dotdir}/${dir}" -type f -print0 | while IFS= read -r -d $'\0' file; do
+        file_suffix=${file#"$dotdir/"}
         if ! [[ -e "$target/$file_suffix" ]]; then
             rm -rf $file
             echo "Removed file: $file"
