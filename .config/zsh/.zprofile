@@ -27,9 +27,9 @@ export ZIGDIR="$HOME/zig"
 export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin:$CARGODIR/bin:$GOROOT/bin:$GOPATH/bin:$ZIGDIR/zig-x86_64-linux-0.15.2"
 export LLVM_SYMBOLIZER_PATH="/usr/bin/llvm-symbolizer"
 
-export EDITOR="/usr/bin/nvim"
-export MANPAGER="nvim +Man!" # Use nvim for man page
-export MYVIMRC="~/.config/vim/vimrc"
+export EDITOR="/usr/bin/vim"
+# export MANPAGER="nvim +Man!"
+export MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 
 eval "$(fnm env --use-on-cd --shell zsh)" # Node version manager

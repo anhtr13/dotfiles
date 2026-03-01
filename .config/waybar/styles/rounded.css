@@ -1,181 +1,174 @@
 @import "../colors.css";
 
 window#waybar {
-  transition: all 0.1s linear;
-  background: transparent;
+    transition: all 0.1s linear;
+    background: transparent;
 }
-
 window#waybar > box {
-  margin: 0px;
-  padding: 0px;
-  border-radius: 6px;
-  background: transparent;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 6px;
+    background: transparent;
 }
 
 button {
-  border: none;
+    border: none;
 }
 
 tooltip {
-  border-radius: 6px;
-  color: @white;
-  background: @base;
-  border: 1px solid @cyan0;
+    border-radius: 6px;
+    color: @white;
+    background: @base;
+    border: 1px solid @cyan0;
 }
 
 menu {
-  color: @white;
-  padding: 6px;
-  background: @base;
-  border-radius: 6px;
-  border: 1px solid @blue0;
+    color: @white;
+    padding: 6px;
+    background: @base;
+    border-radius: 6px;
+    border: 1px solid @blue0;
 }
 menuitem {
-  border-radius: 6px;
-  transition: all 0.1s linear;
+    border-radius: 6px;
+    transition: all 0.1s linear;
 }
 
 .modules-left, .modules-center, .modules-right {
-  background: transparent;
-  padding: 0px;
-  margin: 4px 0px 0px 0px;
+    background: transparent;
+    padding: 0px;
+    margin: 4px 0px 0px 0px;
 }
-
 .module {
-  margin: 0px 2px;
-  border-radius: 9px;
-  padding: 0px 10px;
-  background: @base;
-  transition: all 0.1s linear;
+    margin: 0px 2px;
+    border-radius: 9px;
+    padding: 0px 10px;
+    background: @base;
+    transition: all 0.1s linear;
 }
 
 #custom-rofi {
-  color: @cyan0;
-  border-radius: 9px 0px 0px 9px;
-  padding: 0px 5px 0px 10px;
-  margin: 0px 0px 0px 8px;
+    color: @cyan0;
+    border-radius: 9px 0px 0px 9px;
+    padding: 0px 5px 0px 10px;
+    margin: 0px 0px 0px 8px;
 }
-
 #custom-rofi:hover {
-  color: @green0;
+    color: @green0;
 }
 
 #workspaces {
-  border-radius: 0px 9px 9px 0px;
-  padding: 0px 6px 0px 3px;
-  margin: 0px 2px 0px 0px;
+    border-radius: 0px 9px 9px 0px;
+    padding: 0px 6px 0px 3px;
+    margin: 0px 2px 0px 0px;
 }
 #workspaces button {
-  margin: 5px 0px;
-  padding: 0px 2px;
-  border-radius: 6px;
-  transition: all 0.1s linear;
-  color: @white;
-  background: transparent;
+    margin: 5px 0px;
+    padding: 0px 2px;
+    border-radius: 6px;
+    transition: all 0.1s linear;
+    color: @white;
+    background: transparent;
 }
 #workspaces button:hover {
-  padding: 0px 5px;
-  margin: 5px 2px;
-  color: @base;
-  background: @green0;
+    padding: 0px 5px;
+    margin: 5px 2px;
+    color: @base;
+    background: @green0;
 }
 #workspaces button.active,
 #workspaces button.focused,
 #workspaces button.visible {
-  padding: 0px 5px;
-  color: @base;
-  background: @cyan0;
+    padding: 0px 5px;
+    color: @base;
+    background: @cyan0;
 }
 #workspaces button.urgent {
-  padding: 0px 5px;
-  color: @base;
-  background: @red;
+    padding: 0px 5px;
+    color: @base;
+    background: @red;
 }
 
 #window {
-  color: @white;
+    color: @white;
 }
 
 #clock {
-  color: @purple0;
+    color: @purple0;
 }
-
 #clock.date {
-  color: @orange;
+    color: @orange;
 }
 
 #backlight {
-  color: @white;
+    color: @white;
 }
 
 #pulseaudio {
-  color: @yellow;
-  border-radius: 9px 0px 0px 9px;
-  padding: 0px 5px 0px 10px;
-  margin: 0px 0px 0px 2px;
+    color: @yellow;
+    border-radius: 9px 0px 0px 9px;
+    padding: 0px 5px 0px 10px;
+    margin: 0px 0px 0px 2px;
 }
 #pulseaudio.micro {
-  color: @teal1;
-  border-radius: 0px 9px 9px 0px;
-  padding: 0px 10px 0px 5px;
-  margin: 0px 2px 0px 0px;
+    color: @teal1;
+    border-radius: 0px 9px 9px 0px;
+    padding: 0px 10px 0px 5px;
+    margin: 0px 2px 0px 0px;
 }
 
 #network {
-  color: @teal2;
+    color: @teal2;
 }
 #network.disconnected {
-  color: @orange;
+    color: @orange;
 }
 
 #cpu {
-  color: @purple1;
-  border-radius: 9px 0px 0px 9px;
-  padding: 0px 5px 0px 10px;
-  margin: 0px 0px 0px 2px;
+    color: @purple1;
+    border-radius: 9px 0px 0px 9px;
+    padding: 0px 5px 0px 10px;
+    margin: 0px 0px 0px 2px;
 }
-
 #memory {
-  color: @green1;
-  border-radius: 0px 9px 9px 0px;
-  padding: 0px 10px 0px 5px;
-  margin: 0px 2px 0px 0px;
+    color: @green1;
+    border-radius: 0px 9px 9px 0px;
+    padding: 0px 10px 0px 5px;
+    margin: 0px 2px 0px 0px;
 }
 
 #battery {
-  color: @cyan1;
-  border-radius: 9px 0px 0px 9px;
-  padding: 0px 5px 0px 10px;
-  margin: 0px 0px 0px 2px;
+    color: @cyan1;
+    border-radius: 9px 0px 0px 9px;
+    padding: 0px 5px 0px 10px;
+    margin: 0px 0px 0px 2px;
 }
-
-#battery.charging, #battery.plugged {
-  color: @green0;
+#battery.charging {
+    color: @green0;
 }
-
+#battery.warning:not(.charging) {
+    color: @orange;
+}
 #battery.critical:not(.charging) {
-  color: @red;
+    color: @red;
 }
 
 #power-profiles-daemon {
-  border-radius: 0px 9px 9px 0px;
-  padding: 0px 10px 0px 5px;
-  margin: 0px 2px 0px 0px;
+    border-radius: 0px 9px 9px 0px;
+    padding: 0px 10px 0px 5px;
+    margin: 0px 2px 0px 0px;
 }
-
 #power-profiles-daemon.performance {
-  color: @purple2;
+    color: @purple2;
 }
-
 #power-profiles-daemon.balanced {
-  color: @blue1;
+    color: @blue1;
 }
-
 #power-profiles-daemon.power-saver {
-  color: @green0;
+    color: @green0;
 }
 
 #custom-notification {
-  margin-right: 8px;
-  color: @purple2;
+    margin-right: 8px;
+    color: @purple2;
 }

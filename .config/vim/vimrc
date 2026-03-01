@@ -19,15 +19,17 @@ set expandtab
 set smartindent
 set breakindent
 
+let g:mapleader = "\<Space>"
 let g:netrw_dirhistmax=0
 
 nmap [<space> O<Esc>j
 nmap ]<space> o<Esc>k
 
-nmap <C-k> 10k
-nmap <C-j> 10j
 nmap <C-Up> 10k
 nmap <C-Down> 10j
+nmap <C-k> 10k
+nmap <C-j> 10j
+nmap <C-c> :nohlsearch<CR>
 
 imap <C-q> <Esc>
 imap <C-z> <Esc>u

@@ -1,156 +1,149 @@
 @import "../colors.css";
 
 window#waybar {
-  transition: all 0.1s linear;
-  background: @base;
+    transition: all 0.1s linear;
+    background: @base;
 }
-
 window#waybar > box {
-  margin: 0px;
-  padding: 0px;
-  border-radius: 0px;
-  background: transparent;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 0px;
+    background: transparent;
 }
 
 button {
-  border: none;
+    border: none;
 }
 
 tooltip {
-  border-radius: 0px;
-  color: @white;
-  background: @base;
-  border: 1px solid @cyan0;
+    border-radius: 0px;
+    color: @white;
+    background: @base;
+    border: 1px solid @cyan0;
 }
 
 menu {
-  color: @white;
-  padding: 6px;
-  background: @base;
-  border-radius: 0px;
-  border: 1px solid @blue0;
+    color: @white;
+    padding: 6px;
+    background: @base;
+    border-radius: 0px;
+    border: 1px solid @blue0;
 }
 menuitem {
-  border-radius: 0px;
-  transition: all 0.1s linear;
+    border-radius: 0px;
+    transition: all 0.1s linear;
 }
 
 .modules-left, .modules-center, .modules-right {
-  padding: 0px;
-  margin: 0px;
+    padding: 0px;
+    margin: 0px;
 }
-
 .module {
-  margin: 3px 2px;
-  border-radius: 0px;
-  padding: 0px 6px;
-  transition: all 0.1s linear;
-  background: transparent;
+    margin: 3px 2px;
+    border-radius: 0px;
+    padding: 0px 6px;
+    transition: all 0.1s linear;
+    background: transparent;
 }
 
 #custom-rofi {
-  padding-left: 15px;
-  padding-right: 2px;
-  color: @cyan0;
+    padding-left: 15px;
+    padding-right: 2px;
+    color: @cyan0;
 }
-
 #custom-rofi:hover {
-  color: @green0;
+    color: @green0;
 }
 
 #workspaces {
-  padding: 0px 5px;
+    padding: 0px 5px;
 }
 #workspaces button {
-  margin: 4px 0px;
-  padding: 0px 2px;
-  border-radius: 0px;
-  transition: all 0.1s linear;
-  color: @white;
-  background: transparent;
+    margin: 4px 0px;
+    padding: 0px 2px;
+    border-radius: 0px;
+    transition: all 0.1s linear;
+    color: @white;
+    background: transparent;
 }
 #workspaces button:hover {
-  padding: 0px 5px;
-  border: 1px solid @green0;
+    padding: 0px 5px;
+    border: 1px solid @green0;
 }
 #workspaces button.active,
 #workspaces button.focused,
 #workspaces button.visible {
-  padding: 0px 5px;
-  border: 1px solid @cyan0;
+    padding: 0px 5px;
+    border: 1px solid @cyan0;
 }
 #workspaces button.urgent {
-  padding: 0px 5px;
-  border: 1px solid @red;
+    padding: 0px 5px;
+    border: 1px solid @red;
 }
 
 #window {
-  color: @white;
-  background: transparent;
+    color: @white;
+    background: transparent;
 }
 
 #clock {
-  color: @purple0;
+    color: @purple0;
 }
-
 #clock.date {
-  color: @orange;
+    color: @orange;
 }
 
 #backlight {
-  color: @white;
+    color: @white;
 }
 
 #pulseaudio {
-  color: @yellow;
+    color: @yellow;
 }
 #pulseaudio.micro {
-  color: @teal1;
+    color: @teal1;
 }
 
 #network {
-  color: @teal2;
+    color: @teal2;
 }
 #network.disconnected {
-  color: @orange;
+    color: @orange;
 }
 
 #cpu {
-  color: @purple1;
+    color: @purple1;
 }
-
 #memory {
-  color: @green1;
+    color: @green1;
 }
 
 #battery {
-  color: @cyan1;
+    color: @cyan1;
 }
-
-#battery.charging, #battery.plugged {
-  color: @green0;
+#battery.charging {
+    color: @green0;
 }
-
+#battery.warning:not(.charging) {
+    color: @orange;
+}
 #battery.critical:not(.charging) {
-  color: @red;
+    color: @red;
 }
 
 #power-profiles-daemon {
 }
-
 #power-profiles-daemon.performance {
-  color: @purple2;
+    color: @purple2;
 }
-
 #power-profiles-daemon.balanced {
-  color: @blue1;
+    color: @blue1;
 }
-
 #power-profiles-daemon.power-saver {
-  color: @green0;
+    color: @green0;
 }
 
 #custom-notification {
-  padding-right: 15px;
-  color: @purple2;
+    padding-right: 15px;
+    color: @purple2;
 }

@@ -170,7 +170,7 @@ shfmt: go1.26.0
 
 ----- START -----
 # Packages installed via Cargo:
-bob-nvim v4.1.5:
+bob-nvim v4.1.6:
     bob
 rustlings v6.5.0:
     rustlings
