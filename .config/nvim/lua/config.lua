@@ -148,15 +148,9 @@ vim.api.nvim_create_user_command("BufDeleteOther", DeleteOtherBufs, { bang = tru
 vim.api.nvim_create_user_command("BufDeleteAll", DeleteAllBufs, { bang = true, desc = "Delete all buffers" })
 
 vim.api.nvim_create_user_command(
-	"InstallLSPs",
-	"MasonInstall bash-language-server cmake-language-server dockerfile-lsp gopls json-lsp lua-language-server nginx-language-server pylyzer systemd-lsp tailwindcss-language-server vtsls vue-language-server yaml-language-server",
+	"MasonInstallNeeded",
+	"MasonInstall bash-language-server dockerfile-language-server json-lsp lua-language-server prettierd sql-formatter stylua tailwindcss-language-server vtsls vue-language-server yaml-language-server zls",
 	{ bang = true, desc = "Install core lsps" }
-)
-
-vim.api.nvim_create_user_command(
-	"InstallFomatters",
-	"MasonInstall black codespell goimports-reviser golines isort nginx-config-formatter prettierd shfmt sql-formatter stylua tombi",
-	{ bang = true, desc = "Install core formatters" }
 )
 
 -- ===================================

@@ -23,6 +23,7 @@ efibootmgr
 emacs
 fastfetch
 fd
+fnm
 foot
 fortune-mod
 fzf
@@ -95,6 +96,7 @@ rsync
 sl
 slurp
 sof-firmware
+starship
 sudo
 sway
 swaync
@@ -107,6 +109,7 @@ ttf-sourcecodepro-nerd
 ufw
 unixodbc
 unzip
+uv
 vim
 virt-manager
 virt-viewer
@@ -120,10 +123,12 @@ wireshark-cli
 wl-clipboard
 xclip
 xdg-desktop-portal-hyprland
+yazi
 zathura
 zathura-pdf-poppler
 zoxide
 zsh
+
 
 ----- START -----
 # Packages installed via AUR:
@@ -143,22 +148,57 @@ yay-bin-debug
 
 
 ----- START -----
+# Packages installed via Go:
+dlv: go1.26.0
+	path	github.com/go-delve/delve/cmd/dlv
+gemmie: go1.26.0
+	path	github.com/anhtr13/gemmie
+go1.23.12: go1.26.0
+	path	golang.org/dl/go1.23.12
+go1.25.7: go1.26.0
+	path	golang.org/dl/go1.25.7
+goimports-reviser: go1.26.0
+	path	github.com/incu6us/goimports-reviser/v3
+golines: go1.26.0
+	path	github.com/golangci/golines
+gopls: go1.26.0
+	path	golang.org/x/tools/gopls
+shfmt: go1.26.0
+	path	mvdan.cc/sh/v3/cmd/shfmt
+----- END -----
+
+
+----- START -----
 # Packages installed via Cargo:
 bob-nvim v4.1.5:
     bob
-fnm v1.38.1:
-    fnm
 rustlings v6.5.0:
     rustlings
-starship v1.24.2:
-    starship
+stylua v2.3.1:
+    stylua
+systemd-lsp v0.2.0:
+    systemd-lsp
 treer v0.1.4:
     treer
-yazi-build v26.1.4 (https://github.com/sxyazi/yazi.git#e6d99571):
-    yazi-build
-yazi-cli v26.1.4 (https://github.com/sxyazi/yazi.git#e6d99571):
-    ya
-yazi-fm v26.1.4 (https://github.com/sxyazi/yazi.git#e6d99571):
-    yazi
+----- END -----
+
+
+----- START -----
+# Packages installed via UV:
+cmake-language-server v0.1.11
+- cmake-language-server
+debugpy v1.8.20
+- debugpy
+- debugpy-adapter
+nginx-language-server v0.9.0
+- nginx-language-server
+nginxfmt v1.3.0
+- nginxfmt
+pylyzer v0.0.82
+- pylyzer
+ruff v0.15.4
+- ruff
+tombi v0.8.0
+- tombi
 ----- END -----
 

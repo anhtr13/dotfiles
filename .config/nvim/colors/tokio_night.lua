@@ -23,10 +23,10 @@ local colors = {
 	none = "NONE",
 }
 
-vim.api.nvim_set_hl(0, "Normal", { fg = colors.fg, bg = colors.none })
+vim.api.nvim_set_hl(0, "Normal", { fg = colors.fg, bg = colors.black })
 vim.api.nvim_set_hl(0, "NormalFloat", { fg = colors.fg, bg = colors.bg0 })
 vim.api.nvim_set_hl(0, "FloatBorder", { fg = colors.fg, bg = colors.bg0 })
-vim.api.nvim_set_hl(0, "Terminal", { fg = colors.fg, bg = colors.none })
+vim.api.nvim_set_hl(0, "Terminal", { fg = colors.fg, bg = colors.black })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = colors.bg0, bg = colors.none })
 vim.api.nvim_set_hl(0, "Folded", { fg = colors.none, bg = colors.bg1 })
 vim.api.nvim_set_hl(0, "FoldColumn", { bg = colors.none })

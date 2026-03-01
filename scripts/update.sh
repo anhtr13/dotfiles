@@ -34,12 +34,25 @@ done <"$dotdir/.gitignore"
 
 pacman -Qqne >"$dotdir/installed_packages.txt"
 
-printf "\n%s\n%s\n" "----- START -----" "# Packages installed via AUR:" >>"$dotdir/installed_packages.txt"
+printf "\n\n%s\n%s\n" "----- START -----" "# Packages installed via AUR:" >>"$dotdir/installed_packages.txt"
 pacman -Qqme >>"$dotdir/installed_packages.txt"
+printf "%s\n\n" "----- END -----" >>"$dotdir/installed_packages.txt"
+
+printf "\n%s\n%s\n" "----- START -----" "# Packages installed via Go:" >>"$dotdir/installed_packages.txt"
+for file in "$GOPATH/bin"/*; do
+    if [ -f "$file" ]; then
+        info=$(go version -m "$file" | head -n 2)
+        printf "%s\n" "${info#$GOPATH/bin/}" >>"$dotdir/installed_packages.txt"
+    fi
+done
 printf "%s\n\n" "----- END -----" >>"$dotdir/installed_packages.txt"
 
 printf "\n%s\n%s\n" "----- START -----" "# Packages installed via Cargo:" >>"$dotdir/installed_packages.txt"
 cargo install --list >>"$dotdir/installed_packages.txt"
+printf "%s\n\n" "----- END -----" >>"$dotdir/installed_packages.txt"
+
+printf "\n%s\n%s\n" "----- START -----" "# Packages installed via UV:" >>"$dotdir/installed_packages.txt"
+uv tool list >>"$dotdir/installed_packages.txt"
 printf "%s\n\n" "----- END -----" >>"$dotdir/installed_packages.txt"
 
 for dir in "${trackings[@]}"; do

@@ -289,12 +289,13 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 			{ src = "https://github.com/kevinhwang91/promise-async" },
 			{ src = "https://github.com/igorlfs/nvim-dap-view" },
 			{ src = "https://github.com/leoluz/nvim-dap-go" },
+			{ src = "https://codeberg.org/mfussenegger/nvim-dap-python" },
 
 			{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
 			{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
 			{ src = "https://github.com/numToStr/Comment.nvim" },
 			{ src = "https://github.com/stevearc/conform.nvim" },
-			{ src = "https://github.com/mfussenegger/nvim-dap" },
+			{ src = "https://codeberg.org/mfussenegger/nvim-dap" },
 			{ src = "https://github.com/folke/flash.nvim" },
 			{ src = "https://github.com/MagicDuck/grug-far.nvim" },
 			{ src = "https://github.com/saghen/blink.indent" },
@@ -384,7 +385,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 				},
 				golines = {
 					command = "golines",
-					args = { "--max-len", "132", "--tab-len", "4", "--shorten-comments" }, -- no "$FILENAME" to read from stdout of the previous plugin (goimports_reviser)
+					args = { "--shorten-comments" }, -- no "$FILENAME" to read from stdout of the previous plugin (goimports_reviser)
 				},
 				json_fmt = {
 					command = "jq",
@@ -393,6 +394,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 				nginxfmt = {
 					command = "nginxfmt",
 					args = { "-p", "-i", "4", "$FILENAME" },
+				},
+				ruff = {
+					command = "ruff",
+					args = { "format", "--stdin-filename", "$FILENAME" },
 				},
 				sql_formatter = {
 					command = "sql-formatter",
@@ -418,7 +423,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 				c = { "clang_format" },
 				cpp = { "clang_format" },
 				lua = { "stylua" },
-				python = { "isort", "black" },
+				python = { "ruff" },
 				sh = { "shfmt" },
 				zsh = { "shfmt" },
 				bash = { "shfmt" },
@@ -449,6 +454,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		})
 
 		require("dap-go").setup()
+		require("dap-python").setup("uv")
 
 		local dap = require("dap")
 
