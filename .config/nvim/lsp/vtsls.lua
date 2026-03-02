@@ -1,5 +1,11 @@
 ---@brief
+---
 --- https://github.com/yioneko/vtsls
+---
+--- `vtsls` can be installed with npm:
+--- ```sh
+--- npm install -g @vtsls/language-server
+--- ```
 
 local language_server_path = vim.fn.expand("$MASON/packages") .. "/vue-language-server" .. "/node_modules/@vue/language-server"
 local plugin = {

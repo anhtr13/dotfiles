@@ -1,5 +1,8 @@
 ---@brief
+---
 --- https://github.com/rust-lang/rust-analyzer
+---
+--- rust-analyzer (aka rls 2.0), a language server for Rust
 
 local function reload_workspace(bufnr)
 	local clients = vim.lsp.get_clients({ bufnr = bufnr, name = "rust_analyzer" })

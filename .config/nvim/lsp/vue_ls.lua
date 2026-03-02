@@ -1,5 +1,13 @@
 ---@brief
+---
 --- https://github.com/vuejs/language-tools/tree/master/packages/language-server
+---
+--- The official language server for Vue
+---
+--- It can be installed via npm:
+--- ```sh
+--- npm install -g @vue/language-server
+--- ```
 
 ---@type vim.lsp.Config
 return {
