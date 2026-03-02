@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 #
 # Update any changes in $target/$trackings to $dotdir
-#
 
 dotdir=$(dirname $(dirname $(realpath "$0")))
 target=$HOME

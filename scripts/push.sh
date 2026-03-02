@@ -18,7 +18,7 @@ confirm_cmd() {
 
 message="$1"
 if [[ -z "$message" ]]; then
-    message="Update #$(git rev-list --count HEAD)"
+    message="Update $(git rev-list --count HEAD)"
 fi
 
 mapfile -t origins < <(git remote)

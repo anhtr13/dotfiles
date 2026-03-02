@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 #
 # Basic setup after installation
-#
 
 dotdir=$(dirname $(dirname $(realpath "$0")))
 target=$HOME
@@ -11,31 +10,34 @@ trackings=(
     ".doom.d"
 )
 
-sudo pacman -S --needed base-devel git
+#
+# ===============================================================================================
+printf "\n==================== Preparing the necessary packages... ====================\n"
+sudo pacman -Syu --needed base-devel git
 
-# ===================
-# Config files
-# ===================
-
+#
+# ===============================================================================================
+printf "\n==================== Copying config files... ====================\n"
 for dir in "${trackings[@]}"; do
     cp -r "$dotdir/$dir" "$target"
 done
 
-# ===================
-# AUR
-# ===================
-
+#
+# ===============================================================================================
+printf "\n==================== Setting up AUR... ====================\n"
 if ! $(pacman -Q yay >/dev/null); then
     git clone https://aur.archlinux.org/yay-bin.git $target/yay
     cd $target/yay
     makepkg -si
     cd $dotdir
     rm -rf $target/yay
+else
+    echo "AUR has already installed."
 fi
 
-# ======================
-# Install core packages
-# ======================
+#
+# ===============================================================================================
+printf "\n==================== Installing core packages... ====================\n"
 
 pkgs=()
 ignore=false
@@ -55,15 +57,15 @@ while IFS= read -r line; do
 done <"$dotdir/installed_packages.txt"
 
 pkgs_to_install=($(comm -12 <(pacman -Slq | sort -u) <(printf '%s\n' "${pkgs[@]}" | sort -u)))
-sudo pacman -Syu --needed "${pkgs_to_install[@]}"
+sudo pacman -S --needed "${pkgs_to_install[@]}"
 
 pkgs_not_found=($(comm -23 <(printf '%s\n' "${pkgs[@]}" | sort -u) <(printf '%s\n' "${pkgs_to_install[@]}" | sort -u)))
 printf "\\n--------------------------------------------------\\nPackages not found and ignored:\\n\\n"
 printf "%s\\n" "${pkgs_not_found[@]}"
 
-# ===================
-# Zsh
-# ===================
+#
+# ===============================================================================================
+printf "\n==================== Setting up Zsh... ====================\n"
 
 # System-wide zshenv
 if ! [[ -f /etc/zsh/zshenv ]]; then
@@ -83,6 +85,6 @@ if ! [[ -e "/usr/share/zsh/plugins/zsh-syntax-highlighting" ]]; then
 fi
 
 # Change shell
-if [ -n "$ZSH_VERSION" ]; then
+if ![ -n "$ZSH_VERSION" ]; then
     chsh -s "/usr/bin/zsh"
 fi

@@ -130,7 +130,7 @@ function DeleteOtherBufs()
 	local buffers = vim.api.nvim_list_bufs()
 	for _, buf_id in ipairs(buffers) do
 		if buf_id ~= current_buf and vim.api.nvim_buf_is_loaded(buf_id) then
-			pcall(vim.api.nvim_buf_delete, buf_id, { force = false })
+			pcall(vim.api.nvim_buf_delete, buf_id, { force = true })
 		end
 	end
 end
@@ -139,7 +139,7 @@ function DeleteAllBufs()
 	local buffers = vim.api.nvim_list_bufs()
 	for _, buf_id in ipairs(buffers) do
 		if vim.api.nvim_buf_is_loaded(buf_id) then
-			pcall(vim.api.nvim_buf_delete, buf_id, { force = false })
+			pcall(vim.api.nvim_buf_delete, buf_id, { force = true })
 		end
 	end
 end

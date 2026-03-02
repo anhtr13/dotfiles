@@ -168,7 +168,7 @@ vim.keymap.set("n", "<leader>?", function()
 end, { desc = "Buffer Local Keymaps (which-key)" })
 
 --------------------------------------
-require("utils.statusline").setup()
+require("custom.statusline").setup()
 
 -- ============================
 -- Lazy load
@@ -361,7 +361,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 			textobjects_move.goto_previous_end("@class.outer", "textobjects")
 		end, { desc = "Go to previous class end" })
 
-		local incremental_selection = require("utils.ts_incremental_selection")
+		local incremental_selection = require("custom.ts_incremental_selection")
 		vim.keymap.set("n", "||", incremental_selection.init_selection, { desc = "Treesitter init selection" })
 		vim.keymap.set("x", "|+", incremental_selection.incr_selection, { desc = "Treesitter increase selection" })
 		vim.keymap.set("x", "|-", incremental_selection.decr_selection, { desc = "Treesitter decrease selection" })
