@@ -54,7 +54,7 @@ menuitem {
     margin: 0px 0px 0px 8px;
 }
 #custom-rofi:hover {
-    color: @green0;
+    color: @yellow;
 }
 
 #workspaces {
@@ -74,7 +74,7 @@ menuitem {
     padding: 0px 5px;
     margin: 5px 2px;
     color: @base;
-    background: @green0;
+    background: @yellow;
 }
 #workspaces button.active,
 #workspaces button.focused,

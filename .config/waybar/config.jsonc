@@ -167,8 +167,8 @@
 		},
 		"format": "{icon} {capacity}%",
 		"format-charging": "󰢞 {capacity}%",
-		"format-warning-charging": "󰂇 {capacity}%",
-		"format-critical-charging": "󰢜 {capacity}%",
+		"format-charging-warning": "󰂇 {capacity}%",
+		"format-charging-critical": "󰢜 {capacity}%",
 		"format-icons": [
 			"󰂎",
 			"󰁺",
@@ -183,9 +183,9 @@
 			"󰁹"
 		],
 		"events": {
-			"on-discharging-warning": "notify-send -u normal 'Battery is under 50%'",
-			"on-discharging-critical": "notify-send -u critical 'Battery is under 20%'",
-			"on-charging-100": "notify-send -u low 'Battery Full!'"
+			"on-discharging-warning": "notify-send -u normal 'Low battery 󰁾' 'Battery is under 50%'",
+			"on-discharging-critical": "notify-send -u critical 'Low battery 󰁻' 'Battery is under 20%'",
+			"on-charging-100": "notify-send -u low 'Battery 󰁹' 'Battery Full!'"
 		}
 	},
 	"power-profiles-daemon": {

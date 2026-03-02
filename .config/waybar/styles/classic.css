@@ -51,9 +51,6 @@ menuitem {
     padding-right: 2px;
     color: @cyan0;
 }
-#custom-rofi:hover {
-    color: @green0;
-}
 
 #workspaces {
     padding: 0px 5px;
@@ -68,7 +65,7 @@ menuitem {
 }
 #workspaces button:hover {
     padding: 0px 5px;
-    border: 1px solid @green0;
+    border: 1px solid @yellow;
 }
 #workspaces button.active,
 #workspaces button.focused,
