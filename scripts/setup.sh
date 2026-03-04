@@ -85,6 +85,6 @@ if ! [[ -e "/usr/share/zsh/plugins/zsh-syntax-highlighting" ]]; then
 fi
 
 # Change shell
-if ![ -n "$ZSH_VERSION" ]; then
+if ! [[ -n "$ZSH_VERSION" ]]; then
     chsh -s "/usr/bin/zsh"
 fi

@@ -79,8 +79,8 @@ vim.keymap.set("n", "<Tab><Right>", ":bnext<CR>", { desc = "Next buffer", silent
 vim.keymap.set("n", "<Tab><Left>", ":bprevious<CR>", { desc = "Previous buffer", silent = true })
 vim.keymap.set("n", "<Tab>x", ":bdelete!<CR>", { desc = "Force close current buffer", silent = true })
 vim.keymap.set("n", "<Tab>cc", ":bdelete<CR>", { desc = "Close current buffer", silent = true })
-vim.keymap.set("n", "<Tab>ca", ":%bd<CR>", { desc = "Close all buffers", silent = true })
-vim.keymap.set("n", "<Tab>co", ":%bd|e#|bd#<CR>", { desc = "Close all other buffers", silent = true })
+vim.keymap.set("n", "<Tab>ca", ":%bd!<CR>", { desc = "Close all buffers", silent = true })
+vim.keymap.set("n", "<Tab>co", ":%bd!|e#|bd#<CR>", { desc = "Close all other buffers", silent = true })
 
 vim.keymap.set("n", "grd", vim.lsp.buf.definition, { desc = "vim.lsp.buf.definition()", noremap = true })
 vim.keymap.set("n", "grt", vim.lsp.buf.type_definition, { desc = "vim.lsp.buf.type_definition()", noremap = true })
@@ -576,27 +576,16 @@ vim.lsp.config["lua_ls"] = {
 	},
 }
 
-vim.lsp.config["pylyzer"] = {
-	cmd = { "pylyzer", "--server" },
+vim.lsp.config["ty"] = {
+	cmd = { "ty", "server" },
 	filetypes = { "python" },
 	root_markers = {
-		"setup.py",
-		"tox.ini",
-		"requirements.txt",
-		"Pipfile",
+		"ty.toml",
 		"pyproject.toml",
+		"setup.py",
+		"setup.cfg",
+		"requirements.txt",
 		".git",
-	},
-	settings = {
-		python = {
-			diagnostics = true,
-			inlayHints = true,
-			smartCompletion = true,
-			checkOnType = false,
-		},
-	},
-	cmd_env = {
-		ERG_PATH = vim.env.ERG_PATH or vim.fs.joinpath(vim.uv.os_homedir(), ".erg"),
 	},
 }
 
@@ -613,7 +602,7 @@ vim.lsp.config("*", {
 vim.lsp.enable({
 	"bash_ls",
 	"lua_ls",
-	"pylyzer",
+	"ty",
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {

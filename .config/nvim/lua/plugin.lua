@@ -56,6 +56,22 @@ require("nvim-tree").setup({
 			},
 		},
 	},
+	on_attach = function(bufnr)
+		local api = require("nvim-tree.api")
+
+		local function opts(desc)
+			return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+		end
+
+		api.map.on_attach.default(bufnr)
+
+		vim.keymap.set("n", "g+", function()
+			api.tree.resize({ relative = 10 })
+		end, opts("resize +10"))
+		vim.keymap.set("n", "g-", function()
+			api.tree.resize({ relative = -10 })
+		end, opts("resize -10"))
+	end,
 })
 
 vim.keymap.set("n", "<leader>e", require("nvim-tree.api").tree.toggle, { desc = "File explorer", silent = true })
@@ -578,7 +594,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 				char = "▏",
 			},
 			scope = {
-				char = "|",
+				char = "▏",
 			},
 		})
 	end,

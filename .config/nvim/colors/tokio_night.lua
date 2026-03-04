@@ -9,11 +9,11 @@ local colors = {
 	red1 = "#f7768e",
 	blue0 = "#3e5380",
 	blue1 = "#6a92f7",
-	blue2 = "#7dd3fc",
 	green0 = "#618041",
 	green1 = "#9ece6a",
 	green2 = "#96ff96",
 	teal = "#4fd6be",
+	cyan = "#7dd3fc",
 	orange = "#ff966c",
 	yellow0 = "#ffc777",
 	yellow1 = "#ffff96",
@@ -26,6 +26,7 @@ local colors = {
 vim.api.nvim_set_hl(0, "Normal", { fg = colors.fg, bg = colors.black })
 vim.api.nvim_set_hl(0, "NormalFloat", { fg = colors.fg, bg = colors.bg0 })
 vim.api.nvim_set_hl(0, "FloatBorder", { fg = colors.fg, bg = colors.bg0 })
+vim.api.nvim_set_hl(0, "FloatShadow", { fg = colors.none, bg = colors.none })
 vim.api.nvim_set_hl(0, "Terminal", { fg = colors.fg, bg = colors.black })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = colors.bg0, bg = colors.none })
 vim.api.nvim_set_hl(0, "Folded", { fg = colors.none, bg = colors.bg1 })
@@ -69,9 +70,9 @@ vim.api.nvim_set_hl(0, "SpellBad", { fg = colors.red1, bg = colors.none, undercu
 vim.api.nvim_set_hl(0, "SpellCap", { fg = colors.yellow0, bg = colors.none, undercurl = true, sp = colors.yellow0 })
 vim.api.nvim_set_hl(0, "SpellLocal", { fg = colors.blue1, bg = colors.none, undercurl = true, sp = colors.blue1 })
 vim.api.nvim_set_hl(0, "SpellRare", { fg = colors.purple, bg = colors.none, undercurl = true, sp = colors.purple })
-vim.api.nvim_set_hl(0, "TabLine", { fg = colors.fg, bg = colors.bg2 })
+vim.api.nvim_set_hl(0, "TabLine", { fg = colors.fg, bg = colors.none })
 vim.api.nvim_set_hl(0, "TabLineFill", { fg = colors.none, bg = colors.none })
-vim.api.nvim_set_hl(0, "TabLineSel", { fg = colors.black, bg = colors.blue1 })
+vim.api.nvim_set_hl(0, "TabLineSel", { fg = colors.black, bg = colors.grey, bold = true })
 vim.api.nvim_set_hl(0, "VertSplit", { fg = colors.grey, bg = colors.none })
 vim.api.nvim_set_hl(0, "Visual", { fg = colors.none, bg = colors.bg2 })
 vim.api.nvim_set_hl(0, "VisualNOS", { fg = colors.none, bg = colors.bg2, underline = true })
@@ -80,7 +81,7 @@ vim.api.nvim_set_hl(0, "QuickFixLine", { fg = colors.blue1, bg = colors.none, bo
 vim.api.nvim_set_hl(0, "Debug", { fg = colors.yellow0, bg = colors.none })
 vim.api.nvim_set_hl(0, "debugPC", { fg = colors.black, bg = colors.green1 })
 vim.api.nvim_set_hl(0, "debugBreakpoint", { fg = colors.black, bg = colors.red1 })
-vim.api.nvim_set_hl(0, "ToolbarButton", { fg = colors.black, bg = colors.blue2 })
+vim.api.nvim_set_hl(0, "ToolbarButton", { fg = colors.black, bg = colors.cyan })
 vim.api.nvim_set_hl(0, "Type", { fg = colors.blue1, bg = colors.none })
 vim.api.nvim_set_hl(0, "Structure", { fg = colors.blue1, bg = colors.none })
 vim.api.nvim_set_hl(0, "StorageClass", { fg = colors.blue1, bg = colors.none })
@@ -128,15 +129,15 @@ vim.api.nvim_set_hl(0, "ComplHint", { fg = colors.bg0 })
 vim.api.nvim_set_hl(0, "DiagnosticError", { fg = colors.red1 })
 vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = colors.yellow1 })
 vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = colors.green2 })
-vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = colors.blue2 })
+vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = colors.cyan })
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { fg = colors.red1, bg = colors.bg1 })
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { fg = colors.yellow1, bg = colors.bg1 })
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { fg = colors.green2, bg = colors.bg1 })
-vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { fg = colors.blue2, bg = colors.bg1 })
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { fg = colors.cyan, bg = colors.bg1 })
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = true, sp = colors.red1 })
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { undercurl = true, sp = colors.yellow1 })
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { undercurl = true, sp = colors.green2 })
-vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { undercurl = true, sp = colors.blue2 })
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { undercurl = true, sp = colors.cyan })
 
 vim.api.nvim_set_hl(0, "StatusLine", { fg = colors.fg, bg = colors.bg0 })
 vim.api.nvim_set_hl(0, "StatusLineTerm", { fg = colors.fg, bg = colors.bg0 })
@@ -150,7 +151,7 @@ vim.api.nvim_set_hl(0, "StatusLineTerminal", { fg = colors.black, bg = colors.te
 vim.api.nvim_set_hl(0, "StatusLineReplace", { fg = colors.black, bg = colors.red1, bold = true })
 
 vim.api.nvim_set_hl(0, "BreakPointRed", { ctermbg = 0, fg = colors.red1, bg = colors.bg1 })
-vim.api.nvim_set_hl(0, "BreakPointBlue", { ctermbg = 0, fg = colors.blue2, bg = colors.bg1 })
+vim.api.nvim_set_hl(0, "BreakPointBlue", { ctermbg = 0, fg = colors.cyan, bg = colors.bg1 })
 vim.api.nvim_set_hl(0, "BreakPointGreen", { ctermbg = 0, fg = colors.green2, bg = colors.bg1 })
 vim.api.nvim_set_hl(0, "BreakPointYellow", { ctermbg = 0, fg = colors.yellow1, bg = colors.bg1 })
 
@@ -167,7 +168,7 @@ vim.api.nvim_set_hl(0, "MarkdownH4Bg", { fg = colors.purple, bg = colors.bg1, bo
 vim.api.nvim_set_hl(0, "MarkdownH5Bg", { fg = colors.yellow0, bg = colors.bg1, bold = true })
 vim.api.nvim_set_hl(0, "MarkdownH6Bg", { fg = colors.teal, bg = colors.bg1, bold = true })
 
-vim.api.nvim_set_hl(0, "MiniIconsAzure", { fg = colors.blue2 })
+vim.api.nvim_set_hl(0, "MiniIconsAzure", { fg = colors.cyan })
 vim.api.nvim_set_hl(0, "MiniIconsBlue", { fg = colors.blue1 })
 vim.api.nvim_set_hl(0, "MiniIconsCyan", { fg = colors.teal })
 vim.api.nvim_set_hl(0, "MiniIconsGreen", { fg = colors.green2 })

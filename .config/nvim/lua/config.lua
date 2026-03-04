@@ -126,22 +126,28 @@ vim.keymap.set("n", "<c-c>", ":nohlsearch<CR>", { desc = "Clear search highlight
 -- ============================
 
 function DeleteOtherBufs()
+	local buf_count = 0
 	local current_buf = vim.api.nvim_get_current_buf()
 	local buffers = vim.api.nvim_list_bufs()
 	for _, buf_id in ipairs(buffers) do
-		if buf_id ~= current_buf and vim.api.nvim_buf_is_loaded(buf_id) then
+		if vim.api.nvim_buf_is_loaded(buf_id) and buf_id ~= current_buf then
 			pcall(vim.api.nvim_buf_delete, buf_id, { force = true })
+			buf_count = buf_count + 1
 		end
 	end
+	vim.print(buf_count .. " buffers deleted")
 end
 
 function DeleteAllBufs()
+	local buf_count = 0
 	local buffers = vim.api.nvim_list_bufs()
 	for _, buf_id in ipairs(buffers) do
 		if vim.api.nvim_buf_is_loaded(buf_id) then
 			pcall(vim.api.nvim_buf_delete, buf_id, { force = true })
+			buf_count = buf_count + 1
 		end
 	end
+	vim.print(buf_count .. " buffers deleted")
 end
 
 vim.api.nvim_create_user_command("BufDeleteOther", DeleteOtherBufs, { bang = true, desc = "Delete all other buffers" })
