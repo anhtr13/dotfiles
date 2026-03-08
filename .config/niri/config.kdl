@@ -366,21 +366,27 @@ binds {
     Mod+Apostrophe { switch-focus-between-floating-and-tiling; }
 
     Mod+Space   hotkey-overlay-title="Open launcher" { spawn "launcher.sh"; }
-    Mod+C       repeat=false { close-window; }
-    Mod+O       repeat=false { toggle-overview; }
     Mod+Return  { maximize-column; }
-    Mod+0       { center-column; }
+    Mod+C       { center-column; } // Center current focused column.
     Mod+F       { toggle-window-floating; }
-    Mod+Shift+F { switch-focus-between-floating-and-tiling; }
+    Mod+W       { switch-preset-column-width; }
+    Mod+X       repeat=false { close-window; }
+    Mod+O       repeat=false { toggle-overview; }
+    // Expand the focused column to space not taken up by other fully visible columns.
+    // Makes the column "fill the rest of the space".
+    // Mod+Alt+H  { switch-preset-window-height; }
+    // Mod+Alt+R  { reset-window-height; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Ctrl+T     hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+Ctrl+O     hotkey-overlay-title="Open Setting" { spawn "setting.sh"; }
     Mod+Ctrl+P     hotkey-overlay-title="Open Powers-menu" { spawn "powermenu.sh"; }
-    Mod+Ctrl+L     hotkey-overlay-title="Open Hot-links" { spawn "hotlinks.sh"; }
     Mod+Ctrl+E     hotkey-overlay-title="Open emoji picker" { spawn "emoji_picker.sh"; }
-    Mod+Ctrl+Space hotkey-overlay-title="Open shortcuts" { spawn "shortcuts.sh"; }
-    Mod+Ctrl+Return { fullscreen-window; }
+    Mod+Ctrl+C     { center-visible-columns; } // Center all fully visible columns on screen.
+    Mod+Ctrl+F     { expand-column-to-available-width; }
+    Mod+Ctrl+Semicolon  hotkey-overlay-title="Open links" { spawn "links.sh"; }
+    Mod+Ctrl+Space      hotkey-overlay-title="Open shortcuts" { spawn "shortcuts.sh"; }
+    Mod+Ctrl+Return     { fullscreen-window; }
 
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-down; }
@@ -393,15 +399,17 @@ binds {
 
     Mod+Shift+Up      { focus-workspace-up; }
     Mod+Shift+Down    { focus-workspace-down; }
+    Mod+Shift+K       { focus-workspace-up; }
+    Mod+Shift+J       { focus-workspace-down; }
 
     Mod+Ctrl+Left  { move-column-left; }
     Mod+Ctrl+Down  { move-window-down; }
     Mod+Ctrl+Up    { move-window-up; }
     Mod+Ctrl+Right { move-column-right; }
-    // Mod+Ctrl+H     { move-column-left; }
-    // Mod+Ctrl+J     { move-window-down; }
-    // Mod+Ctrl+K     { move-window-up; }
-    // Mod+Ctrl+L     { move-column-right; }
+    Mod+Ctrl+H     { move-column-left; }
+    Mod+Ctrl+J     { move-window-down; }
+    Mod+Ctrl+K     { move-window-up; }
+    Mod+Ctrl+L     { move-column-right; }
 
     Mod+Page_Up   { focus-column-first; }
     Mod+Page_Down { focus-column-last; }
@@ -413,27 +421,15 @@ binds {
 
     Mod+Alt+Up   { move-column-to-workspace-up; }
     Mod+Alt+Down { move-column-to-workspace-down; }
-    // Mod+Ctrl+J     { move-window-down-or-to-workspace-down; }
-    // Mod+Ctrl+K     { move-window-up-or-to-workspace-up; }
-
-    // Expand the focused column to space not taken up by other fully visible columns.
-    // Makes the column "fill the rest of the space".
-    Mod+Ctrl+F { expand-column-to-available-width; }
-
-    // Center all fully visible columns on screen.
-    Mod+Ctrl+C { center-visible-columns; }
-    // Cycling through the presets in reverse order is also possible.
-    // Mod+R { switch-preset-column-width-back; }
-    Mod+Alt+W  { switch-preset-column-width; }
-    Mod+Alt+H  { switch-preset-window-height; }
-    Mod+Ctrl+H { reset-window-height; }
+    Mod+Alt+K    { move-column-to-workspace-up; }
+    Mod+Alt+J    { move-column-to-workspace-down; }
 
     XF86AudioRaiseVolume  allow-when-locked=true { spawn-sh "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"; }
     XF86AudioLowerVolume  allow-when-locked=true { spawn-sh "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-"; }
     XF86AudioMute         allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
     XF86AudioMicMute      allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
-    XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+20%"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "20%-"; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "-n5" "set" "+10%"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "-n5" "set" "10%-"; }
 
     // Mod+Shift+Left  { focus-monitor-left; }
     // Mod+Shift+Down  { focus-monitor-down; }

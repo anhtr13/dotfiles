@@ -49,6 +49,7 @@ keychain
 kitty
 libguestfs
 libreoffice-still
+libva-nvidia-driver
 linux
 linux-firmware
 linux-headers

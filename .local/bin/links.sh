@@ -2,8 +2,8 @@
 
 theme="$XDG_CONFIG_HOME/rofi/themes/applet.rasi"
 
-prompt='Hot Links'
-mesg="# Using Brave as web browser"
+prompt="Links"
+mesg="# Open link via browser"
 
 list_col='1'
 list_row='6'

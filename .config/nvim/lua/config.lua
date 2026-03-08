@@ -33,7 +33,7 @@ vim.g.mapleader = " "
 -- Basic
 vim.o.mouse = "" -- Disable mouse support
 vim.o.encoding = "UTF-8" -- Set encoding
-vim.o.whichwrap = "bs<>[]hl" -- Which "horizontal" keys are allowed to travel to prev/next line (default: 'b,s')
+-- vim.o.whichwrap = "bs<>[]hl" -- Which "horizontal" keys are allowed to travel to prev/next line (default: 'b,s')
 vim.o.completeopt = "menuone,noselect" -- Completion options
 vim.o.winborder = "single"
 vim.o.termguicolors = true -- Enable 24-bit colors
@@ -126,28 +126,49 @@ vim.keymap.set("n", "<c-c>", ":nohlsearch<CR>", { desc = "Clear search highlight
 -- ============================
 
 function DeleteOtherBufs()
-	local buf_count = 0
+	local buf_deleted = 0
+	local buf_saved = 0
 	local current_buf = vim.api.nvim_get_current_buf()
 	local buffers = vim.api.nvim_list_bufs()
 	for _, buf_id in ipairs(buffers) do
-		if vim.api.nvim_buf_is_loaded(buf_id) and buf_id ~= current_buf then
+		local is_loaded = vim.api.nvim_buf_is_loaded(buf_id)
+		local is_not_current = buf_id ~= current_buf
+		if is_loaded and is_not_current then
+			local is_modified = vim.api.nvim_get_option_value("modified", { buf = buf_id })
+			local has_file = vim.api.nvim_buf_get_name(buf_id) ~= ""
+			if is_modified and has_file then
+				vim.api.nvim_buf_call(buf_id, function()
+					vim.cmd("silent write")
+				end)
+				buf_saved = buf_saved + 1
+			end
 			pcall(vim.api.nvim_buf_delete, buf_id, { force = true })
-			buf_count = buf_count + 1
+			buf_deleted = buf_deleted + 1
 		end
 	end
-	vim.print(buf_count .. " buffers deleted")
+	vim.print(buf_deleted .. " buffers deleted, " .. buf_saved .. " files saved.")
 end
 
 function DeleteAllBufs()
-	local buf_count = 0
+	local buf_deleted = 0
+	local buf_saved = 0
 	local buffers = vim.api.nvim_list_bufs()
 	for _, buf_id in ipairs(buffers) do
-		if vim.api.nvim_buf_is_loaded(buf_id) then
+		local is_loaded = vim.api.nvim_buf_is_loaded(buf_id)
+		if is_loaded then
+			local is_modified = vim.api.nvim_get_option_value("modified", { buf = buf_id })
+			local has_file = vim.api.nvim_buf_get_name(buf_id) ~= ""
+			if is_modified and has_file then
+				vim.api.nvim_buf_call(buf_id, function()
+					vim.cmd("silent write")
+				end)
+				buf_saved = buf_saved + 1
+			end
 			pcall(vim.api.nvim_buf_delete, buf_id, { force = true })
-			buf_count = buf_count + 1
+			buf_deleted = buf_deleted + 1
 		end
 	end
-	vim.print(buf_count .. " buffers deleted")
+	vim.print(buf_deleted .. " buffers deleted, " .. buf_saved .. " files saved.")
 end
 
 vim.api.nvim_create_user_command("BufDeleteOther", DeleteOtherBufs, { bang = true, desc = "Delete all other buffers" })
