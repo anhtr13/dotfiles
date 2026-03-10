@@ -32,10 +32,7 @@ gimp
 git
 grim
 grub
-hypridle
 hyprland
-hyprlock
-hyprpicker
 hyprshot
 imagemagick
 intel-media-driver
@@ -100,6 +97,8 @@ sof-firmware
 starship
 sudo
 sway
+swayidle
+swaylock
 swaync
 systemd-resolvconf
 tcpdump

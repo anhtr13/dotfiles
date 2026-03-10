@@ -45,7 +45,7 @@
       "menu#power": {
         "actions": [
           {
-            "command": "hyprlock",
+            "command": "swaylock",
             "label": "   Lock     "
           },
           {
@@ -91,7 +91,6 @@
       "text": "Do Not Disturb"
     },
     "mpris": {
-      "image-size": 96,
       "loop-carousel": true,
       "show-album-art": "when-available"
     },

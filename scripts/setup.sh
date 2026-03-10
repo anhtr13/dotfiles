@@ -21,6 +21,7 @@ printf "\n==================== Copying config files... ====================\n"
 for dir in "${trackings[@]}"; do
     cp -r "$dotdir/$dir" "$target"
 done
+echo "Done."
 
 #
 # ===============================================================================================
@@ -85,6 +86,7 @@ if ! [[ -e "/usr/share/zsh/plugins/zsh-syntax-highlighting" ]]; then
 fi
 
 # Change shell
-if ! [[ -n "$ZSH_VERSION" ]]; then
+shell=$(basename $SHELL)
+if [[ shell ~= "zsh" ]]; then
     chsh -s "/usr/bin/zsh"
 fi

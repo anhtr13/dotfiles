@@ -266,7 +266,7 @@ layout {
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
 spawn-at-startup "swaync"
-spawn-at-startup "hypridle"
+spawn-at-startup "idle.sh"
 spawn-at-startup "awww-daemon"
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"

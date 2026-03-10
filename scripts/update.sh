@@ -6,9 +6,7 @@ dotdir=$(dirname $(dirname $(realpath "$0")))
 target=$HOME
 trackings=(
     ".local/bin"
-    ".config/fastfetch"
     ".config/foot"
-    ".config/ghostty"
     ".config/hypr"
     ".config/kitty"
     ".config/niri"
@@ -17,6 +15,7 @@ trackings=(
     ".config/rofi"
     ".config/starship"
     ".config/sway"
+    ".config/swaylock"
     ".config/swaync"
     ".config/tmux"
     ".config/vim"

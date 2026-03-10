@@ -37,25 +37,47 @@ if [[ ! -d "$dir" ]]; then
     mkdir -p "$dir"
 fi
 
-grimshot() {
+shot_via_grim() {
     sleep 0.15
-    grim "$@" "$file_path"
+    case "$1" in
+    '--screen')
+        grim "$file_path"
+        ;;
+    '--region')
+        grim "-g" "$(slurp -w 0)" "$file_path"
+        ;;
+    '--window')
+        notify-send "Slurp" "Warning: Cannot get window coordinates!"
+        exit 1
+        ;;
+    esac
     if [[ -e "$file_path" ]]; then
         notify-send -i "$file_path" "Grim" "Screenshot saved: $file_name"
     fi
 }
 
+shot_via_hyprshot() {
+    case "$1" in
+    '--screen')
+        hyprshot -m output -f $file_name -o $dir
+        ;;
+    '--region')
+        hyprshot -m region -f $file_name -o $dir
+        ;;
+    '--window')
+        hyprshot -m window -f $file_name -o $dir
+        ;;
+    esac
+}
+
 run_cmd() {
-    if [[ "$1" == '--screen' ]]; then
-        grimshot
-    elif [[ "$1" == '--region' ]]; then
-        grimshot "-g" "$(slurp -w 0)"
+    if [[ $XDG_CURRENT_DESKTOP == 'Hyprland' ]] && command -v hyprshot >/dev/null; then
+        shot_via_hyprshot "$@"
+    elif (command -v grim >/dev/null && command -v slurp >/dev/null); then
+        shot_via_grim "$@"
     else
-        if [[ $XDG_CURRENT_DESKTOP == 'Hyprland' ]]; then
-            hyprshot -m window -f $file_name -o $dir
-        else
-            notify-send "Slurp" "Cannot get window coordinates."
-        fi
+        notify-send -u "normal" "Warning!" "Missing package(s) to take screenshot: grim/slurp"
+        exit 1
     fi
 }
 

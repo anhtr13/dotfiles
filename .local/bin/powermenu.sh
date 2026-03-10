@@ -60,7 +60,7 @@ confirm_run() {
 chosen="$(run_rofi)"
 case ${chosen} in
 $option_lock)
-    hyprlock
+    swaylock
     ;;
 $option_logout)
     confirm_run 'kill -9 -1'
