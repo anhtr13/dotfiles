@@ -25,9 +25,9 @@ vim.o.completeopt = "menuone,noinsert,noselect"
 vim.opt.iskeyword:append("-") -- Treat dash as part of word
 vim.opt.runtimepath:remove("/usr/share/vim/vimfiles") -- Separate Vim plugins from Neovim in case Vim still in use (default: includes this path if Vim is installed)
 
-vim.o.tabstop = 2 -- Tab width
-vim.o.shiftwidth = 2 -- Indent width
-vim.o.softtabstop = 2 -- Soft tab stop
+vim.o.tabstop = 4 -- Tab width
+vim.o.shiftwidth = 4 -- Indent width
+vim.o.softtabstop = 4 -- Soft tab stop
 vim.o.expandtab = true -- Use spaces instead of tabs
 vim.o.smartindent = true -- Smart auto-indenting
 vim.o.autoindent = true -- Copy indent from current line
@@ -79,8 +79,8 @@ vim.keymap.set("n", "<Tab><Right>", ":bnext<CR>", { desc = "Next buffer", silent
 vim.keymap.set("n", "<Tab><Left>", ":bprevious<CR>", { desc = "Previous buffer", silent = true })
 vim.keymap.set("n", "<Tab>x", ":bdelete!<CR>", { desc = "Force close current buffer", silent = true })
 vim.keymap.set("n", "<Tab>cc", ":bdelete<CR>", { desc = "Close current buffer", silent = true })
-vim.keymap.set("n", "<Tab>ca", ":%bd!<CR>", { desc = "Close all buffers", silent = true })
-vim.keymap.set("n", "<Tab>co", ":%bd!|e#|bd#<CR>", { desc = "Close all other buffers", silent = true })
+vim.keymap.set("n", "<Tab>ca", ":BufDeleteAll<CR>", { desc = "Close all buffers", silent = true })
+vim.keymap.set("n", "<Tab>co", ":BufDeleteOther<CR>", { desc = "Close all other buffers", silent = true })
 
 vim.keymap.set("n", "grd", vim.lsp.buf.definition, { desc = "vim.lsp.buf.definition()", noremap = true })
 vim.keymap.set("n", "grt", vim.lsp.buf.type_definition, { desc = "vim.lsp.buf.type_definition()", noremap = true })
@@ -96,6 +96,56 @@ vim.cmd.colorscheme("lunaperche")
 -- ================================
 -- Custom utilities
 -- ================================
+
+-- User commands
+function DeleteOtherBufs()
+	local buf_deleted = 0
+	local buf_saved = 0
+	local current_buf = vim.api.nvim_get_current_buf()
+	local buffers = vim.api.nvim_list_bufs()
+	for _, buf_id in ipairs(buffers) do
+		local is_loaded = vim.api.nvim_buf_is_loaded(buf_id)
+		local is_not_current = buf_id ~= current_buf
+		if is_loaded and is_not_current then
+			local is_modified = vim.api.nvim_get_option_value("modified", { buf = buf_id })
+			local has_file = vim.api.nvim_buf_get_name(buf_id) ~= ""
+			if is_modified and has_file then
+				vim.api.nvim_buf_call(buf_id, function()
+					vim.cmd("silent write")
+				end)
+				buf_saved = buf_saved + 1
+			end
+			pcall(vim.api.nvim_buf_delete, buf_id, { force = true })
+			buf_deleted = buf_deleted + 1
+		end
+	end
+	vim.print(buf_deleted .. " buffers deleted, " .. buf_saved .. " files saved.")
+end
+
+function DeleteAllBufs()
+	local buf_deleted = 0
+	local buf_saved = 0
+	local buffers = vim.api.nvim_list_bufs()
+	for _, buf_id in ipairs(buffers) do
+		local is_loaded = vim.api.nvim_buf_is_loaded(buf_id)
+		if is_loaded then
+			local is_modified = vim.api.nvim_get_option_value("modified", { buf = buf_id })
+			local has_file = vim.api.nvim_buf_get_name(buf_id) ~= ""
+			if is_modified and has_file then
+				vim.api.nvim_buf_call(buf_id, function()
+					vim.cmd("silent write")
+				end)
+				buf_saved = buf_saved + 1
+			end
+			pcall(vim.api.nvim_buf_delete, buf_id, { force = true })
+			buf_deleted = buf_deleted + 1
+		end
+	end
+	vim.print(buf_deleted .. " buffers deleted, " .. buf_saved .. " files saved.")
+end
+
+vim.api.nvim_create_user_command("BufDeleteOther", DeleteOtherBufs, { bang = true, desc = "Delete all other buffers" })
+vim.api.nvim_create_user_command("BufDeleteAll", DeleteAllBufs, { bang = true, desc = "Delete all buffers" })
 
 -- Treesitter incremental selection
 _G.selected_nodes = {} ---@type TSNode[]

@@ -1,9 +1,8 @@
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
 set scrolloff=6
 set showtabline=2
-set whichwrap=bs<>[]hl
 set completeopt="menuone,noselect"
 set number
 set relativenumber

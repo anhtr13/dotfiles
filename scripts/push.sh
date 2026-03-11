@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+#
+# Commit and push to all remote repositories
 
 rofi_theme="$XDG_CONFIG_HOME/rofi/themes/applet.rasi"
 yes='✓ Yes'

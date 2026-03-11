@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Some system languages
+# Install some system languages
 
 dotdir=$(dirname $(dirname $(realpath "$0")))
 target=$HOME
