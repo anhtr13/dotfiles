@@ -1,49 +1,151 @@
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
-set scrolloff=6
-set showtabline=2
+"
+" Options
+
+set mouse=
+set encoding=utf-8
 set completeopt="menuone,noselect"
+set termguicolors
 set number
 set relativenumber
-set ignorecase
-set smartcase
+set cursorline
+set cursorline
+set wrap
+set linebreak
+set scrolloff=10
+set showtabline=2
+set laststatus=2
 set showmatch
 set hlsearch
-set incsearch
 set wildmenu
-set noswapfile
 set ruler
 set expandtab
-set smartindent
 set breakindent
+
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set smartindent
+set autoindent
+
+set smartcase
+set ignorecase
+set incsearch
+
+set nobackup
+set nowritebackup
+set noswapfile
+set autoread
+set noautowrite
+
+set splitbelow
+set splitright
+
+filetype plugin indent on
 
 let g:mapleader = "\<Space>"
 let g:netrw_dirhistmax=0
 
-nmap [<space> O<Esc>j
-nmap ]<space> o<Esc>k
+"
+" Appearance
 
-nmap <C-Up> 10k
-nmap <C-Down> 10j
-nmap <C-k> 10k
-nmap <C-j> 10j
-nmap <C-c> :nohlsearch<CR>
+colorscheme lunaperche
+syntax on
 
-imap <C-q> <Esc>
-imap <C-z> <Esc>u
-imap <C-r> <Esc><C-r>
-imap <C-s> <Esc>:w<cr>
+"
+" Commands
+command! DelAllBufs silent! execute "%bd!"
+command! DelOtherBufs silent! execute "%bd|e#|bd#"
 
-map <leader>e :Explore<cr>
-map <C-q> <Esc>
-map <C-z> <Esc>u
-map <C-s> <Esc>:w<cr>
+"
+" Keymaps
 
-map <Tab>a :buffers<cr>
-map <Tab><Left> :bprevious<cr>
-map <Tab><Right> :bnext<cr>
-map <Tab>h :bprevious<cr>
-map <Tab>l :bnext<cr>
-map <Tab>c :bdelete<cr>
-map <Tab>x :bdelete!<cr>
+noremap <C-Up> 10k
+noremap <C-Down> 10j
+noremap <C-k> 10k
+noremap <C-j> 10j
+noremap <C-h> 10h
+noremap <C-l> 10l
+noremap <C-c> :nohlsearch<CR>
+noremap <C-q> <Esc>
+noremap <C-z> <Esc>u
+noremap <C-s> <Esc>:w<cr>
+
+nnoremap [<space> O<Esc>j
+nnoremap ]<space> o<Esc>k
+nnoremap <leader>e :Explore<cr>
+nnoremap <Tab>a :buffers<cr>
+nnoremap <Tab><Left> :bprevious<cr>
+nnoremap <Tab><Right> :bnext<cr>
+nnoremap <Tab>h :bprevious<cr>
+nnoremap <Tab>l :bnext<cr>
+nnoremap <Tab>c :bdelete<cr>
+nnoremap <Tab>x :bdelete!<cr>
+nnoremap <Tab>ca :wa<cr>:DelAllBufs<cr>
+nnoremap <Tab>co :wa<cr>:DelOtherBufs<cr>
+
+inoremap <C-q> <Esc>
+inoremap <C-z> <Esc>u
+inoremap <C-r> <Esc><C-r>
+inoremap <C-s> <Esc>:w<cr>
+
+"
+" Plugins
+
+let s:plugin_dir = expand('$XDG_CONFIG_HOME/vim/plugins')
+
+function! s:ensure(repo)
+    let name = split(a:repo, '/')[-1]
+    let path = s:plugin_dir . '/' . name
+
+    if !isdirectory(path)
+        if !isdirectory(s:plugin_dir)
+            call mkdir(s:plugin_dir, 'p')
+        endif
+        execute '!git clone --depth=1 ' . a:repo . ' ' . shellescape(path)
+    endif
+
+    execute 'set runtimepath+=' . fnameescape(path)
+endfunction
+
+" Plugins setup
+"""
+call s:ensure('https://github.com/junegunn/fzf.vim')
+nnoremap <leader>/f :Files<CR>
+nnoremap <leader>/g :Rg<Space>
+nnoremap <leader>/b :Buffers<CR>
+nnoremap <leader>/c :History:<CR>
+nnoremap <leader>/m :Marks<CR>
+nnoremap <leader>/k :Maps<CR>
+
+"""
+call s:ensure('https://github.com/itchyny/lightline.vim')
+
+"""
+call s:ensure('https://github.com/yegappan/lsp')
+let lsp_servers = [
+            \ #{
+            \    name: 'ty',
+            \    filetype: ['python'],
+            \    path: 'ty',
+            \    args: ['server'],
+            \    syncInit: v:true
+            \ }
+            \ ]
+autocmd User LspSetup call LspAddServer(lsp_servers)
+
+let lsp_opts = #{
+            \   autoHighlightDiags: v:true,
+            \   diagSignErrorText: '✘',
+            \   diagSignWarningText: '▲',
+            \   diagSignInfoText: '»',
+            \   diagSignHintText: '⚑',
+            \ }
+autocmd User LspSetup call LspOptionsSet(lsp_opts)
+
+nnoremap grd :LspGotoDefinition<CR>
+nnoremap grr :LspShowReferences<CR>
+nnoremap K   :LspHover<CR>
+nnoremap grl :LspDiag current<CR>
+nnoremap ]d  :LspDiag next \| LspDiag current<CR>
+nnoremap [d  :LspDiag prev \| LspDiag current<CR>
+inoremap <silent> <C-Space> <C-x><C-o>

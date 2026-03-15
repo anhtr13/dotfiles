@@ -1,6 +1,6 @@
--- ========================
--- Statusline
--- ========================
+---@brief
+---
+--- Custom statusline
 
 local M = {}
 

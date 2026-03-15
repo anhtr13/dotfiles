@@ -1,6 +1,6 @@
--- ================================
--- Treesitter incremental selection
--- ================================
+---@brief
+---
+--- Custom scripts to enable incremental selection using treesitter
 
 _G.selected_nodes = {} ---@type TSNode[]
 

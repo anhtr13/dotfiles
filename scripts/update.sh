@@ -11,7 +11,6 @@ trackings=(
     ".config/kitty"
     ".config/niri"
     ".config/nvim"
-    ".config/nvim_lite"
     ".config/rofi"
     ".config/starship"
     ".config/sway"

@@ -83,45 +83,6 @@ vim.o.splitbelow = true -- Horizontal splits go below
 vim.o.splitright = true -- Vertical splits go right
 
 -- ============================
--- Keymaps
--- ============================
-
-vim.keymap.set("n", "<Tab>l", ":bnext<CR>", { desc = "Next buffer", silent = true })
-vim.keymap.set("n", "<Tab>h", ":bprevious<CR>", { desc = "Previous buffer", silent = true })
-vim.keymap.set("n", "<Tab><Right>", ":bnext<CR>", { desc = "Next buffer", silent = true })
-vim.keymap.set("n", "<Tab><Left>", ":bprevious<CR>", { desc = "Previous buffer", silent = true })
-vim.keymap.set("n", "<Tab>x", ":bdelete!<CR>", { desc = "Force close current buffer", silent = true })
-vim.keymap.set("n", "<Tab>cc", ":bdelete<CR>", { desc = "Close current buffer", silent = true })
-vim.keymap.set("n", "<Tab>ca", ":BufDeleteAll<CR>", { desc = "Close all buffers", silent = true })
-vim.keymap.set("n", "<Tab>co", ":BufDeleteOther<CR>", { desc = "Close all other buffers", silent = true })
-
-vim.keymap.set("n", "grd", vim.lsp.buf.definition, { desc = "vim.lsp.buf.definition()", noremap = true })
-vim.keymap.set("n", "grt", vim.lsp.buf.type_definition, { desc = "vim.lsp.buf.type_definition()", noremap = true })
-vim.keymap.set("n", "grh", function()
-	vim.lsp.buf.hover({ max_height = 32, max_width = 132 })
-end, { desc = "vim.lsp.buf.hover()" })
-vim.keymap.set("n", "grI", function()
-	vim.diagnostic.open_float({ max_height = 32, max_width = 132 })
-end, { desc = "vim.diagnostic.open_float()," })
-
-vim.keymap.set({ "n", "v" }, "<c-Up>", "10k", { noremap = true })
-vim.keymap.set({ "n", "v" }, "<c-Down>", "10j", { noremap = true })
-vim.keymap.set({ "n", "v" }, "<c-k>", "10k", { noremap = true })
-vim.keymap.set({ "n", "v" }, "<c-j>", "10j", { noremap = true })
-vim.keymap.set({ "n", "v" }, "<c-h>", "10h", { noremap = true })
-vim.keymap.set({ "n", "v" }, "<c-l>", "10l", { noremap = true })
-
-vim.keymap.set("i", "<c-z>", "<ESC>u", { desc = "Undo and back to normal mode", noremap = true })
-vim.keymap.set("i", "<c-r>", "<ESC><c-r>", { desc = "Redo and back to normal mode", noremap = true })
-vim.keymap.set({ "n", "v" }, "<c-z>", "u", { desc = "Undo", noremap = true })
-vim.keymap.set("n", "<c-s>", "<cmd>:w<CR>", { desc = "Save file", noremap = true })
-vim.keymap.set({ "i", "v" }, "<c-s>", "<ESC><cmd>:w<CR>", { desc = "Save and back to normal mode", noremap = true })
-vim.keymap.set({ "n", "i", "v", "x", "s", "o", "t", "c", "l" }, "<c-q>", "<ESC>", { desc = "<ESC>", noremap = true })
-vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Escape to normal mode", noremap = true })
-vim.keymap.set("n", "<c-c>", ":nohlsearch<CR>", { desc = "Clear search highlights", noremap = true })
--- vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position", noremap = true })
-
--- ============================
 -- User commands
 -- ============================
 
@@ -179,6 +140,45 @@ vim.api.nvim_create_user_command(
 	"MasonInstall bash-language-server dockerfile-language-server json-lsp lua-language-server prettierd sql-formatter stylua tailwindcss-language-server vtsls vue-language-server yaml-language-server zls",
 	{ bang = true, desc = "Install core lsps" }
 )
+
+-- ============================
+-- Keymaps
+-- ============================
+
+vim.keymap.set("n", "<Tab>l", ":bnext<CR>", { desc = "Next buffer", silent = true })
+vim.keymap.set("n", "<Tab>h", ":bprevious<CR>", { desc = "Previous buffer", silent = true })
+vim.keymap.set("n", "<Tab><Right>", ":bnext<CR>", { desc = "Next buffer", silent = true })
+vim.keymap.set("n", "<Tab><Left>", ":bprevious<CR>", { desc = "Previous buffer", silent = true })
+vim.keymap.set("n", "<Tab>x", ":bdelete!<CR>", { desc = "Force close current buffer", silent = true })
+vim.keymap.set("n", "<Tab>cc", ":bdelete<CR>", { desc = "Close current buffer", silent = true })
+vim.keymap.set("n", "<Tab>ca", DeleteAllBufs, { desc = "Close all buffers", silent = true })
+vim.keymap.set("n", "<Tab>co", DeleteOtherBufs, { desc = "Close all other buffers", silent = true })
+
+vim.keymap.set("n", "grd", vim.lsp.buf.definition, { desc = "vim.lsp.buf.definition()", noremap = true })
+vim.keymap.set("n", "grt", vim.lsp.buf.type_definition, { desc = "vim.lsp.buf.type_definition()", noremap = true })
+vim.keymap.set("n", "grh", function()
+	vim.lsp.buf.hover({ max_height = 32, max_width = 132 })
+end, { desc = "vim.lsp.buf.hover()" })
+vim.keymap.set("n", "grI", function()
+	vim.diagnostic.open_float({ max_height = 32, max_width = 132 })
+end, { desc = "vim.diagnostic.open_float()," })
+
+vim.keymap.set({ "n", "v" }, "<c-Up>", "10k", { noremap = true })
+vim.keymap.set({ "n", "v" }, "<c-Down>", "10j", { noremap = true })
+vim.keymap.set({ "n", "v" }, "<c-k>", "10k", { noremap = true })
+vim.keymap.set({ "n", "v" }, "<c-j>", "10j", { noremap = true })
+vim.keymap.set({ "n", "v" }, "<c-h>", "10h", { noremap = true })
+vim.keymap.set({ "n", "v" }, "<c-l>", "10l", { noremap = true })
+
+vim.keymap.set("i", "<c-z>", "<ESC>u", { desc = "Undo and back to normal mode", noremap = true })
+vim.keymap.set("i", "<c-r>", "<ESC><c-r>", { desc = "Redo and back to normal mode", noremap = true })
+vim.keymap.set({ "n", "v" }, "<c-z>", "u", { desc = "Undo", noremap = true })
+vim.keymap.set("n", "<c-s>", "<cmd>:w<CR>", { desc = "Save file", noremap = true })
+vim.keymap.set({ "i", "v" }, "<c-s>", "<ESC><cmd>:w<CR>", { desc = "Save and back to normal mode", noremap = true })
+vim.keymap.set({ "n", "i", "v", "x", "s", "o", "t", "c", "l" }, "<c-q>", "<ESC>", { desc = "<ESC>", noremap = true })
+vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Escape to normal mode", noremap = true })
+vim.keymap.set("n", "<c-c>", ":nohlsearch<CR>", { desc = "Clear search highlights", noremap = true })
+-- vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position", noremap = true })
 
 -- ===================================
 -- Register additional file extensions
