@@ -1,23 +1,31 @@
 # zshrc
+#
 
-# https://github.com/zsh-users/zsh-autosuggestions
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-# https://github.com/zsh-users/zsh-history-substring-search
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-
-[[ -f ${ZDOTDIR}/aliasrc ]] && source ${ZDOTDIR}/aliasrc
-[[ -f ${ZDOTDIR}/optionrc ]] && source ${ZDOTDIR}/optionrc
+setopt correct
+setopt extendedglob
+setopt nocaseglob
+setopt rcexpandparam
+setopt nocheckjobs
+setopt numericglobsort
+setopt nobeep
+setopt appendhistory
+setopt histignorealldups
+setopt autocd
+setopt inc_append_history
+setopt histignorespace
+setopt IGNOREEOF
 
 HISTFILE=$ZDOTDIR/.histfile
 HISTSIZE=9600
 SAVEHIST=9600
 WORDCHARS='*?~&!#%^<>' # separate words by / - _ = . $ () {} [];
 
-eval "$(starship init zsh)"
+# alias ssh='env TERM=xterm-256color ssh' # allows ghostty to work with ssh
+alias yz='yazi'
 
 zmodload zsh/terminfo
 
-# Basic auto/tab complete:
+# Auto/tab complete:
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
@@ -33,7 +41,7 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
-# Edit line in vim with ctrl-e:
+# Ctrl-e to edit line in Vim
 autoload edit-command-line
 zle -N edit-command-line
 bindkey '^e' edit-command-line
@@ -55,5 +63,11 @@ function chpwd() {
     echo -en "\e]0;$PWD\a" #-- Set icon name and window title after cd
 }
 
+eval "$(starship init zsh)"
+
+# https://github.com/zsh-users/zsh-autosuggestions
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# https://github.com/zsh-users/zsh-history-substring-search
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 # https://github.com/zsh-users/zsh-syntax-highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
