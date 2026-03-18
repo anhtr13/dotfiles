@@ -184,6 +184,9 @@ vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { fg = colors.fg, bg = colors.bg0 }
 
 vim.api.nvim_set_hl(0, "NvimTreeFolderIcon", { fg = colors.grey })
 
+vim.api.nvim_set_hl(0, "MarkdownHeadingBg", { fg = colors.none, bg = colors.none })
+vim.api.nvim_set_hl(0, "MarkdownHeadingFg", { fg = colors.blue1, bg = colors.none, bold = true })
+
 vim.api.nvim_set_hl(0, "debugPC", { fg = colors.black, bg = colors.green1 })
 vim.api.nvim_set_hl(0, "debugBreakpoint", { fg = colors.black, bg = colors.red1 })
 vim.api.nvim_set_hl(0, "healthError", { fg = colors.red1 })

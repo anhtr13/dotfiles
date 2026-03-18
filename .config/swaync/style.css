@@ -5,301 +5,301 @@
 @define-color base    #000000;
 
 * {
-  font-family: "CodeNewRoman Nerd Font Propo";
-  background-clip: border-box;
-  border-radius: 0px;
+    font-family: "SauceCodePro Nerd Font Propo";
+    background-clip: border-box;
+    border-radius: 0px;
 }
 
 /*** Notification ***/
 
 .notification {
-  color: @white;
-  border: 2px solid @cyan;
-  background: alpha(@base, 0.9)
+    color: @white;
+    border: 2px solid @cyan;
+    background: alpha(@base, 0.9)
 }
 
 .notification button {
-  color: @base;
-  background: alpha(@cyan, 0.5);
+    color: @base;
+    background: alpha(@cyan, 0.5);
 }
 
 .notification button:hover {
-  background: @cyan;
+    background: @cyan;
 }
 
 .notification-content {
-  padding: 12px;
+    padding: 12px;
 }
 
 .close-button {
-  color: @red;
-  background: alpha(@red, 0.3);
+    color: @red;
+    background: alpha(@red, 0.3);
 }
 .close-button:hover {
-  color: @base;
-  background: @red;
+    color: @base;
+    background: @red;
 }
 
 .notification-default-action,
 .notification-action {
-  background: transparent;
-  border: none;
+    background: transparent;
+    border: none;
 }
 
 .notification-action {
-  padding: 2px;
+    padding: 2px;
 }
 
 /* Notification header */
 .summary {
-  font-size: 16px;
-  color: @white;
+    font-size: 16px;
+    color: @white;
 }
 
 .time {
-  color: alpha(@white, 0.7);
-  font-size: 12px;
-  text-shadow: none;
-  padding: 2px 0px;
+    color: alpha(@white, 0.7);
+    font-size: 12px;
+    text-shadow: none;
+    padding: 2px 0px;
 }
 
 .body {
-  font-size: 16px;
-  font-weight: 500;
-  color: @white;
+    font-size: 16px;
+    font-weight: 500;
+    color: @white;
 }
 
 /*** Notification center ***/
 
 /* Control center */
 .control-center {
-  background: alpha(@base, 0.9);
-  border: 2px solid @cyan;
-  padding: 4px;
+    background: alpha(@base, 0.9);
+    border: 2px solid @cyan;
+    padding: 4px;
 }
 .control-center-list {
-  min-height: 5px;
-  margin: 0px;
-  padding: 0px;
+    min-height: 5px;
+    margin: 0px;
+    padding: 0px;
 }
 
 .control-center-list-placeholder,
 .notification-group-icon,
 .notification-group {
-  color: @cyan;
+    color: @cyan;
 }
 .notification-group,
 .notification-background {
-  margin-bottom: 6px;
+    margin-bottom: 6px;
 }
 .notification-group label {
-  color: @white;
+    color: @white;
 }
 .notification-group {
-  opacity: 1.0;
-  box-shadow: none;
+    opacity: 1.0;
+    box-shadow: none;
 }
 
 .notification-group > box {
-  all: unset;
-  padding: 4px;
+    all: unset;
+    padding: 4px;
 }
 .notification-group-headers {
-  margin-left: 6px;
-  margin-bottom: 4px;
+    margin-left: 6px;
+    margin-bottom: 4px;
 }
 .notification-group-buttons {
-  margin-right: 6px;
-  margin-bottom: 4px;
+    margin-right: 6px;
+    margin-bottom: 4px;
 }
 .notification-group-header.title-1 {
-  font-size: 20px;
+    font-size: 20px;
 }
 .notification-group-collapse-button,
 .notification-group-close-all-button {
-  color: @white;
-  background: alpha(@cyan, 0.1);
+    color: @white;
+    background: alpha(@cyan, 0.1);
 }
 .notification-group-collapse-button:hover {
-  color: @base;
-  background: @green;
+    color: @base;
+    background: @green;
 }
 .notification-group-close-all-button:hover {
-  color: @base;
-  background: @red;
+    color: @base;
+    background: @red;
 }
 
 .control-center-list > row,
 .control-center-list > row:focus,
 .control-center-list > row:hover {
-  background: transparent;
-  border: none;
-  box-shadow: none;
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
 
 
 /* Window behind control center and on all other monitors */
 .blank-window {
-  background: transparent;
+    background: transparent;
 }
 
 /*** Widgets ***/
 
 /* DND widget */
 .widget-dnd {
-  margin: 16px 16px 0px 16px;
-  padding: 0px;
-  font-weight: 700;
+    margin: 16px 16px 0px 16px;
+    padding: 0px;
+    font-weight: 700;
 }
 .widget-dnd > label {
-  font-size: 20px;
-  color: @white;
+    font-size: 20px;
+    color: @white;
 }
 .widget-dnd > switch {
-  background: alpha(@cyan, 0.4);
-  box-shadow: none;
-  padding: 2px;
+    background: alpha(@cyan, 0.4);
+    box-shadow: none;
+    padding: 2px;
 }
 
 .widget-dnd > switch:hover {
-  background: alpha(@cyan, 0.7);
+    background: alpha(@cyan, 0.7);
 }
 
 .widget-dnd > switch:checked {
-  background: @cyan;
+    background: @cyan;
 }
 
 .widget-dnd > switch slider {
-  background: @base;
+    background: @base;
 }
 
 /* Menubar */
 .widget-menubar {
-  color: @white;
-  margin: 4px;
+    color: @white;
+    margin: 4px;
 }
 .widget-menubar > box {
-  padding: 0px 8px;
+    padding: 0px 8px;
 }
 .widget-menubar > box > box {
-  margin: 0px;
-  padding: 0px;
+    margin: 0px;
+    padding: 0px;
 }
 .widget-menubar button {
-  background: alpha(@cyan, 0.1);
+    background: alpha(@cyan, 0.1);
 }
 .widget-menubar button:hover {
-  color: @base;
-  background: @cyan;
+    color: @base;
+    background: @cyan;
 }
 .widget-menubar > box > box > button {
-  padding: 0px;
-  margin: 0px;
-  min-height: 40px;
-  min-width: 180px;
-  color: @base;
-  background: alpha(@cyan, 0.5);
+    padding: 0px;
+    margin: 0px;
+    min-height: 40px;
+    min-width: 180px;
+    color: @base;
+    background: alpha(@cyan, 0.5);
 }
 .widget-menubar > box > box > button:hover,
 .widget-menubar > box > box > button:focus:hover {
-  background: @cyan;
+    background: @cyan;
 }
 .widget-menubar > box > box > button:focus {
-  background: @cyan;
+    background: @cyan;
 }
 
 /* Backlight and volume widgets */
 .widget-backlight,
 .widget-volume {
-  color: @white;
-  font-weight: 600;
-  margin: 0px 12px;
-  padding: 0px;
+    color: @white;
+    font-weight: 600;
+    margin: 0px 12px;
+    padding: 0px;
 }
 .widget-volume > box {
-  margin-bottom: 6px;
-  min-height: 40px;
+    margin-bottom: 6px;
+    min-height: 40px;
 }
 .widget-volume > box > label {
-  min-width: 37px;
-  padding: 0px 0px 0px 3px;
+    min-width: 37px;
+    padding: 0px 0px 0px 3px;
 }
 .widget-volume > box > button {
-  min-width: 40px;
-  box-shadow: none;
-  padding: 0px;
+    min-width: 40px;
+    box-shadow: none;
+    padding: 0px;
 }
 .widget-backlight > scale {
-  margin: 0px 10px;
-  padding: 0px;
-  min-height: 40px;
+    margin: 0px 10px;
+    padding: 0px;
+    min-height: 40px;
 }
 .widget-backlight > label {
-  margin: 0px;
-  padding: 0px;
-  min-height: 40px;
-  min-width: 40px;
+    margin: 0px;
+    padding: 0px;
+    min-height: 40px;
+    min-width: 40px;
 }
 
 /* Mpris widget */
 .widget-mpris {
-  margin: 8px 4px;
-  padding: 0px;
+    margin: 8px 4px;
+    padding: 0px;
 }
 .widget-mpris > box {
-  padding: 0px;
+    padding: 0px;
 }
 .widget-mpris-album-art {
-  all: unset;
+    all: unset;
 }
 .widget-mpris-player {
-  margin: 0px 8px;
+    margin: 0px 8px;
 }
 
 /* Title widget */
 .widget-title {
-  margin: 0px 16px -8px 16px;
-  padding: 0px;
-  font-weight: 700;
+    margin: 0px 16px -8px 16px;
+    padding: 0px;
+    font-weight: 700;
 }
 
 .widget-title > label {
-  color: @white;
-  font-size: 20px;
+    color: @white;
+    font-size: 20px;
 }
 
 .widget-title > button {
-  padding: 4px 10px;
-  color: alpha(@white, 0.5);
+    padding: 4px 10px;
+    color: alpha(@white, 0.5);
 }
 .widget-title > button:hover {
-  color: @base;
-  background: @red;
+    color: @base;
+    background: @red;
 }
 
 /* Sliders */
 scale {
-  padding: 0px;
-  margin: 0px 10px 0px 10px;
+    padding: 0px;
+    margin: 0px 10px 0px 10px;
 }
 
 scale through {
-  background: alpha(@cyan, 0.1);
+    background: alpha(@cyan, 0.1);
 }
 
 scale highlight {
-  min-height: 4px;
-  margin-right: -5px;
-  background: @cyan;
+    min-height: 4px;
+    margin-right: -5px;
+    background: @cyan;
 }
 
 scale slider {
-  margin: -10px;
-  min-width: 6px;
-  min-height: 6px;
-  background: @white;
-  box-shadow: none;
-  padding: 0px;
+    margin: -10px;
+    min-width: 6px;
+    min-height: 6px;
+    background: @white;
+    box-shadow: none;
+    padding: 0px;
 }
 
 scrollbar slider {

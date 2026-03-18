@@ -7,8 +7,8 @@ vim.pack.add({
 
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
 	{ src = "https://github.com/nvim-tree/nvim-tree.lua" },
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 	{ src = "https://github.com/mason-org/mason.nvim" },
+	{ src = "https://github.com/MagicDuck/grug-far.nvim" },
 	{ src = "https://github.com/folke/which-key.nvim" },
 })
 
@@ -77,9 +77,38 @@ require("nvim-tree").setup({
 vim.keymap.set("n", "<leader>e", require("nvim-tree.api").tree.toggle, { desc = "File explorer", silent = true })
 
 --------------------------------------
-local ts = require("nvim-treesitter")
-local ts_setup_group = vim.api.nvim_create_augroup("treesitter.setup", { clear = true })
-local parsers = {
+require("grug-far").setup({})
+
+vim.keymap.set("n", "<leader>gf", ":GrugFar<CR>", { desc = "GrugFar", silent = true })
+vim.keymap.set("n", "<leader>gw", ":GrugFarWithin<CR>", { desc = "GrugFarWithin", silent = true })
+
+--------------------------------------
+require("mason").setup({
+	PATH = "prepend",
+	max_concurrent_installers = 3,
+	ui = {
+		icons = {
+			package_installed = "✓",
+			package_pending = "➜",
+			package_uninstalled = "✗",
+		},
+	},
+})
+
+--------------------------------------
+require("which-key").setup({
+	preset = "modern",
+})
+
+vim.keymap.set("n", "<leader>?", function()
+	require("which-key").show({ global = false })
+end, { desc = "Buffer Local Keymaps (which-key)" })
+
+--------------------------------------
+require("custom.statusline").setup()
+
+--------------------------------------
+local ts_parsers = {
 	"c",
 	"lua",
 	"vim",
@@ -119,7 +148,7 @@ local parsers = {
 	"ini",
 }
 
-local ignore_filetypes = {
+local ts_ignore_filetypes = {
 	checkhealth = true,
 	lazy = true,
 	mason = true,
@@ -131,21 +160,12 @@ local ignore_filetypes = {
 	fzf = true,
 }
 
-vim.api.nvim_create_autocmd("VimEnter", {
-	group = ts_setup_group,
-	once = true,
-	desc = "Install treesitter parsers",
-	callback = function()
-		ts.install(parsers, { max_jobs = 8 })
-		-- vim.api.nvim_command("TSUpdate")
-	end,
-})
-
+local ts_setup = vim.api.nvim_create_augroup("treesitter.setup", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-	group = ts_setup_group,
+	group = ts_setup,
 	desc = "Enable treesitter highlighting and folds",
 	callback = function(event)
-		if not vim.api.nvim_buf_is_valid(event.buf) or ignore_filetypes[event.match] then
+		if not vim.api.nvim_buf_is_valid(event.buf) or ts_ignore_filetypes[event.match] then
 			return
 		end
 		local lang = vim.treesitter.language.get_lang(event.match) or event.match
@@ -157,48 +177,104 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
---------------------------------------
-require("mason").setup({
-	PATH = "prepend",
-	max_concurrent_installers = 3,
-	ui = {
-		icons = {
-			package_installed = "✓",
-			package_pending = "➜",
-			package_uninstalled = "✗",
-		},
-	},
-})
+-- ====================================================================================================
+local lazy_load = vim.api.nvim_create_augroup("plugins.lazy", { clear = true })
 
---------------------------------------
-require("which-key").setup({
-	preset = "modern",
-})
-
-vim.keymap.set("n", "<leader>?", function()
-	require("which-key").show({ global = false })
-end, { desc = "Buffer Local Keymaps (which-key)" })
-
---------------------------------------
-require("custom.statusline").setup()
-
--- ============================
--- Lazy load
--- ============================
-
-local lazy_load = vim.api.nvim_create_augroup("lazy_load_plugins", { clear = true })
-
-vim.api.nvim_create_autocmd("BufReadPre", {
+vim.api.nvim_create_autocmd("BufReadPost", {
 	group = lazy_load,
 	once = true,
+	desc = "Plugins that load after open buffer",
 	callback = function()
 		vim.pack.add({
 			{ src = "https://github.com/rafamadriz/friendly-snippets" },
+			{ src = "https://github.com/kevinhwang91/promise-async" },
+			{ src = "https://github.com/igorlfs/nvim-dap-view" },
+			{ src = "https://github.com/leoluz/nvim-dap-go" },
+			{ src = "https://codeberg.org/mfussenegger/nvim-dap-python" },
 
+			{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
+			{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
+			{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
 			{ src = "https://github.com/saghen/blink.cmp", version = "v1.8.0" },
 			{ src = "https://github.com/lewis6991/gitsigns.nvim" },
-			{ src = "https://github.com/3rd/image.nvim" },
+			{ src = "https://github.com/numToStr/Comment.nvim" },
+			{ src = "https://github.com/stevearc/conform.nvim" },
+			{ src = "https://codeberg.org/mfussenegger/nvim-dap" },
+			{ src = "https://github.com/folke/flash.nvim" },
+			{ src = "https://github.com/saghen/blink.indent" },
 		})
+
+		--------------------------------------
+		local ts = require("nvim-treesitter")
+		ts.install(ts_parsers, { max_jobs = 8 })
+
+		--------------------------------------
+		require("nvim-treesitter-textobjects").setup({
+			select = {
+				lookahead = true,
+			},
+			move = {
+				set_jumps = true,
+			},
+		})
+
+		local textobjects_select = require("nvim-treesitter-textobjects.select")
+		local textobjects_move = require("nvim-treesitter-textobjects.move")
+
+		vim.keymap.set({ "x", "o" }, "|(", function()
+			textobjects_select.select_textobject("@parameter.inner", "textobjects")
+		end, { desc = "Select inner parameter" })
+		vim.keymap.set({ "x", "o" }, "|)", function()
+			textobjects_select.select_textobject("@parameter.outer", "textobjects")
+		end, { desc = "Select outer parameter" })
+		vim.keymap.set({ "x", "o" }, "|{", function()
+			textobjects_select.select_textobject("@function.inner", "textobjects")
+		end, { desc = "Select inner function" })
+		vim.keymap.set({ "x", "o" }, "|}", function()
+			textobjects_select.select_textobject("@function.outer", "textobjects")
+		end, { desc = "Select outer function" })
+		vim.keymap.set({ "x", "o" }, "|[", function()
+			textobjects_select.select_textobject("@class.inner", "textobjects")
+		end, { desc = "Select inner class" })
+		vim.keymap.set({ "x", "o" }, "|]", function()
+			textobjects_select.select_textobject("@class.outer", "textobjects")
+		end, { desc = "Select outer class" })
+
+		vim.keymap.set({ "n", "x", "o" }, "]f", function()
+			textobjects_move.goto_next_start("@function.outer", "textobjects")
+		end, { desc = "Go to next function start" })
+		vim.keymap.set({ "n", "x", "o" }, "]c", function()
+			textobjects_move.goto_next_start("@class.outer", "textobjects")
+		end, { desc = "Go to next class start" })
+
+		vim.keymap.set({ "n", "x", "o" }, "]F", function()
+			textobjects_move.goto_next_end("@function.outer", "textobjects")
+		end, { desc = "Go to next function end" })
+		vim.keymap.set({ "n", "x", "o" }, "]C", function()
+			textobjects_move.goto_next_end("@class.outer", "textobjects")
+		end, { desc = "Go to next class end" })
+
+		vim.keymap.set({ "n", "x", "o" }, "[f", function()
+			textobjects_move.goto_previous_start("@function.outer", "textobjects")
+		end, { desc = "Go to previous function start" })
+		vim.keymap.set({ "n", "x", "o" }, "[c", function()
+			textobjects_move.goto_previous_start("@class.outer", "textobjects")
+		end, { desc = "Go to previous class start" })
+
+		vim.keymap.set({ "n", "x", "o" }, "[F", function()
+			textobjects_move.goto_previous_end("@function.outer", "textobjects")
+		end, { desc = "Go to previous function end" })
+		vim.keymap.set({ "n", "x", "o" }, "[C", function()
+			textobjects_move.goto_previous_end("@class.outer", "textobjects")
+		end, { desc = "Go to previous class end" })
+
+		local incremental_selection = require("custom.ts_incremental_selection")
+		vim.keymap.set("n", "||", incremental_selection.init_selection, { desc = "Treesitter init selection" })
+		vim.keymap.set("x", "|+", incremental_selection.incr_selection, { desc = "Treesitter increase selection" })
+		vim.keymap.set("x", "|-", incremental_selection.decr_selection, { desc = "Treesitter decrease selection" })
+
+		--------------------------------------
+		require("treesitter-context").setup()
 
 		--------------------------------------
 		require("blink.cmp").setup({
@@ -274,112 +350,6 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 				changedelete = { text = "~" },
 			},
 		})
-
-		--------------------------------------
-		require("image").setup({
-			integrations = {
-				markdown = {
-					enabled = true,
-					only_render_image_at_cursor = false,
-				},
-				neorg = {
-					enabled = false,
-				},
-				typst = {
-					enabled = false,
-				},
-			},
-		})
-	end,
-})
-
-vim.api.nvim_create_autocmd("BufReadPost", {
-	group = lazy_load,
-	once = true,
-	callback = function()
-		vim.pack.add({
-			{ src = "https://github.com/kevinhwang91/promise-async" },
-			{ src = "https://github.com/igorlfs/nvim-dap-view" },
-			{ src = "https://github.com/leoluz/nvim-dap-go" },
-			{ src = "https://codeberg.org/mfussenegger/nvim-dap-python" },
-
-			{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
-			{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
-			{ src = "https://github.com/numToStr/Comment.nvim" },
-			{ src = "https://github.com/stevearc/conform.nvim" },
-			{ src = "https://codeberg.org/mfussenegger/nvim-dap" },
-			{ src = "https://github.com/folke/flash.nvim" },
-			{ src = "https://github.com/MagicDuck/grug-far.nvim" },
-			{ src = "https://github.com/saghen/blink.indent" },
-		})
-
-		--------------------------------------
-		require("nvim-treesitter-textobjects").setup({
-			select = {
-				lookahead = true,
-			},
-			move = {
-				set_jumps = true,
-			},
-		})
-
-		local textobjects_select = require("nvim-treesitter-textobjects.select")
-		local textobjects_move = require("nvim-treesitter-textobjects.move")
-
-		vim.keymap.set({ "x", "o" }, "|(", function()
-			textobjects_select.select_textobject("@parameter.inner", "textobjects")
-		end, { desc = "Select inner parameter" })
-		vim.keymap.set({ "x", "o" }, "|)", function()
-			textobjects_select.select_textobject("@parameter.outer", "textobjects")
-		end, { desc = "Select outer parameter" })
-		vim.keymap.set({ "x", "o" }, "|{", function()
-			textobjects_select.select_textobject("@function.inner", "textobjects")
-		end, { desc = "Select inner function" })
-		vim.keymap.set({ "x", "o" }, "|}", function()
-			textobjects_select.select_textobject("@function.outer", "textobjects")
-		end, { desc = "Select outer function" })
-		vim.keymap.set({ "x", "o" }, "|[", function()
-			textobjects_select.select_textobject("@class.inner", "textobjects")
-		end, { desc = "Select inner class" })
-		vim.keymap.set({ "x", "o" }, "|]", function()
-			textobjects_select.select_textobject("@class.outer", "textobjects")
-		end, { desc = "Select outer class" })
-
-		vim.keymap.set({ "n", "x", "o" }, "]f", function()
-			textobjects_move.goto_next_start("@function.outer", "textobjects")
-		end, { desc = "Go to next function start" })
-		vim.keymap.set({ "n", "x", "o" }, "]c", function()
-			textobjects_move.goto_next_start("@class.outer", "textobjects")
-		end, { desc = "Go to next class start" })
-
-		vim.keymap.set({ "n", "x", "o" }, "]F", function()
-			textobjects_move.goto_next_end("@function.outer", "textobjects")
-		end, { desc = "Go to next function end" })
-		vim.keymap.set({ "n", "x", "o" }, "]C", function()
-			textobjects_move.goto_next_end("@class.outer", "textobjects")
-		end, { desc = "Go to next class end" })
-
-		vim.keymap.set({ "n", "x", "o" }, "[f", function()
-			textobjects_move.goto_previous_start("@function.outer", "textobjects")
-		end, { desc = "Go to previous function start" })
-		vim.keymap.set({ "n", "x", "o" }, "[c", function()
-			textobjects_move.goto_previous_start("@class.outer", "textobjects")
-		end, { desc = "Go to previous class start" })
-
-		vim.keymap.set({ "n", "x", "o" }, "[F", function()
-			textobjects_move.goto_previous_end("@function.outer", "textobjects")
-		end, { desc = "Go to previous function end" })
-		vim.keymap.set({ "n", "x", "o" }, "[C", function()
-			textobjects_move.goto_previous_end("@class.outer", "textobjects")
-		end, { desc = "Go to previous class end" })
-
-		local incremental_selection = require("custom.ts_incremental_selection")
-		vim.keymap.set("n", "||", incremental_selection.init_selection, { desc = "Treesitter init selection" })
-		vim.keymap.set("x", "|+", incremental_selection.incr_selection, { desc = "Treesitter increase selection" })
-		vim.keymap.set("x", "|-", incremental_selection.decr_selection, { desc = "Treesitter decrease selection" })
-
-		--------------------------------------
-		require("treesitter-context").setup()
 
 		--------------------------------------
 		require("Comment").setup()
@@ -579,12 +549,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		vim.keymap.set("c", "<c-f>", require("flash").toggle, { noremap = true, desc = "Toggle Flash (search mode)" })
 
 		--------------------------------------
-		require("grug-far").setup({})
-
-		vim.keymap.set("n", "<leader>gf", ":GrugFar<CR>", { desc = "GrugFar", silent = true })
-		vim.keymap.set("n", "<leader>gw", ":GrugFarWithin<CR>", { desc = "GrugFarWithin", silent = true })
-
-		--------------------------------------
 		require("blink.indent").setup({
 			static = {
 				char = "▏",
@@ -599,6 +563,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 vim.api.nvim_create_autocmd("InsertEnter", {
 	group = lazy_load,
 	once = true,
+	desc = "Plugins that load when enter Insert mode",
 	callback = function()
 		vim.pack.add({
 			{ src = "https://github.com/windwp/nvim-autopairs" },
@@ -611,10 +576,75 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 		--------------------------------------
 		require("nvim-ts-autotag").setup({
 			opts = {
-				-- Defaults
-				enable_close = true, -- Auto close tags
-				enable_rename = true, -- Auto rename pairs of tags
-				enable_close_on_slash = false, -- Auto close on trailing </
+				enable_close = true,
+				enable_rename = true,
+				enable_close_on_slash = false,
+			},
+		})
+	end,
+})
+
+-- ====================================================================================================
+local load_on_file = vim.api.nvim_create_augroup("plugins.on_file", { clear = true })
+
+vim.api.nvim_create_autocmd("BufReadPre", {
+	group = load_on_file,
+	once = true,
+	pattern = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.tiff", "*.bmp", "*.avif", "*.md" },
+	desc = "Plugins that load when open image files",
+	callback = function()
+		vim.pack.add({
+			{ src = "https://github.com/3rd/image.nvim" },
+		})
+
+		--------------------------------------
+		require("image").setup({
+			integrations = {
+				markdown = {
+					enabled = true,
+					only_render_image_at_cursor = true,
+				},
+				neorg = {
+					enabled = false,
+				},
+				typst = {
+					enabled = false,
+				},
+			},
+		})
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufReadPre", {
+	group = load_on_file,
+	once = true,
+	pattern = "*.md",
+	desc = "Plugins that load when open markdown file",
+	callback = function()
+		vim.pack.add({
+			{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
+		})
+
+		--------------------------------------
+		require("render-markdown").setup({
+			render_modes = { "n", "c", "t" },
+			heading = {
+				icons = { "# ", "## ", "### ", "#### ", "##### ", "###### " },
+				position = "inline",
+				border = true,
+				above = " ",
+				below = " ",
+				backgrounds = "MarkdownHeadingBg",
+				foregrounds = "MarkdownHeadingFg",
+			},
+			code = {
+				language_pad = 1,
+				left_pad = 1,
+				right_pad = 1,
+			},
+			completions = {
+				blink = { enabled = false },
+				lsp = { enabled = false },
 			},
 		})
 	end,
