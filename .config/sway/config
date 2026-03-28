@@ -40,9 +40,10 @@ bindsym $mod+Ctrl+Return exec swaymsg fullscreen toggle
 bindsym $mod+Ctrl+Space exec shortcuts.sh
 bindsym $mod+Ctrl+Semicolon exec links.sh
 bindsym $mod+Ctrl+P exec powermenu.sh
-bindsym $mod+Ctrl+T exec kitty
 bindsym $mod+Ctrl+O exec setting.sh
 bindsym $mod+Ctrl+E exec emoji_picker.sh
+bindsym $mod+Ctrl+T exec kitty
+bindsym $mod+Ctrl+B exec brave
 bindsym $mod+Ctrl+R exec swaymsg layout toggle split
 
 # Drag floating windows by holding down $mod and left mouse button.

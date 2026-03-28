@@ -40,6 +40,8 @@ set noautowrite
 set splitbelow
 set splitright
 
+set background=dark
+
 filetype plugin indent on
 
 let g:mapleader = "\<Space>"

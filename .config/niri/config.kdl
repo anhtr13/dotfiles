@@ -379,6 +379,7 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Ctrl+T     hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+    Mod+Ctrl+B     hotkey-overlay-title="Open a Browser: Brave" { spawn "brave"; }
     Mod+Ctrl+O     hotkey-overlay-title="Open Setting" { spawn "setting.sh"; }
     Mod+Ctrl+P     hotkey-overlay-title="Open Powers-menu" { spawn "powermenu.sh"; }
     Mod+Ctrl+E     hotkey-overlay-title="Open emoji picker" { spawn "emoji_picker.sh"; }

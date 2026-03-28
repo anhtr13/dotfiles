@@ -105,7 +105,7 @@ vim.keymap.set("n", "<leader>?", function()
 end, { desc = "Buffer Local Keymaps (which-key)" })
 
 --------------------------------------
-require("custom.statusline").setup()
+require("util.statusline").setup()
 
 --------------------------------------
 local ts_parsers = {
@@ -268,7 +268,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 			textobjects_move.goto_previous_end("@class.outer", "textobjects")
 		end, { desc = "Go to previous class end" })
 
-		local incremental_selection = require("custom.ts_incremental_selection")
+		local incremental_selection = require("util.ts_incremental_selection")
 		vim.keymap.set("n", "||", incremental_selection.init_selection, { desc = "Treesitter init selection" })
 		vim.keymap.set("x", "|+", incremental_selection.incr_selection, { desc = "Treesitter increase selection" })
 		vim.keymap.set("x", "|-", incremental_selection.decr_selection, { desc = "Treesitter decrease selection" })
@@ -602,7 +602,7 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 			integrations = {
 				markdown = {
 					enabled = true,
-					only_render_image_at_cursor = true,
+					only_render_image_at_cursor = false,
 				},
 				neorg = {
 					enabled = false,
@@ -638,9 +638,13 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 				foregrounds = "MarkdownHeadingFg",
 			},
 			code = {
+				sign = false,
 				language_pad = 1,
 				left_pad = 1,
 				right_pad = 1,
+				border = "thick",
+				width = "block",
+				min_width = 70,
 			},
 			completions = {
 				blink = { enabled = false },
