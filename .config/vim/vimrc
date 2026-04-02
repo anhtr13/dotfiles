@@ -1,6 +1,4 @@
-"
-" Options
-
+""" General
 set mouse=
 set encoding=utf-8
 set completeopt="menuone,noselect"
@@ -47,20 +45,15 @@ filetype plugin indent on
 let g:mapleader = "\<Space>"
 let g:netrw_dirhistmax=0
 
-"
-" Appearance
-
+""" Appearance
 colorscheme lunaperche
 syntax on
 
-"
-" Commands
+""" Commands
 command! DelAllBufs silent! execute "%bd!"
 command! DelOtherBufs silent! execute "%bd|e#|bd#"
 
-"
-" Keymaps
-
+""" Keymaps
 noremap <C-Up> 10k
 noremap <C-Down> 10j
 noremap <C-k> 10k
@@ -90,9 +83,7 @@ inoremap <C-z> <Esc>u
 inoremap <C-r> <Esc><C-r>
 inoremap <C-s> <Esc>:w<cr>
 
-"
-" Plugins
-
+""" Plugins
 let s:plugin_dir = expand('$XDG_CONFIG_HOME/vim/plugins')
 
 function! s:ensure(repo)
@@ -109,8 +100,6 @@ function! s:ensure(repo)
     execute 'set runtimepath+=' . fnameescape(path)
 endfunction
 
-" Plugins setup
-"""
 call s:ensure('https://github.com/junegunn/fzf.vim')
 nnoremap <leader>/f :Files<CR>
 nnoremap <leader>/g :Rg<Space>
@@ -119,10 +108,8 @@ nnoremap <leader>/c :History:<CR>
 nnoremap <leader>/m :Marks<CR>
 nnoremap <leader>/k :Maps<CR>
 
-"""
 call s:ensure('https://github.com/itchyny/lightline.vim')
 
-"""
 call s:ensure('https://github.com/yegappan/lsp')
 let lsp_servers = [
             \ #{
@@ -134,7 +121,6 @@ let lsp_servers = [
             \ }
             \ ]
 autocmd User LspSetup call LspAddServer(lsp_servers)
-
 let lsp_opts = #{
             \   autoHighlightDiags: v:true,
             \   diagSignErrorText: '✘',
@@ -143,7 +129,6 @@ let lsp_opts = #{
             \   diagSignHintText: '⚑',
             \ }
 autocmd User LspSetup call LspOptionsSet(lsp_opts)
-
 nnoremap grd :LspGotoDefinition<CR>
 nnoremap grr :LspShowReferences<CR>
 nnoremap K   :LspHover<CR>

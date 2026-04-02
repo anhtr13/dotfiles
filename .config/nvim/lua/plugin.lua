@@ -105,7 +105,7 @@ vim.keymap.set("n", "<leader>?", function()
 end, { desc = "Buffer Local Keymaps (which-key)" })
 
 --------------------------------------
-require("util.statusline").setup()
+require("custom.statusline").setup()
 
 --------------------------------------
 local ts_parsers = {
@@ -177,7 +177,10 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- ====================================================================================================
+-- ============================
+-- Lazy load
+-- ============================
+
 local lazy_load = vim.api.nvim_create_augroup("plugins.lazy", { clear = true })
 
 vim.api.nvim_create_autocmd("BufReadPost", {
@@ -221,57 +224,44 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		local textobjects_select = require("nvim-treesitter-textobjects.select")
 		local textobjects_move = require("nvim-treesitter-textobjects.move")
 
-		vim.keymap.set({ "x", "o" }, "|(", function()
-			textobjects_select.select_textobject("@parameter.inner", "textobjects")
-		end, { desc = "Select inner parameter" })
-		vim.keymap.set({ "x", "o" }, "|)", function()
-			textobjects_select.select_textobject("@parameter.outer", "textobjects")
-		end, { desc = "Select outer parameter" })
-		vim.keymap.set({ "x", "o" }, "|{", function()
+		vim.keymap.set({ "x", "o" }, "vif", function()
 			textobjects_select.select_textobject("@function.inner", "textobjects")
 		end, { desc = "Select inner function" })
-		vim.keymap.set({ "x", "o" }, "|}", function()
+		vim.keymap.set({ "x", "o" }, "vaf", function()
 			textobjects_select.select_textobject("@function.outer", "textobjects")
 		end, { desc = "Select outer function" })
-		vim.keymap.set({ "x", "o" }, "|[", function()
+		vim.keymap.set({ "x", "o" }, "vic", function()
 			textobjects_select.select_textobject("@class.inner", "textobjects")
 		end, { desc = "Select inner class" })
-		vim.keymap.set({ "x", "o" }, "|]", function()
+		vim.keymap.set({ "x", "o" }, "vac", function()
 			textobjects_select.select_textobject("@class.outer", "textobjects")
 		end, { desc = "Select outer class" })
-
-		vim.keymap.set({ "n", "x", "o" }, "]f", function()
-			textobjects_move.goto_next_start("@function.outer", "textobjects")
-		end, { desc = "Go to next function start" })
-		vim.keymap.set({ "n", "x", "o" }, "]c", function()
-			textobjects_move.goto_next_start("@class.outer", "textobjects")
-		end, { desc = "Go to next class start" })
-
-		vim.keymap.set({ "n", "x", "o" }, "]F", function()
-			textobjects_move.goto_next_end("@function.outer", "textobjects")
-		end, { desc = "Go to next function end" })
-		vim.keymap.set({ "n", "x", "o" }, "]C", function()
-			textobjects_move.goto_next_end("@class.outer", "textobjects")
-		end, { desc = "Go to next class end" })
 
 		vim.keymap.set({ "n", "x", "o" }, "[f", function()
 			textobjects_move.goto_previous_start("@function.outer", "textobjects")
 		end, { desc = "Go to previous function start" })
-		vim.keymap.set({ "n", "x", "o" }, "[c", function()
-			textobjects_move.goto_previous_start("@class.outer", "textobjects")
-		end, { desc = "Go to previous class start" })
-
 		vim.keymap.set({ "n", "x", "o" }, "[F", function()
 			textobjects_move.goto_previous_end("@function.outer", "textobjects")
 		end, { desc = "Go to previous function end" })
+		vim.keymap.set({ "n", "x", "o" }, "]f", function()
+			textobjects_move.goto_next_start("@function.outer", "textobjects")
+		end, { desc = "Go to next function start" })
+		vim.keymap.set({ "n", "x", "o" }, "]F", function()
+			textobjects_move.goto_next_end("@function.outer", "textobjects")
+		end, { desc = "Go to next function end" })
+
+		vim.keymap.set({ "n", "x", "o" }, "[c", function()
+			textobjects_move.goto_previous_start("@class.outer", "textobjects")
+		end, { desc = "Go to previous class start" })
 		vim.keymap.set({ "n", "x", "o" }, "[C", function()
 			textobjects_move.goto_previous_end("@class.outer", "textobjects")
 		end, { desc = "Go to previous class end" })
-
-		local incremental_selection = require("util.ts_incremental_selection")
-		vim.keymap.set("n", "||", incremental_selection.init_selection, { desc = "Treesitter init selection" })
-		vim.keymap.set("x", "|+", incremental_selection.incr_selection, { desc = "Treesitter increase selection" })
-		vim.keymap.set("x", "|-", incremental_selection.decr_selection, { desc = "Treesitter decrease selection" })
+		vim.keymap.set({ "n", "x", "o" }, "]c", function()
+			textobjects_move.goto_next_start("@class.outer", "textobjects")
+		end, { desc = "Go to next class start" })
+		vim.keymap.set({ "n", "x", "o" }, "]C", function()
+			textobjects_move.goto_next_end("@class.outer", "textobjects")
+		end, { desc = "Go to next class end" })
 
 		--------------------------------------
 		require("treesitter-context").setup()
@@ -532,7 +522,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		vim.keymap.set("n", "gdc", require("dap").continue, { desc = "[d]ebugger [c]ontinue", silent = true })
 		vim.keymap.set("n", "gdo", require("dap").step_over, { desc = "[d]ebugger step [o]ver", silent = true })
 		vim.keymap.set("n", "gdi", require("dap").step_into, { desc = "[d]ebugger step [i]nto", silent = true })
-		vim.keymap.set("n", "gdu", require("dap").step_out, { desc = "[d]ebugger step o[u]t", silent = true })
+		vim.keymap.set("n", "gda", require("dap").step_out, { desc = "[d]ebugger step o[u]t", silent = true })
 		vim.keymap.set("n", "gdx", require("dap").terminate, { desc = "[d]ebugger e[x]it", silent = true })
 
 		--------------------------------------
@@ -584,7 +574,10 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 	end,
 })
 
--- ====================================================================================================
+-- ============================
+-- Load on specific file
+-- ============================
+
 local load_on_file = vim.api.nvim_create_augroup("plugins.on_file", { clear = true })
 
 vim.api.nvim_create_autocmd("BufReadPre", {

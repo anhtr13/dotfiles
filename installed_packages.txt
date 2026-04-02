@@ -177,7 +177,7 @@ bob-nvim v4.1.6:
     bob
 rustlings v6.5.0:
     rustlings
-stylua v2.3.1:
+stylua v2.4.0:
     stylua
 systemd-lsp v0.2.0:
     systemd-lsp
@@ -197,11 +197,11 @@ nginx-language-server v0.9.0
 - nginx-language-server
 nginxfmt v1.3.0
 - nginxfmt
-ruff v0.15.4
+ruff v0.15.8
 - ruff
 tombi v0.8.0
 - tombi
-ty v0.0.19
+ty v0.0.27
 - ty
 ----- END -----
 
