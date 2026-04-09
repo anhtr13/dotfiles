@@ -9,7 +9,7 @@ list_col='1'
 list_row='7'
 
 cmd_term='footclient'
-cmd_browser='brave'
+cmd_browser='librewolf'
 cmd_file='footclient sh -c yazi'
 cmd_emoji='emoji_picker.sh'
 cmd_music='footclient sh -c kew'

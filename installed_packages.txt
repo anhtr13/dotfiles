@@ -39,7 +39,7 @@ imagemagick
 intel-media-driver
 intel-ucode
 ipset
-iptables-nft
+iptables
 isync
 jq
 kew
@@ -111,6 +111,7 @@ ufw
 unixodbc
 unzip
 uv
+valkey
 vim
 virt-manager
 virt-viewer
@@ -124,6 +125,7 @@ wireshark-cli
 wl-clipboard
 xclip
 xdg-desktop-portal-hyprland
+xwayland-satellite
 yazi
 zathura
 zathura-pdf-poppler

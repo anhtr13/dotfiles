@@ -11,9 +11,9 @@ setopt nobeep
 setopt appendhistory
 setopt histignorealldups
 setopt autocd
-setopt inc_append_history
+setopt incappendhistory
 setopt histignorespace
-setopt IGNOREEOF
+setopt ignoreeof
 
 HISTFILE=$ZDOTDIR/.histfile
 HISTSIZE=9600
@@ -54,7 +54,6 @@ bindkey '^[[3;5~' delete-word                # ctrl+del
 bindkey '^H' backward-delete-word            # ctrl+backspace
 bindkey '^[[A' history-substring-search-up   # arrow-up
 bindkey '^[[B' history-substring-search-down # arrow-down
-bindkey '^[[107;6u' clear-screen             # ctrl + shift + k
 bindkey '^[y' redo                           # Alt + y
 bindkey '^[z' undo                           # Alt + z
 

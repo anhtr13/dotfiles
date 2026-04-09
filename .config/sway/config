@@ -43,7 +43,7 @@ bindsym $mod+Ctrl+P exec powermenu.sh
 bindsym $mod+Ctrl+O exec setting.sh
 bindsym $mod+Ctrl+E exec emoji_picker.sh
 bindsym $mod+Ctrl+T exec kitty
-bindsym $mod+Ctrl+B exec brave
+bindsym $mod+Ctrl+B exec librewolf
 bindsym $mod+Ctrl+R exec swaymsg layout toggle split
 
 # Drag floating windows by holding down $mod and left mouse button.

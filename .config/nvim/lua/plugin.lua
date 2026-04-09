@@ -7,6 +7,7 @@ vim.pack.add({
 
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
 	{ src = "https://github.com/nvim-tree/nvim-tree.lua" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 	{ src = "https://github.com/mason-org/mason.nvim" },
 	{ src = "https://github.com/MagicDuck/grug-far.nvim" },
 	{ src = "https://github.com/folke/which-key.nvim" },
@@ -148,6 +149,9 @@ local ts_parsers = {
 	"ini",
 }
 
+require("nvim-treesitter").install(ts_parsers, { max_jobs = 8 })
+
+local ts_setup = vim.api.nvim_create_augroup("treesitter.setup", { clear = true })
 local ts_ignore_filetypes = {
 	checkhealth = true,
 	lazy = true,
@@ -160,7 +164,6 @@ local ts_ignore_filetypes = {
 	fzf = true,
 }
 
-local ts_setup = vim.api.nvim_create_augroup("treesitter.setup", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
 	group = ts_setup,
 	desc = "Enable treesitter highlighting and folds",
@@ -195,7 +198,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 			{ src = "https://github.com/leoluz/nvim-dap-go" },
 			{ src = "https://codeberg.org/mfussenegger/nvim-dap-python" },
 
-			{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 			{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
 			{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
 			{ src = "https://github.com/saghen/blink.cmp", version = "v1.8.0" },
@@ -206,10 +208,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 			{ src = "https://github.com/folke/flash.nvim" },
 			{ src = "https://github.com/saghen/blink.indent" },
 		})
-
-		--------------------------------------
-		local ts = require("nvim-treesitter")
-		ts.install(ts_parsers, { max_jobs = 8 })
 
 		--------------------------------------
 		require("nvim-treesitter-textobjects").setup({
