@@ -34,15 +34,15 @@
 						"label": "   Logout   "
 					},
 					{
-						"command": "systemctl suspend",
+						"command": "loginctl suspend",
 						"label": "󰤄   Suspend  "
 					},
 					{
-						"command": "systemctl reboot",
+						"command": "reboot",
 						"label": "   Reboot   "
 					},
 					{
-						"command": "systemctl poweroff",
+						"command": "poweroff",
 						"label": "   Shut down"
 					}
 				],

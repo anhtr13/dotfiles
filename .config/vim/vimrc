@@ -18,6 +18,7 @@ set wildmenu
 set ruler
 set expandtab
 set breakindent
+set nomodeline
 
 set tabstop=4
 set shiftwidth=4

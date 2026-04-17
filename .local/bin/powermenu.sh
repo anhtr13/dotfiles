@@ -66,12 +66,12 @@ $option_logout)
     confirm_run 'kill -9 -1'
     ;;
 $option_suspend)
-    confirm_run 'amixer set Master mute' 'systemctl suspend'
+    confirm_run 'amixer set Master mute' 'loginctl suspend'
     ;;
 $option_reboot)
-    confirm_run 'systemctl reboot'
+    confirm_run 'reboot'
     ;;
 $option_shutdown)
-    confirm_run 'systemctl poweroff'
+    confirm_run 'poweroff'
     ;;
 esac

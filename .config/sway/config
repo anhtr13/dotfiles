@@ -18,12 +18,12 @@ client.urgent             #ff0000     #ff0000     #ffffff     #ffff00     #ff000
 client.placeholder        #000000     #0c0c0c     #ffffff     #000000     #0c0c0c
 
 ### Execute first ###
-exec waybar -c $XDG_CONFIG_HOME/waybar/configs/sway.jsonc
-exec swaync
-exec idle.sh
 exec awww-daemon
+exec swaync
+exec waybar -c $XDG_CONFIG_HOME/waybar/configs/niri.jsonc
 exec emacs --daemon
 exec foot --server
+exec idle.sh
 
 ### Variables ###
 set $mod Mod4

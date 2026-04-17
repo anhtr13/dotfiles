@@ -2,6 +2,8 @@
 #
 # Update any changes in $target/$trackings to $dotdir
 
+set -e
+
 dotdir=$(dirname $(dirname $(realpath "$0")))
 target=$HOME
 trackings=(
@@ -29,12 +31,18 @@ while IFS= read -r line; do
     ignores+=("$line")
 done <"$dotdir/.gitignore"
 
+###
+echo "Checking pacman packages..."
 pacman -Qqne >"$dotdir/installed_packages.txt"
 
+###
+echo "Checking AUR packages..."
 printf "\n\n%s\n%s\n" "----- START -----" "# Packages installed via AUR:" >>"$dotdir/installed_packages.txt"
 pacman -Qqme >>"$dotdir/installed_packages.txt"
 printf "%s\n\n" "----- END -----" >>"$dotdir/installed_packages.txt"
 
+###
+echo "Checking Go packages..."
 printf "\n%s\n%s\n" "----- START -----" "# Packages installed via Go:" >>"$dotdir/installed_packages.txt"
 for file in "$GOPATH/bin"/*; do
     if [ -f "$file" ]; then
@@ -44,14 +52,20 @@ for file in "$GOPATH/bin"/*; do
 done
 printf "%s\n\n" "----- END -----" >>"$dotdir/installed_packages.txt"
 
+###
+echo "Checking Rust packages..."
 printf "\n%s\n%s\n" "----- START -----" "# Packages installed via Cargo:" >>"$dotdir/installed_packages.txt"
 cargo install --list >>"$dotdir/installed_packages.txt"
 printf "%s\n\n" "----- END -----" >>"$dotdir/installed_packages.txt"
 
+###
+echo "Checking UV packages..."
 printf "\n%s\n%s\n" "----- START -----" "# Packages installed via UV:" >>"$dotdir/installed_packages.txt"
 uv tool list >>"$dotdir/installed_packages.txt"
 printf "%s\n\n" "----- END -----" >>"$dotdir/installed_packages.txt"
 
+###
+echo "Checking tracking files..."
 for dir in "${trackings[@]}"; do
     find "$target/$dir" -type f -print0 | while IFS= read -r -d $'\0' file; do
         file_suffix=${file#$target/}
@@ -63,6 +77,7 @@ for dir in "${trackings[@]}"; do
             fi
         done
         if $flag; then
+            echo "$file"
             if [[ -e "$dotdir/$file_suffix" ]]; then
                 cp $file "$dotdir/$file_suffix"
             else

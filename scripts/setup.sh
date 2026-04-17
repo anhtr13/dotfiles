@@ -2,6 +2,8 @@
 #
 # Basic setup after installation
 
+set -e
+
 dotdir=$(dirname $(dirname $(realpath "$0")))
 target=$HOME
 trackings=(
@@ -10,22 +12,19 @@ trackings=(
     ".doom.d"
 )
 
-#
-# ===============================================================================================
-printf "\n==================== Preparing the necessary packages... ====================\n"
+###
+printf "\n========== Preparing the necessary packages... ==========\n"
 sudo pacman -Syu --needed base-devel git
 
-#
-# ===============================================================================================
-printf "\n==================== Copying config files... ====================\n"
+###
+printf "\nCopying config files...\n"
 for dir in "${trackings[@]}"; do
     cp -r "$dotdir/$dir" "$target"
 done
 echo "Done."
 
-#
-# ===============================================================================================
-printf "\n==================== Setting up AUR... ====================\n"
+###
+printf "\n========== Setting up AUR... ==========\n"
 if ! $(pacman -Q yay >/dev/null); then
     git clone https://aur.archlinux.org/yay-bin.git $target/yay
     cd $target/yay
@@ -36,9 +35,8 @@ else
     echo "AUR has already installed."
 fi
 
-#
-# ===============================================================================================
-printf "\n==================== Installing core packages... ====================\n"
+###
+printf "\n========== Installing core packages... ==========\n"
 
 pkgs=()
 ignore=false
@@ -64,9 +62,8 @@ pkgs_not_found=($(comm -23 <(printf '%s\n' "${pkgs[@]}" | sort -u) <(printf '%s\
 printf "\\n--------------------------------------------------\\nPackages not found and ignored:\\n\\n"
 printf "%s\\n" "${pkgs_not_found[@]}"
 
-#
-# ===============================================================================================
-printf "\n==================== Setting up Zsh... ====================\n"
+###
+printf "\n========== Setting up Zsh... ==========\n"
 
 # System-wide zshenv
 if ! [[ -f /etc/zsh/zshenv ]]; then
@@ -87,6 +84,6 @@ fi
 
 # Change shell
 shell=$(basename $SHELL)
-if [[ shell ~= "zsh" ]]; then
+if [[ "$shell" != "zsh" ]]; then
     chsh -s "/usr/bin/zsh"
 fi

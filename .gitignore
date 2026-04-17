@@ -7,5 +7,4 @@
 .config/vim/plugins
 .config/nvim/lazy-lock.json
 .config/nvim/nvim-pack-lock.json
-.config/nvim_lite/nvim-pack-lock.json
 .config/yazi/plugins

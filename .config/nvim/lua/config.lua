@@ -42,6 +42,7 @@ vim.o.relativenumber = true -- Relative line numbers
 vim.o.cursorline = true -- Highlight current line
 vim.o.wrap = true -- Wrap lines
 vim.o.linebreak = true -- Companion to wrap, don't split words (default: false)
+vim.o.modeline = false
 vim.o.scrolloff = 10 -- 10 lines above/below cursor
 vim.o.showtabline = 2 -- show tabline
 vim.opt.iskeyword:append("-") -- Treat dash as part of word

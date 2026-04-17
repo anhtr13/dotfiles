@@ -24,7 +24,6 @@ efibootmgr
 emacs
 fastfetch
 fd
-fnm
 foot
 fortune-mod
 fzf
@@ -79,10 +78,12 @@ pamixer
 pass
 pavucontrol
 pipewire
+pipewire-alsa
 pipewire-jack
 pipewire-pulse
 poppler
 power-profiles-daemon
+pv
 python-pip
 qbittorrent
 qemu-full
@@ -105,7 +106,6 @@ systemd-resolvconf
 tcpdump
 tmux
 torbrowser-launcher
-tree-sitter-cli
 ttf-sourcecodepro-nerd
 ufw
 unixodbc
@@ -177,12 +177,16 @@ shfmt: go1.26.0
 # Packages installed via Cargo:
 bob-nvim v4.1.6:
     bob
+fnm v1.39.0:
+    fnm
 rustlings v6.5.0:
     rustlings
 stylua v2.4.0:
     stylua
 systemd-lsp v0.2.0:
     systemd-lsp
+tree-sitter-cli v0.26.8:
+    tree-sitter
 treer v0.1.4:
     treer
 ----- END -----

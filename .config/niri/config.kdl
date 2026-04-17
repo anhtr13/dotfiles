@@ -263,18 +263,17 @@ layout {
 }
 
 // Spawn processes at startup.
-// Note that running niri as a session supports xdg-desktop-autostart,
-// which may be more convenient to use.
-spawn-at-startup "swaync"
-spawn-at-startup "idle.sh"
-spawn-at-startup "awww-daemon"
-spawn-at-startup "xwayland-satellite"
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
+// Note that running niri as a session supports xdg-desktop-autostart,
+// which may be more convenient to use.
+spawn-at-startup "awww-daemon"
+spawn-at-startup "swaync"
 spawn-sh-at-startup "waybar -c $XDG_CONFIG_HOME/waybar/configs/niri.jsonc"
 spawn-sh-at-startup "emacs --daemon"
 spawn-sh-at-startup "foot --server"
-
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "idle.sh"
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
