@@ -69,9 +69,9 @@ $option_suspend)
     confirm_run 'amixer set Master mute' 'loginctl suspend'
     ;;
 $option_reboot)
-    confirm_run 'reboot'
+    confirm_run 'loginctl reboot'
     ;;
 $option_shutdown)
-    confirm_run 'poweroff'
+    confirm_run 'loginctl poweroff'
     ;;
 esac

@@ -85,7 +85,7 @@ inoremap <C-r> <Esc><C-r>
 inoremap <C-s> <Esc>:w<cr>
 
 """ Plugins
-let s:plugin_dir = expand('$XDG_CONFIG_HOME/vim/plugins')
+let s:plugin_dir = expand('/usr/share/vim/plugins')
 
 function! s:ensure(repo)
     let name = split(a:repo, '/')[-1]
@@ -95,7 +95,7 @@ function! s:ensure(repo)
         if !isdirectory(s:plugin_dir)
             call mkdir(s:plugin_dir, 'p')
         endif
-        execute '!git clone --depth=1 ' . a:repo . ' ' . shellescape(path)
+        execute '!sudo git clone --depth=1 ' . a:repo . ' ' . shellescape(path)
     endif
 
     execute 'set runtimepath+=' . fnameescape(path)

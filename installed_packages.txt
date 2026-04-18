@@ -2,7 +2,6 @@
 acpid
 adw-gtk-theme
 alsa-utils
-asciiquarium
 base
 base-devel
 bear
@@ -10,17 +9,17 @@ bluez
 bluez-utils
 brightnessctl
 btop
-cava
 clang
 cmake
 cmatrix
-cowsay
+cryptsetup
 dbeaver
 dmidecode
 dnsmasq
 docker
 ecryptfs-utils
 efibootmgr
+elogind-openrc
 emacs
 fastfetch
 fd
@@ -38,24 +37,22 @@ imagemagick
 intel-media-driver
 intel-ucode
 ipset
-iptables
 isync
 jq
-kew
 keychain
 kitty
 libguestfs
 libreoffice-still
-libva-nvidia-driver
 linux
 linux-firmware
+linux-firmware-marvell
 linux-headers
 linux-lts
 linux-lts-headers
 llvm
 lolcat
-lua-language-server
 ly
+ly-openrc
 man-db
 man-pages
 meson
@@ -63,16 +60,21 @@ mpv
 msmtp
 mtools
 neomutt
-network-manager-applet
 networkmanager
+networkmanager-openrc
 ninja
 niri
 noto-fonts-cjk
 noto-fonts-emoji
 nsxiv
+nvidia-580xx-dkms
+nvidia-580xx-settings
+nvidia-580xx-utils
 nyx
 obs-studio
+openrc
 openssh
+openssh-openrc
 otf-codenewroman-nerd
 pamixer
 pass
@@ -81,8 +83,10 @@ pipewire
 pipewire-alsa
 pipewire-jack
 pipewire-pulse
+pipewire-pulse-openrc
 poppler
 power-profiles-daemon
+power-profiles-daemon-openrc
 pv
 python-pip
 qbittorrent
@@ -91,19 +95,14 @@ reflector
 resvg
 ripgrep
 rofi
-rofimoji
 rsync
-sl
 slurp
 sof-firmware
 starship
-sudo
 sway
 swayidle
 swaylock
 swaync
-systemd-resolvconf
-tcpdump
 tmux
 torbrowser-launcher
 ttf-sourcecodepro-nerd
@@ -121,10 +120,11 @@ vulkan-tools
 waybar
 wget
 wireguard-tools
+wireplumber-openrc
 wireshark-cli
 wl-clipboard
 xclip
-xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
 xwayland-satellite
 yazi
 zathura
@@ -139,14 +139,9 @@ brave-bin
 bridge-utils
 cbonsai-git
 librewolf-bin
-ngrok
-nvidia-580xx-dkms
-nvidia-580xx-settings
-nvidia-580xx-utils
 pam-gnupg
 pipes.sh
 yay-bin
-yay-bin-debug
 ----- END -----
 
 
@@ -158,10 +153,6 @@ gemmie: go1.26.0
 	path	github.com/anhtr13/gemmie
 glow: go1.26.0
 	path	github.com/charmbracelet/glow/v2
-go1.23.12: go1.26.0
-	path	golang.org/dl/go1.23.12
-go1.25.7: go1.26.0
-	path	golang.org/dl/go1.25.7
 goimports-reviser: go1.26.0
 	path	github.com/incu6us/goimports-reviser/v3
 golines: go1.26.0
@@ -181,10 +172,8 @@ fnm v1.39.0:
     fnm
 rustlings v6.5.0:
     rustlings
-stylua v2.4.0:
+stylua v2.4.1:
     stylua
-systemd-lsp v0.2.0:
-    systemd-lsp
 tree-sitter-cli v0.26.8:
     tree-sitter
 treer v0.1.4:
@@ -194,20 +183,18 @@ treer v0.1.4:
 
 ----- START -----
 # Packages installed via UV:
-cmake-language-server v0.1.11
-- cmake-language-server
 debugpy v1.8.20
 - debugpy
 - debugpy-adapter
 nginx-language-server v0.9.0
 - nginx-language-server
-nginxfmt v1.3.0
+nginxfmt v1.4.0
 - nginxfmt
-ruff v0.15.8
+ruff v0.15.11
 - ruff
-tombi v0.8.0
+tombi v0.9.18
 - tombi
-ty v0.0.27
+ty v0.0.31
 - ty
 ----- END -----
 

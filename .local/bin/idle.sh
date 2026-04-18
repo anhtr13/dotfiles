@@ -5,4 +5,4 @@ swayidle -w \
     resume 'brightnessctl -r' \
     timeout 600 'swaylock -f' \
     resume 'brightnessctl -r' \
-    timeout 900 'systemctl suspend'
+    timeout 900 'loginctl suspend'

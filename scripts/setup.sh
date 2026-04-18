@@ -13,7 +13,7 @@ trackings=(
 )
 
 ###
-printf "\n========== Preparing the necessary packages... ==========\n"
+printf "\n========== Preparing... ==========\n"
 sudo pacman -Syu --needed base-devel git
 
 ###

@@ -38,11 +38,11 @@
 						"label": "󰤄   Suspend  "
 					},
 					{
-						"command": "reboot",
+						"command": "loginctl reboot",
 						"label": "   Reboot   "
 					},
 					{
-						"command": "poweroff",
+						"command": "loginctl poweroff",
 						"label": "   Shut down"
 					}
 				],
