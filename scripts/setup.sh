@@ -13,18 +13,18 @@ trackings=(
 )
 
 ###
-printf "\n========== Preparing... ==========\n"
+printf "\n==> PREPARING...\n"
 sudo pacman -Syu --needed base-devel git
 
 ###
-printf "\nCopying config files...\n"
+printf "\n==> COPYING CONFIG FILES...\n"
 for dir in "${trackings[@]}"; do
     cp -r "$dotdir/$dir" "$target"
 done
 echo "Done."
 
 ###
-printf "\n========== Setting up AUR... ==========\n"
+printf "\n==> SETTING UP AUR...\n"
 if ! $(pacman -Q yay >/dev/null); then
     git clone https://aur.archlinux.org/yay-bin.git $target/yay
     cd $target/yay
@@ -36,7 +36,7 @@ else
 fi
 
 ###
-printf "\n========== Installing core packages... ==========\n"
+printf "\n==> INSTALLING CORE PACKAGES...\n"
 
 pkgs=()
 ignore=false
@@ -59,11 +59,11 @@ pkgs_to_install=($(comm -12 <(pacman -Slq | sort -u) <(printf '%s\n' "${pkgs[@]}
 sudo pacman -S --needed "${pkgs_to_install[@]}"
 
 pkgs_not_found=($(comm -23 <(printf '%s\n' "${pkgs[@]}" | sort -u) <(printf '%s\n' "${pkgs_to_install[@]}" | sort -u)))
-printf "\\n--------------------------------------------------\\nPackages not found and ignored:\\n\\n"
+printf "\\n--------------------- Packages not found and ignored: ---------------------\\n"
 printf "%s\\n" "${pkgs_not_found[@]}"
 
 ###
-printf "\n========== Setting up Zsh... ==========\n"
+printf "\n==> SETTING UP ZSH...\n"
 
 # System-wide zshenv
 if ! [[ -f /etc/zsh/zshenv ]]; then

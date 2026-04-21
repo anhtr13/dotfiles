@@ -10,10 +10,9 @@
 	"fixed-center": true,
 	"modules-left": [
 		"custom/rofi",
-		"hyprland/workspaces",
-		"hyprland/window",
-		"niri/workspaces",
-		"niri/window"
+		"sway/workspaces",
+		"sway/mode",
+		"sway/window"
 	],
 	"modules-center": [
 		"clock",
@@ -35,30 +34,14 @@
 		"on-click": "rofi -show drun",
 		"tooltip": false
 	},
-	"hyprland/workspaces": {
-		"all-outputs": false,
-		"active-only": false,
-		"show-special": true,
-		"persistent-workspaces": {
-			"*": [
-				1,
-				2,
-				3
-			]
-		}
-	},
-	"hyprland/window": {
-		"format": "{}",
-		"rewrite": {
-			"(.{50}).*": "$1..."
-		},
-		"icon": true,
-		"icon-size": 16
-	},
-	"niri/workspaces": {
+	"sway/workspaces": {
 		"all-outputs": false
 	},
-	"niri/window": {
+	"sway/mode": {
+		"format": "Mode: {}",
+		"tooltip": false
+	},
+	"sway/window": {
 		"format": "{}",
 		"rewrite": {
 			"(.{50}).*": "$1..."
@@ -68,10 +51,10 @@
 	},
 	"clock": {
 		"tooltip": false,
-		"format": "󱑁 {:%h:%m}"
+		"format": "󱑁 {:%H:%M}"
 	},
 	"clock#date": {
-		"format": "󰃭 {:l%a %d %b}",
+		"format": "󰃭 {:L%a %d %b}",
 		"tooltip-format": "<tt>{calendar}</tt>",
 		"calendar": {
 			"mode": "month",
@@ -92,7 +75,7 @@
 	"backlight": {
 		"format": "{icon} {percent}%",
 		"tooltip": true,
-		"tooltip-format": "brightness: {percent}%",
+		"tooltip-format": "Brightness: {percent}%",
 		"format-icons": [
 			"󰃞",
 			"󰃟",
@@ -129,11 +112,11 @@
 	},
 	"network": {
 		"interval": 12,
-		"format-wifi": "{icon}{signalstrength}%",
+		"format-wifi": "{icon}{signalStrength}%",
 		"format-ethernet": " {ipaddr}/{cidr}",
 		"tooltip": true,
 		"tooltip-format": " {ifname}: {ipaddr}/{cidr}",
-		"format-linked": " {ifname} (no ip)",
+		"format-linked": " {ifname} (No IP)",
 		"format-disconnected": "󰤮 ",
 		"format-icons": [
 			"󰤯 ",
@@ -158,13 +141,14 @@
 		"format-alt": "",
 		"max-length": 10,
 		"tooltip": true,
-		"tooltip-format": "memory - {used:0.1f}gb used"
+		"tooltip-format": "Memory - {used:0.1f}GB used"
 	},
 	"battery": {
 		"states": {
 			"warning": 50,
 			"critical": 20
 		},
+		"interval": 20,
 		"format": "{icon} {capacity}%",
 		"format-charging": "󰢞 {capacity}%",
 		"format-charging-warning": "󰂇 {capacity}%",

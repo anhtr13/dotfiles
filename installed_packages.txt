@@ -17,6 +17,9 @@ dbeaver
 dmidecode
 dnsmasq
 docker
+docker-compose
+docker-openrc
+e2fsprogs
 ecryptfs-utils
 efibootmgr
 elogind-openrc
@@ -43,6 +46,7 @@ keychain
 kitty
 libguestfs
 libreoffice-still
+libvirt-openrc
 linux
 linux-firmware
 linux-firmware-marvell
@@ -73,6 +77,7 @@ nvidia-580xx-utils
 nyx
 obs-studio
 openrc
+openresolv
 openssh
 openssh-openrc
 otf-codenewroman-nerd
@@ -103,6 +108,7 @@ sway
 swayidle
 swaylock
 swaync
+texinfo
 tmux
 torbrowser-launcher
 ttf-sourcecodepro-nerd
@@ -139,8 +145,8 @@ brave-bin
 bridge-utils
 cbonsai-git
 librewolf-bin
-pam-gnupg
 pipes.sh
+rofimoji-git
 yay-bin
 ----- END -----
 
@@ -192,7 +198,7 @@ nginxfmt v1.4.0
 - nginxfmt
 ruff v0.15.11
 - ruff
-tombi v0.9.18
+tombi v0.9.20
 - tombi
 ty v0.0.31
 - ty
