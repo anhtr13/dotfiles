@@ -106,7 +106,7 @@
 		"on-click-middle": "pavucontrol"
 	},
 	"network": {
-		"interval": 12,
+		"interval": 15,
 		"format-wifi": "{icon}{signalStrength}%",
 		"format-ethernet": " {ipaddr}/{cidr}",
 		"tooltip": true,
@@ -123,14 +123,14 @@
 		"on-click": "footclient sh -c nmtui"
 	},
 	"cpu": {
-		"interval": 12,
+		"interval": 15,
 		"format": " {usage}%",
 		"max-length": 10,
 		"format-alt-click": "click-left",
 		"format-alt": ""
 	},
 	"memory": {
-		"interval": 12,
+		"interval": 15,
 		"format": " {percentage}%",
 		"format-alt-click": "click-left",
 		"format-alt": "",
@@ -143,7 +143,7 @@
 			"warning": 50,
 			"critical": 20
 		},
-		"interval": 20,
+		"interval": 15,
 		"format": "{icon} {capacity}%",
 		"format-charging": "󰢞 {capacity}%",
 		"format-charging-warning": "󰂇 {capacity}%",

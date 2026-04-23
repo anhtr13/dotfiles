@@ -24,6 +24,7 @@ ecryptfs-utils
 efibootmgr
 elogind-openrc
 emacs
+ethtool
 fastfetch
 fd
 foot
@@ -32,6 +33,7 @@ fzf
 gdb
 gimp
 git
+gnome-themes-extra
 grim
 grub
 hyprland
@@ -68,6 +70,7 @@ networkmanager
 networkmanager-openrc
 ninja
 niri
+nmap
 noto-fonts-cjk
 noto-fonts-emoji
 nsxiv
@@ -113,6 +116,7 @@ tmux
 torbrowser-launcher
 ttf-sourcecodepro-nerd
 ufw
+ufw-openrc
 unixodbc
 unzip
 uv
@@ -153,6 +157,10 @@ yay-bin
 
 ----- START -----
 # Packages installed via Go:
+cowsay: go1.26.0
+	path	github.com/Code-Hex/Neo-cowsay/cmd/v2/cowsay
+cowthink: go1.26.0
+	path	github.com/Code-Hex/Neo-cowsay/cmd/v2/cowthink
 dlv: go1.26.0
 	path	github.com/go-delve/delve/cmd/dlv
 gemmie: go1.26.0
