@@ -36,8 +36,6 @@ git
 gnome-themes-extra
 grim
 grub
-hyprland
-hyprshot
 imagemagick
 intel-media-driver
 intel-ucode

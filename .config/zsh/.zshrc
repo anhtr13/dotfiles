@@ -49,13 +49,16 @@ bindkey '^e' edit-command-line
 # Other key-bindings
 bindkey '^[[1;5C' forward-word               # ctrl + arrow-right
 bindkey '^[[1;5D' backward-word              # ctrl + arrow-left
-bindkey '^[[3~' delete-char                  # del
-bindkey '^[[3;5~' delete-word                # ctrl+del
-bindkey '^H' backward-delete-word            # ctrl+backspace
 bindkey '^[[A' history-substring-search-up   # arrow-up
 bindkey '^[[B' history-substring-search-down # arrow-down
-bindkey '^[y' redo                           # Alt + y
-bindkey '^[z' undo                           # Alt + z
+bindkey '^[[3~' delete-char                  # del
+bindkey '^[[3;5~' delete-word                # ctrl + del
+bindkey '^H' backward-delete-word            # ctrl + h
+bindkey '^L' forward-word                    # ctrl + l
+bindkey '^K' history-substring-search-up     # ctrl + k
+bindkey '^J' history-substring-search-down   # ctrl + j
+bindkey '^[r' redo                           # alt + r
+bindkey '^[z' undo                           # alt + z
 
 echo -en "\e]0;$PWD\a" #-- Set icon name and window title to $PWD
 function chpwd() {

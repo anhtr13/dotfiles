@@ -9,13 +9,13 @@ target=$HOME
 
 # Rust & Cargo
 if ! command -v rustc &>/dev/null; then
-    printf "\n========== Installing Rust... ==========\n"
+    printf "\n==> Installing Rust...\n"
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
 
 # Go
 if ! [[ -d "/usr/local/go" ]]; then
-    printf "\n========== Installing Go... ==========\n"
+    printf "\n==> Installing Go...\n"
     mkdir -p "$target/go"
     cd "$target/go"
     curl -LO https://go.dev/dl/go1.26.0.linux-amd64.tar.gz
@@ -25,7 +25,7 @@ fi
 
 # Zig
 if ! [[ -d "$target/zig" ]]; then
-    printf "\n========== Installing Zig... ==========\n"
+    printf "\n==> Installing Zig...\n"
     mkdir -p "$target/zig"
     cd "$target/zig"
     curl -LO https://ziglang.org/download/0.15.2/zig-x86_64-linux-0.15.2.tar.xz
