@@ -11,7 +11,7 @@ export GOROOT="/usr/local/go"
 export GOPATH="$HOME/go"
 export CARGODIR="$HOME/.cargo"
 export ZIGDIR="$HOME/zig"
-export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin:$CARGODIR/bin:$GOROOT/bin:$GOPATH/bin:$ZIGDIR/zig-x86_64-linux-0.15.2"
+export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin:$CARGODIR/bin:$GOROOT/bin:$GOPATH/bin"
 export LLVM_SYMBOLIZER_PATH="/usr/bin/llvm-symbolizer"
 
 export EDITOR="/usr/bin/vim"

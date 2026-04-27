@@ -72,14 +72,14 @@ fi
 cat "$dotdir/.config/zsh/etc-zsh-zshenv" | sudo tee /etc/zsh/zshenv
 
 # Zsh plugins
-if ! [[ -e "/usr/share/zsh/plugins/zsh-autosuggestions" ]]; then
-    sudo git clone https://github.com/zsh-users/zsh-autosuggestions /usr/share/zsh/plugins/zsh-autosuggestions
+if ! [[ -e "$HOME/.local/share/zsh/plugins/zsh-autosuggestions" ]]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.local/share/zsh/plugins/zsh-autosuggestions"
 fi
-if ! [[ -e "/usr/share/zsh/plugins/zsh-history-substring-search" ]]; then
-    sudo git clone https://github.com/zsh-users/zsh-history-substring-search /usr/share/zsh/plugins/zsh-history-substring-search
+if ! [[ -e "$HOME/.local/share/zsh/plugins/zsh-history-substring-search" ]]; then
+    git clone https://github.com/zsh-users/zsh-history-substring-search "$HOME/.local/share/zsh/plugins/zsh-history-substring-search"
 fi
-if ! [[ -e "/usr/share/zsh/plugins/zsh-syntax-highlighting" ]]; then
-    sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting /usr/share/zsh/plugins/zsh-syntax-highlighting
+if ! [[ -e "$HOME/.local/share/zsh/plugins/zsh-syntax-highlighting" ]]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting "$HOME/.local/share/zsh/plugins/zsh-syntax-highlighting"
 fi
 
 # Change shell

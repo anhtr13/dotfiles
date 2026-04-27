@@ -28,7 +28,7 @@ if ! [[ -d "$target/zig" ]]; then
     printf "\n==> Installing Zig...\n"
     mkdir -p "$target/zig"
     cd "$target/zig"
-    curl -LO https://ziglang.org/download/0.15.2/zig-x86_64-linux-0.15.2.tar.xz
-    tar -xf zig-x86_64-linux-0.15.2.tar.xz
+    curl -LO https://ziglang.org/download/0.16.0/zig-x86_64-linux-0.16.0.tar.xz
+    tar -xf zig-x86_64-linux-0.16.0.tar.xz
     cd $dotdir
 fi
