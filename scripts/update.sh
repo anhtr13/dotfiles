@@ -36,32 +36,32 @@ pacman -Qqne | tee "$dotdir/installed_packages.txt"
 
 ###
 printf "\n==> Checking AUR packages...\n"
-printf "\n\n%s\n%s\n" "----- START -----" "# Packages installed via AUR:" >>"$dotdir/installed_packages.txt"
+printf "\n\n%s\n%s\n\n" "-----BEGIN BLOCK-----" "Package manager: AUR" >>"$dotdir/installed_packages.txt"
 pacman -Qqme | tee -a "$dotdir/installed_packages.txt"
-printf "%s\n\n" "----- END -----" >>"$dotdir/installed_packages.txt"
+printf "%s\n\n" "-----END BLOCK-----" >>"$dotdir/installed_packages.txt"
 
 ###
 printf "\n==> Checking Go packages...\n"
-printf "\n%s\n%s\n" "----- START -----" "# Packages installed via Go:" >>"$dotdir/installed_packages.txt"
+printf "\n%s\n%s\n\n" "-----BEGIN BLOCK-----" "Package manager: Go" >>"$dotdir/installed_packages.txt"
 for file in "$GOPATH/bin"/*; do
     if [ -f "$file" ]; then
         info=$(go version -m "$file" | head -n 2)
         printf "%s\n" "${info#$GOPATH/bin/}" | tee -a "$dotdir/installed_packages.txt"
     fi
 done
-printf "%s\n\n" "----- END -----" >>"$dotdir/installed_packages.txt"
+printf "%s\n\n" "-----END BLOCK-----" >>"$dotdir/installed_packages.txt"
 
 ###
 printf "\n==> Checking Rust packages...\n"
-printf "\n%s\n%s\n" "----- START -----" "# Packages installed via Cargo:" >>"$dotdir/installed_packages.txt"
+printf "\n%s\n%s\n\n" "-----BEGIN BLOCK-----" "Package manager: Cargo" >>"$dotdir/installed_packages.txt"
 cargo install --list | tee -a "$dotdir/installed_packages.txt"
-printf "%s\n\n" "----- END -----" >>"$dotdir/installed_packages.txt"
+printf "%s\n\n" "-----END BLOCK-----" >>"$dotdir/installed_packages.txt"
 
 ###
 printf "\n==> Checking UV packages...\n"
-printf "\n%s\n%s\n" "----- START -----" "# Packages installed via UV:" >>"$dotdir/installed_packages.txt"
+printf "\n%s\n%s\n\n" "-----BEGIN BLOCK-----" "Package manager: UV" >>"$dotdir/installed_packages.txt"
 uv tool list | tee -a "$dotdir/installed_packages.txt"
-printf "%s\n\n" "----- END -----" >>"$dotdir/installed_packages.txt"
+printf "%s\n\n" "-----END BLOCK-----" >>"$dotdir/installed_packages.txt"
 
 ###
 printf "\n==> Checking tracking files...\n"

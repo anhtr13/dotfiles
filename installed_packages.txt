@@ -141,8 +141,9 @@ zoxide
 zsh
 
 
------ START -----
-# Packages installed via AUR:
+-----BEGIN BLOCK-----
+Package manager: AUR
+
 brave-bin
 bridge-utils
 cbonsai-git
@@ -150,11 +151,12 @@ librewolf-bin
 pipes.sh
 rofimoji-git
 yay-bin
------ END -----
+-----END BLOCK-----
 
 
------ START -----
-# Packages installed via Go:
+-----BEGIN BLOCK-----
+Package manager: Go
+
 cowsay: go1.26.0
 	path	github.com/Code-Hex/Neo-cowsay/cmd/v2/cowsay
 cowthink: go1.26.0
@@ -173,15 +175,18 @@ gopls: go1.26.0
 	path	golang.org/x/tools/gopls
 shfmt: go1.26.0
 	path	mvdan.cc/sh/v3/cmd/shfmt
------ END -----
+-----END BLOCK-----
 
 
------ START -----
-# Packages installed via Cargo:
+-----BEGIN BLOCK-----
+Package manager: Cargo
+
 bob-nvim v4.1.6:
     bob
 fnm v1.39.0:
     fnm
+my-git v0.1.0 (/home/anhtr13/Documents/projects/my-git):
+    my-git
 rustlings v6.5.0:
     rustlings
 stylua v2.4.1:
@@ -190,11 +195,12 @@ tree-sitter-cli v0.26.8:
     tree-sitter
 treer v0.1.4:
     treer
------ END -----
+-----END BLOCK-----
 
 
------ START -----
-# Packages installed via UV:
+-----BEGIN BLOCK-----
+Package manager: UV
+
 debugpy v1.8.20
 - debugpy
 - debugpy-adapter
@@ -208,5 +214,5 @@ tombi v0.9.20
 - tombi
 ty v0.0.31
 - ty
------ END -----
+-----END BLOCK-----
 
