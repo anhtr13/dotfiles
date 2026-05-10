@@ -138,7 +138,7 @@ vim.api.nvim_create_user_command("BufDeleteAll", DeleteAllBufs, { bang = true, d
 
 vim.api.nvim_create_user_command(
 	"MasonInstallNeeded",
-	"MasonInstall bash-language-server dockerfile-language-server json-lsp lua-language-server prettierd sql-formatter stylua tailwindcss-language-server vtsls vue-language-server yaml-language-server zls",
+	"MasonInstall bash-language-server dockerfile-language-server json-lsp lua-language-server prettier sql-formatter stylua tailwindcss-language-server vtsls vue-language-server yaml-language-server zls",
 	{ bang = true, desc = "Install core lsps" }
 )
 

@@ -401,10 +401,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 				nginx = { "nginxfmt" },
 				json = { "json_fmt" },
 				jsonc = { "json_fmt" },
-				markdown = { "prettierd", "prettier", stop_after_first = true },
-				javascript = { "prettierd", "prettier", stop_after_first = true },
-				typescript = { "prettierd", "prettier", stop_after_first = true },
-				vue = { "prettierd", "prettier", stop_after_first = true },
+				markdown = { "prettier" },
+				javascript = { "prettier" },
+				typescript = { "prettier" },
+				vue = { "prettier" },
 				-- ["*"] = { "codespell" }, -- formatter on all filetypes.
 				["_"] = { "trim_whitespace" }, -- formatter on filetypes that don't have other formatters configured.
 			},
