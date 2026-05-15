@@ -8,13 +8,11 @@ mesg="# General setting."
 list_col='1'
 list_row='6'
 
-cmd_wallpaper='wallpaper.sh'
-cmd_waybar_theme='waybar_theme.sh'
-cmd_network='footclient sh -c nmtui'
-
-option_wallpaper="󰸉 Wallpaper"
-option_waybar_theme=" Waybar theme"
+option_appearance="󰸌 Appearance"
 option_network="󰀂 Network Manager"
+
+cmd_appearance='appearance.sh'
+cmd_network='footclient sh -c nmtui'
 
 rofi_cmd() {
     rofi -theme-str "listview {columns: $list_col; lines: $list_row;}" \
@@ -27,16 +25,13 @@ rofi_cmd() {
 }
 
 run_rofi() {
-    echo -e "$option_wallpaper\n$option_waybar_theme\n$option_network" | rofi_cmd
+    echo -e "$option_appearance\n$option_network" | rofi_cmd
 }
 
 chosen="$(run_rofi)"
 case "$chosen" in
-$option_wallpaper)
-    ${cmd_wallpaper}
-    ;;
-$option_waybar_theme)
-    ${cmd_waybar_theme}
+$option_appearance)
+    ${cmd_appearance}
     ;;
 $option_network)
     ${cmd_network}

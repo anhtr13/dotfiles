@@ -185,6 +185,8 @@ bob-nvim v4.1.6:
     bob
 fnm v1.39.0:
     fnm
+my-bittorrent v0.1.0 (/home/anhtr13/Documents/projects/my-bittorrent):
+    my-bittorrent
 rustlings v6.5.0:
     rustlings
 stylua v2.4.1:

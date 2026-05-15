@@ -108,16 +108,13 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     done
 
     if is_sole_node; then
-        echo "There's only one window on the current workspace" >&2
         exit 1
     fi
 
     if is_floating; then
         swaymsg "floating disable; border pixel ${DEFAULT_BORDER_PX}"
-        echo "⬇️  Tiling current window (unmaximize)" >&2
         exit "$?"
     fi
 
-    echo "⬆️  Maximize current window" >&2
     maximize_current_node
 fi
