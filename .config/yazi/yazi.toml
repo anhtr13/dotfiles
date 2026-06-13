@@ -1,0 +1,13 @@
+[mgr]
+show_hidden = true
+ratio = [1, 2, 2]
+
+# [opener]
+# pdf_viewer = [
+#     { run = 'zathura "$@"', orphan = true, desc = "Zathura", for = "unix" },
+# ]
+
+# [open]
+# rules = [
+#     { mime = "application/pdf", use = [ "pdf_viewer", "reveal" ] },
+# ]

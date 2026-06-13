@@ -1,0 +1,232 @@
+7zip
+acpid
+adw-gtk-theme
+alsa-utils
+base
+base-devel
+bear
+bluez
+bluez-utils
+brightnessctl
+btop
+clang
+cmake
+cmatrix
+cryptsetup
+dbeaver
+dmidecode
+dnsmasq
+docker
+docker-compose
+docker-openrc
+e2fsprogs
+ecryptfs-utils
+efibootmgr
+elogind-openrc
+emacs
+ethtool
+fastfetch
+fd
+foot
+fortune-mod
+fzf
+gdb
+gimp
+git
+gnome-themes-extra
+grim
+grub
+imagemagick
+intel-media-driver
+intel-ucode
+ipset
+isync
+jq
+keychain
+kitty
+libguestfs
+libreoffice-still
+libvirt-openrc
+linux
+linux-firmware
+linux-firmware-marvell
+linux-headers
+linux-lts
+linux-lts-headers
+llvm
+lolcat
+ly
+ly-openrc
+man-db
+man-pages
+meson
+mpv
+msmtp
+mtools
+neomutt
+networkmanager
+networkmanager-openrc
+ninja
+niri
+nmap
+noto-fonts-cjk
+noto-fonts-emoji
+nvidia-580xx-dkms
+nvidia-580xx-settings
+nvidia-580xx-utils
+nyx
+obs-studio
+openbsd-netcat
+openrc
+openresolv
+openssh
+openssh-openrc
+otf-codenewroman-nerd
+pamixer
+pass
+pavucontrol
+pipewire
+pipewire-alsa
+pipewire-jack
+pipewire-pulse
+pipewire-pulse-openrc
+poppler
+power-profiles-daemon
+power-profiles-daemon-openrc
+pv
+python-pip
+qbittorrent
+qemu-full
+reflector
+rofi
+rsync
+slurp
+sof-firmware
+sway
+swayidle
+swaylock
+swaync
+texinfo
+tmux
+torbrowser-launcher
+ttf-sourcecodepro-nerd
+ufw
+ufw-openrc
+unixodbc
+unzip
+valkey
+vim
+virt-manager
+virt-viewer
+vulkan-intel
+vulkan-nouveau
+vulkan-tools
+waybar
+wget
+wireguard-tools
+wireplumber-openrc
+wireshark-cli
+wl-clipboard
+xclip
+xdg-desktop-portal-gtk
+xorg-xwayland
+zathura
+zathura-pdf-poppler
+zsh
+
+----------------------------------------
+
+
+
+Package manager: AUR
+--------------------
+
+brave-bin
+bridge-utils
+cbonsai-git
+librewolf-bin
+pipes.sh
+rofimoji-git
+yay-bin
+
+
+
+Package manager: Go
+--------------------
+
+cowsay: go1.26.0
+	path	github.com/Code-Hex/Neo-cowsay/cmd/v2/cowsay
+cowthink: go1.26.0
+	path	github.com/Code-Hex/Neo-cowsay/cmd/v2/cowthink
+dlv: go1.26.0
+	path	github.com/go-delve/delve/cmd/dlv
+gemmie: go1.26.0
+	path	github.com/anhtr13/gemmie
+glow: go1.26.0
+	path	github.com/charmbracelet/glow/v2
+goimports-reviser: go1.26.0
+	path	github.com/incu6us/goimports-reviser/v3
+golines: go1.26.0
+	path	github.com/golangci/golines
+gopls: go1.26.0
+	path	golang.org/x/tools/gopls
+shfmt: go1.26.0
+	path	mvdan.cc/sh/v3/cmd/shfmt
+
+
+
+Package manager: Cargo
+--------------------
+
+bat v0.26.1:
+    bat
+bob-nvim v4.1.6:
+    bob
+fd-find v10.4.2:
+    fd
+fnm v1.39.0:
+    fnm
+my-bittorrent v0.1.0 (https://github.com/anhtr13/my-bittorrent.git#39492249):
+    my-bittorrent
+resvg v0.47.0:
+    resvg
+ripgrep v15.1.0:
+    rg
+rustlings v6.5.0:
+    rustlings
+starship v1.25.1:
+    starship
+stylua v2.4.1:
+    stylua
+tree-sitter-cli v0.26.8:
+    tree-sitter
+treer v0.1.4:
+    treer
+uv v0.11.17:
+    uv
+    uvx
+xwayland-satellite v0.8.1 (https://github.com/Supreeeme/xwayland-satellite.git#5d1efbc9):
+    xwayland-satellite
+yazi-build v26.5.9:
+    yazi-build
+zoxide v0.9.9:
+    zoxide
+
+
+
+Package manager: UV
+--------------------
+
+debugpy v1.8.20
+- debugpy
+- debugpy-adapter
+nginx-language-server v0.9.0
+- nginx-language-server
+nginxfmt v1.4.0
+- nginxfmt
+ruff v0.15.11
+- ruff
+tombi v0.9.20
+- tombi
+ty v0.0.31
+- ty
