@@ -48,7 +48,7 @@ require("nvim-tree").setup({
 			glyphs = {
 				git = {
 					untracked = "",
-					deleted = "✗",
+					deleted = "",
 					unstaged = "",
 					staged = "",
 					renamed = "",
@@ -90,8 +90,8 @@ require("mason").setup({
 	ui = {
 		icons = {
 			package_installed = "✓",
-			package_pending = "➜",
-			package_uninstalled = "✗",
+			package_pending = "",
+			package_uninstalled = "",
 		},
 	},
 })

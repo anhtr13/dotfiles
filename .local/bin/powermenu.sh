@@ -14,7 +14,7 @@ option_suspend=" Suspend"
 option_reboot=" Reboot"
 option_shutdown=" Shutdown"
 yes='✓ Yes'
-no='✗ No'
+no=' No'
 
 rofi_cmd() {
     rofi -theme-str "listview {columns: $list_col; lines: $list_row;}" \

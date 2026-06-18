@@ -4,7 +4,7 @@
 
 rofi_theme="$XDG_CONFIG_HOME/rofi/themes/applet.rasi"
 yes='✓ Yes'
-no='✗ No'
+no=' No'
 
 confirm_cmd() {
     rofi -theme-str 'window {location: center; anchor: center; fullscreen: false; width: 350px;}' \

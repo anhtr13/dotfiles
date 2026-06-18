@@ -1,8 +1,9 @@
 # Dotfiles
 
-My personal dotfiles, include:
+Personal dotfiles, include:
 
 - Configs for:
+  - gentoo (portage)
   - wayland (niri/sway)
   - neovim/vim
   - rofi

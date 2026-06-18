@@ -1,10 +1,10 @@
 .config/tmux/plugins
 .config/zsh/plugins
-.config/zsh/.zshenv
-.config/zsh/.histfile
 .config/zsh/.zcompdump
 .config/vim/.netrwhist
 .config/vim/plugins
 .config/nvim/lazy-lock.json
 .config/nvim/nvim-pack-lock.json
 .config/yazi/plugins
+portage/gnupg
+portage/savedconfig

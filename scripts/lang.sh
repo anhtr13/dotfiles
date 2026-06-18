@@ -14,7 +14,7 @@ if ! command -v rustc &>/dev/null; then
 fi
 
 # Go
-if [ ! -d "/usr/local/go" ]; then
+if ! command -v go &>/dev/null; then
     printf "\n>>> Installing Go...\n"
     mkdir -p "$target/go"
     cd "$target/go"
@@ -24,7 +24,7 @@ if [ ! -d "/usr/local/go" ]; then
 fi
 
 # Zig
-if [ ! -d "$target/zig" ]; then
+if ! command -v zig &>/dev/null; then
     printf "\n>>> Installing Zig...\n"
     mkdir -p "$target/zig"
     cd "$target/zig"
