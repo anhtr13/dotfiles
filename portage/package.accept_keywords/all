@@ -6,4 +6,7 @@ gui-libs/gtk4-layer-shell ~amd64
 gui-apps/swaync::guru ~amd64
 gui-apps/xwayland-satellite ~amd64
 gui-wm/niri::guru ~amd64
+media-sound/kew::guru ~amd64
 media-sound/pamixer::guru ~amd64
+media-video/obs-studio ~amd64
+media-plugins/obs-pipewire-audio-capture ~amd64

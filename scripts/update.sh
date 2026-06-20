@@ -103,19 +103,20 @@ done
 
 ###
 printf "\n>>> Checking portage configs...\n"
-find "/etc/portage" -type f -print0 | while IFS= read -r -d $'\0' file; do
-    file_path=${file#/etc/}
-    flag=true
-    for ign in ${ignores[@]}; do
-        if [[ $file_path == *$ign* ]]; then
-            flag=false
-            break
+mkdir -p "$dot/portage/"
+for item in /etc/portage/*; do
+    if [[ $(basename $item) != "gnupg" ]]; then
+        if [ -f "$item" ]; then
+            echo "$item"
+            cp -p "$item" "$dot/portage/"
+        elif [ -d "$item" ]; then
+            find "$item" -type f -print0 | while IFS= read -r -d $'\0' file; do
+                echo "$file"
+                file_path=${file#/etc/}
+                file_dir=$(dirname "$file_path")
+                mkdir -p "$dot/$file_dir"
+                cp -p $file "$dot/$file_dir"
+            done
         fi
-    done
-    if $flag; then
-        echo "$file_path"
-        file_dir=$(dirname $file_path)
-        mkdir -p "$dot/$file_dir"
-        cp -p $file "$dot/$file_dir"
     fi
 done
