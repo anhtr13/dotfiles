@@ -2,8 +2,13 @@
 
 theme="$XDG_CONFIG_HOME/rofi/themes/applet.rasi"
 
+storage="$HOME/Pictures/Screenshots"
+if [[ ! -d "$storage" ]]; then
+    mkdir -p "$storage"
+fi
+
 prompt='Screenshot'
-mesg="DIR: $HOME/Desktop/Pictures/Screenshots"
+mesg="Save to $storage"
 
 list_col='1'
 list_row='5'
@@ -28,15 +33,6 @@ run_rofi() {
     echo -e "$option_screen\n$option_region\n$option_window" | rofi_cmd
 }
 
-time=$(date +%Y-%m-%d-%H-%M-%S)
-dir="$HOME/Pictures/Screenshots"
-file_name="Screenshot_${time}.png"
-file_path="$dir/$file_name"
-
-if [[ ! -d "$dir" ]]; then
-    mkdir -p "$dir"
-fi
-
 shot_via_grim() {
     sleep 0.15
     case "$1" in
@@ -59,18 +55,22 @@ shot_via_grim() {
 shot_via_hyprshot() {
     case "$1" in
     '--screen')
-        hyprshot -m output -f $file_name -o $dir
+        hyprshot -m output -f $file_name -o $storage
         ;;
     '--region')
-        hyprshot -m region -f $file_name -o $dir
+        hyprshot -m region -f $file_name -o $storage
         ;;
     '--window')
-        hyprshot -m window -f $file_name -o $dir
+        hyprshot -m window -f $file_name -o $storage
         ;;
     esac
 }
 
 run_cmd() {
+    time=$(date +%Y-%m-%d-%H-%M-%S)
+    file_name="Screenshot_${time}.png"
+    file_path="$storage/$file_name"
+
     if [[ $XDG_CURRENT_DESKTOP == 'Hyprland' ]] && command -v hyprshot >/dev/null; then
         shot_via_hyprshot "$@"
     elif (command -v grim >/dev/null && command -v slurp >/dev/null); then

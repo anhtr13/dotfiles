@@ -1,3 +1,4 @@
 app-arch/unrar unRAR
 sys-kernel/linux-firmware linux-fw-redistributable
 sys-firmware/intel-microcode intel-ucode
+x11-drivers/nvidia-drivers NVIDIA-r1

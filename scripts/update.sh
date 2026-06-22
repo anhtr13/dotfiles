@@ -35,6 +35,7 @@ done <"$dot/.gitignore"
 ###
 printf "\n>>> Checking packages...\n"
 cat /var/lib/portage/world | tee "$dot/installed_packages.txt"
+printf "\n----------------------------------------\n" | tee -a "$dot/installed_packages.txt"
 printf "\n\n\n%s\n%s\n\n" "Package manager: Go" "--------------------" | tee -a "$dot/installed_packages.txt"
 for file in "$GOPATH/bin"/*; do
     if [ -f "$file" ]; then
@@ -49,54 +50,52 @@ uv tool list | tee -a "$dot/installed_packages.txt"
 
 ###
 printf "\n>>> Checking home configs...\n"
-for dir in "${home_configs[@]}"; do
-    if [ -d "$HOME/$dir" ]; then
-        find "$HOME/$dir" -type f -print0 | while IFS= read -r -d $'\0' file; do
-            file_path=${file#$HOME/}
+for item in "${home_configs[@]}"; do
+    if [ -d "$HOME/$item" ]; then
+        find "$HOME/$item" -type f -print0 | while IFS= read -r -d $'\0' file; do
+            suffix=${file#$HOME/}
             flag=true
             for ign in ${ignores[@]}; do
-                if [[ $file_path == *$ign* ]]; then
+                if [[ $suffix == *$ign* ]]; then
                     flag=false
                     break
                 fi
             done
             if $flag; then
-                echo "$file_path"
-                file_dir=$(dirname $file_path)
-                mkdir -p "$dot/$file_dir"
-                cp -p $file "$dot/$file_dir"
+                echo $suffix
+                dir=${dot}/$(dirname $suffix)
+                mkdir -p $dir
+                cp -p $file $dir
             fi
         done
-    elif [ -f "$HOME/$dir" ]; then
-        file_path=$dir
-        echo "$file_path"
-        file_dir=$(dirname $file_path)
-        mkdir -p "$dot/$file_dir"
-        cp -p "$HOME/$file_path" "$dot/$file_dir"
+    elif [ -f "$HOME/$item" ]; then
+        echo $item
+        dir=${dot}/$(dirname $item)
+        mkdir -p $dir
+        cp -p $HOME/$item $dir
     fi
 done
 
-for dir in "${home_configs[@]}"; do
-    if [ -d "${dot}/${dir}" ]; then
-        find "${dot}/${dir}" -mindepth 1 -type d -print0 | while IFS= read -r -d $'\0' sub_dir; do
-            dir_suffix=${sub_dir#"$dot/"}
-            if [ ! -d "$HOME/$dir_suffix" ]; then
-                rm -rf $sub_dir
-                echo "Removed folder: $sub_dir"
+for item in "${home_configs[@]}"; do
+    if [ -d "${dot}/${item}" ]; then
+        find "${dot}/${item}" -mindepth 1 -type d -print0 | while IFS= read -r -d $'\0' dir; do
+            suffix=${dir#"$dot/"}
+            if [ ! -d "$HOME/$suffix" ]; then
+                rm -rf $dir
+                echo "Removed directory: $dir"
             fi
         done
-        find "${dot}/${dir}" -type f -print0 | while IFS= read -r -d $'\0' file; do
-            file_path=${file#"$dot/"}
-            if [ ! -e "$HOME/$file_path" ]; then
-                rm -rf $file
+        find "${dot}/${item}" -type f -print0 | while IFS= read -r -d $'\0' file; do
+            suffix=${file#"$dot/"}
+            if [ ! -f "$HOME/$suffix" ]; then
+                rm $file
                 echo "Removed file: $file"
             fi
         done
-    elif [ -f "$dot/$dir" ]; then
-        file_path=$dir
-        if [ ! -f "$HOME/$file_path" ]; then
-            rm -rf "$HOME/$file_path"
-            echo "Removed file: $file_path"
+    elif [ -f "$dot/$item" ]; then
+        if [ ! -f "$HOME/$item" ]; then
+            rm "$HOME/$item"
+            echo "Removed file: $item"
         fi
     fi
 done
@@ -106,17 +105,42 @@ printf "\n>>> Checking portage configs...\n"
 mkdir -p "$dot/portage/"
 for item in /etc/portage/*; do
     if [[ $(basename $item) != "gnupg" ]]; then
-        if [ -f "$item" ]; then
-            echo "$item"
-            cp -p "$item" "$dot/portage/"
-        elif [ -d "$item" ]; then
-            find "$item" -type f -print0 | while IFS= read -r -d $'\0' file; do
-                echo "$file"
-                file_path=${file#/etc/}
-                file_dir=$(dirname "$file_path")
-                mkdir -p "$dot/$file_dir"
-                cp -p $file "$dot/$file_dir"
+        if [ -f $item ]; then
+            echo $item
+            cp -p $item "$dot/portage/"
+        elif [ -d $item ]; then
+            find $item -type f -print0 | while IFS= read -r -d $'\0' file; do
+                echo $file
+                suffix=${file#/etc/}
+                dir=${dot}/$(dirname $suffix)
+                mkdir -p $dir
+                cp -p $file $dir
             done
         fi
+    fi
+done
+
+for item in $dot/portage/*; do
+    if [ -f "$item" ]; then
+        suffix=${item#"$dot/"}
+        if [ ! -f "/etc/$suffix" ]; then
+            rm "$item"
+            echo "Removed file: $item"
+        fi
+    elif [ -d "$item" ]; then
+        find "$item" -type f -print0 | while IFS= read -r -d $'\0' file; do
+            suffix=${file#"$dot/"}
+            if [ ! -f "/etc/$suffix" ]; then
+                rm "$file"
+                echo "Removed file: $file"
+            fi
+        done
+        find "$item" -type d -print0 | while IFS= read -r -d $'\0' dir; do
+            suffix=${dir#"$dot/"}
+            if [ ! -d "/etc/$suffix" ] || [ -z "$(ls -A $dir)" ]; then
+                rm -rf "$dir"
+                echo "Removed directory: $dir"
+            fi
+        done
     fi
 done

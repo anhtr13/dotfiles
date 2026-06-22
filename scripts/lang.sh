@@ -18,8 +18,8 @@ if ! command -v go &>/dev/null; then
     printf "\n>>> Installing Go...\n"
     mkdir -p "$target/go"
     cd "$target/go"
-    curl -LO https://go.dev/dl/go1.26.0.linux-amd64.tar.gz
-    sudo tar -C /usr/local -xzf go1.26.0.linux-amd64.tar.gz
+    curl -LO https://go.dev/dl/go1.26.4.linux-amd64.tar.gz
+    sudo tar -C /usr/local -xzf go1.26.4.linux-amd64.tar.gz
     cd $dotdir
 fi
 

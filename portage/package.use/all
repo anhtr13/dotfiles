@@ -1,3 +1,7 @@
+app-editors/emacs imagemagick jit gui gtk tree-sitter -X
+app-emulation/qemu -alsa -jpeg -pipewire -png -X
+app-emulation/virt-manager gui
+app-text/xmlto text
 dev-cpp/cairomm X
 dev-cpp/gtkmm X
 dev-libs/libdbusmenu gtk3
@@ -8,14 +12,21 @@ media-fonts/noto-emoji icons
 media-gfx/imagemagick jpeg png raw svg tiff xml webp
 media-gfx/chafa avif jpegxl svg webp
 media-libs/mesa X egl gbm
+media-libs/vulkan-loader X
 media-video/ffmpeg opus x264
 media-video/pipewire bluetooth extra ffmpeg gstreamer jack-sdk pipewire-alsa pulseaudio man sound-server v4l
 media-video/obs-studio jack pipewire truetype v4l vlc
+net-misc/networkmanager resolvconf -modemmanager
+net-misc/spice-gtk usbredir
 net-p2p/qbittorrent dbus webui gui verify-sig
+sys-devel/gcc jit
 sys-kernel/installkernel ugrd grub
+x11-apps/mesa-progs X
+x11-drivers/nvidia-drivers dist-kernel powerd
+x11-drivers/xf86-video-intel dri tools
 x11-libs/cairo X
-x11-libs/gdk-pixbuf gif jpeg tiff
 x11-libs/gtk+ X
+x11-libs/gdk-pixbuf gif jpeg tiff
 x11-libs/libxkbcommon X
 
 net-libs/grpc PYTHON_TARGETS: -* python3_14

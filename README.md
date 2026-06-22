@@ -1,11 +1,11 @@
 # Dotfiles
 
-Personal dotfiles, include:
+Personal libre-dotfiles, include:
 
 - Configs for:
-  - gentoo (portage)
-  - wayland (niri/sway)
-  - neovim/vim
+  - gentoo/portage
+  - window-managers (niri,sway)
+  - text-editors (neovim,vim)
   - rofi
   - tmux
   - zsh

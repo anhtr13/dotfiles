@@ -1,4 +1,5 @@
 app-misc/brightnessctl::guru ~amd64
+dev-lang/zig ~amd64
 dev-util/rustup ~amd64
 gui-apps/foot ~amd64
 gui-apps/waybar ~amd64
@@ -10,3 +11,4 @@ media-sound/kew::guru ~amd64
 media-sound/pamixer::guru ~amd64
 media-video/obs-studio ~amd64
 media-plugins/obs-pipewire-audio-capture ~amd64
+x11-themes/adw-gtk3::guru ~amd64
