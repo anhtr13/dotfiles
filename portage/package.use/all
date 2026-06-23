@@ -1,5 +1,5 @@
 app-editors/emacs imagemagick jit gui gtk tree-sitter -X
-app-emulation/qemu -alsa -jpeg -pipewire -png -X
+app-emulation/qemu spice virgl virtfs -alsa -jpeg -pipewire -png -X
 app-emulation/virt-manager gui
 app-text/xmlto text
 dev-cpp/cairomm X

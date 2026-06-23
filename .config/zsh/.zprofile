@@ -29,10 +29,8 @@ export LLVM_SYMBOLIZER_PATH="/usr/bin/llvm-symbolizer"
 export GOROOT="/usr/lib/go"
 export GOPATH="$HOME/go"
 export CARGO_HOME="$HOME/.cargo"
-export ZIG_HOME="$HOME/zig/current"
 
 append_path "$HOME/.local/bin"
-append_path "$ZIG_HOME/bin"
 append_path "$GOPATH/bin"
 append_path "$CARGO_HOME/bin"
 

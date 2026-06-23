@@ -23,16 +23,17 @@ echo "Done."
 if command -v emerge &>/dev/null; then
     pkgs=()
     while IFS= read -r line; do
-        if [[ "$line" == "----------*" ]]; then
+        if [[ "$line" =~ ^"----------" ]]; then
             break
         fi
+        pkgs+=($line)
     done <"$dotdir/installed_packages.txt"
 
     sudo emerge --sync
 
     if [ ${#pkgs[@]} -gt 0 ]; then
         printf "\n>>> Installing core packages...\n"
-        sudo emerge --ask "${pkgs}"
+        sudo emerge --ask --noreplace "${pkgs[@]}"
     fi
 fi
 
