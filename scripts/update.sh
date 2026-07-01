@@ -7,6 +7,8 @@ set -e
 dot=$(dirname $(dirname $(realpath "$0")))
 home_configs=(
     ".local/bin"
+    ".doom.d"
+    ".icons"
     ".config/foot"
     ".config/kitty"
     ".config/niri"
@@ -23,8 +25,8 @@ home_configs=(
     ".config/yazi"
     ".config/zsh"
     ".config/mimeapps.list"
-    ".doom.d"
-    ".icons"
+    ".profile"
+    ".zprofile"
 )
 
 ignores=()
@@ -94,7 +96,7 @@ for item in "${home_configs[@]}"; do
         done
     elif [ -f "$dot/$item" ]; then
         if [ ! -f "$HOME/$item" ]; then
-            rm "$HOME/$item"
+            rm "$dot/$item"
             echo "Removed file: $item"
         fi
     fi

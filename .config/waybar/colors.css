@@ -1,9 +1,3 @@
-@define-color yellow #FFFF00;
-@define-color orange #FF7F00;
-@define-color red    #FF0000;
-@define-color white  #FFFFFF;
-@define-color base   #000000;
-
 @define-color green0 #00FF00;
 @define-color green1 #AAFF00;
 
@@ -20,6 +14,12 @@
 
 @define-color cyan0 #00FFFF;
 @define-color cyan1 #00FFD7;
+
+@define-color yellow #FFFF00;
+@define-color orange #FF7F00;
+@define-color red    #FF0000;
+@define-color white  #FFFFFF;
+@define-color base   rgba(0, 0, 0, 1);
 
 * {
     font-family: CodeNewRoman Nerd Font Propo;

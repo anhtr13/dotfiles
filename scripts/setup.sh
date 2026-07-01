@@ -10,6 +10,9 @@ trackings=(
     ".config"
     ".local"
     ".doom.d"
+    ".icons"
+    ".profile"
+    ".zprofile"
 )
 
 ###
@@ -40,16 +43,8 @@ fi
 ###
 if $(command -v zsh &>/dev/null); then
     read -p $'\n>>> Setup Zshell? [y/n]: ' chosen
-    if [ "$chosen" == "y" ]; then
-        printf ">>> Setting up Zsh...\n"
-
-        if [ ! -f /etc/zsh/zshenv ]; then
-            sudo mkdir -p /etc/zsh && sudo touch /etc/zsh/zshenv
-            cat "$dotdir/.config/zsh/etc-zsh-zshenv" | sudo tee /etc/zsh/zshenv
-        else
-            tail -n 3 "$dotdir/.config/zsh/etc-zsh-zshenv" | sudo tee /etc/zsh/zshenv
-        fi
-
+    if [ $chosen == "y" ] || [ $chosen == "Y" ]; then
+        printf ">>> Installing plugin...\n"
         if [ ! -e "$HOME/.local/share/zsh/plugins/zsh-autosuggestions" ]; then
             git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.local/share/zsh/plugins/zsh-autosuggestions"
         fi
@@ -60,6 +55,7 @@ if $(command -v zsh &>/dev/null); then
             git clone https://github.com/zsh-users/zsh-syntax-highlighting "$HOME/.local/share/zsh/plugins/zsh-syntax-highlighting"
         fi
 
+        printf ">>> Change shell to Zsh...\n"
         shell=$(basename $SHELL)
         if [ "$shell" != "zsh" ]; then
             chsh -s "$(which zsh)"

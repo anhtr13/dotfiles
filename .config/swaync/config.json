@@ -52,16 +52,16 @@
 			"menu#screenshot": {
 				"actions": [
 					{
-						"command": "hyprshot -m output -o ~/Pictures/Screenshots/",
-						"label": "󰹑   Whole screen "
+						"command": "screenshot.sh --screen",
+						"label": "󰹑   Capture screen "
 					},
 					{
-						"command": "hyprshot -m window -o ~/Pictures/Screenshots/",
-						"label": "   Select window"
+						"command": "screenshot.sh --window",
+						"label": "   Capture window"
 					},
 					{
-						"command": "hyprshot -m region -o ~/Pictures/Screenshots/",
-						"label": "󰆞   Select region"
+						"command": "screenshot.sh --region",
+						"label": "󰆞   Capture region"
 					}
 				],
 				"label": "󰄀 Screenshot",

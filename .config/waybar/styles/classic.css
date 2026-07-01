@@ -123,8 +123,6 @@ menuitem {
     color: @red;
 }
 
-#power-profiles-daemon {
-}
 #power-profiles-daemon.performance {
     color: @purple2;
 }
@@ -136,6 +134,6 @@ menuitem {
 }
 
 #custom-notification {
-    padding-right: 15px;
+    margin-right: 6px;
     color: @purple2;
 }

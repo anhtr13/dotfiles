@@ -33,7 +33,25 @@ run_rofi() {
     echo -e "$option_screen\n$option_region\n$option_window" | rofi_cmd
 }
 
-shot_via_grim() {
+niri_default_shot() {
+    case "$1" in
+    '--screen')
+        niri msg action screenshot-screen
+        ;;
+    '--region')
+        niri msg action screenshot
+        ;;
+    '--window')
+        niri msg action screenshot-window
+        ;;
+    esac
+}
+
+grim_slurp_shot() {
+    time=$(date +%Y-%m-%d_%H-%M-%S)
+    file_name="Screenshot_${time}.png"
+    file_path="$storage/$file_name"
+
     sleep 0.15
     case "$1" in
     '--screen')
@@ -47,49 +65,37 @@ shot_via_grim() {
         exit 1
         ;;
     esac
+
     if [[ -e "$file_path" ]]; then
         notify-send -i "$file_path" "Grim" "Screenshot saved: $file_name"
     fi
 }
 
-shot_via_hyprshot() {
-    case "$1" in
-    '--screen')
-        hyprshot -m output -f $file_name -o $storage
-        ;;
-    '--region')
-        hyprshot -m region -f $file_name -o $storage
-        ;;
-    '--window')
-        hyprshot -m window -f $file_name -o $storage
-        ;;
-    esac
-}
-
 run_cmd() {
-    time=$(date +%Y-%m-%d-%H-%M-%S)
-    file_name="Screenshot_${time}.png"
-    file_path="$storage/$file_name"
-
-    if [[ $XDG_CURRENT_DESKTOP == 'Hyprland' ]] && command -v hyprshot >/dev/null; then
-        shot_via_hyprshot "$@"
+    if [[ $XDG_CURRENT_DESKTOP == 'niri' ]] && command -v niri msg action >/dev/null; then
+        niri_default_shot "$@"
     elif (command -v grim >/dev/null && command -v slurp >/dev/null); then
-        shot_via_grim "$@"
+        grim_slurp_shot "$@"
     else
         notify-send -u "normal" "Warning!" "Missing package(s) to take screenshot: grim/slurp"
         exit 1
     fi
 }
 
-chosen="$(run_rofi)"
-case ${chosen} in
-$option_screen)
-    run_cmd --screen
-    ;;
-$option_region)
-    run_cmd --region
-    ;;
-$option_window)
-    run_cmd --window
-    ;;
-esac
+flag=$1
+if [[ -z "$flag" ]]; then
+    chosen="$(run_rofi)"
+    case ${chosen} in
+    $option_screen)
+        flag="--screen"
+        ;;
+    $option_region)
+        flag="--region"
+        ;;
+    $option_window)
+        flag="--window"
+        ;;
+    esac
+fi
+
+run_cmd $flag

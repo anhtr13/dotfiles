@@ -4,7 +4,9 @@ app-emulation/virt-manager gui
 app-text/xmlto text
 dev-cpp/cairomm X
 dev-cpp/gtkmm X
+dev-libs/glib static-libs utils
 dev-libs/libdbusmenu gtk3
+dev-libs/libpcre2 static-libs
 dev-qt/qtbase X
 gui-libs/gtk4-layer-shell vala introspection
 gui-apps/waybar network niri pipewire pulseaudio tray wifi
@@ -13,6 +15,7 @@ media-gfx/imagemagick jpeg png raw svg tiff xml webp
 media-gfx/chafa avif jpegxl svg webp
 media-libs/mesa X egl gbm
 media-libs/vulkan-loader X
+media-libs/opusfile static-libs
 media-video/ffmpeg opus x264
 media-video/pipewire bluetooth extra ffmpeg gstreamer jack-sdk pipewire-alsa pulseaudio man sound-server v4l
 media-video/obs-studio jack pipewire truetype v4l vlc

@@ -1,5 +1,6 @@
 app-admin/sudo
 app-admin/sysklogd
+app-arch/7zip
 app-arch/lz4
 app-crypt/gnupg
 app-crypt/pinentry
@@ -18,15 +19,16 @@ app-portage/gentoolkit
 app-shells/fzf
 app-shells/starship
 app-shells/zsh
+app-text/poppler
 app-text/tree
 dev-lang/go
 dev-lang/python:3.13
 dev-lang/rust
 dev-lang/zig
-dev-libs/glib
+dev-libs/openssl
 dev-python/uv
 dev-util/bear
-dev-util/glib-utils
+dev-util/pkgconf
 dev-util/rustup
 dev-util/tree-sitter-cli
 dev-util/wayland-scanner
@@ -53,6 +55,8 @@ media-gfx/imagemagick
 media-libs/libpulse
 media-libs/libva-intel-media-driver
 media-libs/mesa
+media-libs/opusfile
+media-libs/taglib
 media-sound/alsa-utils
 media-sound/pamixer
 media-sound/pavucontrol
@@ -81,7 +85,6 @@ sys-kernel/gentoo-kernel-bin
 sys-kernel/installkernel
 sys-kernel/linux-firmware
 sys-kernel/ugrd
-sys-libs/glibc
 sys-power/power-profiles-daemon
 sys-process/btop
 www-client/brave-browser::another-brave-overlay
@@ -134,6 +137,8 @@ fd-find v10.4.2:
     fd
 fnm v1.39.0:
     fnm
+lolcrab v0.4.1:
+    lolcrab
 resvg v0.47.0:
     resvg
 treer v0.1.4:

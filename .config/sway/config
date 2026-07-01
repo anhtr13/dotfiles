@@ -49,11 +49,10 @@ bindsym $mod+Ctrl+R exec swaymsg layout toggle split
 # Drag floating windows by holding down $mod and left mouse button.
 floating_modifier $mod normal
 
-# Exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+Escape exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+# Exit sway (logs out of your Wayland session)
+#bindsym $mod+Shift+Escape exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
-### Moving around ###
-# Move your focus around
+# Move focus around
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -64,7 +63,7 @@ bindsym $mod+J focus down
 bindsym $mod+K focus up
 bindsym $mod+L focus right
 
-# Move the focused window with the same, but add Shift
+# Move focusing window
 bindsym $mod+Ctrl+Left move left
 bindsym $mod+Ctrl+Down move down
 bindsym $mod+Ctrl+Up move up
@@ -75,8 +74,7 @@ bindsym $mod+Ctrl+J move down
 bindsym $mod+Ctrl+K move up
 bindsym $mod+Ctrl+L move right
 
-### Workspaces ###
-# Switch to workspace
+# Switch workspace
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
 bindsym $mod+3 workspace number 3
@@ -93,7 +91,7 @@ bindsym $mod+Shift+Down workspace next
 bindsym $mod+Shift+K workspace prev
 bindsym $mod+Shift+J workspace next
 
-# Move focused container to workspace
+# Move focusing container to workspace
 bindsym $mod+Alt+1 move container to workspace number 1
 bindsym $mod+Alt+2 move container to workspace number 2
 bindsym $mod+Alt+3 move container to workspace number 3
@@ -108,14 +106,13 @@ bindsym $mod+Alt+Up move container to workspace prev
 bindsym $mod+Alt+Down move container to workspace next
 
 ### Layout ###
-# $mod+b or $mod+v, for horizontal and vertical splits respectively.
+# Horizontal/vertical splits
 bindsym $mod+bracketright splith
 bindsym $mod+bracketleft splitv
 
 # Swap focus between the tiling area and the floating area
 bindsym $mod+Apostrophe focus mode_toggle
 
-### Scratchpad ###
 # Move the currently focused window to the scratchpad
 bindsym $mod+Alt+0 move scratchpad
 
@@ -138,18 +135,19 @@ bindsym $mod+s mode "resize"
 
 ### Utilities ###
 # Special keys to adjust volume via PulseAudio
-bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
-bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
-bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-
+bindsym --locked XF86AudioMute        exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym --locked XF86AudioMicMute     exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 # Special keys to adjust brightness via brightnessctl
 bindsym --locked XF86MonBrightnessDown exec brightnessctl -n5 set 10%-
-bindsym --locked XF86MonBrightnessUp exec brightnessctl -n5 set 10%+
+bindsym --locked XF86MonBrightnessUp   exec brightnessctl -n5 set 10%+
 # Special key to take a screenshot with grim
 bindsym Print exec screenshot.sh
 bindsym $mod+Print exec screenshot.sh
+bindsym $mod+Ctrl+Print exec screenshot.sh
 
 ### Customize ###
 for_window [app_id="footclient"] floating enable, resize set 900px 690px
 
-include /etc/sway/config.d/*
+#include /etc/sway/config.d/*
